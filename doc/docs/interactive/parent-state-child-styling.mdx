@@ -21,15 +21,15 @@ CSS provides three complementary mechanisms for parent-state-driven child stylin
 Together, these cover every scenario that Tailwind's `group-*` utilities handle, and more.
 
 <CssPreview
-  title="Card — Hover to see coordinated child changes"
+  title="Card — Hover or Tab to see coordinated child changes"
   html={`
 <div class="demo">
-  <div class="card">
+  <div class="card" tabindex="0">
     <div class="card__icon">→</div>
     <h3 class="card__title">Hover this card</h3>
-    <p class="card__desc">The icon shifts, the title changes color, and the background transitions — all from a single parent :hover.</p>
+    <p class="card__desc">The icon shifts, the title changes color, and the background transitions — all from a single parent :hover and :focus-within.</p>
   </div>
-  <div class="card">
+  <div class="card" tabindex="0">
     <div class="card__icon">→</div>
     <h3 class="card__title">Second card</h3>
     <p class="card__desc">Each card is independent. Hovering one does not affect the other.</p>
@@ -50,12 +50,17 @@ Together, these cover every scenario that Tailwind's `group-*` utilities handle,
   border-radius: 0.5rem;
   background: white;
   transition: background-color 0.2s ease, border-color 0.2s ease;
-  cursor: pointer;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-within {
   background: hsl(220 60% 97%);
   border-color: hsl(220 60% 70%);
+}
+
+.card:focus-visible {
+  outline: 2px solid hsl(220 70% 50%);
+  outline-offset: 2px;
 }
 
 .card__icon {
@@ -63,7 +68,8 @@ Together, these cover every scenario that Tailwind's `group-*` utilities handle,
   transition: transform 0.2s ease;
 }
 
-.card:hover .card__icon {
+.card:hover .card__icon,
+.card:focus-within .card__icon {
   transform: translateX(4px);
 }
 
@@ -74,7 +80,8 @@ Together, these cover every scenario that Tailwind's `group-*` utilities handle,
   transition: color 0.2s ease;
 }
 
-.card:hover .card__title {
+.card:hover .card__title,
+.card:focus-within .card__title {
   color: hsl(220 70% 50%);
 }
 
@@ -181,7 +188,7 @@ This is what Tailwind's `group` / `group-hover:` compiles to. The parent is the 
 
 .search-bar__input {
   border: none;
-  outline: none;
+  outline: 2px solid transparent;
   font-size: 0.9rem;
   flex: 1;
   background: transparent;
@@ -275,6 +282,11 @@ This is what Tailwind's `group` / `group-hover:` compiles to. The parent is the 
 .option-card:has(input:checked) {
   border-color: hsl(220 70% 50%);
   background: hsl(220 60% 97%);
+}
+
+.option-card:has(input:focus-visible) {
+  outline: 2px solid hsl(220 70% 50%);
+  outline-offset: 2px;
 }
 
 .option-card__input {
@@ -447,7 +459,9 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
       <span class="accordion__chevron">›</span>
     </label>
     <div class="accordion__body">
-      <p>Parent-state styling means applying CSS to child elements based on the parent's interactive state — hover, focus, checked, etc. This is what Tailwind's group/group-hover utilities compile to.</p>
+      <div class="accordion__body-inner">
+        <p>Parent-state styling means applying CSS to child elements based on the parent's interactive state — hover, focus, checked, etc. This is what Tailwind's group/group-hover utilities compile to.</p>
+      </div>
     </div>
   </div>
   <div class="accordion__item">
@@ -457,7 +471,9 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
       <span class="accordion__chevron">›</span>
     </label>
     <div class="accordion__body">
-      <p>No. Descendant combinators with :hover, :focus-within, and :has(:checked) cover the vast majority of interactive parent-child patterns without any JavaScript.</p>
+      <div class="accordion__body-inner">
+        <p>No. Descendant combinators with :hover, :focus-within, and :has(:checked) cover the vast majority of interactive parent-child patterns without any JavaScript.</p>
+      </div>
     </div>
   </div>
   <div class="accordion__item">
@@ -467,7 +483,9 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
       <span class="accordion__chevron">›</span>
     </label>
     <div class="accordion__body">
-      <p>:hover and :focus-within have universal support. :has() is supported in all major browsers since December 2023 (Chrome 105+, Safari 15.4+, Firefox 121+).</p>
+      <div class="accordion__body-inner">
+        <p>:hover and :focus-within have universal support. :has() is supported in all major browsers since December 2023 (Chrome 105+, Safari 15.4+, Firefox 121+).</p>
+      </div>
     </div>
   </div>
 </div>
@@ -489,6 +507,11 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
 
 .accordion__item:has(.accordion__trigger:checked) {
   border-color: hsl(220 60% 70%);
+}
+
+.accordion__item:has(.accordion__trigger:focus-visible) {
+  outline: 2px solid hsl(220 70% 50%);
+  outline-offset: 2px;
 }
 
 .accordion__trigger {
@@ -537,18 +560,16 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
   grid-template-rows: 1fr;
 }
 
-.accordion__body > p {
+.accordion__body-inner {
   overflow: hidden;
+}
+
+.accordion__body-inner > p {
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 1rem 1rem;
   font-size: 0.85rem;
   color: hsl(220 10% 40%);
   line-height: 1.6;
-  transition: padding 0.25s ease;
-}
-
-.accordion__item:has(.accordion__trigger:checked) .accordion__body > p {
-  padding: 0 1rem 1rem;
 }
   `}
 />
@@ -580,7 +601,7 @@ This is the CSS equivalent of Tailwind's named groups (`group/card`, `group/foot
     <h3 class="card__title">Nested Group Demo</h3>
     <p class="card__desc">Hover the card to highlight the badge. Then hover the footer area to see the link underline.</p>
     <div class="card__footer">
-      <span class="card__footer-link">Read more →</span>
+      <a href="#" class="card__footer-link">Read more →</a>
     </div>
   </div>
 </div>
@@ -645,14 +666,19 @@ This is the CSS equivalent of Tailwind's named groups (`group/card`, `group/foot
 .card__footer-link {
   font-size: 0.85rem;
   color: hsl(220 70% 50%);
-  cursor: pointer;
-  text-decoration: none;
   transition: text-decoration-color 0.15s ease;
   text-decoration: underline transparent;
 }
 
+.card__footer-link:focus-visible {
+  outline: 2px solid hsl(220 70% 50%);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* Inner group: footer hover changes link */
-.card__footer:hover .card__footer-link {
+.card__footer:hover .card__footer-link,
+.card__footer:focus-within .card__footer-link {
   text-decoration: underline hsl(220 70% 50%);
 }
   `}
@@ -663,12 +689,13 @@ This is the CSS equivalent of Tailwind's named groups (`group/card`, `group/foot
 | Tailwind Utility | CSS Equivalent |
 |---|---|
 | `group` + `group-hover:text-blue` | `.parent:hover .child { color: blue; }` |
-| `group` + `group-focus:opacity-100` | `.parent:focus-within .child { opacity: 1; }` |
+| `group` + `group-focus:opacity-100` | `.parent:focus .child { opacity: 1; }` |
+| `group` + `group-focus-within:ring-2` | `.parent:focus-within .child { ... }` |
 | `group` + `group-active:scale-95` | `.parent:active .child { transform: scale(0.95); }` |
 | `group/name` (named groups) | Use distinct class names per ancestor level |
 | `group-has-[:checked]:bg-blue` | `.parent:has(:checked) { background: blue; }` |
 
-## Common Anti-Patterns
+## Common AI Mistakes
 
 - **Using JavaScript to toggle classes for hover effects** — Use `.parent:hover .child` instead. No event listeners needed.
 - **Duplicating hover styles on every child element** — Apply `:hover` to the parent once, then style all children from that single rule.

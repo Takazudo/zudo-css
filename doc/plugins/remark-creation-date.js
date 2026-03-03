@@ -1,45 +1,110 @@
 const { execSync } = require('child_process');
 const path = require('path');
 
-function getGitCreationDate(filePath) {
+// Module-level cache: relativePath -> unix timestamp (seconds).
+// Populated once per process. In dev mode (docusaurus start),
+// restart the dev server to pick up creation dates for newly committed files.
+let creationDateCache = null;
+let cachedGitRoot = null;
+
+function getGitRoot(filePath) {
+  if (cachedGitRoot) return cachedGitRoot;
+  cachedGitRoot = execSync('git rev-parse --show-toplevel', {
+    cwd: path.dirname(filePath),
+    encoding: 'utf8',
+  }).trim();
+  return cachedGitRoot;
+}
+
+// Build cache with a single git log call for all files
+function buildCreationDateCache(gitRoot) {
+  if (creationDateCache) return;
+  creationDateCache = new Map();
+
   try {
-    // Find git root directory
-    const gitRoot = execSync('git rev-parse --show-toplevel', {
-      cwd: path.dirname(filePath),
-      encoding: 'utf8',
-    }).trim();
+    // --diff-filter=A: only "Added" entries (file creation)
+    // --reverse: oldest commits first, so the first occurrence is the true creation
+    // --all: search across all branches (supports worktrees and feature branches)
+    const output = execSync(
+      'git log --all --diff-filter=A --format=%at --name-only --reverse',
+      { cwd: gitRoot, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
+    );
 
-    // Get relative path from git root
-    const relativePath = path.relative(gitRoot, filePath);
+    let currentTimestamp = null;
+    for (const line of output.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
 
-    // Get the first commit timestamp for this file
-    // Uses --all to search across all branches (supports worktrees and feature branches)
-    // Uses --follow to track file renames
+      // Timestamp lines are purely numeric
+      if (/^\d+$/.test(trimmed)) {
+        currentTimestamp = trimmed;
+      } else if (currentTimestamp) {
+        // File path line — only store the first (earliest) occurrence
+        if (!creationDateCache.has(trimmed)) {
+          creationDateCache.set(trimmed, currentTimestamp);
+        }
+      }
+    }
+  } catch (error) {
+    console.warn(`Could not build creation date cache: ${error.message}`);
+    creationDateCache = new Map();
+  }
+}
+
+// Per-file fallback with --follow for rename tracking
+function getCreationDateWithFollow(gitRoot, relativePath) {
+  try {
     const output = execSync(
       `git log --all --follow --format=%at --reverse -n 1 -- "${relativePath}"`,
-      {
-        cwd: gitRoot,
-        encoding: 'utf8',
-      },
+      { cwd: gitRoot, encoding: 'utf8' },
     ).trim();
 
     const timestamp = output.split('\n')[0];
+    return timestamp || null;
+  } catch {
+    return null;
+  }
+}
 
-    if (!timestamp) {
+function formatTimestamp(unixSeconds) {
+  const date = new Date(parseInt(unixSeconds, 10) * 1000);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
+
+  return {
+    formatted: `${year}/${month}/${day}`,
+    timestamp: date.getTime(),
+  };
+}
+
+function getGitCreationDate(filePath) {
+  try {
+    const gitRoot = getGitRoot(filePath);
+    // Normalize to forward slashes — git outputs forward slashes on all
+    // platforms, but path.relative uses backslashes on Windows.
+    const relativePath = path.relative(gitRoot, filePath).split(path.sep).join('/');
+
+    // Build the cache on first call
+    buildCreationDateCache(gitRoot);
+
+    // Look up in batch cache first
+    let unixSeconds = creationDateCache.get(relativePath);
+
+    // Fallback: per-file --follow for renamed files not found in batch
+    if (!unixSeconds) {
+      unixSeconds = getCreationDateWithFollow(gitRoot, relativePath);
+    }
+
+    if (!unixSeconds) {
       return null;
     }
 
-    const date = new Date(parseInt(timestamp, 10) * 1000);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-
-    return {
-      formatted: `${year}/${month}/${day}`,
-      timestamp: date.getTime(),
-    };
+    return formatTimestamp(unixSeconds);
   } catch (error) {
-    console.warn(`Could not extract creation date for ${filePath}: ${error.message}`);
+    console.warn(
+      `Could not extract creation date for ${filePath}: ${error.message}`,
+    );
     return null;
   }
 }

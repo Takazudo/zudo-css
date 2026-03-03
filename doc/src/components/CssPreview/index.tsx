@@ -1,14 +1,7 @@
-import {
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { type ReactNode, useMemo } from 'react';
 import CodeBlock from '@theme/CodeBlock';
+import PreviewBase from '../PreviewBase';
 import { preflightCss } from './preflight';
-import styles from './styles.module.css';
 
 interface CssPreviewProps {
   html: string;
@@ -16,14 +9,6 @@ interface CssPreviewProps {
   title?: string;
   height?: number;
 }
-
-type Viewport = { label: string; width: string };
-
-const VIEWPORTS: Viewport[] = [
-  { label: 'Mobile', width: '320px' },
-  { label: 'Tablet', width: '768px' },
-  { label: 'Full', width: '100%' },
-];
 
 function buildSrcdoc(html: string, css: string): string {
   return `<!doctype html>
@@ -44,108 +29,25 @@ export default function CssPreview({
   title,
   height,
 }: CssPreviewProps): ReactNode {
-  const [activeViewport, setActiveViewport] = useState(2); // default: Full
-  const [codeOpen, setCodeOpen] = useState(false);
-  const [iframeHeight, setIframeHeight] = useState(height ?? 200);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
   const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
-  const syncHeight = useCallback(() => {
-    const iframe = iframeRef.current;
-    if (!iframe || height) return; // skip if explicit height given
-    try {
-      const doc = iframe.contentDocument;
-      if (doc?.body) {
-        const h = doc.body.scrollHeight;
-        if (h > 0) setIframeHeight(Math.max(h + 16, 200));
-      }
-    } catch {
-      // cross-origin or not yet loaded — ignore
-    }
-  }, [height]);
-
-  useEffect(() => {
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-    const onLoad = () => {
-      syncHeight();
-    };
-    iframe.addEventListener('load', onLoad);
-    return () => iframe.removeEventListener('load', onLoad);
-  }, [syncHeight, srcdoc]);
-
-  const containerWidth = VIEWPORTS[activeViewport].width;
-
   return (
-    <div className={styles.wrapper}>
-      {/* Title bar with viewport buttons */}
-      <div className={styles.titleBar}>
-        {title && <span className={styles.title}>{title}</span>}
-        <div className={styles.viewportButtons}>
-          {VIEWPORTS.map((vp, i) => (
-            <button
-              key={vp.label}
-              type="button"
-              className={
-                i === activeViewport
-                  ? styles.viewportBtnActive
-                  : styles.viewportBtn
-              }
-              aria-pressed={i === activeViewport}
-              onClick={() => setActiveViewport(i)}
-            >
-              {vp.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Preview area */}
-      <div className={styles.previewArea}>
-        <div
-          className={styles.previewContainer}
-          style={{ width: containerWidth }}
-        >
-          <iframe
-            ref={iframeRef}
-            className={styles.iframe}
-            srcDoc={srcdoc}
-            sandbox="allow-same-origin"
-            style={{ height: iframeHeight }}
-            title={title ?? 'CSS Preview'}
-          />
-        </div>
-      </div>
-
-      {/* Code section */}
-      <div className={styles.codeSection}>
-        <button
-          type="button"
-          className={styles.codeToggle}
-          onClick={() => setCodeOpen((v) => !v)}
-          aria-expanded={codeOpen}
-        >
-          <span
-            className={
-              codeOpen ? styles.codeToggleIconOpen : styles.codeToggleIcon
-            }
-          >
-            &#9654;
-          </span>
-          {codeOpen ? 'Hide code' : 'Show code'}
-        </button>
-        {codeOpen && (
-          <div className={styles.codeContent}>
-            <CodeBlock language="html" title="HTML">
-              {html.trim()}
-            </CodeBlock>
-            <CodeBlock language="css" title="CSS">
-              {css.trim()}
-            </CodeBlock>
-          </div>
-        )}
-      </div>
-    </div>
+    <PreviewBase
+      title={title}
+      height={height}
+      srcdoc={srcdoc}
+      sandbox="allow-same-origin"
+      syncDelay={0}
+      codeBlocks={
+        <>
+          <CodeBlock language="html" title="HTML">
+            {html.trim()}
+          </CodeBlock>
+          <CodeBlock language="css" title="CSS">
+            {css.trim()}
+          </CodeBlock>
+        </>
+      }
+    />
   );
 }

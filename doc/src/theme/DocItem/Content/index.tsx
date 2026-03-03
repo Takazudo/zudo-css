@@ -5,15 +5,18 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
 import type { Props } from '@theme/DocItem/Content';
+import type { RemarkCreationDateFields } from '@site/src/types/docusaurus';
 
 /**
  * Component to display document metadata (creation date, update date, author)
  * Rendered via SSR so metadata is available even with JavaScript disabled.
  */
 function DocMetadata(): ReactNode {
-  const { frontMatter, metadata } = useDoc();
+  const { frontMatter: rawFrontMatter, metadata } = useDoc();
+  const frontMatter = rawFrontMatter as typeof rawFrontMatter &
+    RemarkCreationDateFields;
 
-  const creationDate = frontMatter.custom_creation_date as string | undefined;
+  const creationDate = frontMatter.custom_creation_date;
   const lastUpdatedAt = metadata.lastUpdatedAt;
   const lastUpdatedBy = metadata.lastUpdatedBy;
 

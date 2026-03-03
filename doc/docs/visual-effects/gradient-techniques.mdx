@@ -3,6 +3,7 @@ sidebar_position: 2
 ---
 
 import CssPreview from '@site/src/components/CssPreview';
+import TailwindPreview from '@site/src/components/TailwindPreview';
 
 # Gradient Techniques
 
@@ -357,6 +358,51 @@ Multiple gradients can be stacked using comma-separated `background` values. Lat
 - **Decorative patterns** — Hard-stop repeating gradients for stripes, dots, and geometric backgrounds
 - **Data visualization** — Conic gradients for simple pie/donut charts without JavaScript
 - **Borders** — Gradient borders via `background-clip` for elements that need rounded corners
+
+## Tailwind CSS
+
+Tailwind provides gradient utilities via `bg-gradient-to-*` for direction and `from-*`, `via-*`, `to-*` for color stops. These cover common linear gradient patterns concisely.
+
+### Linear Gradient
+
+<TailwindPreview
+  title="Tailwind: Linear Gradient"
+  html={`<div class="h-[200px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"></div>`}
+  height={220}
+/>
+
+### Gradient Cards
+
+<TailwindPreview
+  title="Tailwind: Gradient Cards"
+  html={`<div class="flex gap-3 p-4 bg-slate-900 min-h-[200px] items-center justify-center">
+  <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white w-40">
+    <h3 class="font-bold text-lg mb-1">Plan A</h3>
+    <p class="text-sm opacity-90">Blue to purple</p>
+  </div>
+  <div class="bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-xl p-6 text-white w-40">
+    <h3 class="font-bold text-lg mb-1">Plan B</h3>
+    <p class="text-sm opacity-90">Emerald to cyan</p>
+  </div>
+  <div class="bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 rounded-xl p-6 text-white w-40">
+    <h3 class="font-bold text-lg mb-1">Plan C</h3>
+    <p class="text-sm opacity-90">Three-stop via</p>
+  </div>
+</div>`}
+  height={220}
+/>
+
+### Gradient Text
+
+<TailwindPreview
+  title="Tailwind: Gradient Text"
+  html={`<div class="flex justify-center items-center h-[200px] bg-slate-950">
+  <h1 class="text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+    Gradient Heading
+  </h1>
+</div>`}
+  height={220}
+/>
 
 ## References
 

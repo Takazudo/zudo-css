@@ -1,14 +1,14 @@
-import type { ReactNode } from "react";
-import clsx from "clsx";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import Layout from "@theme/Layout";
-import DocsSitemap from "@site/src/components/DocsSitemap";
-import styles from "./index.module.css";
+import type { ReactNode } from 'react';
+import clsx from 'clsx';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Layout from '@theme/Layout';
+import DocsSitemap from '@site/src/components/DocsSitemap';
+import styles from './index.module.css';
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
-  const logoUrl = useBaseUrl("/img/logo.svg");
+  const logoUrl = useBaseUrl('/img/logo.svg');
   return (
     <Layout title={siteConfig.title}>
       <main className={clsx(styles.main)}>
@@ -23,11 +23,7 @@ export default function Home(): ReactNode {
 
                 {/* Big Logo */}
                 <div className={styles.logoContainer}>
-                  <img
-                    src={logoUrl}
-                    alt="Logo"
-                    className={styles.bigLogo}
-                  />
+                  <img src={logoUrl} alt="Logo" className={styles.bigLogo} />
                 </div>
               </div>
 

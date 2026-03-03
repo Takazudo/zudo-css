@@ -51,9 +51,7 @@ function isIndexFile(filename, parentDirName) {
  */
 function filenameToTitle(filename) {
   const basename = path.basename(filename, path.extname(filename));
-  return basename
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+  return basename.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 /**
@@ -93,9 +91,7 @@ function parseMarkdownFile(filePath, categoryKey) {
 
   // sidebar_position from frontmatter, default to a large number for sorting
   const position =
-    frontmatter.sidebar_position != null
-      ? Number(frontmatter.sidebar_position)
-      : Infinity;
+    frontmatter.sidebar_position != null ? Number(frontmatter.sidebar_position) : Infinity;
 
   return { docId, title, position };
 }

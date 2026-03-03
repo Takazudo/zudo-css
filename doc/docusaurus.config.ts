@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -38,9 +38,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          beforeDefaultRemarkPlugins: [
-            [require('./plugins/remark-creation-date.js'), {}],
-          ],
+          beforeDefaultRemarkPlugins: [[require('./plugins/remark-creation-date.js'), {}]],
         },
         blog: false,
         theme: {

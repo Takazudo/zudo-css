@@ -17,11 +17,11 @@ const config: Config = {
   organizationName: 'takazudo',
   projectName: 'css-best-practices',
 
-  onBrokenLinks: 'ignore',
+  onBrokenLinks: 'warn',
 
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'ignore',
+      onBrokenMarkdownLinks: 'warn',
     },
   },
 

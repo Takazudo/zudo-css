@@ -91,7 +91,7 @@ function parseMarkdownFile(filePath, categoryKey) {
 
   // sidebar_position from frontmatter, default to a large number for sorting
   const position =
-    frontmatter.sidebar_position != null ? Number(frontmatter.sidebar_position) : Infinity;
+    frontmatter.sidebar_position != null ? Number(frontmatter.sidebar_position) : 999999;
 
   return { docId, title, position };
 }

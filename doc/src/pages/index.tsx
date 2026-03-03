@@ -32,7 +32,7 @@ export default function Home(): ReactNode {
                 <h2>Links</h2>
                 <ul className={styles.linksList}>
                   <li>
-                    <a href="https://example.com">Main Site</a>
+                    <a href="https://github.com/Takazudo/zcss">GitHub Repository</a>
                   </li>
                 </ul>
               </section>

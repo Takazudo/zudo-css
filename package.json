@@ -1,0 +1,15 @@
+{
+  "name": "zcss",
+  "private": true,
+  "scripts": {
+    "doc:start": "pnpm --dir doc start",
+    "doc:build": "pnpm --dir doc build",
+    "doc:serve": "pnpm --dir doc serve",
+    "doc:check": "pnpm --dir doc check",
+    "doc:check:fix": "pnpm --dir doc check:fix",
+    "doc:generate": "pnpm --dir doc generate"
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

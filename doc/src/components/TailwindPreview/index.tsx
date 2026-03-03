@@ -7,12 +7,11 @@ import {
   useState,
 } from 'react';
 import CodeBlock from '@theme/CodeBlock';
-import { preflightCss } from './preflight';
 import styles from './styles.module.css';
 
-interface CssPreviewProps {
+interface TailwindPreviewProps {
   html: string;
-  css: string;
+  css?: string;
   title?: string;
   height?: number;
 }
@@ -25,25 +24,25 @@ const VIEWPORTS: Viewport[] = [
   { label: 'Full', width: '100%' },
 ];
 
-function buildSrcdoc(html: string, css: string): string {
+function buildSrcdoc(html: string, css?: string): string {
   return `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<style>${preflightCss}</style>
-<style>${css}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+${css ? `<style>${css}</style>` : ''}
 </head>
 <body>${html}</body>
 </html>`;
 }
 
-export default function CssPreview({
+export default function TailwindPreview({
   html,
   css,
   title,
   height,
-}: CssPreviewProps): ReactNode {
+}: TailwindPreviewProps): ReactNode {
   const [activeViewport, setActiveViewport] = useState(2); // default: Full
   const [codeOpen, setCodeOpen] = useState(false);
   const [iframeHeight, setIframeHeight] = useState(height ?? 200);
@@ -68,11 +67,16 @@ export default function CssPreview({
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
+    let timeoutId: ReturnType<typeof setTimeout>;
     const onLoad = () => {
-      syncHeight();
+      // Delay sync to allow Tailwind CDN to process classes
+      timeoutId = setTimeout(syncHeight, 300);
     };
     iframe.addEventListener('load', onLoad);
-    return () => iframe.removeEventListener('load', onLoad);
+    return () => {
+      iframe.removeEventListener('load', onLoad);
+      clearTimeout(timeoutId);
+    };
   }, [syncHeight, srcdoc]);
 
   const containerWidth = VIEWPORTS[activeViewport].width;
@@ -107,13 +111,20 @@ export default function CssPreview({
           className={styles.previewContainer}
           style={{ width: containerWidth }}
         >
+          {/*
+           * allow-scripts: required for Tailwind CDN to process utility classes
+           * allow-same-origin: required for syncHeight to read iframe body
+           * Security note: this combination weakens sandbox isolation.
+           * The html prop must always be author-controlled (hardcoded in MDX),
+           * never user-supplied.
+           */}
           <iframe
             ref={iframeRef}
             className={styles.iframe}
             srcDoc={srcdoc}
-            sandbox="allow-same-origin"
+            sandbox="allow-scripts allow-same-origin"
             style={{ height: iframeHeight }}
-            title={title ?? 'CSS Preview'}
+            title={title ?? 'Tailwind CSS Preview'}
           />
         </div>
       </div>
@@ -140,9 +151,11 @@ export default function CssPreview({
             <CodeBlock language="html" title="HTML">
               {html.trim()}
             </CodeBlock>
-            <CodeBlock language="css" title="CSS">
-              {css.trim()}
-            </CodeBlock>
+            {css && (
+              <CodeBlock language="css" title="CSS">
+                {css.trim()}
+              </CodeBlock>
+            )}
           </div>
         )}
       </div>

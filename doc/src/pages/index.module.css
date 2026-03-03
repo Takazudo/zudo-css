@@ -15,7 +15,6 @@
 
 /* Left Column - Fixed width, sticky */
 .leftCol {
-  flex: 0 0 500px;
   position: sticky;
   top: var(--ifm-navbar-height);
   height: fit-content;
@@ -87,7 +86,6 @@
 
 /* Right Column */
 .rightCol {
-  flex: 1;
   min-width: 0;
 }
 

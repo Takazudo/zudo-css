@@ -1,0 +1,201 @@
+---
+sidebar_position: 4
+---
+
+# Backdrop Filter and Glassmorphism
+
+## The Problem
+
+Glassmorphism — the frosted-glass aesthetic popularized by Apple's iOS and macOS — requires `backdrop-filter: blur()` combined with a semi-transparent background. AI agents frequently get this wrong in several ways: they apply blur to the element itself instead of the backdrop, use fully opaque backgrounds that hide the blur entirely, forget the `-webkit-` prefix needed for Safari, or apply the effect on solid-colored backgrounds where there is nothing interesting to blur.
+
+## The Solution
+
+Use `backdrop-filter: blur()` on a semi-transparent element positioned over a visually rich background (gradients, images, or colorful content). The blur applies to everything **behind** the element, not the element's own content. Keep blur values between 8–16px for the best balance of aesthetics and performance, and always include the `-webkit-` prefix for Safari compatibility.
+
+### Core Principles
+
+#### Semi-Transparent Background Required
+
+The element must have a semi-transparent `background-color` so the blurred backdrop shows through. A fully opaque background defeats the entire purpose.
+
+#### Rich Content Behind
+
+`backdrop-filter` blurs what is behind the element. Over a solid white page, there is nothing to blur and the effect is invisible. Always use glassmorphism over gradients, images, or layered colorful content.
+
+#### Performance Budget
+
+Each glassmorphic element triggers a separate GPU blur calculation. Limit to 2–3 glass elements per viewport. Avoid animating `backdrop-filter` values directly.
+
+## Code Examples
+
+### Basic Frosted Glass Card
+
+```css
+.glass-card {
+  background: hsl(0deg 0% 100% / 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(0deg 0% 100% / 0.2);
+  border-radius: 16px;
+  padding: 24px;
+}
+```
+
+```html
+<div class="vibrant-background">
+  <div class="glass-card">
+    <h2>Frosted Glass</h2>
+    <p>Content is readable over a blurred background.</p>
+  </div>
+</div>
+```
+
+### Vibrant Background Setup
+
+The glass effect only works when there is rich visual content behind it.
+
+```css
+.vibrant-background {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 80%, hsl(280deg 80% 60% / 0.6), transparent 50%),
+    radial-gradient(circle at 80% 20%, hsl(200deg 80% 60% / 0.6), transparent 50%),
+    linear-gradient(135deg, hsl(220deg 60% 20%), hsl(280deg 60% 30%));
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
+```
+
+### Dark Theme Glassmorphism
+
+```css
+.glass-dark {
+  background: hsl(220deg 20% 10% / 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(0deg 0% 100% / 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px hsl(0deg 0% 0% / 0.3);
+}
+```
+
+### Light Theme Glassmorphism
+
+```css
+.glass-light {
+  background: hsl(0deg 0% 100% / 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(0deg 0% 100% / 0.3);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px hsl(0deg 0% 0% / 0.08);
+}
+```
+
+### Frosted Glass Navigation Bar
+
+```css
+.glass-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: hsl(0deg 0% 100% / 0.7);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-bottom: 1px solid hsl(0deg 0% 0% / 0.06);
+  padding: 12px 24px;
+}
+```
+
+Adding `saturate(180%)` alongside `blur()` intensifies the colors of the blurred content, mimicking the vibrancy of Apple's glass effect.
+
+### Glass Modal Overlay
+
+```css
+.glass-overlay {
+  position: fixed;
+  inset: 0;
+  background: hsl(0deg 0% 0% / 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 200;
+}
+
+.glass-modal {
+  background: hsl(0deg 0% 100% / 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsl(0deg 0% 100% / 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 16px 48px hsl(0deg 0% 0% / 0.2);
+}
+```
+
+```html
+<div class="glass-overlay">
+  <div class="glass-modal">
+    <h2>Modal Title</h2>
+    <p>Modal content over a frosted backdrop.</p>
+  </div>
+</div>
+```
+
+### Performant Alternative with Pre-Blurred Background
+
+When performance is critical (mobile, many glass elements), use a pre-blurred image instead of runtime `backdrop-filter`.
+
+```css
+.faux-glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.faux-glass::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: url("background-preblurred.jpg") center / cover;
+  filter: blur(0); /* image is already blurred */
+  z-index: -1;
+}
+
+.faux-glass-content {
+  position: relative;
+  background: hsl(0deg 0% 100% / 0.15);
+  padding: 24px;
+}
+```
+
+## Common AI Mistakes
+
+- **Using `filter: blur()` instead of `backdrop-filter: blur()`** — `filter` blurs the element itself and all its content, making text unreadable. `backdrop-filter` blurs only what is behind the element.
+- **Fully opaque background** — Setting `background: white` or `background: rgba(255, 255, 255, 1)` completely covers the blurred backdrop, making the effect invisible.
+- **Forgetting the `-webkit-` prefix** — Safari requires `-webkit-backdrop-filter` alongside the standard `backdrop-filter`. Without it, Safari users see no blur.
+- **Applying over solid backgrounds** — Glass over a single flat color produces no visible effect. There must be visual variation behind the element for the blur to be meaningful.
+- **Too many glass elements** — Each `backdrop-filter` triggers an expensive GPU blur pass. Using it on every card, button, and nav item causes severe frame drops.
+- **Excessive blur values** — Using `blur(40px)` or higher. Values above 16px are exponentially more expensive and rarely look better than 12–16px.
+- **Not adjusting for light and dark themes** — A glass effect tuned for a dark background looks washed out on a light background and vice versa. Background opacity and border need theme-specific adjustment.
+
+## When to Use
+
+- Fixed navigation bars that scroll over varying page content
+- Modal overlays that need to maintain context of the underlying page
+- Hero section cards or overlays positioned over vibrant images or gradients
+- Sidebar panels in applications with rich visual content beneath
+- Tooltip or popover elements where maintaining spatial context matters
+
+## References
+
+- [backdrop-filter — MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
+- [Next-level Frosted Glass with backdrop-filter — Josh W. Comeau](https://www.joshwcomeau.com/css/backdrop-filter/)
+- [Glassmorphism Design Trend: Implementation Guide — Developer Playground](https://playground.halfaccessible.com/blog/glassmorphism-design-trend-implementation-guide)
+- [Blending Modes in CSS — Ahmad Shadeed](https://ishadeed.com/article/blending-modes-css/)

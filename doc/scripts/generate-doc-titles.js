@@ -79,9 +79,7 @@ function extractTitle(filePath) {
   const basename = path.basename(filePath);
   const nameWithoutExt = basename.replace(/\.(md|mdx)$/i, '');
   // Convert kebab-case or snake_case to Title Case
-  return nameWithoutExt
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  return nameWithoutExt.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 /**

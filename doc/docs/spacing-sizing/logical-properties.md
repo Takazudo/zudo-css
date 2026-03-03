@@ -1,0 +1,191 @@
+---
+sidebar_position: 3
+---
+
+# Logical Properties
+
+## The Problem
+
+CSS was originally designed with physical directions: `top`, `right`, `bottom`, `left`. These work for left-to-right (LTR) languages but break in right-to-left (RTL) languages like Arabic and Hebrew, and in vertical writing modes like Japanese. AI agents almost always generate physical properties (`margin-left`, `padding-right`, `border-top`) even when logical alternatives exist. This creates layouts that require manual mirroring for internationalization (i18n), which is error-prone and produces duplicate CSS.
+
+## The Solution
+
+CSS logical properties define spacing, sizing, and positioning in terms of the content flow rather than physical screen directions:
+
+- **Inline axis** — the direction text flows (horizontal in LTR/RTL, vertical in vertical writing modes)
+- **Block axis** — the direction blocks stack (vertical in LTR/RTL, horizontal in vertical writing modes)
+
+By using `margin-inline`, `padding-block`, `border-inline-start`, and similar properties, your layouts automatically adapt to any writing direction.
+
+## Code Examples
+
+### Physical vs Logical Property Mapping
+
+```css
+/* Physical (LTR-only) */
+.card-physical {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-left: 3px solid blue;
+}
+
+/* Logical (all writing directions) */
+.card-logical {
+  margin-inline: 1rem;
+  padding-block: 2rem;
+  border-inline-start: 3px solid blue;
+}
+```
+
+In LTR, these produce identical results. In RTL, the logical version automatically places the border on the right side (the start of the inline axis in RTL).
+
+### Complete Property Mapping
+
+| Physical Property | Logical Property |
+|---|---|
+| `margin-top` | `margin-block-start` |
+| `margin-bottom` | `margin-block-end` |
+| `margin-left` | `margin-inline-start` |
+| `margin-right` | `margin-inline-end` |
+| `padding-top` | `padding-block-start` |
+| `padding-bottom` | `padding-block-end` |
+| `padding-left` | `padding-inline-start` |
+| `padding-right` | `padding-inline-end` |
+| `width` | `inline-size` |
+| `height` | `block-size` |
+| `min-width` | `min-inline-size` |
+| `max-height` | `max-block-size` |
+| `top` | `inset-block-start` |
+| `bottom` | `inset-block-end` |
+| `left` | `inset-inline-start` |
+| `right` | `inset-inline-end` |
+| `border-top` | `border-block-start` |
+| `border-bottom` | `border-block-end` |
+| `text-align: left` | `text-align: start` |
+| `text-align: right` | `text-align: end` |
+| `float: left` | `float: inline-start` |
+
+### Shorthand Properties
+
+```css
+.box {
+  /* Sets both inline-start and inline-end */
+  margin-inline: 1rem;        /* same as margin-left + margin-right in LTR */
+
+  /* Sets both block-start and block-end */
+  padding-block: 2rem;        /* same as padding-top + padding-bottom in LTR */
+
+  /* Two-value syntax: start and end */
+  margin-inline: 1rem 2rem;   /* inline-start: 1rem, inline-end: 2rem */
+  padding-block: 1rem 0;      /* block-start: 1rem, block-end: 0 */
+}
+```
+
+### Centering with margin-inline: auto
+
+```css
+.centered-block {
+  max-inline-size: 800px;
+  margin-inline: auto;
+}
+```
+
+This is the logical equivalent of `max-width: 800px; margin-left: auto; margin-right: auto`. It works correctly in all writing modes.
+
+### Navigation with Logical Spacing
+
+```css
+.nav-item {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border-inline-end: 1px solid #e5e7eb;
+}
+
+.nav-item:last-child {
+  border-inline-end: none;
+}
+```
+
+In LTR, the border appears on the right of each item. In RTL, it automatically appears on the left.
+
+### Icon with Logical Margin
+
+```css
+.button-icon {
+  margin-inline-end: 0.5rem;
+}
+```
+
+```html
+<button>
+  <svg class="button-icon"><!-- icon --></svg>
+  Submit
+</button>
+```
+
+In LTR, the icon has a right margin separating it from the text. In RTL, the margin automatically moves to the left side.
+
+### Logical Positioning with inset
+
+```css
+.dropdown {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+}
+```
+
+This positions the dropdown below its parent (`top: 100%` in LTR) and aligned to the start edge (`left: 0` in LTR, `right: 0` in RTL).
+
+### Using inline-size and block-size
+
+```css
+.sidebar {
+  inline-size: 250px;    /* width in horizontal writing modes */
+  block-size: 100%;      /* height in horizontal writing modes */
+}
+
+.hero {
+  min-block-size: 100vh; /* min-height in horizontal writing modes */
+  inline-size: 100%;     /* width in horizontal writing modes */
+}
+```
+
+## Common AI Mistakes
+
+- **Always using physical properties.** AI agents default to `margin-left`, `padding-top`, `border-right` etc. even in projects that already use logical properties or need i18n support. Once a project adopts logical properties, all new CSS should be consistent.
+- **Mixing physical and logical properties on the same element.** This creates confusing, hard-to-maintain CSS. If you use `margin-inline`, do not also use `margin-left` on the same element.
+- **Not using `margin-inline: auto` for centering.** `margin: 0 auto` resets vertical margins to 0 as a side effect. `margin-inline: auto` only affects the inline axis, preserving any existing block-axis margins.
+- **Using `text-align: left` instead of `text-align: start`.** In RTL contexts, `left` does not flip. Use `start` and `end` for flow-relative alignment.
+- **Treating logical properties as "only for i18n."** Even in LTR-only projects, logical properties are more readable and future-proof. `padding-block` clearly communicates "vertical padding" in a horizontal writing mode without requiring readers to mentally map "top and bottom."
+- **Using `width` and `height` when `inline-size` and `block-size` would be clearer.** For layout properties that relate to content flow, the logical equivalents communicate intent better.
+
+## When to Use
+
+### Always prefer logical properties when
+
+- The project supports or may support RTL languages (Arabic, Hebrew, Persian)
+- The project uses vertical writing modes (CJK content)
+- Writing new CSS in a project that already uses logical properties
+- Centering with auto margins (`margin-inline: auto` is cleaner than `margin: 0 auto`)
+
+### Physical properties are still fine when
+
+- The property truly relates to physical screen position (e.g., a fixed element pinned to the visual top of the screen)
+- The project has no i18n requirements and the team has not adopted logical properties yet
+- Working with `top`/`left` in `position: fixed` contexts where physical positioning is intentional
+
+### Adopt gradually
+
+- Start with new components and refactor existing ones over time
+- Use Stylelint rules (e.g., `liberty/use-logical-spec`) to enforce logical properties in new code
+- Priority: high-usage components, navigation, forms, and design system tokens
+
+## References
+
+- [CSS Logical Properties and Values - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values)
+- [Logical Properties - web.dev](https://web.dev/learn/css/logical-properties)
+- [Logical properties for margins, borders, and padding - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values/Margins_borders_padding)
+- [From margin-left to margin-inline: Why Logical CSS Properties Matter - Brett Dorrans](https://lapidist.net/articles/2025/from-margin-left-to-margin-inline-why-logical-css-properties-matter/)

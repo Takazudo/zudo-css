@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # CSS Nesting
 
 ## The Problem
@@ -181,6 +183,108 @@ Global support exceeds 90%. For older browser fallbacks, use the `postcss-nestin
 - Reduce repetition of parent selectors
 - Keep responsive breakpoints co-located with the component they affect
 - Limit nesting to 2-3 levels to maintain readability
+
+## Live Previews
+
+<CssPreview
+  title="Nested Card Styles"
+  html={`
+<div class="card">
+  <h2>Card Title</h2>
+  <p>This card uses native CSS nesting to group all related styles — heading, paragraph, and hover effect — inside a single .card block.</p>
+  <span class="tag">Hover me</span>
+</div>
+  `}
+  css={`
+.card {
+  font-family: system-ui, sans-serif;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  h2 {
+    font-size: 1.25rem;
+    color: #1e293b;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #ede9fe;
+    color: #7c3aed;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:hover .tag {
+    background: #7c3aed;
+    color: white;
+  }
+}
+  `}
+/>
+
+<CssPreview
+  title="Nested Media Queries"
+  html={`
+<div class="grid-demo">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+</div>
+<p class="hint">Switch viewports above to see the grid adapt — media queries are nested inside the .grid-demo rule</p>
+  `}
+  css={`
+.grid-demo {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  background: #3b82f6;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.hint {
+  font-family: system-ui, sans-serif;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+}
+  `}
+/>
 
 ## References
 

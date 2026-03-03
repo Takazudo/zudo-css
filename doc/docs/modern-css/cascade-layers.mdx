@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Cascade Layers
 
 ## The Problem
@@ -234,6 +236,147 @@ Global support exceeds 96%.
 - Establishing a clear CSS architecture (reset, base, components, utilities, overrides)
 - Replacing `!important` usage with structured layer priority
 - Building design systems where consumers need to override component styles predictably
+
+## Live Previews
+
+<CssPreview
+  title="Layer Order Determines Winner"
+  html={`
+<div class="demo">
+  <p class="text">This text is styled by two layers with conflicting colors.</p>
+  <div class="legend">
+    <div><span class="swatch" style="background: #ef4444"></span> <code>base</code> layer says: red</div>
+    <div><span class="swatch" style="background: #3b82f6"></span> <code>theme</code> layer says: blue — <strong>wins</strong> (declared later)</div>
+  </div>
+</div>
+  `}
+  css={`
+@layer base, theme;
+
+@layer base {
+  .text {
+    color: #ef4444;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 1rem;
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    border-radius: 6px;
+  }
+}
+
+@layer theme {
+  .text {
+    color: #3b82f6;
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+  }
+}
+
+.demo {
+  font-family: system-ui, sans-serif;
+}
+
+.legend {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+  `}
+/>
+
+<CssPreview
+  title="Layer Priority Beats Specificity"
+  html={`
+<nav>
+  <ul>
+    <li class="active">
+      <a class="nav-link" href="#">Home</a>
+    </li>
+    <li><a class="nav-link" href="#">About</a></li>
+    <li><a class="nav-link" href="#">Contact</a></li>
+  </ul>
+</nav>
+<p class="note">The <code>components</code> layer uses a simple <code>.nav-link</code> selector, but it <strong>wins</strong> over the high-specificity <code>base</code> layer selector because it is declared later.</p>
+  `}
+  css={`
+@layer base, components;
+
+@layer base {
+  /* High specificity: (0, 2, 3) */
+  nav ul li.active a.nav-link {
+    color: #ef4444;
+    text-decoration: line-through;
+  }
+}
+
+@layer components {
+  /* Low specificity: (0, 1, 0) — but WINS */
+  .nav-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .nav-link:hover {
+    background: #eff6ff;
+  }
+}
+
+nav {
+  font-family: system-ui, sans-serif;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0;
+}
+
+.note {
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+  `}
+/>
 
 ## References
 

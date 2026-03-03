@@ -2,6 +2,8 @@
 sidebar_position: 2
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Gradient Techniques
 
 ## The Problem
@@ -215,6 +217,128 @@ Multiple gradients can be stacked using comma-separated `background` values. Lat
     linear-gradient(135deg, #3b82f6, #8b5cf6) border-box;
 }
 ```
+
+## Live Previews
+
+<CssPreview
+  title="Linear Gradient"
+  html={`<div class="gradient-box"></div>`}
+  css={`
+.gradient-box {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 50%,
+    #ec4899 100%
+  );
+}
+  `}
+  height={200}
+/>
+
+<CssPreview
+  title="Radial Gradient"
+  html={`<div class="radial-box"></div>`}
+  css={`
+.radial-box {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at 30% 40%,
+      hsl(280deg 80% 60%) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      hsl(200deg 80% 60%) 0%,
+      transparent 50%
+    ),
+    hsl(220deg 40% 15%);
+}
+  `}
+  height={200}
+/>
+
+<CssPreview
+  title="Conic Gradient Color Wheel"
+  html={`<div class="conic-wrapper"><div class="conic-wheel"></div></div>`}
+  css={`
+.conic-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #1a1a2e;
+}
+.conic-wheel {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(
+    red, yellow, lime, aqua, blue, magenta, red
+  );
+}
+  `}
+  height={240}
+/>
+
+<CssPreview
+  title="Layered Mesh Gradient"
+  html={`<div class="mesh"></div>`}
+  css={`
+.mesh {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      hsl(220deg 80% 60% / 0.6),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      hsl(330deg 80% 60% / 0.6),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      hsl(270deg 80% 60% / 0.4),
+      transparent 60%
+    ),
+    hsl(220deg 40% 10%);
+}
+  `}
+  height={250}
+/>
+
+<CssPreview
+  title="Gradient Text (background-clip: text)"
+  html={`<div class="text-wrapper"><h1 class="gradient-text">Gradient Heading</h1></div>`}
+  css={`
+.text-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #0f172a;
+}
+.gradient-text {
+  font-family: system-ui, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin: 0;
+}
+  `}
+  height={200}
+/>
 
 ## Common AI Mistakes
 

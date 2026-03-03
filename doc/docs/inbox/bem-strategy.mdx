@@ -186,12 +186,12 @@ A form using BEM with an error state modifier on the input. The error styling is
   title="BEM: Form Component"
   html={`<form class="form">
   <div class="form__group">
-    <label class="form__label">Email</label>
-    <input class="form__input" type="email" placeholder="you@example.com">
+    <label class="form__label" for="email">Email</label>
+    <input class="form__input" type="email" id="email" placeholder="you@example.com">
   </div>
   <div class="form__group">
-    <label class="form__label">Password</label>
-    <input class="form__input form__input--error" type="password" placeholder="Enter password">
+    <label class="form__label" for="password">Password</label>
+    <input class="form__input form__input--error" type="password" id="password" placeholder="Enter password">
     <span class="form__error">Required field</span>
   </div>
   <button class="form__submit" type="button">Submit</button>
@@ -413,3 +413,9 @@ BEM is less necessary when using:
 - **Tailwind CSS** — utility-first approach removes the need for naming conventions entirely
 
 Even in these environments, understanding BEM's principles (flat selectors, clear naming, component-scoped styles) improves how you structure CSS.
+
+## References
+
+- [BEM — Block Element Modifier](https://getbem.com/)
+- [BEM Methodology — Quick Start](https://en.bem.info/methodology/quick-start/)
+- [MindBEMding — Getting your head round BEM syntax - CSS Wizardry](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)

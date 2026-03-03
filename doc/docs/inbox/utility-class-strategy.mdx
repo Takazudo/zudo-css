@@ -219,21 +219,6 @@ input { font-size: 1rem; }`}
 - **Harder to read initially.** A class list like `flex items-center gap-4 p-6 bg-white rounded-lg shadow-md` is not immediately obvious to someone unfamiliar with the system.
 - **Risk of inconsistency without design tokens.** If you use arbitrary values (e.g., `p-[13px]`) instead of the defined scale, you lose the consistency benefit.
 
-## When to Use
-
-Utility-first CSS works well for:
-
-- **Rapid prototyping** where naming every component slows you down
-- **Design-system-driven projects** where spacing, colors, and typography follow a strict scale
-- **Teams with varying CSS skill levels** where a constrained set of utilities is easier to learn than writing custom CSS
-- **AI-generated UI** where standardized class names produce consistent, predictable output
-
-### Popular Tools
-
-- **[Tailwind CSS](https://tailwindcss.com/)** — The most popular utility-first framework. Uses a build step to generate only the CSS you use. Extensive plugin ecosystem and strong tooling (VS Code IntelliSense, Prettier plugin).
-- **[UnoCSS](https://unocss.dev/)** — An on-demand, fast alternative with a plugin-based architecture. Compatible with Tailwind presets.
-- **[Windi CSS](https://windicss.org/)** — Deprecated, but influential. Pioneered the on-demand approach that Tailwind later adopted in its JIT mode.
-
 ## Extraction Pattern
 
 When you find the same combination of utilities repeating across your codebase, the recommended approach is to extract them into **components** (React, Vue, Svelte, etc.) rather than into CSS classes. The utility classes move with the component code:
@@ -253,6 +238,21 @@ function Button({ children }) {
 ```
 
 This keeps the single source of truth in the component file. When you need to change the button style, you update it in one place — just like you would with a CSS class, but without the indirection.
+
+## When to Use
+
+Utility-first CSS works well for:
+
+- **Rapid prototyping** where naming every component slows you down
+- **Design-system-driven projects** where spacing, colors, and typography follow a strict scale
+- **Teams with varying CSS skill levels** where a constrained set of utilities is easier to learn than writing custom CSS
+- **AI-generated UI** where standardized class names produce consistent, predictable output
+
+### Popular Tools
+
+- **[Tailwind CSS](https://tailwindcss.com/)** — The most popular utility-first framework. Uses a build step to generate only the CSS you use. Extensive plugin ecosystem and strong tooling (VS Code IntelliSense, Prettier plugin).
+- **[UnoCSS](https://unocss.dev/)** — An on-demand, fast alternative with a plugin-based architecture. Compatible with Tailwind presets.
+- **[Windi CSS](https://windicss.org/)** — Deprecated, but influential. Pioneered the on-demand approach that Tailwind later adopted in its JIT mode.
 
 ## References
 

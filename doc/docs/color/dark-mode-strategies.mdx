@@ -316,6 +316,38 @@ For user-controlled theme switching (overriding OS preference):
 
 - For pages that only need browser-native element theming (forms, scrollbars) without custom color changes
 
+## Tailwind CSS
+
+import TailwindPreview from '@site/src/components/TailwindPreview';
+
+Tailwind's `dark:` variant makes dark mode styling straightforward. With the `class` strategy, adding a `dark` class to a parent element activates all `dark:` utilities within it.
+
+<TailwindPreview
+  title="Tailwind: dark: Variant — Side-by-Side"
+  html={`<script>tailwind.config = { darkMode: 'class' }</script>
+<div class="grid grid-cols-2">
+  <div class="p-6 bg-white">
+    <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-500 mb-4">Light Mode</h3>
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+      <h4 class="text-lg font-semibold text-gray-900 mb-2">Card Title</h4>
+      <p class="text-sm text-gray-600 mb-4">Body text on a light surface with appropriate contrast.</p>
+      <button class="bg-blue-600 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
+      <span class="text-xs text-gray-400 ml-3">Muted text</span>
+    </div>
+  </div>
+  <div class="dark p-6 bg-gray-900">
+    <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-400 mb-4">Dark Mode</h3>
+    <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+      <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Card Title</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">The same markup with dark: variants applied.</p>
+      <button class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
+      <span class="text-xs text-gray-400 dark:text-gray-500 ml-3">Muted text</span>
+    </div>
+  </div>
+</div>`}
+  height={280}
+/>
+
 ## References
 
 - [MDN: prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme)

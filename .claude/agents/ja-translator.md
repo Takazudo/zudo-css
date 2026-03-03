@@ -166,7 +166,7 @@ Common section headings in this project and their Japanese translations:
 | The Solution | 解決方法 |
 | Code Examples | コード例 |
 | When to Use | 使い分け |
-| Common AI Mistakes | AI がよくやる間違い |
+| Common AI Mistakes | AIがよくやるミス |
 | Best Practices | ベストプラクティス |
 | Browser Support | ブラウザサポート |
 | Key Concepts | 主要な概念 |

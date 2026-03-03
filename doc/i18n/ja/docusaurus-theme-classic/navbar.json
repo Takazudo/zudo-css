@@ -38,5 +38,9 @@
   "item.label.INBOX": {
     "message": "INBOX",
     "description": "Navbar item with label INBOX"
+  },
+  "item.label.Overview": {
+    "message": "概要",
+    "description": "Navbar item with label Overview"
   }
 }

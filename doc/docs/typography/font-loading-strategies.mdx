@@ -2,6 +2,8 @@
 sidebar_position: 5
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Font Loading Strategies
 
 ## The Problem
@@ -64,6 +66,50 @@ A robust font loading strategy combines several techniques: the `font-display` d
 ```
 
 The `crossorigin` attribute is required even for same-origin fonts — without it, the font will be fetched twice.
+
+<CssPreview
+  title="System Font Stack — Rendering with Native Fonts"
+  html={`<div class="font-demo">
+  <div class="font-card">
+    <h3>system-ui (Default System Font)</h3>
+    <p style="font-family: system-ui, sans-serif;">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0123456789</p>
+  </div>
+  <div class="font-card">
+    <h3>ui-monospace (System Monospace)</h3>
+    <p style="font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0123456789</p>
+  </div>
+  <div class="font-card">
+    <h3>Georgia (Serif Fallback)</h3>
+    <p style="font-family: Georgia, 'Times New Roman', serif;">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0123456789</p>
+  </div>
+</div>`}
+  css={`.font-demo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: system-ui, sans-serif;
+}
+.font-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid #6c63ff;
+}
+.font-card h3 {
+  font-size: 0.8rem;
+  color: #6c63ff;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+.font-card p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+}`}
+  height={280}
+/>
 
 ### System Font Stack as Fallback
 

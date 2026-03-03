@@ -2,6 +2,8 @@
 sidebar_position: 4
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Vertical Rhythm
 
 ## The Problem
@@ -73,6 +75,77 @@ blockquote {
   padding-inline-start: var(--rhythm);
 }
 ```
+
+<CssPreview
+  title="Consistent Vertical Rhythm vs Inconsistent Spacing"
+  html={`<div class="vr-demo">
+  <div class="vr-column">
+    <h3 class="label">Consistent rhythm (24px base)</h3>
+    <article class="consistent">
+      <h2>Section Title</h2>
+      <p>First paragraph with body text. Vertical rhythm keeps spacing mathematically related to the base line-height unit.</p>
+      <p>Second paragraph maintains the same spacing. Every gap is a multiple of the 24px rhythm unit.</p>
+      <h2>Another Section</h2>
+      <p>Content flows with predictable, harmonious spacing throughout the layout.</p>
+    </article>
+  </div>
+  <div class="vr-column">
+    <h3 class="label">Inconsistent spacing</h3>
+    <article class="inconsistent">
+      <h2>Section Title</h2>
+      <p>First paragraph with body text. The spacing here uses arbitrary values with no mathematical relationship.</p>
+      <p>Second paragraph has different margin than the first. The gaps feel random and uneven.</p>
+      <h2>Another Section</h2>
+      <p>Content feels visually noisy even though the text is identical.</p>
+    </article>
+  </div>
+</div>`}
+  css={`.vr-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+.vr-column { background: #fafafa; border-radius: 8px; padding: 1rem; }
+.label {
+  font-size: 0.8rem;
+  color: #6c63ff;
+  margin: 0 0 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.consistent h2 {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 48px 0 24px;
+  color: #1a1a2e;
+}
+.consistent h2:first-child { margin-top: 0; }
+.consistent p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px;
+  color: #444;
+}
+.inconsistent h2 {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 35px 0 10px;
+  color: #1a1a2e;
+}
+.inconsistent h2:first-child { margin-top: 0; }
+.inconsistent p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+.inconsistent p:nth-child(2) { margin: 0 0 18px; }
+.inconsistent p:nth-child(3) { margin: 0 0 30px; }
+.inconsistent p:nth-child(5) { margin: 0 0 12px; }`}
+  height={400}
+/>
 
 ### Spacing Scale Using the Rhythm Unit
 

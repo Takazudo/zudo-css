@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # OKLCH Color Space
 
 ## The Problem
@@ -71,6 +73,75 @@ By fixing lightness and chroma and only rotating hue, every color has the same v
   --chart-6: oklch(65% 0.2 330); /* Magenta */
 }
 ```
+
+<CssPreview
+  title="OKLCH Uniform Lightness vs HSL Inconsistent Lightness"
+  html={`<div class="color-demo">
+  <div>
+    <h3>OKLCH — Same lightness (65%), different hues</h3>
+    <div class="swatches">
+      <div class="swatch" style="background: oklch(65% 0.2 30)"><span>Red H:30</span></div>
+      <div class="swatch" style="background: oklch(65% 0.2 90)"><span>Yellow H:90</span></div>
+      <div class="swatch" style="background: oklch(65% 0.2 150)"><span>Green H:150</span></div>
+      <div class="swatch" style="background: oklch(65% 0.2 210)"><span>Cyan H:210</span></div>
+      <div class="swatch" style="background: oklch(65% 0.2 270)"><span>Blue H:270</span></div>
+      <div class="swatch" style="background: oklch(65% 0.2 330)"><span>Magenta H:330</span></div>
+    </div>
+    <p class="note">All colors appear equally bright — perceptually uniform</p>
+  </div>
+  <div>
+    <h3>HSL — Same lightness (50%), different hues</h3>
+    <div class="swatches">
+      <div class="swatch" style="background: hsl(0, 80%, 50%)"><span>Red H:0</span></div>
+      <div class="swatch" style="background: hsl(60, 80%, 50%)"><span>Yellow H:60</span></div>
+      <div class="swatch" style="background: hsl(120, 80%, 50%)"><span>Green H:120</span></div>
+      <div class="swatch" style="background: hsl(180, 80%, 50%)"><span>Cyan H:180</span></div>
+      <div class="swatch" style="background: hsl(240, 80%, 50%)"><span>Blue H:240</span></div>
+      <div class="swatch" style="background: hsl(300, 80%, 50%)"><span>Magenta H:300</span></div>
+    </div>
+    <p class="note">Yellow appears much brighter than blue — not perceptually uniform</p>
+  </div>
+</div>`}
+  css={`.color-demo {
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.color-demo h3 {
+  font-size: 0.85rem;
+  color: #444;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+.swatch {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.25rem;
+}
+.swatch span {
+  font-size: 0.65rem;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  font-weight: 600;
+}
+.note {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.5rem 0 0;
+  font-style: italic;
+}`}
+  height={340}
+/>
 
 ### Lightness Scale for a Single Hue
 

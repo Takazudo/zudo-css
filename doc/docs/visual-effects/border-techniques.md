@@ -1,0 +1,205 @@
+---
+sidebar_position: 3
+---
+
+# Border Techniques
+
+## The Problem
+
+AI agents typically stick to `border: 1px solid #ccc` and rarely explore the richer border capabilities CSS offers. Gradient borders, double-border effects, outline tricks, and the interplay between `border-radius` and `overflow: hidden` are routinely missed or implemented incorrectly. The biggest pitfall is using `border-image` with `border-radius` — they are incompatible, and AI agents generate broken code when combining them.
+
+## The Solution
+
+CSS provides multiple properties for border effects beyond the basic `border` shorthand. Understanding when to use `border-image`, `outline`, `box-shadow`, and background-based gradient border techniques prevents common compatibility issues.
+
+## Code Examples
+
+### Gradient Borders with border-image
+
+The simplest syntax for a gradient border. Works for straight-edged elements only.
+
+```css
+.gradient-border-straight {
+  border: 4px solid;
+  border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;
+}
+```
+
+The `border-image-slice: 1` (the trailing `1`) tells the browser to use the entire gradient image as the border fill.
+
+### Gradient Borders with border-radius (Background-Clip Approach)
+
+`border-image` does not work with `border-radius`. Use the background-clip technique instead.
+
+```css
+.gradient-border-rounded {
+  border: 3px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, #3b82f6, #8b5cf6) border-box;
+}
+```
+
+The first background fills the padding-box with solid white (or the desired inner color), and the second fills the border-box with the gradient. The transparent border reveals the gradient beneath.
+
+```html
+<div class="gradient-border-rounded">
+  Content with a rounded gradient border.
+</div>
+```
+
+### Gradient Border with Custom Background Color
+
+```css
+/* Works on any background color */
+.gradient-border-dark {
+  --bg-color: #1a1a2e;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+    linear-gradient(135deg, #3b82f6, #ec4899) border-box;
+}
+```
+
+### Outline vs Border
+
+`outline` does not affect layout, does not respect `border-radius` (in older browsers), and is drawn outside the border edge. Modern browsers do follow `border-radius` for outlines.
+
+```css
+/* Outline for focus indicators — does not shift layout */
+.input-focus:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Border changes shift layout unless using box-sizing carefully */
+.input-border:focus {
+  border: 2px solid #3b82f6;
+}
+```
+
+### Outline-Offset for Spaced Rings
+
+`outline-offset` creates a gap between the element and its outline, useful for focus indicators and decorative rings.
+
+```css
+.ring-effect {
+  border: 2px solid #3b82f6;
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+```
+
+### Double Borders with box-shadow
+
+`box-shadow` can simulate additional borders because `inset` shadows follow `border-radius` and don't affect layout.
+
+```css
+/* Double border effect */
+.double-border {
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px white, 0 0 0 6px #3b82f6;
+}
+
+/* Triple ring effect */
+.triple-ring {
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4px #3b82f6,
+    0 0 0 8px white,
+    0 0 0 12px #8b5cf6;
+}
+```
+
+### Inset Shadow as Inner Border
+
+```css
+.inner-border {
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px #3b82f6;
+}
+```
+
+This creates a border inside the element without changing its outer dimensions.
+
+### border-radius and overflow: hidden Gotchas
+
+When using `border-radius` with children that have their own backgrounds, the children's corners poke through unless `overflow: hidden` is set on the parent.
+
+```css
+/* Without overflow: hidden — child corners poke through */
+.card-broken {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.card-broken img {
+  width: 100%;
+  /* Image corners are square, poking outside the rounded card */
+}
+
+/* Fixed with overflow: hidden */
+.card-fixed {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.card-fixed img {
+  width: 100%;
+  /* Image corners are clipped to the card's border-radius */
+}
+```
+
+```html
+<div class="card-fixed">
+  <img src="hero.jpg" alt="Hero image" />
+  <div class="card-body">
+    <h3>Card Title</h3>
+  </div>
+</div>
+```
+
+**Gotcha**: `overflow: hidden` also clips box-shadows and any content that extends beyond the element's bounds (tooltips, dropdowns). Use it deliberately.
+
+### Border-Radius with Background-Clip for Padding Effect
+
+```css
+/* Visible gap between border and content using background-clip */
+.padded-border {
+  border: 4px solid #3b82f6;
+  border-radius: 12px;
+  padding: 4px;
+  background: #3b82f6;
+  background-clip: content-box;
+}
+```
+
+## Common AI Mistakes
+
+- **Combining border-image with border-radius** — This is the most common mistake. `border-image` ignores `border-radius` entirely, producing square corners despite the radius declaration.
+- **Using border for focus indicators** — Border changes shift layout. `outline` with `outline-offset` is the correct approach for focus states.
+- **Forgetting overflow: hidden on rounded containers** — Child images and colored sections poke through rounded corners without it.
+- **Not using box-shadow for multi-ring effects** — AI agents try to nest extra divs for decorative borders when `box-shadow` spread with zero blur handles it cleanly.
+- **Misunderstanding border-image-slice** — Forgetting the `1` slice value when using gradients, resulting in an empty border.
+- **Using a complex wrapper div for gradient borders** — The `background-clip: padding-box, border-box` technique eliminates extra markup.
+
+## When to Use
+
+- **Gradient borders** — Feature cards, highlighted sections, CTAs that need visual distinction
+- **outline + outline-offset** — Accessible focus indicators that don't shift layout
+- **box-shadow rings** — Avatar rings, status indicators, decorative multi-border effects
+- **Inset box-shadow** — Inner borders that don't change outer dimensions
+- **overflow: hidden on rounded containers** — Any card or container with border-radius that holds images or colored child elements
+
+## References
+
+- [Gradient Borders in CSS — CSS-Tricks](https://css-tricks.com/gradient-borders-in-css/)
+- [border-image — MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-image)
+- [Border with Gradient and Radius — Temani Afif](https://dev.to/afif/border-with-gradient-and-radius-387f)
+- [outline — MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/outline)
+- [outline-offset — MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset)

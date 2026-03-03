@@ -708,7 +708,7 @@ In the demo above, the `@container` cards adapt independently: the card in the n
 - **Using media queries for component layouts**: AI agents default to `@media` queries even when the component needs to adapt to its container, not the viewport.
 - **Forgetting `container-type`**: Writing `@container` rules without setting `container-type` on the parent element. The container must be explicitly declared.
 - **Using `container-type: size` unnecessarily**: Height-based containment (`size`) can cause layout issues. Use `inline-size` for the vast majority of cases.
-- **Not naming containers**: Omitting `container-name` leads to ambiguity when containers are nested. Always name containers for clarity and predictable behavior.
+- **Not naming nested containers**: When containers are nested, omitting `container-name` leads to ambiguity — `@container` queries match the nearest ancestor container. Name containers when nesting to target specific ancestors.
 - **Querying the element itself**: The `@container` query targets the nearest ancestor with `container-type` set, not the element you are styling. The container and the styled element must be different elements.
 
 ## When to Use

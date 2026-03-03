@@ -8,7 +8,6 @@ import {
 import styles from './styles.module.css';
 
 export interface PreviewBaseProps {
-  html: string;
   title?: string;
   height?: number;
   srcdoc: string;

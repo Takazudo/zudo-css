@@ -33,7 +33,6 @@ export default function CssPreview({
 
   return (
     <PreviewBase
-      html={html}
       title={title}
       height={height}
       srcdoc={srcdoc}

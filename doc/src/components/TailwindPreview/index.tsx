@@ -1,4 +1,11 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import styles from './styles.module.css';
 
@@ -41,7 +48,7 @@ export default function TailwindPreview({
   const [iframeHeight, setIframeHeight] = useState(height ?? 200);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const srcdoc = buildSrcdoc(html, css);
+  const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
   const syncHeight = useCallback(() => {
     const iframe = iframeRef.current;
@@ -60,12 +67,16 @@ export default function TailwindPreview({
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
+    let timeoutId: ReturnType<typeof setTimeout>;
     const onLoad = () => {
       // Delay sync to allow Tailwind CDN to process classes
-      setTimeout(syncHeight, 300);
+      timeoutId = setTimeout(syncHeight, 300);
     };
     iframe.addEventListener('load', onLoad);
-    return () => iframe.removeEventListener('load', onLoad);
+    return () => {
+      iframe.removeEventListener('load', onLoad);
+      clearTimeout(timeoutId);
+    };
   }, [syncHeight, srcdoc]);
 
   const containerWidth = VIEWPORTS[activeViewport].width;
@@ -85,6 +96,7 @@ export default function TailwindPreview({
                   ? styles.viewportBtnActive
                   : styles.viewportBtn
               }
+              aria-pressed={i === activeViewport}
               onClick={() => setActiveViewport(i)}
             >
               {vp.label}
@@ -99,6 +111,13 @@ export default function TailwindPreview({
           className={styles.previewContainer}
           style={{ width: containerWidth }}
         >
+          {/*
+           * allow-scripts: required for Tailwind CDN to process utility classes
+           * allow-same-origin: required for syncHeight to read iframe body
+           * Security note: this combination weakens sandbox isolation.
+           * The html prop must always be author-controlled (hardcoded in MDX),
+           * never user-supplied.
+           */}
           <iframe
             ref={iframeRef}
             className={styles.iframe}
@@ -116,6 +135,7 @@ export default function TailwindPreview({
           type="button"
           className={styles.codeToggle}
           onClick={() => setCodeOpen((v) => !v)}
+          aria-expanded={codeOpen}
         >
           <span
             className={

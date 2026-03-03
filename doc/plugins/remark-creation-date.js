@@ -1,7 +1,9 @@
 const { execSync } = require('child_process');
 const path = require('path');
 
-// Module-level cache: relativePath -> unix timestamp (seconds)
+// Module-level cache: relativePath -> unix timestamp (seconds).
+// Populated once per process. In dev mode (docusaurus start),
+// restart the dev server to pick up creation dates for newly committed files.
 let creationDateCache = null;
 let cachedGitRoot = null;
 
@@ -24,7 +26,7 @@ function buildCreationDateCache(gitRoot) {
     // --reverse: oldest commits first, so the first occurrence is the true creation
     // --all: search across all branches (supports worktrees and feature branches)
     const output = execSync(
-      'git log --all --diff-filter=A --format="%at" --name-only --reverse',
+      'git log --all --diff-filter=A --format=%at --name-only --reverse',
       { cwd: gitRoot, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
     );
 
@@ -66,9 +68,9 @@ function getCreationDateWithFollow(gitRoot, relativePath) {
 
 function formatTimestamp(unixSeconds) {
   const date = new Date(parseInt(unixSeconds, 10) * 1000);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
 
   return {
     formatted: `${year}/${month}/${day}`,
@@ -79,7 +81,9 @@ function formatTimestamp(unixSeconds) {
 function getGitCreationDate(filePath) {
   try {
     const gitRoot = getGitRoot(filePath);
-    const relativePath = path.relative(gitRoot, filePath);
+    // Normalize to forward slashes — git outputs forward slashes on all
+    // platforms, but path.relative uses backslashes on Windows.
+    const relativePath = path.relative(gitRoot, filePath).split(path.sep).join('/');
 
     // Build the cache on first call
     buildCreationDateCache(gitRoot);

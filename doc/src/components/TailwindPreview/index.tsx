@@ -35,6 +35,10 @@ export default function TailwindPreview({
       title={title}
       height={height}
       srcdoc={srcdoc}
+      // allow-scripts: Tailwind CDN must execute to process utility classes
+      // allow-same-origin: required for syncHeight to read iframe body
+      // This combination weakens sandbox isolation — the html prop must
+      // always be author-controlled (hardcoded in MDX), never user-supplied.
       sandbox="allow-scripts allow-same-origin"
       syncDelay={300}
       codeBlocks={

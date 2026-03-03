@@ -1,0 +1,294 @@
+---
+sidebar_position: 1
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# CSS Nesting
+
+## The Problem
+
+CSS has historically required flat selector declarations, forcing developers to repeat parent selectors when styling nested elements. This leads to verbose, hard-to-maintain stylesheets where related styles are scattered across the file. AI agents frequently generate flat CSS even when nesting would be cleaner and more maintainable, or they produce Sass-style nesting syntax that is not valid native CSS.
+
+## The Solution
+
+Native CSS nesting allows you to write child selectors inside parent rule blocks, eliminating repetition and keeping related styles grouped together. Since the relaxed nesting syntax update (late 2023), the `&` nesting selector is optional for simple descendant selectors. All major browsers support CSS nesting as of late 2023.
+
+## Code Examples
+
+### Basic Nesting
+
+```css
+/* Without nesting (what AI often generates) */
+.card {
+  padding: 1rem;
+  border-radius: 8px;
+}
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: #666;
+}
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* With native CSS nesting */
+.card {
+  padding: 1rem;
+  border-radius: 8px;
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #666;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+### When `&` Is Required
+
+The `&` selector is required when appending to the parent selector (pseudo-classes, compound selectors) or placing the parent in a non-default position.
+
+```css
+.button {
+  background: blue;
+  color: white;
+
+  /* & is required: appending a pseudo-class */
+  &:hover {
+    background: darkblue;
+  }
+
+  /* & is required: compound selector */
+  &.primary {
+    background: green;
+  }
+
+  /* & is required: parent in non-first position */
+  .dark-theme & {
+    background: navy;
+  }
+}
+```
+
+### Nesting `@media` Inside Rules
+
+One of the most useful patterns is nesting media queries directly inside the component they affect.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @media (width <= 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width <= 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+### Nesting `@media` with Hover Detection
+
+```css
+.interactive-card {
+  padding: 1rem;
+  transition: transform 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+```
+
+### Nesting Multiple At-Rules
+
+```css
+.sidebar {
+  width: 100%;
+
+  @media (width >= 768px) {
+    width: 300px;
+  }
+
+  @container main (width >= 600px) {
+    width: 250px;
+  }
+
+  @supports (position: sticky) {
+    position: sticky;
+    top: 1rem;
+  }
+}
+```
+
+## Specificity Behavior
+
+When the parent is a selector list, the browser desugars nested selectors using `:is()`. This can unexpectedly increase specificity.
+
+```css
+/* This nesting: */
+.card, #featured {
+  .title {
+    color: blue;
+  }
+}
+
+/* Desugars to: */
+:is(.card, #featured) .title {
+  color: blue;
+}
+/* Specificity is (1,0,1) because :is() takes
+   the highest specificity from its arguments (#featured = 1,0,0) */
+```
+
+When the parent is a single selector, no `:is()` wrapping occurs and specificity is calculated normally.
+
+## Browser Support
+
+- Chrome 120+
+- Firefox 117+
+- Safari 17.2+
+- Edge 120+
+
+Global support exceeds 90%. For older browser fallbacks, use the `postcss-nesting` PostCSS plugin as a build step.
+
+## Common AI Mistakes
+
+- Generating flat CSS with repeated parent selectors instead of using nesting
+- Using Sass-style syntax like `$variable` or `@extend` inside native CSS nesting
+- Forgetting `&` for pseudo-classes and compound selectors (`&:hover`, `&.active`)
+- Not grouping `@media` queries inside the rule block they modify
+- Nesting too deeply (more than 3 levels), reducing readability
+- Not accounting for the `:is()` specificity increase when parent is a selector list
+
+## When to Use
+
+- Group related styles for a component (element, pseudo-classes, media queries) in one block
+- Reduce repetition of parent selectors
+- Keep responsive breakpoints co-located with the component they affect
+- Limit nesting to 2-3 levels to maintain readability
+
+## Live Previews
+
+<CssPreview
+  title="Nested Card Styles"
+  html={`
+<div class="card">
+  <h2>Card Title</h2>
+  <p>This card uses native CSS nesting to group all related styles — heading, paragraph, and hover effect — inside a single .card block.</p>
+  <span class="tag">Hover me</span>
+</div>
+  `}
+  css={`
+.card {
+  font-family: system-ui, sans-serif;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  h2 {
+    font-size: 1.25rem;
+    color: #1e293b;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #ede9fe;
+    color: #7c3aed;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:hover .tag {
+    background: #7c3aed;
+    color: white;
+  }
+}
+  `}
+/>
+
+<CssPreview
+  title="Nested Media Queries"
+  html={`
+<div class="grid-demo">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+</div>
+<p class="hint">Switch viewports above to see the grid adapt — media queries are nested inside the .grid-demo rule</p>
+  `}
+  css={`
+.grid-demo {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  background: #3b82f6;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.hint {
+  font-family: system-ui, sans-serif;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+}
+  `}
+/>
+
+## References
+
+- [CSS nesting - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting)
+- [Using CSS nesting - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting/Using)
+- [CSS nesting at-rules - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting/At-rules)
+- [CSS Nesting - Can I Use](https://caniuse.com/css-nesting)

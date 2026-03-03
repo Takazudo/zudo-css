@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Centering Techniques
 
 ## The Problem
@@ -137,6 +139,59 @@ For overlay content that needs to be centered over a positioned parent:
 ```
 
 This technique is still valid but is rarely the best choice in modern CSS. It can cause blurry text on non-retina displays due to sub-pixel rendering. Prefer flexbox or grid.
+
+## Live Previews
+
+<CssPreview
+  title="Flexbox Centering"
+  html={`
+<div class="flex-center">
+  <div class="box">Centered with Flexbox</div>
+</div>
+  `}
+  css={`
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: #f0f4f8;
+}
+.box {
+  padding: 16px 24px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+}
+  `}
+/>
+
+<CssPreview
+  title="Grid place-items: center"
+  html={`
+<div class="grid-center">
+  <div class="box">Centered with Grid</div>
+</div>
+  `}
+  css={`
+.grid-center {
+  display: grid;
+  place-items: center;
+  height: 200px;
+  background: #f0fdf4;
+}
+.box {
+  padding: 16px 24px;
+  background: #22c55e;
+  color: white;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+}
+  `}
+/>
 
 ## Quick Reference
 

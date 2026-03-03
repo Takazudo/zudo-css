@@ -430,6 +430,210 @@ This card demonstrates all five token categories working together. The backgroun
 }`}
 />
 
+## Palette Growth Naming
+
+When a project starts with a tight token set, each color family typically has only one value. Name it plainly — `gray`, not `gray1`. If the project later needs a second shade in that family, add `gray2`. A third becomes `gray3`.
+
+```css
+@theme {
+  /* ── Initial palette ── */
+  --color-gray: hsl(25 5% 45%);
+
+  /* ── Added later when a dark card surface was needed ── */
+  --color-gray2: hsl(0 3% 13%);
+}
+```
+
+This "no-number-for-first" rule keeps initial token names clean and avoids a renaming cascade when the palette grows:
+
+- `gray` → the original gray, used since day one
+- `gray2` → added later for dark backgrounds
+- `gray3` → added even later for a muted border
+
+Compare with numbering from 1 (`gray1`, `gray2`, `gray3`) — it forces the first token to carry a meaningless suffix, and every existing reference needs updating if you decide to retroactively insert `gray1`.
+
+The pattern applies to every color family: `primary` / `primary2`, `surface` / `surface2`, `accent` / `accent2`, and so on.
+
+### Real-World Example
+
+The zmod project uses exactly this pattern:
+
+```css
+--zd-color-gray: rgb(120, 113, 108);   /* Original gray */
+--zd-color-gray2: #201f1f;              /* Added later for dark backgrounds */
+```
+
+No renaming was needed when `gray2` arrived — the original `gray` stayed untouched across the entire codebase.
+
+### Before and After: Growing a Palette
+
+This demo shows a simple card UI that initially uses a single `gray` token. When the design later requires a darker card surface, `gray2` is added without touching the original `gray`.
+
+<CssPreview
+  title="Palette Growth: gray → gray + gray2"
+  height={420}
+  html={`<div class="growth-demo">
+  <div class="growth-col">
+    <div class="growth-heading">Phase 1 — One gray</div>
+    <div class="growth-tokens">
+      <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
+    </div>
+    <div class="growth-card growth-card--phase1">
+      <div class="growth-card__header">Settings</div>
+      <div class="growth-card__body">
+        <div class="growth-card__label">Theme</div>
+        <div class="growth-card__value">Default</div>
+        <div class="growth-card__label">Language</div>
+        <div class="growth-card__value">English</div>
+      </div>
+      <div class="growth-card__footer">
+        <span class="growth-card__hint">Last saved 2 min ago</span>
+      </div>
+    </div>
+    <div class="growth-note">
+      <code>gray</code> handles all muted text. One token, clean name.
+    </div>
+  </div>
+  <div class="growth-arrow">→</div>
+  <div class="growth-col">
+    <div class="growth-heading">Phase 2 — Add gray2</div>
+    <div class="growth-tokens">
+      <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
+      <div class="growth-token"><span class="growth-swatch" style="background: hsl(0 3% 13%)"></span><code>gray2</code></div>
+    </div>
+    <div class="growth-card growth-card--phase2">
+      <div class="growth-card__header growth-card__header--dark">Settings</div>
+      <div class="growth-card__body">
+        <div class="growth-card__label">Theme</div>
+        <div class="growth-card__value">Default</div>
+        <div class="growth-card__label">Language</div>
+        <div class="growth-card__value">English</div>
+      </div>
+      <div class="growth-card__footer">
+        <span class="growth-card__hint">Last saved 2 min ago</span>
+      </div>
+    </div>
+    <div class="growth-note">
+      <code>gray2</code> added for the dark header. Original <code>gray</code> unchanged — no renaming needed.
+    </div>
+  </div>
+</div>`}
+  css={`.growth-demo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  color: hsl(222 47% 11%);
+  background: hsl(210 40% 96%);
+}
+.growth-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.growth-arrow {
+  font-size: 24px;
+  font-weight: 700;
+  color: hsl(215 16% 47%);
+  padding-top: 90px;
+  flex-shrink: 0;
+}
+.growth-heading {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(215 16% 47%);
+}
+.growth-tokens {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.growth-token {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+.growth-token code {
+  background: hsl(0 0% 100%);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+.growth-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid hsl(214 32% 91%);
+}
+.growth-card {
+  border: 1px solid hsl(214 32% 91%);
+  border-radius: 8px;
+  overflow: hidden;
+  background: hsl(0 0% 100%);
+}
+.growth-card__header {
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  background: hsl(210 40% 96%);
+  border-bottom: 1px solid hsl(214 32% 91%);
+  color: hsl(222 47% 11%);
+}
+.growth-card__header--dark {
+  background: hsl(0 3% 13%);   /* gray2 */
+  color: hsl(210 40% 98%);
+  border-bottom: none;
+}
+.growth-card__body {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+}
+.growth-card__label {
+  font-size: 12px;
+  color: hsl(25 5% 45%);       /* gray */
+  font-weight: 500;
+}
+.growth-card__value {
+  font-size: 12px;
+  font-weight: 600;
+}
+.growth-card__footer {
+  padding: 8px 14px;
+  border-top: 1px solid hsl(214 32% 91%);
+}
+.growth-card__hint {
+  font-size: 11px;
+  color: hsl(25 5% 45%);       /* gray */
+}
+.growth-note {
+  font-size: 11px;
+  color: hsl(215 16% 47%);
+  line-height: 1.4;
+}
+.growth-note code {
+  background: hsl(0 0% 100%);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 10px;
+}`}
+/>
+
+### Why Not Number from 1?
+
+Starting with `gray1` seems symmetrical, but it creates problems:
+
+- **Visual noise on the most common token** — The vast majority of references use the first color. `gray1` adds a meaningless digit everywhere.
+- **Renaming pressure** — If you start with `gray` and later need to "organize," you might feel compelled to rename it to `gray1` for consistency. That touches every file. The no-number-for-first rule removes that pressure entirely.
+- **Signals intent** — `gray2` clearly communicates "this is the second gray, added alongside the original." With `gray1` / `gray2`, both look like they were planned from the start.
+
 ## When to Use
 
 This color token strategy works best when combined with the [spacing token strategy](./index.mdx) from the parent article. Together, they constrain the two most common sources of visual drift — spacing and color — into a small, intentional design vocabulary.

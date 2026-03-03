@@ -2,6 +2,8 @@
 sidebar_position: 6
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Variable Fonts
 
 ## The Problem
@@ -50,6 +52,46 @@ h1 {
   font-weight: 680;
 }
 ```
+
+<CssPreview
+  title="Variable Font Weight Range — Fine-grained Weight Control"
+  html={`<div class="vf-demo">
+  <div class="weight-row"><span class="label">100 Thin</span><span class="sample" style="font-weight:100">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">250</span><span class="sample" style="font-weight:250">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">400 Regular</span><span class="sample" style="font-weight:400">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">550</span><span class="sample" style="font-weight:550">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">700 Bold</span><span class="sample" style="font-weight:700">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">850</span><span class="sample" style="font-weight:850">The quick brown fox</span></div>
+  <div class="weight-row"><span class="label">900 Black</span><span class="sample" style="font-weight:900">The quick brown fox</span></div>
+</div>`}
+  css={`.vf-demo {
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.weight-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.4rem 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+.label {
+  font-size: 0.75rem;
+  color: #6c63ff;
+  font-weight: 600;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+.sample {
+  font-size: 1.2rem;
+  color: #1a1a2e;
+}`}
+  height={320}
+/>
 
 ### Using Standard CSS Properties (Preferred)
 

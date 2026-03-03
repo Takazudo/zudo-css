@@ -2,6 +2,8 @@
 sidebar_position: 3
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # Text Overflow and Line Clamping
 
 ## The Problem
@@ -59,6 +61,65 @@ All four properties are required for this pattern to work. This syntax, despite 
   </p>
 </div>
 ```
+
+<CssPreview
+  title="Text Overflow — Single-line Ellipsis and Multi-line Clamping"
+  html={`<div class="overflow-demo">
+  <div class="demo-card">
+    <h3>Single-line Ellipsis</h3>
+    <p class="truncate">This is a very long single line of text that will be truncated with an ellipsis at the end when it overflows the container width</p>
+  </div>
+  <div class="demo-card">
+    <h3>2-line Clamp</h3>
+    <p class="clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <div class="demo-card">
+    <h3>3-line Clamp</h3>
+    <p class="clamp-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  </div>
+</div>`}
+  css={`.overflow-demo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+.demo-card {
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.demo-card h3 {
+  font-size: 0.85rem;
+  color: #4f46e5;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+.demo-card p {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}`}
+  height={260}
+/>
 
 ### Modern `line-clamp` Property
 

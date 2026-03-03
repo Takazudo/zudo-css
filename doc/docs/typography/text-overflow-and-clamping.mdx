@@ -234,6 +234,31 @@ For maximum compatibility, combine both approaches:
 - Accessibility-critical labels and instructions
 - Content where the truncated portion changes meaning (e.g., prices, dates)
 
+## Tailwind CSS
+
+import TailwindPreview from '@site/src/components/TailwindPreview';
+
+Tailwind provides `truncate` for single-line ellipsis and `line-clamp-*` utilities for multi-line clamping.
+
+<TailwindPreview
+  title="Tailwind: truncate and line-clamp"
+  html={`<div class="grid grid-cols-3 gap-4 p-6">
+  <div class="bg-indigo-50 rounded-lg p-4">
+    <h3 class="text-xs font-semibold text-indigo-600 mb-3">truncate</h3>
+    <p class="truncate text-sm text-gray-700">This is a very long single line of text that will be truncated with an ellipsis at the end when it overflows</p>
+  </div>
+  <div class="bg-indigo-50 rounded-lg p-4">
+    <h3 class="text-xs font-semibold text-indigo-600 mb-3">line-clamp-2</h3>
+    <p class="line-clamp-2 text-sm text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+  </div>
+  <div class="bg-indigo-50 rounded-lg p-4">
+    <h3 class="text-xs font-semibold text-indigo-600 mb-3">line-clamp-3</h3>
+    <p class="line-clamp-3 text-sm text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</div>`}
+  height={200}
+/>
+
 ## References
 
 - [MDN: text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow)

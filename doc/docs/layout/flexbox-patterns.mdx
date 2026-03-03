@@ -321,6 +321,50 @@ Flex items have `min-width: auto` by default, which prevents them from shrinking
 - You want auto-placement of items into a responsive grid
 - You need items to span multiple rows or columns
 
+## Tailwind CSS
+
+import TailwindPreview from '@site/src/components/TailwindPreview';
+
+Tailwind provides utility classes for all flexbox properties. Here are the key patterns from this article expressed with Tailwind classes.
+
+### Centering
+
+<TailwindPreview
+  title="Tailwind: Flexbox Centering"
+  html={`<div class="flex justify-center items-center min-h-[200px] bg-slate-100 rounded-lg">
+  <div class="bg-blue-500 text-white px-8 py-4 rounded-lg text-base">
+    Perfectly centered
+  </div>
+</div>`}
+  height={220}
+/>
+
+### Equal-Height Columns
+
+<TailwindPreview
+  title="Tailwind: Equal Height Columns"
+  html={`<div class="flex gap-3 p-3">
+  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Short</div>
+  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">
+    <p>Much longer content that determines the height of all columns.</p>
+    <p class="mt-2">All siblings match this height automatically.</p>
+  </div>
+  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Medium content here</div>
+</div>`}
+/>
+
+### Sticky Footer
+
+<TailwindPreview
+  title="Tailwind: Sticky Footer"
+  html={`<div class="flex flex-col min-h-[300px]">
+  <header class="bg-blue-500 text-white px-5 py-3">Header</header>
+  <main class="flex-1 p-5 bg-slate-100">Main content (short)</main>
+  <footer class="bg-green-500 text-white px-5 py-3">Footer sticks to bottom</footer>
+</div>`}
+  height={320}
+/>
+
 ## References
 
 - [A Complete Guide to Flexbox - CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)

@@ -305,6 +305,39 @@ The `dense` keyword tells the browser to backfill empty cells with smaller items
 - Items have unknown widths and need to distribute space (navigation, toolbars)
 - You want items to wrap but do not need column alignment across rows
 
+## Tailwind CSS
+
+import TailwindPreview from '@site/src/components/TailwindPreview';
+
+Tailwind provides grid utilities with responsive breakpoint prefixes. While CSS Grid's `auto-fit`/`auto-fill` with `minmax()` isn't available as a utility, Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`) offer an explicit breakpoint-based alternative.
+
+### Responsive Card Grid
+
+<TailwindPreview
+  title="Tailwind: Responsive Grid (resize to see reflow)"
+  html={`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2">
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 1</div>
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 2</div>
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 3</div>
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 4</div>
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 5</div>
+  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 6</div>
+</div>`}
+/>
+
+### Column Spanning
+
+<TailwindPreview
+  title="Tailwind: Grid with col-span"
+  html={`<div class="grid grid-cols-3 gap-3 p-2">
+  <div class="col-span-2 bg-blue-500 text-white p-4 rounded-lg text-center">Spans 2 columns</div>
+  <div class="bg-green-500 text-white p-4 rounded-lg text-center">1 col</div>
+  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+</div>`}
+/>
+
 ## References
 
 - [A Complete Guide to CSS Grid - CSS-Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)

@@ -220,6 +220,43 @@ Each badge is exactly as wide as its content. No fixed width, no overflow.
 - Grid track sizing where you want a column to shrink to content but cap at a maximum width
 - Sidebar layouts: `grid-template-columns: fit-content(250px) 1fr`
 
+## Tailwind CSS
+
+import TailwindPreview from '@site/src/components/TailwindPreview';
+
+Tailwind provides `w-fit`, `w-min`, and `w-max` utilities for intrinsic sizing.
+
+### w-fit vs Default Width
+
+<TailwindPreview
+  title="Tailwind: w-fit Shrink-to-Content"
+  html={`<div class="flex gap-8 p-6">
+  <div class="flex-1">
+    <h4 class="text-sm font-semibold text-slate-600 mb-3">Default (stretches)</h4>
+    <div class="bg-indigo-100 px-4 py-1.5 rounded-full text-sm mb-2">New Feature</div>
+    <div class="bg-indigo-100 px-4 py-1.5 rounded-full text-sm">Badge</div>
+  </div>
+  <div class="flex-1">
+    <h4 class="text-sm font-semibold text-slate-600 mb-3">w-fit (shrinks)</h4>
+    <div class="w-fit bg-indigo-100 px-4 py-1.5 rounded-full text-sm mb-2">New Feature</div>
+    <div class="w-fit bg-indigo-100 px-4 py-1.5 rounded-full text-sm">Badge</div>
+  </div>
+</div>`}
+  height={140}
+/>
+
+### Centered Fit-Content Element
+
+<TailwindPreview
+  title="Tailwind: mx-auto + w-fit Centering"
+  html={`<div class="p-6 bg-slate-50">
+  <div class="mx-auto w-fit bg-red-500 text-white px-5 py-1 rounded-full text-sm font-semibold">
+    Centered Badge
+  </div>
+</div>`}
+  height={80}
+/>
+
 ## References
 
 - [fit-content - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/fit-content)

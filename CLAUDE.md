@@ -42,6 +42,15 @@ Data generation (`pnpm generate`) runs automatically before `start` and `build`.
 - CategoryNav component: category navigation on index pages
 - Categories: layout, typography, spacing-sizing, color, visual-effects, responsive, interactive, modern-css, inbox
 
+## Writing Documentation Articles
+
+- **Always include CssPreview demos** — working, interactive demos are the most valuable part of each article. Every CSS concept explained should have a corresponding CssPreview demo that readers can see and interact with. Prefer more demos over more prose.
+- Article structure: `## The Problem` → `## The Solution` → inline CssPreview demos → `## When to Use`
+- Use `hsl()` colors, not hex
+- Use descriptive BEM-ish CSS class names in demos
+- CssPreview demos are iframes with no JavaScript — all interactions must be CSS-only (`:hover`, `:focus`, `:checked`, etc.)
+- For topics with enough depth, use the "deep article" pattern: convert a flat `.mdx` into a folder with `index.mdx` + sub-pages (see `/l-handle-deep-article` skill)
+
 ## Pre-commit Hooks
 
 husky + lint-staged runs on commit:

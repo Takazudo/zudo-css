@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.visualEffectsSidebar.category.Gradient Techniques": {
+    "message": "グラデーションテクニック",
+    "description": "The label for category 'Gradient Techniques' in sidebar 'visualEffectsSidebar'"
+  },
+  "sidebar.modernCssSidebar.category.Advanced Custom Properties": {
+    "message": "カスタムプロパティ応用",
+    "description": "The label for category 'Advanced Custom Properties' in sidebar 'modernCssSidebar'"
+  },
+  "sidebar.inboxSidebar.category.Tight Token Strategy": {
+    "message": "タイトトークン戦略",
+    "description": "The label for category 'Tight Token Strategy' in sidebar 'inboxSidebar'"
+  }
+}

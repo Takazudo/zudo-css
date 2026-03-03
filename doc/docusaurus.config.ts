@@ -27,7 +27,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ja'],
+    localeConfigs: {
+      en: { label: 'English' },
+      ja: { label: '日本語' },
+    },
   },
 
   presets: [
@@ -56,6 +60,12 @@ const config: Config = {
     navbar: {
       title: 'CSS Best Practices',
       items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'overviewSidebar',
+          position: 'left',
+          label: 'Overview',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'layoutSidebar',
@@ -109,6 +119,10 @@ const config: Config = {
           sidebarId: 'inboxSidebar',
           position: 'left',
           label: 'INBOX',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
       ],
     },

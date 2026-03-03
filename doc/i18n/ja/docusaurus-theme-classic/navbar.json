@@ -1,0 +1,46 @@
+{
+  "title": {
+    "message": "CSS ベストプラクティス",
+    "description": "The title in the navbar"
+  },
+  "item.label.Layout": {
+    "message": "レイアウト",
+    "description": "Navbar item with label Layout"
+  },
+  "item.label.Typography": {
+    "message": "タイポグラフィ",
+    "description": "Navbar item with label Typography"
+  },
+  "item.label.Spacing & Sizing": {
+    "message": "スペーシング・サイジング",
+    "description": "Navbar item with label Spacing & Sizing"
+  },
+  "item.label.Color": {
+    "message": "カラー",
+    "description": "Navbar item with label Color"
+  },
+  "item.label.Visual Effects": {
+    "message": "ビジュアルエフェクト",
+    "description": "Navbar item with label Visual Effects"
+  },
+  "item.label.Responsive": {
+    "message": "レスポンシブ",
+    "description": "Navbar item with label Responsive"
+  },
+  "item.label.Interactive": {
+    "message": "インタラクティブ",
+    "description": "Navbar item with label Interactive"
+  },
+  "item.label.Modern CSS": {
+    "message": "モダンCSS",
+    "description": "Navbar item with label Modern CSS"
+  },
+  "item.label.INBOX": {
+    "message": "INBOX",
+    "description": "Navbar item with label INBOX"
+  },
+  "item.label.Overview": {
+    "message": "概要",
+    "description": "Navbar item with label Overview"
+  }
+}

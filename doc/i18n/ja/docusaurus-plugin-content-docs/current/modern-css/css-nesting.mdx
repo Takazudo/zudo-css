@@ -1,0 +1,294 @@
+---
+sidebar_position: 1
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# CSSネスティング
+
+## 問題
+
+CSSはこれまでフラットなセレクター宣言が必要で、ネストされた要素のスタイリング時に親セレクターを繰り返し記述しなければなりませんでした。これにより、冗長で保守しにくいスタイルシートが生じ、関連するスタイルがファイル全体に散在します。AIエージェントは、ネスティングの方がクリーンで保守しやすい場合でもフラットなCSSを生成したり、ネイティブCSSでは無効なSassスタイルのネスティング構文を生成したりすることがよくあります。
+
+## 解決方法
+
+ネイティブCSSネスティングを使うと、子セレクターを親ルールブロック内に書くことができ、繰り返しを排除し、関連するスタイルをグループ化できます。2023年後半のリラックスネスティング構文の更新以降、シンプルな子孫セレクターでは`&`ネスティングセレクターはオプションです。2023年後半の時点で、すべての主要ブラウザがCSSネスティングをサポートしています。
+
+## コード例
+
+### 基本的なネスティング
+
+```css
+/* Without nesting (what AI often generates) */
+.card {
+  padding: 1rem;
+  border-radius: 8px;
+}
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: #666;
+}
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* With native CSS nesting */
+.card {
+  padding: 1rem;
+  border-radius: 8px;
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #666;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+### `&`が必要な場合
+
+`&`セレクターは、親セレクターに追加する場合（擬似クラス、複合セレクター）や、親をデフォルト以外の位置に配置する場合に必要です。
+
+```css
+.button {
+  background: blue;
+  color: white;
+
+  /* & is required: appending a pseudo-class */
+  &:hover {
+    background: darkblue;
+  }
+
+  /* & is required: compound selector */
+  &.primary {
+    background: green;
+  }
+
+  /* & is required: parent in non-first position */
+  .dark-theme & {
+    background: navy;
+  }
+}
+```
+
+### ルール内での`@media`のネスティング
+
+最も有用なパターンの一つは、メディアクエリをそれが影響するコンポーネント内に直接ネストすることです。
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @media (width <= 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width <= 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+### ホバー検出付き`@media`のネスティング
+
+```css
+.interactive-card {
+  padding: 1rem;
+  transition: transform 0.2s;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+```
+
+### 複数のアットルールのネスティング
+
+```css
+.sidebar {
+  width: 100%;
+
+  @media (width >= 768px) {
+    width: 300px;
+  }
+
+  @container main (width >= 600px) {
+    width: 250px;
+  }
+
+  @supports (position: sticky) {
+    position: sticky;
+    top: 1rem;
+  }
+}
+```
+
+## 詳細度の動作
+
+親がセレクターリストの場合、ブラウザは`:is()`を使ってネストされたセレクターを展開します。これにより予期せず詳細度が上がることがあります。
+
+```css
+/* This nesting: */
+.card, #featured {
+  .title {
+    color: blue;
+  }
+}
+
+/* Desugars to: */
+:is(.card, #featured) .title {
+  color: blue;
+}
+/* Specificity is (1,0,1) because :is() takes
+   the highest specificity from its arguments (#featured = 1,0,0) */
+```
+
+親が単一のセレクターの場合、`:is()`のラップは行われず、詳細度は通常通り計算されます。
+
+## ブラウザサポート
+
+- Chrome 120+
+- Firefox 117+
+- Safari 17.2+
+- Edge 120+
+
+グローバルサポートは90%を超えています。古いブラウザのフォールバックには、ビルドステップとして`postcss-nesting` PostCSSプラグインを使用しましょう。
+
+## AIがよくやるミス
+
+- ネスティングを使う代わりに、親セレクターを繰り返したフラットなCSSを生成する
+- ネイティブCSSネスティング内でSassスタイルの構文（`$variable`や`@extend`）を使用する
+- 擬似クラスや複合セレクターで`&`を忘れる（`&:hover`、`&.active`）
+- `@media`クエリをそれが修正するルールブロック内にグループ化しない
+- 3レベルを超える深いネスティングを行い、可読性を低下させる
+- 親がセレクターリストの場合の`:is()`による詳細度の増加を考慮しない
+
+## 使い分け
+
+- コンポーネントの関連スタイル（要素、擬似クラス、メディアクエリ）を1つのブロックにグループ化する
+- 親セレクターの繰り返しを減らす
+- レスポンシブブレークポイントを、それが影響するコンポーネントと同じ場所に配置する
+- 可読性を維持するためにネスティングを2-3レベルに制限する
+
+## ライブプレビュー
+
+<CssPreview
+  title="ネストされたカードスタイル"
+  html={`
+<div class="card">
+  <h2>Card Title</h2>
+  <p>This card uses native CSS nesting to group all related styles — heading, paragraph, and hover effect — inside a single .card block.</p>
+  <span class="tag">Hover me</span>
+</div>
+  `}
+  css={`
+.card {
+  font-family: system-ui, sans-serif;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  h2 {
+    font-size: 1.25rem;
+    color: #1e293b;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #ede9fe;
+    color: #7c3aed;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:hover .tag {
+    background: #7c3aed;
+    color: white;
+  }
+}
+  `}
+/>
+
+<CssPreview
+  title="ネストされたメディアクエリ"
+  html={`
+<div class="grid-demo">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+</div>
+<p class="hint">Switch viewports above to see the grid adapt — media queries are nested inside the .grid-demo rule</p>
+  `}
+  css={`
+.grid-demo {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  background: #3b82f6;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.hint {
+  font-family: system-ui, sans-serif;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+}
+  `}
+/>
+
+## 参考リンク
+
+- [CSS nesting - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting)
+- [Using CSS nesting - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting/Using)
+- [CSS nesting at-rules - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting/At-rules)
+- [CSS Nesting - Can I Use](https://caniuse.com/css-nesting)

@@ -1,0 +1,300 @@
+---
+sidebar_position: 6
+---
+
+# prefers-reduced-motion
+
+## The Problem
+
+Animations and transitions can cause discomfort, dizziness, or nausea for users with vestibular disorders, motion sensitivities, or certain cognitive conditions. The `prefers-reduced-motion` media query lets users signal their preference through their operating system settings. AI agents almost never include motion preference handling in generated code, and when they do, they tend to remove all motion entirely — which can actually harm usability by removing helpful state-change indicators.
+
+## The Solution
+
+Respect the `prefers-reduced-motion: reduce` preference by **reducing** rather than **removing** motion. Replace large, fast, or parallax-style animations with subtle fades or instant state changes. Keep functional indicators (like focus rings and loading states) intact.
+
+### Two Approaches
+
+1. **Remove-motion approach**: Write animations normally, then disable them in a `prefers-reduced-motion: reduce` block.
+2. **No-motion-first approach**: Write static styles by default, then add animations in a `prefers-reduced-motion: no-preference` block. This is safer because users without a preference set still get reduced motion.
+
+## Code Examples
+
+### Global Reduced-Motion Reset
+
+A defensive reset that reduces all animations for users who prefer reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+This is a blunt tool — use it as a baseline, then refine specific components as needed.
+
+### Replacing Motion with Fades (Better Approach)
+
+Instead of removing all animation, replace large motion with subtle opacity changes:
+
+```css
+/* Default: slide-in animation */
+.modal {
+  animation: modal-enter 0.3s ease-out;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion: fade only, no spatial movement */
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: modal-fade-in 0.2s ease-out;
+  }
+
+  @keyframes modal-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+```
+
+### No-Motion-First Approach
+
+Start with no animation and add it only when the user has no motion preference:
+
+```css
+/* Base: static, no animation */
+.card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Only animate for users without motion preference */
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: card-reveal 0.4s ease-out both;
+  }
+
+  @keyframes card-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+```
+
+### Transitioning Safely
+
+```css
+.button {
+  background-color: var(--color-primary);
+}
+
+/* Hover transition: only for no-preference users */
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: var(--color-primary-dark);
+  }
+}
+
+/* Reduced motion users still see the color change, just instantly */
+```
+
+### Loading Spinner Alternative
+
+```css
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Reduced motion: pulsing opacity instead of spinning */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+}
+```
+
+### Scroll Behavior
+
+```css
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+```
+
+### Parallax and Scroll-Driven Animations
+
+```css
+.hero__background {
+  animation: parallax linear;
+  animation-timeline: scroll();
+}
+
+@keyframes parallax {
+  from {
+    transform: translateY(-15%);
+  }
+  to {
+    transform: translateY(15%);
+  }
+}
+
+/* Disable parallax entirely for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero__background {
+    animation: none;
+    transform: none;
+  }
+}
+```
+
+### JavaScript Detection
+
+For animations controlled by JavaScript:
+
+```html
+<script>
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  function handleMotionPreference() {
+    if (prefersReducedMotion.matches) {
+      // Disable JS-driven animations
+      document.documentElement.dataset.reducedMotion = "true";
+    } else {
+      delete document.documentElement.dataset.reducedMotion;
+    }
+  }
+
+  prefersReducedMotion.addEventListener("change", handleMotionPreference);
+  handleMotionPreference();
+</script>
+```
+
+```css
+/* Use the data attribute for JS-controlled animations */
+[data-reduced-motion="true"] .js-animated {
+  animation: none !important;
+  transition: none !important;
+}
+```
+
+### What to Keep vs. What to Reduce
+
+```css
+/* KEEP: Focus indicators (functional, not decorative) */
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  /* No transition needed — instant is fine */
+}
+
+/* KEEP: Color changes (not spatial motion) */
+@media (prefers-reduced-motion: reduce) {
+  .button:hover {
+    /* Color change is fine, remove transform */
+    background-color: var(--color-primary-dark);
+    transform: none;
+  }
+}
+
+/* REDUCE: Large spatial movement */
+@media (prefers-reduced-motion: reduce) {
+  .slide-in-panel {
+    /* Replace slide with fade */
+    animation: fade-in 0.15s ease;
+  }
+}
+
+/* REMOVE: Parallax, background movement, continuous animations */
+@media (prefers-reduced-motion: reduce) {
+  .background-animation,
+  .parallax-layer,
+  .floating-element {
+    animation: none;
+  }
+}
+```
+
+## Common AI Mistakes
+
+- **Not including `prefers-reduced-motion` at all**: The most frequent mistake. AI generates animations without any motion preference handling.
+- **Removing all animation with a blanket rule**: Killing every animation and transition removes helpful state indicators. Reduce motion, do not eliminate it.
+- **Forgetting `scroll-behavior: auto`**: Setting `scroll-behavior: smooth` without an opt-out for reduced-motion users.
+- **Not replacing removed animations**: Removing a slide-in animation without providing a fade alternative, leaving users with no state-change indicator.
+- **Only handling CSS animations**: Forgetting that JavaScript-driven animations (GSAP, Framer Motion, etc.) also need to respect the preference.
+- **Testing only the default state**: Not verifying what the experience looks like with reduced motion enabled. Chrome DevTools can emulate this: Rendering panel > Emulate CSS media feature > prefers-reduced-motion: reduce.
+
+## When to Use
+
+- **Every project with animations**: If you add any animation or transition, add `prefers-reduced-motion` handling.
+- **Parallax and scroll effects**: These should always be disabled for reduced-motion users.
+- **Auto-playing animations**: Continuous decorative animations (floating elements, background effects) should stop.
+- **Page transitions**: Full-page route transitions should be reduced to simple fades or removed.
+- **Keep functional motion**: Loading indicators, focus rings, and state-change indicators should be preserved (possibly simplified, but not removed).
+
+## References
+
+- [prefers-reduced-motion — MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
+- [prefers-reduced-motion — CSS-Tricks](https://css-tricks.com/almanac/rules/m/media/prefers-reduced-motion/)
+- [Taking a No-Motion-First Approach — Tatiana Mac](https://www.tatianamac.com/posts/prefers-reduced-motion)
+- [C39: Using prefers-reduced-motion to Prevent Motion — W3C](https://www.w3.org/WAI/WCAG21/Techniques/css/C39)
+- [Design Accessible Animation and Movement — Pope Tech](https://blog.pope.tech/2025/12/08/design-accessible-animation-and-movement/)

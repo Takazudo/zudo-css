@@ -1,4 +1,11 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import { preflightCss } from './preflight';
 import styles from './styles.module.css';
@@ -42,7 +49,7 @@ export default function CssPreview({
   const [iframeHeight, setIframeHeight] = useState(height ?? 200);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const srcdoc = buildSrcdoc(html, css);
+  const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
   const syncHeight = useCallback(() => {
     const iframe = iframeRef.current;
@@ -85,6 +92,7 @@ export default function CssPreview({
                   ? styles.viewportBtnActive
                   : styles.viewportBtn
               }
+              aria-pressed={i === activeViewport}
               onClick={() => setActiveViewport(i)}
             >
               {vp.label}
@@ -116,6 +124,7 @@ export default function CssPreview({
           type="button"
           className={styles.codeToggle}
           onClick={() => setCodeOpen((v) => !v)}
+          aria-expanded={codeOpen}
         >
           <span
             className={

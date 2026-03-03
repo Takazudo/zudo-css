@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+import CssPreview from '@site/src/components/CssPreview';
+
 # fit-content, max-content, min-content
 
 ## The Problem
@@ -133,6 +135,56 @@ The sidebar column shrinks to its content but never exceeds 300px. This is diffe
 ```
 
 Each badge is exactly as wide as its content. No fixed width, no overflow.
+
+## Live Preview
+
+<CssPreview
+  title="width: fit-content vs width: 100%"
+  html={`
+<div class="demo">
+  <div class="section">
+    <h4>width: 100% (default block)</h4>
+    <div class="tag full">New Feature</div>
+    <div class="tag full">Badge</div>
+  </div>
+  <div class="section">
+    <h4>width: fit-content</h4>
+    <div class="tag fit">New Feature</div>
+    <div class="tag fit">Badge</div>
+  </div>
+</div>
+  `}
+  css={`
+.demo {
+  display: flex;
+  gap: 32px;
+  padding: 24px;
+  font-family: system-ui, sans-serif;
+}
+.section {
+  flex: 1;
+}
+.section h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #334155;
+}
+.tag {
+  padding: 6px 16px;
+  background: #e0e7ff;
+  border-radius: 9999px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.full {
+  width: 100%;
+}
+.fit {
+  width: fit-content;
+}
+  `}
+/>
 
 ## Common AI Mistakes
 

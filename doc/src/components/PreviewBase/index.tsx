@@ -8,6 +8,7 @@ export interface PreviewBaseProps {
   sandbox: string;
   syncDelay: number;
   codeBlocks: ReactNode;
+  defaultOpen?: boolean;
 }
 
 type Viewport = { label: string; width: string };
@@ -25,9 +26,10 @@ export default function PreviewBase({
   sandbox,
   syncDelay,
   codeBlocks,
+  defaultOpen,
 }: PreviewBaseProps): ReactNode {
   const [activeViewport, setActiveViewport] = useState(2); // default: Full
-  const [codeOpen, setCodeOpen] = useState(false);
+  const [codeOpen, setCodeOpen] = useState(defaultOpen ?? false);
   const [iframeHeight, setIframeHeight] = useState(height ?? 200);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 

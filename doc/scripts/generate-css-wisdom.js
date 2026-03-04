@@ -11,6 +11,8 @@
 
 const fs = require('fs');
 const path = require('path');
+// gray-matter is installed in doc/node_modules/ — resolution works because
+// this script lives under doc/scripts/.
 const matter = require('gray-matter');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
@@ -40,31 +42,27 @@ function readCategoryMeta(dirPath) {
 }
 
 /**
- * Extract H1 heading from a markdown file.
+ * Parse an .mdx file and extract metadata in a single read.
+ * Returns { position, h1 }.
  */
-function extractH1(filePath) {
+function readFileMeta(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
-  const { content: body } = matter(content);
-  const match = body.match(/^#\s+(.+)$/m);
-  return match ? match[1].replace(/\*\*/g, '').replace(/\*/g, '').trim() : null;
-}
-
-/**
- * Read sidebar_position from an .mdx file's frontmatter.
- */
-function readSidebarPosition(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const { data: frontmatter } = matter(content);
-  return frontmatter.sidebar_position != null
+  const { data: frontmatter, content: body } = matter(content);
+  const position = frontmatter.sidebar_position != null
     ? Number(frontmatter.sidebar_position)
     : 999;
+  const h1Match = body.match(/^#\s+(.+)$/m);
+  const h1 = h1Match
+    ? h1Match[1].replace(/\*\*/g, '').replace(/\*/g, '').trim()
+    : null;
+  return { position, h1 };
 }
 
 /**
  * Process a top-level category directory.
  *
  * Returns an array of "items" where each item is either:
- *   - { type: 'article', relativePath, fullPath, position }
+ *   - { type: 'article', relativePath, h1, position }
  *   - { type: 'group', indexFile: {...}, children: [...], position }
  *
  * Items are sorted by position for correct ordering.
@@ -77,7 +75,7 @@ function processCategory(categoryDir) {
   for (const entry of entries) {
     const fullPath = path.join(categoryPath, entry.name);
 
-    if (entry.name === '_category_.json' || entry.name === 'img') continue;
+    if (entry.name === '_category_.json') continue;
 
     if (entry.isDirectory()) {
       // This is a deep article group (subcategory)
@@ -94,12 +92,12 @@ function processCategory(categoryDir) {
 
         const subFullPath = path.join(fullPath, subEntry.name);
         const subRelPath = `${categoryDir}/${entry.name}/${subEntry.name}`;
-        const subPosition = readSidebarPosition(subFullPath);
+        const meta = readFileMeta(subFullPath);
 
-        if (subEntry.name.replace(/\.mdx?$/, '') === 'index') {
-          indexFile = { relativePath: subRelPath, fullPath: subFullPath, position: subPosition };
+        if (subEntry.name === 'index.mdx') {
+          indexFile = { relativePath: subRelPath, h1: meta.h1, position: meta.position };
         } else {
-          children.push({ relativePath: subRelPath, fullPath: subFullPath, position: subPosition });
+          children.push({ relativePath: subRelPath, h1: meta.h1, position: meta.position });
         }
       }
 
@@ -113,10 +111,10 @@ function processCategory(categoryDir) {
       const relativePath = `${categoryDir}/${entry.name}`;
 
       // Skip category index pages (e.g., layout/index.mdx)
-      if (entry.name.replace(/\.mdx?$/, '') === 'index') continue;
+      if (entry.name === 'index.mdx') continue;
 
-      const position = readSidebarPosition(fullPath);
-      items.push({ type: 'article', relativePath, fullPath, position });
+      const meta = readFileMeta(fullPath);
+      items.push({ type: 'article', relativePath, h1: meta.h1, position: meta.position });
     }
   }
 
@@ -152,20 +150,21 @@ function main() {
 
   categories.sort((a, b) => a.position - b.position);
 
-  // Track missing descriptions and total count
+  // Track missing descriptions, total count, and all discovered paths
   const missing = [];
+  const allPaths = new Set();
   let totalArticles = 0;
 
   // Helper to format a single file entry
-  function formatEntry(file, indent = '') {
-    const desc = descriptions[file.relativePath];
+  function formatEntry(item, indent = '') {
+    allPaths.add(item.relativePath);
+    const desc = descriptions[item.relativePath];
     if (!desc) {
-      const h1 = extractH1(file.fullPath);
-      const fallback = h1 || file.relativePath;
-      missing.push(file.relativePath);
-      return `${indent}- \`${file.relativePath}\` — ${fallback}`;
+      const fallback = item.h1 || item.relativePath;
+      missing.push(item.relativePath);
+      return `${indent}- \`${item.relativePath}\` — ${fallback}`;
     }
-    return `${indent}- \`${file.relativePath}\` — ${desc}`;
+    return `${indent}- \`${item.relativePath}\` — ${desc}`;
   }
 
   // Build topic index
@@ -235,12 +234,22 @@ ${indexLines.join('\n').trimEnd()}
   console.log(`Generated ${OUTPUT_FILE}`);
   console.log(`  ${totalArticles} articles across ${categories.length} categories`);
 
+  // Warn about missing descriptions
   if (missing.length > 0) {
     console.log(`\n  ⚠ ${missing.length} article(s) missing descriptions in descriptions.json:`);
     for (const m of missing) {
       console.log(`    - ${m}`);
     }
     console.log(`\n  Add descriptions to: ${DESCRIPTIONS_FILE}`);
+  }
+
+  // Warn about stale keys in descriptions.json
+  const staleKeys = Object.keys(descriptions).filter(key => !allPaths.has(key));
+  if (staleKeys.length > 0) {
+    console.log(`\n  ⚠ ${staleKeys.length} stale key(s) in descriptions.json (no matching file):`);
+    for (const key of staleKeys) {
+      console.log(`    - ${key}`);
+    }
   }
 }
 

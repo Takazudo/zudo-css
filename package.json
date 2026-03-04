@@ -10,7 +10,7 @@
     "doc:check:fix": "pnpm --dir doc check:fix",
     "doc:generate": "pnpm --dir doc generate",
     "generate:css-wisdom": "node doc/scripts/generate-css-wisdom.js",
-    "setup:symlink": "ln -sfn \"$(pwd)/.claude/skills/css-wisdom\" ~/.claude/skills/css-wisdom && echo 'Symlinked ~/.claude/skills/css-wisdom → .claude/skills/css-wisdom'"
+    "setup:symlink": "mkdir -p ~/.claude/skills && ln -sfn \"$(pwd)/.claude/skills/css-wisdom\" ~/.claude/skills/css-wisdom && echo 'Symlinked ~/.claude/skills/css-wisdom → .claude/skills/css-wisdom'"
   },
   "engines": {
     "node": ">=20.0"

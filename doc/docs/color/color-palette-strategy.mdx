@@ -144,7 +144,7 @@ Neutrals carry most of your UI: backgrounds, surfaces, borders, and text. Use 8�
 Every UI needs semantic colors for system states:
 
 - **Success** — green (≈hue 150)
-- **Warning** — amber (≈hue 90)
+- **Warning** — amber (≈hue 65)
 - **Danger/Error** — red (≈hue 25)
 - **Info** — blue (≈hue 220)
 
@@ -589,7 +589,7 @@ A well-structured token set defines every color role before any component is bui
 
   /* Feedback — same lightness (58%) across all hues */
   --color-success: oklch(58% 0.18 150); /* green */
-  --color-warning: oklch(58% 0.18 90);  /* amber */
+  --color-warning: oklch(58% 0.18 65);  /* amber */
   --color-danger:  oklch(58% 0.2  25);  /* red   */
   --color-info:    oklch(58% 0.18 220); /* blue  */
 
@@ -641,10 +641,10 @@ A well-structured token set defines every color role before any component is bui
     <div class="token-swatch token-swatch--feedback" style="background:oklch(58% 0.18 150)">
     <span class="token-swatch__label token-swatch__label--light">Success</span>
     </div>
-    <div class="token-swatch token-swatch--feedback" style="background:oklch(94% 0.07 90)">
+    <div class="token-swatch token-swatch--feedback" style="background:oklch(94% 0.07 65)">
     <span class="token-swatch__label">Warning light</span>
     </div>
-    <div class="token-swatch token-swatch--feedback" style="background:oklch(58% 0.18 90)">
+    <div class="token-swatch token-swatch--feedback" style="background:oklch(58% 0.18 65)">
     <span class="token-swatch__label token-swatch__label--light">Warning</span>
     </div>
     <div class="token-swatch token-swatch--feedback" style="background:oklch(94% 0.05 25)">

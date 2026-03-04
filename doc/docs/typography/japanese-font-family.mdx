@@ -13,7 +13,7 @@ Specifying `font-family` for Japanese websites is significantly more complex tha
 1. **Platform fragmentation**: macOS ships with Hiragino fonts, Windows 10+ uses Yu Gothic, and Linux/Android relies on Noto Sans CJK. Each platform requires explicit font names to get good results.
 2. **Japanese fonts contain Latin glyphs**: Every Japanese font includes its own rendition of ASCII characters. If the Japanese font is listed first, all Latin text (English, numbers, symbols) gets rendered in the Japanese font's Latin variant — typically wider and less refined than dedicated Latin typefaces.
 3. **Yu Gothic weight rendering bug**: Yu Gothic on Windows renders with a hairline-thin stroke weight at `font-weight: normal` due to a Windows font mapping quirk. Without a workaround, Japanese text appears unnaturally light.
-4. **Web font size**: A Japanese character set contains thousands of glyphs. Noto Sans JP weighs ~9MB, Noto Serif JP ~10MB — far too large for practical web font usage without subsetting or a CSS variable font strategy.
+4. **Web font size**: A Japanese character set contains thousands of glyphs. Noto Sans JP weighs ~9MB uncompressed (TTF); even as WOFF2, a full character set is several MB — far too large for practical web font usage without subsetting or a variable font strategy.
 
 ## The Solution
 

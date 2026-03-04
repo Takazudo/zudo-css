@@ -414,30 +414,30 @@ h3 {
 <CssPreview
   title="word-break: auto-phrase — Japanese Phrase-Aware Balancing (Chrome 119+)"
   height={300}
-  html={`<div class="autophrse-demo">
-    <div class="autophrse-col">
-    <span class="autophrse-label">balance only</span>
+  html={`<div class="autophrase-demo">
+    <div class="autophrase-col">
+    <span class="autophrase-label">balance only</span>
     <h2 class="heading-balance" lang="ja">パフォーマンス最適化のためのレンダリングパイプラインの理解と改善手法</h2>
     </div>
-    <div class="autophrse-col">
-    <span class="autophrse-label">balance + auto-phrase</span>
+    <div class="autophrase-col">
+    <span class="autophrase-label">balance + auto-phrase</span>
     <h2 class="heading-autophrase" lang="ja">パフォーマンス最適化のためのレンダリングパイプラインの理解と改善手法</h2>
     </div>
     </div>`}
-  css={`.autophrse-demo {
+  css={`.autophrase-demo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 1.25rem;
     font-family: system-ui, sans-serif;
     }
-    .autophrse-col {
+    .autophrase-col {
     background: hsl(260 20% 97%);
     border-radius: 8px;
     padding: 1rem;
     border: 1px solid hsl(260 20% 90%);
     }
-    .autophrse-label {
+    .autophrase-label {
     display: block;
     font-size: 0.7rem;
     font-weight: 600;
@@ -461,7 +461,7 @@ h3 {
     word-break: auto-phrase;
     }`} />
 
-Note that `word-break: auto-phrase` requires `lang="ja"` on the element or an ancestor to activate Japanese phrase detection. Without the `lang` attribute, the property has no effect. Firefox does not yet support `auto-phrase`; Safari supports it experimentally.
+Note that `word-break: auto-phrase` requires `lang="ja"` on the element or an ancestor to activate Japanese phrase detection. Without the `lang` attribute, the property has no effect. Firefox does not yet support `auto-phrase`. Safari support is limited — check current browser compatibility before relying on it.
 
 ### Locale-Scoped Fallback Pattern
 

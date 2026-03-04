@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { execSync, execFileSync } = require('child_process');
 const path = require('path');
 
 // Module-level cache: relativePath -> unix timestamp (seconds).
@@ -55,8 +55,9 @@ function buildCreationDateCache(gitRoot) {
 // Per-file fallback with --follow for rename tracking
 function getCreationDateWithFollow(gitRoot, relativePath) {
   try {
-    const output = execSync(
-      `git log --all --follow --format=%at --reverse -n 1 -- "${relativePath}"`,
+    const output = execFileSync(
+      'git',
+      ['log', '--all', '--follow', '--format=%at', '--reverse', '-n', '1', '--', relativePath],
       { cwd: gitRoot, encoding: 'utf8' },
     ).trim();
 

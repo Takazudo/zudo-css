@@ -25,9 +25,9 @@ function DocMetadata(): ReactNode {
 
   if (lastUpdatedAt) {
     const date = new Date(lastUpdatedAt);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
     formattedUpdateDate = `${year}/${month}/${day}`;
 
     // If no custom creation date from Git, use lastUpdatedAt as fallback

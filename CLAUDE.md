@@ -7,8 +7,8 @@ Docusaurus documentation site teaching CSS best practices.
 ```
 zcss/
   doc/                    # Docusaurus site (all dev happens here)
-    docs/                 # MDX documentation by category
-    src/components/       # CssPreview, CategoryNav, DocsSitemap
+    docs/                 # MDX articles by category
+    src/components/       # CssPreview, CategoryNav, DocsSitemap, etc.
     src/theme/            # Swizzled Docusaurus theme components
     src/css/              # Custom styles
     src/data/             # Generated JSON (gitignored)
@@ -16,54 +16,27 @@ zcss/
     plugins/              # Docusaurus plugins (remark-creation-date)
     static/               # Static assets
   .husky/                 # Git hooks (pre-commit: lint-staged)
+  .claude/skills/         # Claude Code skills managed in this repo
 ```
 
 ## Development
 
-Package manager: **pnpm** (Node.js >= 20)
+Package manager: **pnpm** (Node.js >= 20). All commands run inside `doc/`:
 
 ```bash
 cd doc
-pnpm install            # Install dependencies
-pnpm start              # Dev server → http://css-bp.localhost:8811
-pnpm build              # Production build
-pnpm check              # Typecheck + format check
-pnpm check:fix          # Auto-fix formatting
+pnpm install && pnpm start    # Dev server → http://css-bp.localhost:8811
+pnpm build                    # Production build
+pnpm check                    # Typecheck + format check
 ```
 
-Data generation (`pnpm generate`) runs automatically before `start` and `build`.
-
-## Documentation Files
-
-- Format: MDX with YAML frontmatter (`sidebar_position`)
-- Location: `doc/docs/<category>/`
-- File naming: **kebab-case** (e.g., `centering-techniques.mdx`)
-- CssPreview component: renders live CSS demos in iframes with viewport switching
-- CategoryNav component: category navigation on index pages
-- Categories: layout, typography, spacing-sizing, color, visual-effects, responsive, interactive, modern-css, inbox
-
-## Writing Documentation Articles
-
-- **Always include CssPreview demos** — working, interactive demos are the most valuable part of each article. Every CSS concept explained should have a corresponding CssPreview demo that readers can see and interact with. Prefer more demos over more prose.
-- Article structure: `## The Problem` → `## The Solution` → inline CssPreview demos → `## When to Use`
-- Use `hsl()` colors, not hex
-- Use descriptive BEM-ish CSS class names in demos
-- CssPreview demos are iframes with no JavaScript — all interactions must be CSS-only (`:hover`, `:focus`, `:checked`, etc.)
-- For topics with enough depth, use the "deep article" pattern: convert a flat `.mdx` into a folder with `index.mdx` + sub-pages (see `/l-handle-deep-article` skill)
-
-## Pre-commit Hooks
-
-husky + lint-staged runs on commit:
-
-- `*.{js,jsx,ts,tsx,mjs}` → prettier
-- `*.{md,mdx}` → mdx-formatter
-- `*.{json,css,yml,yaml}` → prettier
+See `doc/CLAUDE.md` for detailed article-writing guidelines, component reference, and conventions.
 
 ## Claude Code Skills
 
 This repo manages zcss-specific Claude Code skills in `.claude/skills/`:
 
-- **`css-wisdom`** — Topic index of all CSS articles. Symlinked to `~/.claude/skills/css-wisdom` so it's available globally. **When adding or removing articles, update the topic index in `.claude/skills/css-wisdom/SKILL.md`.**
+- **`css-wisdom`** — Topic index of all CSS articles. Symlinked to `~/.claude/skills/css-wisdom` so it's available globally. **When adding or removing articles, run `pnpm generate:css-wisdom` to regenerate the topic index.** Add descriptions for new articles to `.claude/skills/css-wisdom/descriptions.json`.
 - **`l-handle-deep-article`** — Guide for converting flat articles into deep articles with sub-pages. Local to this repo.
 - **`l-demo-component`** — Guide for CssPreview component usage and `defaultOpen` prop conventions. Local to this repo.
 

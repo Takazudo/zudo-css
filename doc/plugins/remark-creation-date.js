@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const path = require('path');
 
 // Module-level cache: relativePath -> unix timestamp (seconds).
@@ -9,7 +9,7 @@ let cachedGitRoot = null;
 
 function getGitRoot(filePath) {
   if (cachedGitRoot) return cachedGitRoot;
-  cachedGitRoot = execSync('git rev-parse --show-toplevel', {
+  cachedGitRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], {
     cwd: path.dirname(filePath),
     encoding: 'utf8',
   }).trim();
@@ -25,11 +25,11 @@ function buildCreationDateCache(gitRoot) {
     // --diff-filter=A: only "Added" entries (file creation)
     // --reverse: oldest commits first, so the first occurrence is the true creation
     // --all: search across all branches (supports worktrees and feature branches)
-    const output = execSync('git log --all --diff-filter=A --format=%at --name-only --reverse', {
-      cwd: gitRoot,
-      encoding: 'utf8',
-      maxBuffer: 10 * 1024 * 1024,
-    });
+    const output = execFileSync(
+      'git',
+      ['log', '--all', '--diff-filter=A', '--format=%at', '--name-only', '--reverse'],
+      { cwd: gitRoot, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
+    );
 
     let currentTimestamp = null;
     for (const line of output.split('\n')) {
@@ -55,8 +55,9 @@ function buildCreationDateCache(gitRoot) {
 // Per-file fallback with --follow for rename tracking
 function getCreationDateWithFollow(gitRoot, relativePath) {
   try {
-    const output = execSync(
-      `git log --all --follow --format=%at --reverse -n 1 -- "${relativePath}"`,
+    const output = execFileSync(
+      'git',
+      ['log', '--all', '--follow', '--format=%at', '--reverse', '-n', '1', '--', relativePath],
       { cwd: gitRoot, encoding: 'utf8' },
     ).trim();
 

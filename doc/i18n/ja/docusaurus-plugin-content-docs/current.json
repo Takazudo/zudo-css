@@ -3,9 +3,9 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.visualEffectsSidebar.category.Gradient Techniques": {
+  "sidebar.visualSidebar.category.Gradient Techniques": {
     "message": "グラデーションテクニック",
-    "description": "The label for category 'Gradient Techniques' in sidebar 'visualEffectsSidebar'"
+    "description": "The label for category 'Gradient Techniques' in sidebar 'visualSidebar'"
   },
   "sidebar.methodologySidebar.category.Advanced Custom Properties": {
     "message": "カスタムプロパティ応用",

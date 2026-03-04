@@ -17,7 +17,7 @@ const config: Config = {
   organizationName: 'takazudo',
   projectName: 'css-best-practices',
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   markdown: {
     hooks: {
@@ -52,6 +52,28 @@ const config: Config = {
     ],
   ],
 
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap',
+      },
+    },
+  ],
+
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
@@ -84,21 +106,15 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'spacingSizingSidebar',
-          position: 'left',
-          label: 'Spacing & Sizing',
-        },
-        {
-          type: 'docSidebar',
           sidebarId: 'colorSidebar',
           position: 'left',
           label: 'Color',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'visualEffectsSidebar',
+          sidebarId: 'visualSidebar',
           position: 'left',
-          label: 'Visual Effects',
+          label: 'Visual',
         },
         {
           type: 'docSidebar',
@@ -117,6 +133,12 @@ const config: Config = {
           sidebarId: 'methodologySidebar',
           position: 'left',
           label: 'Methodology',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'inboxSidebar',
+          position: 'left',
+          label: 'INBOX',
         },
         {
           type: 'localeDropdown',

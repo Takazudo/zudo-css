@@ -41,6 +41,11 @@ Each entry: `file path` — brief description.
 - `layout/table-cell-width-control.mdx` — table-layout fixed, controlling column widths, overflow in cells
 - `layout/subgrid.mdx` — Align nested content across sibling grid items
 - `layout/anchor-positioning.mdx` — Pure CSS tooltips/popovers positioned to other elements
+- `layout/fit-content.mdx` — fit-content, max-content, min-content for intrinsic sizing
+- `layout/aspect-ratio.mdx` — Modern aspect-ratio property vs padding-top hack
+- `layout/logical-properties.mdx` — margin-inline, padding-block for i18n/RTL support
+- `layout/clamp-for-sizing.mdx` — Fluid sizing with clamp() for padding, widths, etc.
+- `layout/gap-vs-margin.mdx` — Use gap in flex/grid, avoid margin collapse issues
 
 ### Typography
 
@@ -55,14 +60,6 @@ Each entry: `file path` — brief description.
 - `typography/japanese-font-family.mdx` — Japanese font stack, Noto Sans JP, system fonts for CJK
 - `typography/noto-sans-webfont-guide.mdx` — Loading Noto Sans JP as webfont, subsetting, performance
 
-### Spacing & Sizing
-
-- `spacing-sizing/fit-content.mdx` — fit-content, max-content, min-content for intrinsic sizing
-- `spacing-sizing/aspect-ratio.mdx` — Modern aspect-ratio property vs padding-top hack
-- `spacing-sizing/logical-properties.mdx` — margin-inline, padding-block for i18n/RTL support
-- `spacing-sizing/clamp-for-sizing.mdx` — Fluid sizing with clamp() for padding, widths, etc.
-- `spacing-sizing/gap-vs-margin.mdx` — Use gap in flex/grid, avoid margin collapse issues
-
 ### Color
 
 - `color/oklch-color-space.mdx` — Perceptually uniform colors, consistent palettes
@@ -72,19 +69,19 @@ Each entry: `file path` — brief description.
 - `color/color-contrast-accessibility.mdx` — WCAG contrast ratios, checking and fixing violations
 - `color/color-palette-strategy.mdx` — Systematic palette generation, semantic color naming
 
-### Visual Effects
+### Visual
 
-- `visual-effects/layered-natural-shadows.mdx` — Multi-layer box-shadow for realistic depth
-- `visual-effects/gradient-techniques/index.mdx` — Layered gradients, hard stops, gradient text
-  - `visual-effects/gradient-techniques/css-pattern-library.mdx` — CSS-only patterns: stripes, dots, checkerboard, carbon fiber
-- `visual-effects/border-techniques.mdx` — Gradient borders, outline tricks, border-image caveats
-- `visual-effects/backdrop-filter-and-glassmorphism.mdx` — Frosted glass, -webkit- prefix, pitfalls
-- `visual-effects/clip-path-and-mask.mdx` — Non-rectangular shapes, circular reveals, faded edges
-- `visual-effects/smooth-shadow-transitions.mdx` — Performant shadow hover with pseudo-elements
-- `visual-effects/blend-modes.mdx` — mix-blend-mode, background-blend-mode, isolation
-- `visual-effects/filter-effects.mdx` — drop-shadow vs box-shadow, chained filters, backdrop-filter
-- `visual-effects/css-3d-transforms.mdx` — perspective, transform-style, backface-visibility, card flips
-- `visual-effects/at-property.mdx` — Typed custom properties, animatable gradients
+- `visual/layered-natural-shadows.mdx` — Multi-layer box-shadow for realistic depth
+- `visual/gradient-techniques/index.mdx` — Layered gradients, hard stops, gradient text
+  - `visual/gradient-techniques/css-pattern-library.mdx` — CSS-only patterns: stripes, dots, checkerboard, carbon fiber
+- `visual/border-techniques.mdx` — Gradient borders, outline tricks, border-image caveats
+- `visual/backdrop-filter-and-glassmorphism.mdx` — Frosted glass, -webkit- prefix, pitfalls
+- `visual/clip-path-and-mask.mdx` — Non-rectangular shapes, circular reveals, faded edges
+- `visual/smooth-shadow-transitions.mdx` — Performant shadow hover with pseudo-elements
+- `visual/blend-modes.mdx` — mix-blend-mode, background-blend-mode, isolation
+- `visual/filter-effects.mdx` — drop-shadow vs box-shadow, chained filters, backdrop-filter
+- `visual/css-3d-transforms.mdx` — perspective, transform-style, backface-visibility, card flips
+- `visual/at-property.mdx` — Typed custom properties, animatable gradients
 
 ### Responsive
 
@@ -112,14 +109,16 @@ Each entry: `file path` — brief description.
 ### Methodology
 
 - `methodology/bem-strategy.mdx` — BEM naming convention for scalable, collision-free CSS
-- `methodology/tight-token-strategy/index.mdx` — Constraining Tailwind's token set for design consistency
-  - `methodology/tight-token-strategy/color-tokens.mdx` — Semantic color token patterns, palette growth naming
-  - `methodology/tight-token-strategy/typography-tokens.mdx` — Typography token strategy for Tailwind v4
-  - `methodology/tight-token-strategy/token-preview.mdx` — Visual reference of all available tokens
-  - `methodology/tight-token-strategy/component-tokens.mdx` — System tokens vs arbitrary values decision framework
 - `methodology/utility-class-strategy.mdx` — Utility-first CSS approach, when and how to apply it
 - `methodology/css-modules-strategy.mdx` — CSS Modules approach for component-scoped styles
 - `methodology/cascade-layers.mdx` — @layer for specificity management, third-party CSS control
 - `methodology/custom-properties-advanced/index.mdx` — Space toggle trick, fallback chains, computed vars
   - `methodology/custom-properties-advanced/pattern-catalog.mdx` — Responsive vars, calc spacing, HSL color system
   - `methodology/custom-properties-advanced/theming-recipes.mdx` — Light/dark theme, brand override, component API
+- `methodology/tight-token-strategy/index.mdx` — Constraining Tailwind's token set for design consistency
+  - `methodology/tight-token-strategy/color-tokens.mdx` — Semantic color token patterns, palette growth naming
+  - `methodology/tight-token-strategy/typography-tokens.mdx` — Typography token strategy for Tailwind v4
+  - `methodology/tight-token-strategy/token-preview.mdx` — Visual reference of all available tokens
+  - `methodology/tight-token-strategy/component-tokens.mdx` — System tokens vs arbitrary values decision framework
+
+### INBOX

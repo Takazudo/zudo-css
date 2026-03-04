@@ -7,11 +7,10 @@ Curated CSS techniques and patterns documented as references for AI coding agent
 ```
 doc/            # Docusaurus site
   docs/         # Documentation content (markdown)
-    layout/           # Flexbox, Grid, positioning
+    layout/           # Flexbox, Grid, positioning, spacing, sizing
     typography/       # Font sizing, line clamping, vertical rhythm
-    spacing-sizing/   # fit-content, aspect-ratio, logical properties
     color/            # Color systems, oklch, color-mix
-    visual-effects/   # Shadows, gradients, borders, filters
+    visual/           # Shadows, gradients, borders, filters
     responsive/       # Container queries, fluid design
     interactive/      # Hover/focus, transitions, animations
     methodology/      # BEM, CSS Modules, utility-first, design tokens, cascade layers

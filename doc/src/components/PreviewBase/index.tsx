@@ -65,6 +65,13 @@ export default function PreviewBase({
     };
   }, [syncHeight, srcdoc, syncDelay]);
 
+  // Re-measure height when viewport changes (content reflows)
+  useEffect(() => {
+    if (height) return; // skip if explicit height given
+    const id = setTimeout(syncHeight, 150);
+    return () => clearTimeout(id);
+  }, [activeViewport, syncHeight, height]);
+
   const containerWidth = VIEWPORTS[activeViewport].width;
 
   return (

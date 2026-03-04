@@ -1,0 +1,60 @@
+name: Preview Deploy
+
+on:
+  push:
+    branches:
+      - preview
+      - 'expreview/*'
+
+concurrency:
+  group: preview-deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-preview:
+    name: Build and Deploy Preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: pnpm
+          cache-dependency-path: doc/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm --dir doc install --frozen-lockfile
+      - name: Build
+        run: pnpm --dir doc run build
+      - name: Generate deploy alias
+        id: alias
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          if [ "$BRANCH" = "preview" ]; then
+            ALIAS="preview"
+          else
+            ALIAS=$(echo "$BRANCH" | sed 's|/|-|g')
+          fi
+          echo "alias=$ALIAS" >> "$GITHUB_OUTPUT"
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      - name: Deploy preview
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          DEPLOY_ALIAS: ${{ steps.alias.outputs.alias }}
+          BRANCH: ${{ github.ref_name }}
+        run: netlify deploy --dir=doc/build --alias="${DEPLOY_ALIAS}" --message="Preview: ${BRANCH}"
+      - name: Print preview URL
+        env:
+          DEPLOY_ALIAS: ${{ steps.alias.outputs.alias }}
+        run: echo "Preview URL: https://${DEPLOY_ALIAS}--zudo-css.netlify.app/pj/zcss/"

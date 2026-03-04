@@ -1,0 +1,83 @@
+name: Production Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: pnpm
+          cache-dependency-path: doc/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm --dir doc install --frozen-lockfile
+      - name: Generate data
+        run: pnpm --dir doc run generate
+      - name: Quality checks
+        run: pnpm --dir doc run check
+
+  build:
+    name: Build
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: pnpm
+          cache-dependency-path: doc/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm --dir doc install --frozen-lockfile
+      - name: Build
+        run: pnpm --dir doc run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docusaurus-build
+          path: doc/build/
+          retention-days: 1
+
+  deploy:
+    name: Deploy to Production
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docusaurus-build
+          path: doc/build
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      - name: Deploy to production
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify deploy --dir=doc/build --prod --message="Production deploy: ${{ github.sha }}"

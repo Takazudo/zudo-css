@@ -13,8 +13,7 @@ import type { RemarkCreationDateFields } from '@site/src/types/docusaurus';
  */
 function DocMetadata(): ReactNode {
   const { frontMatter: rawFrontMatter, metadata } = useDoc();
-  const frontMatter = rawFrontMatter as typeof rawFrontMatter &
-    RemarkCreationDateFields;
+  const frontMatter = rawFrontMatter as typeof rawFrontMatter & RemarkCreationDateFields;
 
   const creationDate = frontMatter.custom_creation_date;
   const lastUpdatedAt = metadata.lastUpdatedAt;

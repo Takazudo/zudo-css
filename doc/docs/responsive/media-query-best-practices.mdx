@@ -17,108 +17,107 @@ Media queries should be one tool among many for responsive design. Use them for 
 <CssPreview
   title="Mobile-First Layout — Use viewport buttons to see breakpoints"
   html={`
-<div class="layout">
-  <header class="layout__header">Header</header>
-  <nav class="layout__nav">Navigation</nav>
-  <main class="layout__main">Main Content Area</main>
-  <aside class="layout__sidebar">Sidebar</aside>
-  <footer class="layout__footer">Footer</footer>
-</div>
-  `}
+    <div class="layout">
+    <header class="layout__header">Header</header>
+    <nav class="layout__nav">Navigation</nav>
+    <main class="layout__main">Main Content Area</main>
+    <aside class="layout__sidebar">Sidebar</aside>
+    <footer class="layout__footer">Footer</footer>
+    </div>
+    `}
   css={`
-/* Mobile-first: base styles for small screens */
-.layout {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  min-height: 300px;
-}
-
-.layout__header,
-.layout__nav,
-.layout__main,
-.layout__sidebar,
-.layout__footer {
-  padding: 1rem;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.layout__header {
-  background: #3b82f6;
-  color: white;
-}
-
-.layout__nav {
-  background: #8b5cf6;
-  color: white;
-}
-
-.layout__main {
-  background: #22c55e;
-  color: white;
-  flex: 1;
-  min-height: 100px;
-}
-
-.layout__sidebar {
-  background: #f59e0b;
-  color: white;
-}
-
-.layout__footer {
-  background: #64748b;
-  color: white;
-}
-
-/* Tablet: two-column layout */
-@media (min-width: 600px) {
-  .layout {
+    /* Mobile-first: base styles for small screens */
+    .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    min-height: 300px;
+    }
+    
+    .layout__header,
+    .layout__nav,
+    .layout__main,
+    .layout__sidebar,
+    .layout__footer {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    .layout__header {
+    background: #3b82f6;
+    color: white;
+    }
+    
+    .layout__nav {
+    background: #8b5cf6;
+    color: white;
+    }
+    
+    .layout__main {
+    background: #22c55e;
+    color: white;
+    flex: 1;
+    min-height: 100px;
+    }
+    
+    .layout__sidebar {
+    background: #f59e0b;
+    color: white;
+    }
+    
+    .layout__footer {
+    background: #64748b;
+    color: white;
+    }
+    
+    /* Tablet: two-column layout */
+    @media (min-width: 600px) {
+    .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto 1fr auto;
-  }
-  .layout__header {
+    }
+    .layout__header {
     grid-column: 1 / -1;
-  }
-  .layout__nav {
+    }
+    .layout__nav {
     grid-column: 1 / -1;
-  }
-  .layout__footer {
+    }
+    .layout__footer {
     grid-column: 1 / -1;
-  }
-}
-
-/* Desktop: sidebar layout */
-@media (min-width: 900px) {
-  .layout {
+    }
+    }
+    
+    /* Desktop: sidebar layout */
+    @media (min-width: 900px) {
+    .layout {
     grid-template-columns: 1fr 200px;
     grid-template-rows: auto auto 1fr auto;
-  }
-  .layout__header {
+    }
+    .layout__header {
     grid-column: 1 / -1;
-  }
-  .layout__nav {
+    }
+    .layout__nav {
     grid-column: 1 / -1;
-  }
-  .layout__main {
+    }
+    .layout__main {
     grid-column: 1;
-  }
-  .layout__sidebar {
+    }
+    .layout__sidebar {
     grid-column: 2;
-  }
-  .layout__footer {
+    }
+    .layout__footer {
     grid-column: 1 / -1;
-  }
-}
-  `}
-  height={350}
-/>
+    }
+    }
+    `}
+  height={350} />
 
 ## Code Examples
 

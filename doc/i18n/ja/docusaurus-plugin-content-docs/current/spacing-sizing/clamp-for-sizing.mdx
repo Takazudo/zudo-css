@@ -109,73 +109,71 @@ h1 {
 <CssPreview
   title="clamp(): clamp() による流体幅"
   html={`<div class="outer">
-  <div class="fluid-box">
+    <div class="fluid-box">
     <div class="label">width: clamp(200px, 60%, 500px)</div>
     <div class="sublabel">Resize with viewport buttons to see it adapt</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.outer {
-  padding: 16px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-}
-.fluid-box {
-  width: clamp(200px, 60%, 500px);
-  background: #3b82f6;
-  color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-}
-.label {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.sublabel {
-  font-size: 13px;
-  opacity: 0.85;
-}`}
-/>
+    padding: 16px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    }
+    .fluid-box {
+    width: clamp(200px, 60%, 500px);
+    background: #3b82f6;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    }
+    .label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    }
+    .sublabel {
+    font-size: 13px;
+    opacity: 0.85;
+    }`} />
 
 <CssPreview
   title="clamp(): clamp() による流体パディング"
   html={`<div class="section">
-  <div class="content">
+    <div class="content">
     <div class="heading">Section with fluid padding</div>
     <div class="text">padding-block: clamp(1rem, 0.5rem + 3vw, 4rem)</div>
     <div class="text">padding-inline: clamp(1rem, 0.5rem + 2vw, 3rem)</div>
     <div class="hint">Use viewport buttons to see padding change</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.section {
-  background: #f1f5f9;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-}
-.content {
-  background: #8b5cf6;
-  color: #fff;
-  border-radius: 8px;
-  padding-block: clamp(1rem, 0.5rem + 3vw, 4rem);
-  padding-inline: clamp(1rem, 0.5rem + 2vw, 3rem);
-}
-.heading {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.text {
-  font-size: 14px;
-  margin-bottom: 4px;
-  font-family: monospace;
-}
-.hint {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-top: 8px;
-}`}
-/>
+    background: #f1f5f9;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    }
+    .content {
+    background: #8b5cf6;
+    color: #fff;
+    border-radius: 8px;
+    padding-block: clamp(1rem, 0.5rem + 3vw, 4rem);
+    padding-inline: clamp(1rem, 0.5rem + 2vw, 3rem);
+    }
+    .heading {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    }
+    .text {
+    font-size: 14px;
+    margin-bottom: 4px;
+    font-family: monospace;
+    }
+    .hint {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 8px;
+    }`} />
 
 ### 流体幅の制約
 

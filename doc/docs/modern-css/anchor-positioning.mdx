@@ -257,99 +257,98 @@ As of late 2025, anchor positioning is available in all major browsers. For olde
 <CssPreview
   title="CSS Anchor Positioning — Tooltip Pattern"
   html={`
-<div class="demo">
-  <div class="button-row">
+    <div class="demo">
+    <div class="button-row">
     <button class="anchor-btn" style="anchor-name: --btn-anchor">Anchor Button</button>
     <div class="tooltip" style="position-anchor: --btn-anchor">
-      I'm positioned with CSS anchor-name and position-anchor!
+    I'm positioned with CSS anchor-name and position-anchor!
     </div>
-  </div>
-  <div class="code-note">
+    </div>
+    <div class="code-note">
     <p><strong>How it works:</strong> The button declares <code>anchor-name: --btn-anchor</code>. The tooltip uses <code>position-anchor: --btn-anchor</code> and <code>position-area: top center</code> to sit above the button.</p>
     <p><strong>Note:</strong> CSS Anchor Positioning requires Chrome 125+, Edge 125+, or Firefox 150+. If the tooltip appears below the button instead of above it, your browser may not support this feature yet.</p>
-  </div>
-</div>
-  `}
+    </div>
+    </div>
+    `}
   css={`
-.demo {
-  font-family: system-ui, sans-serif;
-  padding: 3rem 1rem 1rem;
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  min-height: 100px;
-}
-
-.anchor-btn {
-  anchor-name: --btn-anchor;
-  padding: 0.75rem 1.5rem;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  align-self: flex-end;
-}
-
-.tooltip {
-  position: fixed;
-  position-anchor: --btn-anchor;
-  position-area: top center;
-  margin-bottom: 8px;
-
-  background: #1e293b;
-  color: #f8fafc;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  max-width: 240px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: #1e293b;
-}
-
-.code-note {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background: #f8fafc;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  font-size: 0.8rem;
-  color: #64748b;
-  line-height: 1.5;
-}
-
-.code-note p {
-  margin: 0 0 0.5rem;
-}
-
-.code-note p:last-child {
-  margin: 0;
-}
-
-code {
-  background: #e2e8f0;
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-}
-  `}
-  height={340}
-/>
+    .demo {
+    font-family: system-ui, sans-serif;
+    padding: 3rem 1rem 1rem;
+    }
+    
+    .button-row {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 100px;
+    }
+    
+    .anchor-btn {
+    anchor-name: --btn-anchor;
+    padding: 0.75rem 1.5rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-end;
+    }
+    
+    .tooltip {
+    position: fixed;
+    position-anchor: --btn-anchor;
+    position-area: top center;
+    margin-bottom: 8px;
+    
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    max-width: 240px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1e293b;
+    }
+    
+    .code-note {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.8rem;
+    color: #64748b;
+    line-height: 1.5;
+    }
+    
+    .code-note p {
+    margin: 0 0 0.5rem;
+    }
+    
+    .code-note p:last-child {
+    margin: 0;
+    }
+    
+    code {
+    background: #e2e8f0;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    }
+    `}
+  height={340} />
 
 ## References
 

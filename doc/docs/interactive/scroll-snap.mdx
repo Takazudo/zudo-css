@@ -29,88 +29,87 @@ CSS Scroll Snap lets you define snap points on a scroll container so that scroll
   title="Horizontal Scroll-Snap Carousel"
   height={250}
   html={`
-<div class="carousel">
-  <div class="slide" style="background: #3b82f6;">
+    <div class="carousel">
+    <div class="slide" style="background: #3b82f6;">
     <span class="slide-num">1</span>
     <span class="slide-label">Slide One</span>
-  </div>
-  <div class="slide" style="background: #ef4444;">
+    </div>
+    <div class="slide" style="background: #ef4444;">
     <span class="slide-num">2</span>
     <span class="slide-label">Slide Two</span>
-  </div>
-  <div class="slide" style="background: #22c55e;">
+    </div>
+    <div class="slide" style="background: #22c55e;">
     <span class="slide-num">3</span>
     <span class="slide-label">Slide Three</span>
-  </div>
-  <div class="slide" style="background: #f59e0b;">
+    </div>
+    <div class="slide" style="background: #f59e0b;">
     <span class="slide-num">4</span>
     <span class="slide-label">Slide Four</span>
-  </div>
-  <div class="slide" style="background: #8b5cf6;">
+    </div>
+    <div class="slide" style="background: #8b5cf6;">
     <span class="slide-num">5</span>
     <span class="slide-label">Slide Five</span>
-  </div>
-</div>
-<p class="hint">Scroll horizontally — slides snap into place</p>
-  `}
+    </div>
+    </div>
+    <p class="hint">Scroll horizontally — slides snap into place</p>
+    `}
   css={`
-.carousel {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1rem;
-  padding: 1rem;
-}
-
-.carousel::-webkit-scrollbar {
-  height: 6px;
-}
-
-.carousel::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 3px;
-}
-
-.carousel::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-
-.slide {
-  flex: 0 0 calc(80% - 0.5rem);
-  scroll-snap-align: start;
-  border-radius: 0.75rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 160px;
-  gap: 0.5rem;
-}
-
-.slide-num {
-  font-size: 2.5rem;
-  font-weight: 800;
-  opacity: 0.9;
-}
-
-.slide-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  opacity: 0.8;
-}
-
-.hint {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  text-align: center;
-  margin: 0.5rem 0 0;
-  font-style: italic;
-}
-  `}
-/>
+    .carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    padding: 1rem;
+    }
+    
+    .carousel::-webkit-scrollbar {
+    height: 6px;
+    }
+    
+    .carousel::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+    }
+    
+    .carousel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+    }
+    
+    .slide {
+    flex: 0 0 calc(80% - 0.5rem);
+    scroll-snap-align: start;
+    border-radius: 0.75rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    gap: 0.5rem;
+    }
+    
+    .slide-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    opacity: 0.9;
+    }
+    
+    .slide-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    opacity: 0.8;
+    }
+    
+    .hint {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+    margin: 0.5rem 0 0;
+    font-style: italic;
+    }
+    `} />
 
 ## Code Examples
 

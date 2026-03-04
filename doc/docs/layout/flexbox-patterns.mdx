@@ -37,26 +37,25 @@ Flexbox is a one-dimensional layout model. It excels at distributing space along
 <CssPreview
   title="Flexbox: Centering"
   html={`<div class="centered-container">
-  <div class="content">Perfectly centered</div>
-</div>`}
+    <div class="content">Perfectly centered</div>
+    </div>`}
   css={`.centered-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
-  background: #f1f5f9;
-  border-radius: 8px;
-}
-.content {
-  background: #3b82f6;
-  color: #fff;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: system-ui, sans-serif;
-}`}
-  height={220}
-/>
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    }
+    .content {
+    background: #3b82f6;
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: system-ui, sans-serif;
+    }`}
+  height={220} />
 
 ### Equal-Height Columns
 
@@ -88,31 +87,30 @@ Flex items in a row container stretch to the same height by default via `align-i
 <CssPreview
   title="Flexbox: Equal Height Columns"
   html={`<div class="columns">
-  <div class="column">Short</div>
-  <div class="column">
+    <div class="column">Short</div>
+    <div class="column">
     <p>Much longer content that determines the height of all columns.</p>
     <p>All siblings match this height automatically.</p>
-  </div>
-  <div class="column">Medium content here</div>
-</div>`}
+    </div>
+    <div class="column">Medium content here</div>
+    </div>`}
   css={`.columns {
-  display: flex;
-  gap: 12px;
-  padding: 12px;
-  font-family: system-ui, sans-serif;
-}
-.column {
-  flex: 1;
-  background: #8b5cf6;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.column p {
-  margin: 0 0 8px 0;
-}`}
-/>
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    font-family: system-ui, sans-serif;
+    }
+    .column {
+    flex: 1;
+    background: #8b5cf6;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    }
+    .column p {
+    margin: 0 0 8px 0;
+    }`} />
 
 ### Sticky Footer
 
@@ -144,34 +142,33 @@ main {
 <CssPreview
   title="Flexbox: Sticky Footer"
   html={`<div class="page">
-  <header class="header">Header</header>
-  <main class="main">Main content (short)</main>
-  <footer class="footer">Footer sticks to bottom</footer>
-</div>`}
+    <header class="header">Header</header>
+    <main class="main">Main content (short)</main>
+    <footer class="footer">Footer sticks to bottom</footer>
+    </div>`}
   css={`.page {
-  display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-}
-.header {
-  background: #3b82f6;
-  color: #fff;
-  padding: 12px 20px;
-}
-.main {
-  flex: 1;
-  padding: 20px;
-  background: #f1f5f9;
-}
-.footer {
-  background: #22c55e;
-  color: #fff;
-  padding: 12px 20px;
-}`}
-  height={320}
-/>
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    }
+    .header {
+    background: #3b82f6;
+    color: #fff;
+    padding: 12px 20px;
+    }
+    .main {
+    flex: 1;
+    padding: 20px;
+    background: #f1f5f9;
+    }
+    .footer {
+    background: #22c55e;
+    color: #fff;
+    padding: 12px 20px;
+    }`}
+  height={320} />
 
 ### Space-Between with Wrapping
 
@@ -200,56 +197,55 @@ When items wrap, `justify-content: space-between` can leave awkward gaps on the 
 <CssPreview
   title="Flexbox: space-between Wrapping Problem vs gap Solution"
   html={`<div class="label">space-between (broken last row):</div>
-<div class="bad-wrap">
-  <div class="item">1</div>
-  <div class="item">2</div>
-  <div class="item">3</div>
-  <div class="item">4</div>
-  <div class="item">5</div>
-</div>
-<div class="label">gap (consistent spacing):</div>
-<div class="good-wrap">
-  <div class="item good">1</div>
-  <div class="item good">2</div>
-  <div class="item good">3</div>
-  <div class="item good">4</div>
-  <div class="item good">5</div>
-</div>`}
+    <div class="bad-wrap">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    </div>
+    <div class="label">gap (consistent spacing):</div>
+    <div class="good-wrap">
+    <div class="item good">1</div>
+    <div class="item good">2</div>
+    <div class="item good">3</div>
+    <div class="item good">4</div>
+    <div class="item good">5</div>
+    </div>`}
   css={`.label {
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #334155;
-}
-.bad-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.good-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.item {
-  width: 30%;
-  background: #ef4444;
-  color: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: center;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-.item.good {
-  background: #22c55e;
-  width: calc(33.333% - 12px);
-  margin-bottom: 0;
-}`}
-/>
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #334155;
+    }
+    .bad-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    }
+    .good-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    }
+    .item {
+    width: 30%;
+    background: #ef4444;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+    }
+    .item.good {
+    background: #22c55e;
+    width: calc(33.333% - 12px);
+    margin-bottom: 0;
+    }`} />
 
 ### Preventing Overflow with min-width: 0
 
@@ -324,7 +320,6 @@ Flex items have `min-width: auto` by default, which prevents them from shrinking
 
 ## Tailwind CSS
 
-
 Tailwind provides utility classes for all flexbox properties. Here are the key patterns from this article expressed with Tailwind classes.
 
 ### Centering
@@ -332,38 +327,35 @@ Tailwind provides utility classes for all flexbox properties. Here are the key p
 <TailwindPreview
   title="Tailwind: Flexbox Centering"
   html={`<div class="flex justify-center items-center min-h-[200px] bg-slate-100 rounded-lg">
-  <div class="bg-blue-500 text-white px-8 py-4 rounded-lg text-base">
+    <div class="bg-blue-500 text-white px-8 py-4 rounded-lg text-base">
     Perfectly centered
-  </div>
-</div>`}
-  height={220}
-/>
+    </div>
+    </div>`}
+  height={220} />
 
 ### Equal-Height Columns
 
 <TailwindPreview
   title="Tailwind: Equal Height Columns"
   html={`<div class="flex gap-3 p-3">
-  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Short</div>
-  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">
+    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Short</div>
+    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">
     <p>Much longer content that determines the height of all columns.</p>
     <p class="mt-2">All siblings match this height automatically.</p>
-  </div>
-  <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Medium content here</div>
-</div>`}
-/>
+    </div>
+    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Medium content here</div>
+    </div>`} />
 
 ### Sticky Footer
 
 <TailwindPreview
   title="Tailwind: Sticky Footer"
   html={`<div class="flex flex-col min-h-[300px]">
-  <header class="bg-blue-500 text-white px-5 py-3">Header</header>
-  <main class="flex-1 p-5 bg-slate-100">Main content (short)</main>
-  <footer class="bg-green-500 text-white px-5 py-3">Footer sticks to bottom</footer>
-</div>`}
-  height={320}
-/>
+    <header class="bg-blue-500 text-white px-5 py-3">Header</header>
+    <main class="flex-1 p-5 bg-slate-100">Main content (short)</main>
+    <footer class="bg-green-500 text-white px-5 py-3">Footer sticks to bottom</footer>
+    </div>`}
+  height={320} />
 
 ## References
 

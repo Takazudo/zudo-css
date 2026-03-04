@@ -216,122 +216,120 @@ When the same property is set by two `@scope` rules at the same specificity, the
 <CssPreview
   title="@scope — Scoped vs Unscoped Styles"
   html={`
-<div class="scoped-demo">
-  <div class="card">
+    <div class="scoped-demo">
+    <div class="card">
     <h2>Scoped Card</h2>
     <p>Styles inside @scope(.card) apply here.</p>
-  </div>
-
-  <h2>Outside Heading</h2>
-  <p>This paragraph is NOT inside .card — scoped styles do not apply here.</p>
-</div>
-  `}
+    </div>
+    
+    <h2>Outside Heading</h2>
+    <p>This paragraph is NOT inside .card — scoped styles do not apply here.</p>
+    </div>
+    `}
   css={`
-@scope (.card) {
-  :scope {
+    @scope (.card) {
+    :scope {
     font-family: system-ui, sans-serif;
     padding: 1.5rem;
     border: 2px solid #8b5cf6;
     border-radius: 12px;
     background: #f5f3ff;
     margin-bottom: 1rem;
-  }
-
-  h2 {
+    }
+    
+    h2 {
     color: #7c3aed;
     margin: 0 0 0.5rem;
     font-size: 1.25rem;
-  }
-
-  p {
+    }
+    
+    p {
     color: #6d28d9;
     margin: 0;
     line-height: 1.6;
-  }
-}
-
-.scoped-demo {
-  font-family: system-ui, sans-serif;
-}
-
-.scoped-demo > h2 {
-  color: #374151;
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
-}
-
-.scoped-demo > p {
-  color: #6b7280;
-  margin: 0;
-}
-  `}
-/>
+    }
+    }
+    
+    .scoped-demo {
+    font-family: system-ui, sans-serif;
+    }
+    
+    .scoped-demo > h2 {
+    color: #374151;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    }
+    
+    .scoped-demo > p {
+    color: #6b7280;
+    margin: 0;
+    }
+    `} />
 
 <CssPreview
   title="Donut Scope — Style Wrapper But Not Content Slot"
   html={`
-<div class="widget">
-  <header>Widget Header (styled by scope)</header>
-  <footer>Widget Footer (styled by scope)</footer>
-  <div class="widget-content">
+    <div class="widget">
+    <header>Widget Header (styled by scope)</header>
+    <footer>Widget Footer (styled by scope)</footer>
+    <div class="widget-content">
     <header>Content Header (NOT styled — outside scope limit)</header>
     <p>This content area is excluded from the widget's scoped styles via the "to" keyword.</p>
-  </div>
-</div>
-  `}
+    </div>
+    </div>
+    `}
   css={`
-@scope (.widget) to (.widget-content) {
-  :scope {
+    @scope (.widget) to (.widget-content) {
+    :scope {
     font-family: system-ui, sans-serif;
     border: 2px solid #0ea5e9;
     border-radius: 12px;
     padding: 1.25rem;
     background: #f0f9ff;
-  }
-
-  header {
+    }
+    
+    header {
     color: #0369a1;
     font-weight: 700;
     font-size: 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #bae6fd;
     margin-bottom: 0.75rem;
-  }
-
-  footer {
+    }
+    
+    footer {
     color: #0369a1;
     font-size: 0.85rem;
     padding-top: 0.75rem;
     border-top: 1px solid #bae6fd;
     margin-top: 0.75rem;
-  }
-}
-
-.widget-content {
-  font-family: system-ui, sans-serif;
-  background: #fff;
-  border: 1px dashed #d1d5db;
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.widget-content header {
-  color: #6b7280;
-  font-weight: 400;
-  font-size: 0.9rem;
-  border: none;
-  padding: 0;
-  margin-bottom: 0.5rem;
-}
-
-.widget-content p {
-  color: #9ca3af;
-  font-size: 0.85rem;
-  margin: 0;
-  line-height: 1.5;
-}
-  `}
-/>
+    }
+    }
+    
+    .widget-content {
+    font-family: system-ui, sans-serif;
+    background: #fff;
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 1rem;
+    }
+    
+    .widget-content header {
+    color: #6b7280;
+    font-weight: 400;
+    font-size: 0.9rem;
+    border: none;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    }
+    
+    .widget-content p {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+    }
+    `} />
 
 ## References
 

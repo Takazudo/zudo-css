@@ -70,65 +70,64 @@ The key distinction: `gap` only creates space between items, never before the fi
 <CssPreview
   title="Flex gap vs margin Comparison"
   html={`<div class="label">With margin (extra space on last item):</div>
-<div class="row-margin">
-  <div class="tag margin-tag">CSS</div>
-  <div class="tag margin-tag">Grid</div>
-  <div class="tag margin-tag">Flexbox</div>
-  <div class="tag margin-tag">Layout</div>
-</div>
-<div class="note">Each item has margin-right — last item pushes container edge</div>
-
-<div class="label">With gap (clean spacing):</div>
-<div class="row-gap">
-  <div class="tag gap-tag">CSS</div>
-  <div class="tag gap-tag">Grid</div>
-  <div class="tag gap-tag">Flexbox</div>
-  <div class="tag gap-tag">Layout</div>
-</div>
-<div class="note">gap only adds space between items — no edge overflow</div>`}
+    <div class="row-margin">
+    <div class="tag margin-tag">CSS</div>
+    <div class="tag margin-tag">Grid</div>
+    <div class="tag margin-tag">Flexbox</div>
+    <div class="tag margin-tag">Layout</div>
+    </div>
+    <div class="note">Each item has margin-right — last item pushes container edge</div>
+    
+    <div class="label">With gap (clean spacing):</div>
+    <div class="row-gap">
+    <div class="tag gap-tag">CSS</div>
+    <div class="tag gap-tag">Grid</div>
+    <div class="tag gap-tag">Flexbox</div>
+    <div class="tag gap-tag">Layout</div>
+    </div>
+    <div class="note">gap only adds space between items — no edge overflow</div>`}
   css={`.label {
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 8px;
-}
-.note {
-  font-family: system-ui, sans-serif;
-  font-size: 12px;
-  color: #64748b;
-  margin-bottom: 16px;
-}
-.row-margin {
-  display: flex;
-  background: #fee2e2;
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 4px;
-}
-.row-gap {
-  display: flex;
-  gap: 10px;
-  background: #dcfce7;
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 4px;
-}
-.tag {
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  color: #fff;
-}
-.margin-tag {
-  background: #ef4444;
-  margin-right: 10px;
-}
-.gap-tag {
-  background: #22c55e;
-}`}
-/>
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+    }
+    .note {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 16px;
+    }
+    .row-margin {
+    display: flex;
+    background: #fee2e2;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    }
+    .row-gap {
+    display: flex;
+    gap: 10px;
+    background: #dcfce7;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    }
+    .tag {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    color: #fff;
+    }
+    .margin-tag {
+    background: #ef4444;
+    margin-right: 10px;
+    }
+    .gap-tag {
+    background: #22c55e;
+    }`} />
 
 ### Margin Collapse in Block Flow
 
@@ -187,29 +186,28 @@ All cards have exactly 1.5rem of space between them — horizontally and vertica
 <CssPreview
   title="Grid gap: Consistent Spacing"
   html={`<div class="card-grid">
-  <div class="card">Card 1</div>
-  <div class="card">Card 2</div>
-  <div class="card">Card 3</div>
-  <div class="card">Card 4</div>
-  <div class="card">Card 5</div>
-  <div class="card">Card 6</div>
-</div>`}
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+    <div class="card">Card 5</div>
+    <div class="card">Card 6</div>
+    </div>`}
   css={`.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 8px;
-}
-.card {
-  background: #8b5cf6;
-  color: #fff;
-  padding: 20px 16px;
-  border-radius: 8px;
-  text-align: center;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-}`}
-/>
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 8px;
+    }
+    .card {
+    background: #8b5cf6;
+    color: #fff;
+    padding: 20px 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    }`} />
 
 ### Different Row and Column Gaps
 
@@ -285,73 +283,72 @@ Gap and margin serve different purposes and can be used together:
 <CssPreview
   title="Margin Collapse Demonstration"
   html={`<div class="demo">
-  <div class="label">Block flow (margins collapse):</div>
-  <div class="block-flow">
+    <div class="label">Block flow (margins collapse):</div>
+    <div class="block-flow">
     <div class="box a">margin-bottom: 20px</div>
     <div class="box b">margin-top: 30px</div>
     <div class="annotation">Gap = 30px (not 50px) — margins collapsed</div>
-  </div>
-
-  <div class="label">Flex column (margins do NOT collapse):</div>
-  <div class="flex-flow">
+    </div>
+    
+    <div class="label">Flex column (margins do NOT collapse):</div>
+    <div class="flex-flow">
     <div class="box c">margin-bottom: 20px</div>
     <div class="box d">margin-top: 30px</div>
     <div class="annotation">Gap = 50px — both margins apply</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.demo {
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
-  padding: 8px;
-}
-.label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #334155;
-  margin-bottom: 8px;
-}
-.block-flow {
-  background: #fef3c7;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
-.flex-flow {
-  display: flex;
-  flex-direction: column;
-  background: #dbeafe;
-  padding: 12px;
-  border-radius: 8px;
-}
-.box {
-  padding: 10px 14px;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 13px;
-}
-.box.a {
-  background: #f59e0b;
-  margin-bottom: 20px;
-}
-.box.b {
-  background: #f59e0b;
-  margin-top: 30px;
-}
-.box.c {
-  background: #3b82f6;
-  margin-bottom: 20px;
-}
-.box.d {
-  background: #3b82f6;
-  margin-top: 30px;
-}
-.annotation {
-  font-size: 12px;
-  color: #64748b;
-  margin-top: 8px;
-  text-align: center;
-}`}
-/>
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    padding: 8px;
+    }
+    .label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #334155;
+    margin-bottom: 8px;
+    }
+    .block-flow {
+    background: #fef3c7;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    }
+    .flex-flow {
+    display: flex;
+    flex-direction: column;
+    background: #dbeafe;
+    padding: 12px;
+    border-radius: 8px;
+    }
+    .box {
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+    }
+    .box.a {
+    background: #f59e0b;
+    margin-bottom: 20px;
+    }
+    .box.b {
+    background: #f59e0b;
+    margin-top: 30px;
+    }
+    .box.c {
+    background: #3b82f6;
+    margin-bottom: 20px;
+    }
+    .box.d {
+    background: #3b82f6;
+    margin-top: 30px;
+    }
+    .annotation {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 8px;
+    text-align: center;
+    }`} />
 
 ## Common AI Mistakes
 
@@ -386,7 +383,6 @@ Gap and margin serve different purposes and can be used together:
 
 ## Tailwind CSS
 
-
 Tailwind makes `gap` the natural choice with its `gap-*` utilities on flex and grid containers.
 
 ### Flex Gap
@@ -394,30 +390,28 @@ Tailwind makes `gap` the natural choice with its `gap-*` utilities on flex and g
 <TailwindPreview
   title="Tailwind: Flex with gap"
   html={`<div class="p-4">
-  <p class="text-sm font-semibold text-slate-600 mb-2">Flex with gap-2.5:</p>
-  <div class="flex gap-2.5 bg-green-50 p-2 rounded-lg">
+    <p class="text-sm font-semibold text-slate-600 mb-2">Flex with gap-2.5:</p>
+    <div class="flex gap-2.5 bg-green-50 p-2 rounded-lg">
     <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">CSS</div>
     <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Grid</div>
     <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Flexbox</div>
     <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Layout</div>
-  </div>
-</div>`}
-  height={110}
-/>
+    </div>
+    </div>`}
+  height={110} />
 
 ### Grid Gap
 
 <TailwindPreview
   title="Tailwind: Grid with gap"
   html={`<div class="grid grid-cols-3 gap-3 p-2">
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 1</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 2</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 3</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 4</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 5</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 6</div>
-</div>`}
-/>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 1</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 2</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 3</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 4</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 5</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 6</div>
+    </div>`} />
 
 ## References
 

@@ -236,87 +236,86 @@ Global support exceeds 97%. Firefox was the first to ship subgrid in December 20
 <CssPreview
   title="Subgrid — Aligned Card Content"
   html={`
-<div class="card-grid">
-  <article class="card">
+    <div class="card-grid">
+    <article class="card">
     <h2>Short Title</h2>
     <p>Brief description of this card.</p>
     <a class="action" href="#">Read more →</a>
-  </article>
-  <article class="card">
+    </article>
+    <article class="card">
     <h2>A Much Longer Card Title That Wraps to Multiple Lines</h2>
     <p>Despite the longer title, the description and action button still align perfectly with other cards thanks to subgrid.</p>
     <a class="action" href="#">Read more →</a>
-  </article>
-  <article class="card">
+    </article>
+    <article class="card">
     <h2>Medium Title</h2>
     <p>Another card with varying content length to show alignment.</p>
     <a class="action" href="#">Read more →</a>
-  </article>
-</div>
-<p class="hint">Notice how titles, descriptions, and buttons all align across cards — subgrid shares the parent's row tracks</p>
-  `}
+    </article>
+    </div>
+    <p class="hint">Notice how titles, descriptions, and buttons all align across cards — subgrid shares the parent's row tracks</p>
+    `}
   css={`
-.card-grid {
-  font-family: system-ui, sans-serif;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.card {
-  display: grid;
-  grid-row: span 3;
-  grid-template-rows: subgrid;
-  gap: 0.5rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.25rem;
-  background: #fff;
-}
-
-.card h2 {
-  font-size: 1rem;
-  color: #1e293b;
-  margin: 0;
-  align-self: start;
-}
-
-.card p {
-  font-size: 0.875rem;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.5;
-  align-self: start;
-}
-
-.action {
-  align-self: end;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #3b82f6;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-align: center;
-  transition: background 0.2s;
-}
-
-.action:hover {
-  background: #2563eb;
-}
-
-.hint {
-  font-family: system-ui, sans-serif;
-  font-size: 0.8rem;
-  color: #94a3b8;
-  text-align: center;
-  margin-top: 1rem;
-}
-  `}
-  height={320}
-/>
+    .card-grid {
+    font-family: system-ui, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    }
+    
+    .card {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    gap: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    background: #fff;
+    }
+    
+    .card h2 {
+    font-size: 1rem;
+    color: #1e293b;
+    margin: 0;
+    align-self: start;
+    }
+    
+    .card p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+    align-self: start;
+    }
+    
+    .action {
+    align-self: end;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+    }
+    
+    .action:hover {
+    background: #2563eb;
+    }
+    
+    .hint {
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 1rem;
+    }
+    `}
+  height={320} />
 
 ## References
 

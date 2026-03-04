@@ -66,76 +66,75 @@ color-mix(in <color-space>, <color> <percentage>?, <color> <percentage>?)
 <CssPreview
   title="color-mix() — ティント、シェード、半透明バリアント"
   html={`<div class="mix-demo">
-  <div class="section">
+    <div class="section">
     <h3>Tints (mixing with white)</h3>
     <div class="row">
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, white)"><span>10%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, white)"><span>25%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, white)"><span>50%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, white)"><span>75%</span></div>
-      <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, white)"><span>10%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, white)"><span>25%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, white)"><span>50%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, white)"><span>75%</span></div>
+    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
     </div>
-  </div>
-  <div class="section">
+    </div>
+    <div class="section">
     <h3>Shades (mixing with black)</h3>
     <div class="row">
-      <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, black); color: white"><span>75%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, black); color: white"><span>50%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, black); color: white"><span>25%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, black); color: white"><span>10%</span></div>
+    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, black); color: white"><span>75%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, black); color: white"><span>50%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, black); color: white"><span>25%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, black); color: white"><span>10%</span></div>
     </div>
-  </div>
-  <div class="section">
+    </div>
+    <div class="section">
     <h3>Semi-transparent variants (mixing with transparent)</h3>
     <div class="row checkerboard">
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, transparent)"><span>10%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, transparent)"><span>25%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, transparent)"><span>50%</span></div>
-      <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, transparent)"><span>75%</span></div>
-      <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>100%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, transparent)"><span>10%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, transparent)"><span>25%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, transparent)"><span>50%</span></div>
+    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, transparent)"><span>75%</span></div>
+    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>100%</span></div>
     </div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.mix-demo {
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.section h3 {
-  font-size: 0.8rem;
-  color: #555;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-.row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.5rem;
-}
-.chip {
-  height: 48px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.chip span {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #333;
-}
-.chip[style*="color: white"] span { color: white; }
-.checkerboard {
-  background-image: repeating-conic-gradient(#e0e0e0 0% 25%, white 0% 50%);
-  background-size: 16px 16px;
-  padding: 0.5rem;
-  border-radius: 8px;
-}`}
-  height={320}
-/>
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    }
+    .section h3 {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    }
+    .row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    }
+    .chip {
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .chip span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    }
+    .chip[style*="color: white"] span { color: white; }
+    .checkerboard {
+    background-image: repeating-conic-gradient(#e0e0e0 0% 25%, white 0% 50%);
+    background-size: 16px 16px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    }`}
+  height={320} />
 
 ### 半透明バリアント
 

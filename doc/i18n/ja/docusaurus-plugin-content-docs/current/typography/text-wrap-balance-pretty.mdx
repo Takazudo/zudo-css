@@ -80,232 +80,227 @@ blockquote {
   title="balance vs バランスなし — 見出しの比較"
   height={300}
   html={`<div class="comparison">
-  <div class="column">
+    <div class="column">
     <span class="label">Default wrapping</span>
     <h2 class="heading-default">Designing Accessible User Interfaces for Modern Web Applications</h2>
-  </div>
-  <div class="column">
+    </div>
+    <div class="column">
     <span class="label">text-wrap: balance</span>
     <h2 class="heading-balanced">Designing Accessible User Interfaces for Modern Web Applications</h2>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-}
-.column {
-  background: hsl(220 30% 96%);
-  border-radius: 8px;
-  padding: 1.25rem;
-}
-.label {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: hsl(220 60% 50%);
-  background: hsl(220 60% 94%);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
-.heading-default {
-  font-size: 1.35rem;
-  line-height: 1.3;
-  color: hsl(220 20% 20%);
-  margin: 0;
-  text-wrap: wrap;
-}
-.heading-balanced {
-  font-size: 1.35rem;
-  line-height: 1.3;
-  color: hsl(220 20% 20%);
-  margin: 0;
-  text-wrap: balance;
-}`}
-/>
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    }
+    .column {
+    background: hsl(220 30% 96%);
+    border-radius: 8px;
+    padding: 1.25rem;
+    }
+    .label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: hsl(220 60% 50%);
+    background: hsl(220 60% 94%);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    }
+    .heading-default {
+    font-size: 1.35rem;
+    line-height: 1.3;
+    color: hsl(220 20% 20%);
+    margin: 0;
+    text-wrap: wrap;
+    }
+    .heading-balanced {
+    font-size: 1.35rem;
+    line-height: 1.3;
+    color: hsl(220 20% 20%);
+    margin: 0;
+    text-wrap: balance;
+    }`} />
 
 <CssPreview
   title="本文テキストのpretty — オーファン防止"
   height={320}
   html={`<div class="comparison">
-  <div class="column">
+    <div class="column">
     <span class="label">Default wrapping</span>
     <p class="body-default">Performance optimization requires a careful balance between load time and interactivity. Users expect pages to render within two seconds, and every additional resource increases the risk of abandonment. Prioritize critical rendering paths and defer non-essential assets to improve the perceived speed of your application and keep users engaged.</p>
-  </div>
-  <div class="column">
+    </div>
+    <div class="column">
     <span class="label">text-wrap: pretty</span>
     <p class="body-pretty">Performance optimization requires a careful balance between load time and interactivity. Users expect pages to render within two seconds, and every additional resource increases the risk of abandonment. Prioritize critical rendering paths and defer non-essential assets to improve the perceived speed of your application and keep users engaged.</p>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.comparison {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-}
-.column {
-  background: hsl(220 30% 96%);
-  border-radius: 8px;
-  padding: 1.25rem;
-}
-.label {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: hsl(260 60% 50%);
-  background: hsl(260 60% 94%);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
-.body-default {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: hsl(220 10% 30%);
-  margin: 0;
-  text-wrap: wrap;
-}
-.body-pretty {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: hsl(220 10% 30%);
-  margin: 0;
-  text-wrap: pretty;
-}`}
-/>
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    }
+    .column {
+    background: hsl(220 30% 96%);
+    border-radius: 8px;
+    padding: 1.25rem;
+    }
+    .label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: hsl(260 60% 50%);
+    background: hsl(260 60% 94%);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    }
+    .body-default {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: hsl(220 10% 30%);
+    margin: 0;
+    text-wrap: wrap;
+    }
+    .body-pretty {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: hsl(220 10% 30%);
+    margin: 0;
+    text-wrap: pretty;
+    }`} />
 
 <CssPreview
   title="balanceの行数制限 — 短いテキスト vs 長いテキスト"
   height={420}
   html={`<div class="limit-demo">
-  <div class="block">
+    <div class="block">
     <span class="label">4 lines — balance works</span>
     <p class="balanced-text">Building responsive layouts that adapt gracefully to any screen size is one of the most important skills in modern front-end development. Container queries and fluid typography make this easier than ever before.</p>
-  </div>
-  <div class="block">
+    </div>
+    <div class="block">
     <span class="label">10+ lines — balance stops working</span>
     <p class="balanced-text">Building responsive layouts that adapt gracefully to any screen size is one of the most important skills in modern front-end development. Container queries and fluid typography make this easier than ever before. Developers should consider the full range of devices their users might have, from narrow mobile screens to ultra-wide desktop monitors. A robust layout system uses relative units, logical properties, and flexible grids rather than fixed pixel values. Testing across multiple viewport sizes during development catches layout issues early and ensures a consistent user experience. Progressive enhancement means the core content remains accessible even when advanced layout features are not supported by the browser.</p>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.limit-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-}
-.block {
-  background: hsl(160 30% 96%);
-  border-radius: 8px;
-  padding: 1.25rem;
-}
-.label {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: hsl(160 60% 35%);
-  background: hsl(160 50% 90%);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
-.balanced-text {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: hsl(160 10% 25%);
-  margin: 0;
-  text-wrap: balance;
-}`}
-/>
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    }
+    .block {
+    background: hsl(160 30% 96%);
+    border-radius: 8px;
+    padding: 1.25rem;
+    }
+    .label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: hsl(160 60% 35%);
+    background: hsl(160 50% 90%);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    }
+    .balanced-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: hsl(160 10% 25%);
+    margin: 0;
+    text-wrap: balance;
+    }`} />
 
 <CssPreview
   title="実践的なタイポグラフィシステム — 見出し + 本文テキスト"
   height={420}
   html={`<article class="article">
-  <h1 class="article-title">Getting Started with CSS Container Queries for Responsive Components</h1>
-  <p class="article-lead">Container queries let you style elements based on the size of their parent container rather than the viewport. This enables truly reusable, context-aware components.</p>
-  <h2 class="article-heading">Why Container Queries Matter</h2>
-  <p class="article-body">Traditional media queries respond to the viewport width, which means the same component can look different depending on where it sits in the page layout. A card component in a narrow sidebar needs different styles than the same card in a wide content area, but viewport-based breakpoints cannot distinguish between the two contexts.</p>
-  <p class="article-body">Container queries solve this by letting the component respond to its own container size. This makes components self-contained and portable across different layout contexts without any modification.</p>
-</article>`}
+    <h1 class="article-title">Getting Started with CSS Container Queries for Responsive Components</h1>
+    <p class="article-lead">Container queries let you style elements based on the size of their parent container rather than the viewport. This enables truly reusable, context-aware components.</p>
+    <h2 class="article-heading">Why Container Queries Matter</h2>
+    <p class="article-body">Traditional media queries respond to the viewport width, which means the same component can look different depending on where it sits in the page layout. A card component in a narrow sidebar needs different styles than the same card in a wide content area, but viewport-based breakpoints cannot distinguish between the two contexts.</p>
+    <p class="article-body">Container queries solve this by letting the component respond to its own container size. This makes components self-contained and portable across different layout contexts without any modification.</p>
+    </article>`}
   css={`.article {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-}
-.article-title {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  color: hsl(220 25% 15%);
-  margin: 0 0 0.75rem;
-  text-wrap: balance;
-}
-.article-lead {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: hsl(220 15% 40%);
-  margin: 0 0 1.5rem;
-  text-wrap: pretty;
-  border-left: 3px solid hsl(220 60% 60%);
-  padding-left: 1rem;
-}
-.article-heading {
-  font-size: 1.15rem;
-  line-height: 1.3;
-  color: hsl(220 25% 20%);
-  margin: 1.25rem 0 0.5rem;
-  text-wrap: balance;
-}
-.article-body {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: hsl(220 10% 30%);
-  margin: 0 0 0.75rem;
-  text-wrap: pretty;
-}`}
-/>
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    }
+    .article-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: hsl(220 25% 15%);
+    margin: 0 0 0.75rem;
+    text-wrap: balance;
+    }
+    .article-lead {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: hsl(220 15% 40%);
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+    border-left: 3px solid hsl(220 60% 60%);
+    padding-left: 1rem;
+    }
+    .article-heading {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: hsl(220 25% 20%);
+    margin: 1.25rem 0 0.5rem;
+    text-wrap: balance;
+    }
+    .article-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: hsl(220 10% 30%);
+    margin: 0 0 0.75rem;
+    text-wrap: pretty;
+    }`} />
 
 <CssPreview
   title="プログレッシブエンハンスメント — グレースフルデグラデーション"
   height={250}
   html={`<div class="enhancement-demo">
-  <div class="card">
+    <div class="card">
     <h3 class="card-heading">This heading uses text-wrap balance for even line distribution</h3>
     <p class="card-body">In browsers that do not support text-wrap: balance or pretty, these properties are simply ignored. The text renders with default wrapping behavior — no errors, no broken layouts, just the normal line-breaking you would get without the property.</p>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.enhancement-demo {
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-}
-.card {
-  background: hsl(40 40% 96%);
-  border-radius: 8px;
-  padding: 1.25rem;
-  border: 1px solid hsl(40 30% 88%);
-}
-.card-heading {
-  font-size: 1.15rem;
-  line-height: 1.3;
-  color: hsl(40 50% 25%);
-  margin: 0 0 0.75rem;
-  /* Graceful degradation: ignored in unsupported browsers */
-  text-wrap: balance;
-}
-.card-body {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: hsl(40 10% 30%);
-  margin: 0;
-  /* Graceful degradation: ignored in unsupported browsers */
-  text-wrap: pretty;
-}`}
-/>
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+    }
+    .card {
+    background: hsl(40 40% 96%);
+    border-radius: 8px;
+    padding: 1.25rem;
+    border: 1px solid hsl(40 30% 88%);
+    }
+    .card-heading {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: hsl(40 50% 25%);
+    margin: 0 0 0.75rem;
+    /* Graceful degradation: ignored in unsupported browsers */
+    text-wrap: balance;
+    }
+    .card-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: hsl(40 10% 30%);
+    margin: 0;
+    /* Graceful degradation: ignored in unsupported browsers */
+    text-wrap: pretty;
+    }`} />
 
 ## ブラウザサポート
 

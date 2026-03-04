@@ -49,48 +49,47 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
 <CssPreview
   title="Grid: auto-fill vs auto-fit の比較"
   html={`<div class="label">auto-fill (empty tracks preserved):</div>
-<div class="grid-fill">
-  <div class="item">1</div>
-  <div class="item">2</div>
-  <div class="item">3</div>
-</div>
-<div class="label">auto-fit (items stretch to fill):</div>
-<div class="grid-fit">
-  <div class="item fit">1</div>
-  <div class="item fit">2</div>
-  <div class="item fit">3</div>
-</div>`}
+    <div class="grid-fill">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    </div>
+    <div class="label">auto-fit (items stretch to fill):</div>
+    <div class="grid-fit">
+    <div class="item fit">1</div>
+    <div class="item fit">2</div>
+    <div class="item fit">3</div>
+    </div>`}
   css={`.label {
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 8px;
-}
-.grid-fill {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.grid-fit {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-}
-.item {
-  background: #3b82f6;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  text-align: center;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-}
-.item.fit {
-  background: #22c55e;
-}`}
-/>
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+    }
+    .grid-fill {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+    .grid-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    }
+    .item {
+    background: #3b82f6;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    }
+    .item.fit {
+    background: #22c55e;
+    }`} />
 
 ### レスポンシブなカードグリッド（メディアクエリ不要）
 
@@ -114,29 +113,28 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
 <CssPreview
   title="Grid: minmax() を使ったレスポンシブカードグリッド"
   html={`<div class="card-grid">
-  <div class="card">Card 1</div>
-  <div class="card">Card 2</div>
-  <div class="card">Card 3</div>
-  <div class="card">Card 4</div>
-  <div class="card">Card 5</div>
-  <div class="card">Card 6</div>
-</div>`}
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+    <div class="card">Card 5</div>
+    <div class="card">Card 6</div>
+    </div>`}
   css={`.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-  gap: 12px;
-  padding: 8px;
-}
-.card {
-  background: #8b5cf6;
-  color: #fff;
-  padding: 20px 16px;
-  border-radius: 8px;
-  text-align: center;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-}`}
-/>
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+    gap: 12px;
+    padding: 8px;
+    }
+    .card {
+    background: #8b5cf6;
+    color: #fff;
+    padding: 20px 16px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    }`} />
 
 ### 名前付きグリッドエリア
 
@@ -184,55 +182,54 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
 <CssPreview
   title="Grid: 名前付きグリッドエリアレイアウト"
   html={`<div class="page-layout">
-  <header class="header">Header</header>
-  <aside class="sidebar">Sidebar</aside>
-  <main class="main">Main Content</main>
-  <footer class="footer">Footer</footer>
-</div>`}
+    <header class="header">Header</header>
+    <aside class="sidebar">Sidebar</aside>
+    <main class="main">Main Content</main>
+    <footer class="footer">Footer</footer>
+    </div>`}
   css={`.page-layout {
-  display: grid;
-  grid-template-areas:
+    display: grid;
+    grid-template-areas:
     "header  header"
     "sidebar main"
     "footer  footer";
-  grid-template-columns: 120px 1fr;
-  grid-template-rows: auto 1fr auto;
-  min-height: 280px;
-  gap: 8px;
-  padding: 8px;
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-}
-.header {
-  grid-area: header;
-  background: #3b82f6;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-}
-.sidebar {
-  grid-area: sidebar;
-  background: #f59e0b;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-}
-.main {
-  grid-area: main;
-  background: #22c55e;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-}
-.footer {
-  grid-area: footer;
-  background: #8b5cf6;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-}`}
-  height={320}
-/>
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 280px;
+    gap: 8px;
+    padding: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 16px;
+    }
+    .header {
+    grid-area: header;
+    background: #3b82f6;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    }
+    .sidebar {
+    grid-area: sidebar;
+    background: #f59e0b;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    }
+    .main {
+    grid-area: main;
+    background: #22c55e;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    }
+    .footer {
+    grid-area: footer;
+    background: #8b5cf6;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    }`}
+  height={320} />
 
 ### grid-template ショートハンドによる複雑なレイアウト
 
@@ -315,27 +312,25 @@ Tailwindはレスポンシブブレークポイントプレフィックス付き
 <TailwindPreview
   title="Tailwind: レスポンシブグリッド（リサイズして確認）"
   html={`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2">
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 1</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 2</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 3</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 4</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 5</div>
-  <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 6</div>
-</div>`}
-/>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 1</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 2</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 3</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 4</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 5</div>
+    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 6</div>
+    </div>`} />
 
 ### カラムのスパン
 
 <TailwindPreview
   title="Tailwind: col-span を使ったグリッド"
   html={`<div class="grid grid-cols-3 gap-3 p-2">
-  <div class="col-span-2 bg-blue-500 text-white p-4 rounded-lg text-center">Spans 2 columns</div>
-  <div class="bg-green-500 text-white p-4 rounded-lg text-center">1 col</div>
-  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
-  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
-  <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
-</div>`}
-/>
+    <div class="col-span-2 bg-blue-500 text-white p-4 rounded-lg text-center">Spans 2 columns</div>
+    <div class="bg-green-500 text-white p-4 rounded-lg text-center">1 col</div>
+    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+    </div>`} />
 
 ## 参考リンク
 

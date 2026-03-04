@@ -142,50 +142,49 @@ Each badge is exactly as wide as its content. No fixed width, no overflow.
 <CssPreview
   title="width: fit-content vs width: 100%"
   html={`
-<div class="demo">
-  <div class="section">
+    <div class="demo">
+    <div class="section">
     <h4>width: 100% (default block)</h4>
     <div class="tag full">New Feature</div>
     <div class="tag full">Badge</div>
-  </div>
-  <div class="section">
+    </div>
+    <div class="section">
     <h4>width: fit-content</h4>
     <div class="tag fit">New Feature</div>
     <div class="tag fit">Badge</div>
-  </div>
-</div>
-  `}
+    </div>
+    </div>
+    `}
   css={`
-.demo {
-  display: flex;
-  gap: 32px;
-  padding: 24px;
-  font-family: system-ui, sans-serif;
-}
-.section {
-  flex: 1;
-}
-.section h4 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #334155;
-}
-.tag {
-  padding: 6px 16px;
-  background: #e0e7ff;
-  border-radius: 9999px;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.full {
-  width: 100%;
-}
-.fit {
-  width: fit-content;
-}
-  `}
-/>
+    .demo {
+    display: flex;
+    gap: 32px;
+    padding: 24px;
+    font-family: system-ui, sans-serif;
+    }
+    .section {
+    flex: 1;
+    }
+    .section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #334155;
+    }
+    .tag {
+    padding: 6px 16px;
+    background: #e0e7ff;
+    border-radius: 9999px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    }
+    .full {
+    width: 100%;
+    }
+    .fit {
+    width: fit-content;
+    }
+    `} />
 
 ## Common AI Mistakes
 
@@ -223,7 +222,6 @@ Each badge is exactly as wide as its content. No fixed width, no overflow.
 
 ## Tailwind CSS
 
-
 Tailwind provides `w-fit`, `w-min`, and `w-max` utilities for intrinsic sizing.
 
 ### w-fit vs Default Width
@@ -231,31 +229,29 @@ Tailwind provides `w-fit`, `w-min`, and `w-max` utilities for intrinsic sizing.
 <TailwindPreview
   title="Tailwind: w-fit Shrink-to-Content"
   html={`<div class="flex gap-8 p-6">
-  <div class="flex-1">
+    <div class="flex-1">
     <h4 class="text-sm font-semibold text-slate-600 mb-3">Default (stretches)</h4>
     <div class="bg-indigo-100 px-4 py-1.5 rounded-full text-sm mb-2">New Feature</div>
     <div class="bg-indigo-100 px-4 py-1.5 rounded-full text-sm">Badge</div>
-  </div>
-  <div class="flex-1">
+    </div>
+    <div class="flex-1">
     <h4 class="text-sm font-semibold text-slate-600 mb-3">w-fit (shrinks)</h4>
     <div class="w-fit bg-indigo-100 px-4 py-1.5 rounded-full text-sm mb-2">New Feature</div>
     <div class="w-fit bg-indigo-100 px-4 py-1.5 rounded-full text-sm">Badge</div>
-  </div>
-</div>`}
-  height={140}
-/>
+    </div>
+    </div>`}
+  height={140} />
 
 ### Centered Fit-Content Element
 
 <TailwindPreview
   title="Tailwind: mx-auto + w-fit Centering"
   html={`<div class="p-6 bg-slate-50">
-  <div class="mx-auto w-fit bg-red-500 text-white px-5 py-1 rounded-full text-sm font-semibold">
+    <div class="mx-auto w-fit bg-red-500 text-white px-5 py-1 rounded-full text-sm font-semibold">
     Centered Badge
-  </div>
-</div>`}
-  height={80}
-/>
+    </div>
+    </div>`}
+  height={80} />
 
 ## References
 

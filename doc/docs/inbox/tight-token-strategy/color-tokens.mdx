@@ -80,96 +80,95 @@ The left side shows a sampling of Tailwind's 22 default gray shades — all tech
   title="22 Default Grays vs 3 Semantic Surfaces"
   height={340}
   html={`<div class="demo">
-  <div class="col">
+    <div class="col">
     <div class="heading">Default grays (sample)</div>
     <div class="swatch-grid">
-      <div class="swatch" style="background: hsl(0 0% 98%)"><span>slate-50</span></div>
-      <div class="swatch" style="background: hsl(210 40% 96%)"><span>slate-100</span></div>
-      <div class="swatch" style="background: hsl(214 32% 91%)"><span>slate-200</span></div>
-      <div class="swatch" style="background: hsl(213 27% 84%)"><span>slate-300</span></div>
-      <div class="swatch" style="background: hsl(210 9% 31%); color: #fff"><span>gray-700</span></div>
-      <div class="swatch" style="background: hsl(220 9% 46%)"><span>gray-500</span></div>
-      <div class="swatch" style="background: hsl(240 4% 46%)"><span>zinc-500</span></div>
-      <div class="swatch" style="background: hsl(240 6% 10%); color: #fff"><span>zinc-900</span></div>
-      <div class="swatch" style="background: hsl(0 0% 96%)"><span>neutral-100</span></div>
-      <div class="swatch" style="background: hsl(0 0% 64%)"><span>neutral-400</span></div>
-      <div class="swatch" style="background: hsl(24 6% 83%)"><span>stone-300</span></div>
-      <div class="swatch" style="background: hsl(12 6% 15%); color: #fff"><span>stone-900</span></div>
+    <div class="swatch" style="background: hsl(0 0% 98%)"><span>slate-50</span></div>
+    <div class="swatch" style="background: hsl(210 40% 96%)"><span>slate-100</span></div>
+    <div class="swatch" style="background: hsl(214 32% 91%)"><span>slate-200</span></div>
+    <div class="swatch" style="background: hsl(213 27% 84%)"><span>slate-300</span></div>
+    <div class="swatch" style="background: hsl(210 9% 31%); color: #fff"><span>gray-700</span></div>
+    <div class="swatch" style="background: hsl(220 9% 46%)"><span>gray-500</span></div>
+    <div class="swatch" style="background: hsl(240 4% 46%)"><span>zinc-500</span></div>
+    <div class="swatch" style="background: hsl(240 6% 10%); color: #fff"><span>zinc-900</span></div>
+    <div class="swatch" style="background: hsl(0 0% 96%)"><span>neutral-100</span></div>
+    <div class="swatch" style="background: hsl(0 0% 64%)"><span>neutral-400</span></div>
+    <div class="swatch" style="background: hsl(24 6% 83%)"><span>stone-300</span></div>
+    <div class="swatch" style="background: hsl(12 6% 15%); color: #fff"><span>stone-900</span></div>
     </div>
     <div class="note">12 of 240+ color utilities shown. Which is "card background"?</div>
-  </div>
-  <div class="col">
+    </div>
+    <div class="col">
     <div class="heading">Semantic surfaces</div>
     <div class="swatch-grid tight">
-      <div class="swatch lg" style="background: hsl(0 0% 100%)"><span>surface</span><em>hsl(0 0% 100%)</em></div>
-      <div class="swatch lg" style="background: hsl(210 40% 96%)"><span>surface-alt</span><em>hsl(210 40% 96%)</em></div>
-      <div class="swatch lg" style="background: hsl(222 47% 11%); color: #fff"><span>surface-inverse</span><em>hsl(222 47% 11%)</em></div>
+    <div class="swatch lg" style="background: hsl(0 0% 100%)"><span>surface</span><em>hsl(0 0% 100%)</em></div>
+    <div class="swatch lg" style="background: hsl(210 40% 96%)"><span>surface-alt</span><em>hsl(210 40% 96%)</em></div>
+    <div class="swatch lg" style="background: hsl(222 47% 11%); color: #fff"><span>surface-inverse</span><em>hsl(222 47% 11%)</em></div>
     </div>
     <div class="note">3 surface tokens. "Card background" is always <code>surface</code>.</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.demo {
-  display: flex;
-  gap: 20px;
-  padding: 16px;
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
-  color: hsl(222 47% 11%);
-}
-.col { flex: 1; }
-.heading {
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: hsl(215 16% 47%);
-  margin-bottom: 10px;
-}
-.swatch-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-}
-.swatch-grid.tight {
-  grid-template-columns: 1fr;
-  gap: 6px;
-}
-.swatch {
-  border: 1px solid hsl(214 32% 91%);
-  border-radius: 6px;
-  padding: 8px 6px;
-  font-size: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.swatch.lg {
-  padding: 14px 12px;
-  font-size: 13px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.swatch span { font-weight: 600; }
-.swatch em {
-  font-style: normal;
-  font-size: 11px;
-  opacity: 0.7;
-}
-.note {
-  margin-top: 8px;
-  font-size: 11px;
-  color: hsl(215 16% 47%);
-  line-height: 1.4;
-}
-.note code {
-  background: hsl(210 40% 96%);
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-size: 10px;
-}`}
-/>
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    color: hsl(222 47% 11%);
+    }
+    .col { flex: 1; }
+    .heading {
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: hsl(215 16% 47%);
+    margin-bottom: 10px;
+    }
+    .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    }
+    .swatch-grid.tight {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    }
+    .swatch {
+    border: 1px solid hsl(214 32% 91%);
+    border-radius: 6px;
+    padding: 8px 6px;
+    font-size: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    }
+    .swatch.lg {
+    padding: 14px 12px;
+    font-size: 13px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .swatch span { font-weight: 600; }
+    .swatch em {
+    font-style: normal;
+    font-size: 11px;
+    opacity: 0.7;
+    }
+    .note {
+    margin-top: 8px;
+    font-size: 11px;
+    color: hsl(215 16% 47%);
+    line-height: 1.4;
+    }
+    .note code {
+    background: hsl(210 40% 96%);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 10px;
+    }`} />
 
 ### Button Set with Semantic Color Tokens
 
@@ -179,89 +178,88 @@ These buttons use only the semantic color tokens — `primary`, `secondary`, `er
   title="Buttons with Semantic Color Tokens"
   height={200}
   html={`<div class="btn-demo">
-  <div class="btn-row">
+    <div class="btn-row">
     <button class="btn btn-primary">Primary Action</button>
     <button class="btn btn-secondary">Secondary</button>
     <button class="btn btn-danger">Delete</button>
     <button class="btn btn-accent">Upgrade</button>
-  </div>
-  <div class="btn-row">
+    </div>
+    <div class="btn-row">
     <button class="btn btn-primary outline">Primary Outline</button>
     <button class="btn btn-secondary outline">Secondary Outline</button>
     <button class="btn btn-danger outline">Delete Outline</button>
     <button class="btn btn-accent outline">Upgrade Outline</button>
-  </div>
-  <div class="token-labels">
+    </div>
+    <div class="token-labels">
     <span>bg-primary</span>
     <span>bg-secondary</span>
     <span>bg-error</span>
     <span>bg-accent</span>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.btn-demo {
-  padding: 20px;
-  font-family: system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: hsl(0 0% 100%);
-}
-.btn-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.btn {
-  padding: 8px 18px;
-  border: 2px solid transparent;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  color: hsl(210 40% 98%);
-}
-
-/* ── Solid variants ── */
-.btn-primary { background: hsl(221 83% 53%); }
-.btn-secondary { background: hsl(252 78% 60%); }
-.btn-danger { background: hsl(0 84% 60%); }
-.btn-accent { background: hsl(33 95% 54%); color: hsl(222 47% 11%); }
-
-/* ── Outline variants ── */
-.btn.outline {
-  background: transparent;
-}
-.btn-primary.outline {
-  border-color: hsl(221 83% 53%);
-  color: hsl(221 83% 53%);
-}
-.btn-secondary.outline {
-  border-color: hsl(252 78% 60%);
-  color: hsl(252 78% 60%);
-}
-.btn-danger.outline {
-  border-color: hsl(0 84% 60%);
-  color: hsl(0 84% 60%);
-}
-.btn-accent.outline {
-  border-color: hsl(33 95% 54%);
-  color: hsl(28 90% 46%);
-}
-
-.token-labels {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.token-labels span {
-  font-size: 10px;
-  font-family: monospace;
-  background: hsl(210 40% 96%);
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: hsl(215 16% 47%);
-}`}
-/>
+    padding: 20px;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: hsl(0 0% 100%);
+    }
+    .btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    }
+    .btn {
+    padding: 8px 18px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: hsl(210 40% 98%);
+    }
+    
+    /* ── Solid variants ── */
+    .btn-primary { background: hsl(221 83% 53%); }
+    .btn-secondary { background: hsl(252 78% 60%); }
+    .btn-danger { background: hsl(0 84% 60%); }
+    .btn-accent { background: hsl(33 95% 54%); color: hsl(222 47% 11%); }
+    
+    /* ── Outline variants ── */
+    .btn.outline {
+    background: transparent;
+    }
+    .btn-primary.outline {
+    border-color: hsl(221 83% 53%);
+    color: hsl(221 83% 53%);
+    }
+    .btn-secondary.outline {
+    border-color: hsl(252 78% 60%);
+    color: hsl(252 78% 60%);
+    }
+    .btn-danger.outline {
+    border-color: hsl(0 84% 60%);
+    color: hsl(0 84% 60%);
+    }
+    .btn-accent.outline {
+    border-color: hsl(33 95% 54%);
+    color: hsl(28 90% 46%);
+    }
+    
+    .token-labels {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    }
+    .token-labels span {
+    font-size: 10px;
+    font-family: monospace;
+    background: hsl(210 40% 96%);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: hsl(215 16% 47%);
+    }`} />
 
 ### Card with Surface, Text, and Border Tokens
 
@@ -271,163 +269,162 @@ This card demonstrates all five token categories working together. The backgroun
   title="Card Using All Semantic Color Token Categories"
   height={320}
   html={`<div class="card-demo">
-  <div class="card">
+    <div class="card">
     <div class="card-header">
-      <div class="card-title">Project Dashboard</div>
-      <span class="badge">Active</span>
+    <div class="card-title">Project Dashboard</div>
+    <span class="badge">Active</span>
     </div>
     <div class="card-body">
-      <p class="card-text">This card uses semantic color tokens for every color value. No numeric shades like <code>gray-200</code> or <code>blue-500</code> appear anywhere.</p>
-      <div class="meta-row">
-        <div class="meta-item">
-          <div class="meta-label">Status</div>
-          <div class="meta-value success">Healthy</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Errors</div>
-          <div class="meta-value error">3 issues</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Updated</div>
-          <div class="meta-value">2 hours ago</div>
-        </div>
-      </div>
+    <p class="card-text">This card uses semantic color tokens for every color value. No numeric shades like <code>gray-200</code> or <code>blue-500</code> appear anywhere.</p>
+    <div class="meta-row">
+    <div class="meta-item">
+    <div class="meta-label">Status</div>
+    <div class="meta-value success">Healthy</div>
+    </div>
+    <div class="meta-item">
+    <div class="meta-label">Errors</div>
+    <div class="meta-value error">3 issues</div>
+    </div>
+    <div class="meta-item">
+    <div class="meta-label">Updated</div>
+    <div class="meta-value">2 hours ago</div>
+    </div>
+    </div>
     </div>
     <div class="card-footer">
-      <button class="btn-view">View Details</button>
-      <button class="btn-dismiss">Dismiss</button>
+    <button class="btn-view">View Details</button>
+    <button class="btn-dismiss">Dismiss</button>
     </div>
-  </div>
-  <div class="token-map">
+    </div>
+    <div class="token-map">
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(0 0% 100%)"></span> surface → card bg</div>
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(210 40% 96%)"></span> surface-alt → header, footer bg</div>
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(222 47% 11%)"></span> text → headings, body</div>
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(215 16% 47%)"></span> text-muted → labels, meta</div>
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(214 32% 91%)"></span> border → card border, dividers</div>
     <div class="tm-row"><span class="tm-swatch" style="background: hsl(221 83% 53%)"></span> primary → badge, action button</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.card-demo {
-  display: flex;
-  gap: 20px;
-  padding: 16px;
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
-  background: hsl(210 40% 96%);
-  color: hsl(222 47% 11%);
-}
-
-/* ── Card ── */
-.card {
-  flex: 1;
-  background: hsl(0 0% 100%);       /* surface */
-  border: 1px solid hsl(214 32% 91%); /* border */
-  border-radius: 8px;
-  overflow: hidden;
-}
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: hsl(210 40% 96%);      /* surface-alt */
-  border-bottom: 1px solid hsl(214 32% 91%); /* border */
-}
-.card-title {
-  font-weight: 700;
-  font-size: 15px;
-  color: hsl(222 47% 11%);           /* text */
-}
-.badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 99px;
-  background: hsl(221 83% 53%);      /* primary */
-  color: hsl(210 40% 98%);           /* text-inverse */
-}
-.card-body {
-  padding: 16px;
-}
-.card-text {
-  color: hsl(222 47% 11%);           /* text */
-  line-height: 1.6;
-  margin: 0 0 14px 0;
-}
-.card-text code {
-  background: hsl(210 40% 96%);
-  padding: 1px 5px;
-  border-radius: 3px;
-  font-size: 12px;
-  color: hsl(0 84% 60%);             /* error — for code highlighting */
-}
-.meta-row {
-  display: flex;
-  gap: 20px;
-}
-.meta-label {
-  font-size: 11px;
-  color: hsl(215 16% 47%);           /* text-muted */
-  margin-bottom: 2px;
-}
-.meta-value {
-  font-weight: 600;
-  font-size: 13px;
-}
-.meta-value.success { color: hsl(142 71% 45%); }  /* success */
-.meta-value.error { color: hsl(0 84% 60%); }      /* error */
-.card-footer {
-  display: flex;
-  gap: 8px;
-  padding: 12px 16px;
-  background: hsl(210 40% 96%);      /* surface-alt */
-  border-top: 1px solid hsl(214 32% 91%); /* border */
-}
-.btn-view {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  background: hsl(221 83% 53%);      /* primary */
-  color: hsl(210 40% 98%);           /* text-inverse */
-}
-.btn-dismiss {
-  padding: 6px 14px;
-  border: 1px solid hsl(214 32% 91%); /* border */
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  background: transparent;
-  color: hsl(215 16% 47%);           /* text-muted */
-}
-
-/* ── Token map ── */
-.token-map {
-  width: 200px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 11px;
-  color: hsl(215 16% 47%);
-  padding-top: 4px;
-}
-.tm-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.tm-swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  border: 1px solid hsl(214 32% 91%);
-  flex-shrink: 0;
-}`}
-/>
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    background: hsl(210 40% 96%);
+    color: hsl(222 47% 11%);
+    }
+    
+    /* ── Card ── */
+    .card {
+    flex: 1;
+    background: hsl(0 0% 100%);       /* surface */
+    border: 1px solid hsl(214 32% 91%); /* border */
+    border-radius: 8px;
+    overflow: hidden;
+    }
+    .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: hsl(210 40% 96%);      /* surface-alt */
+    border-bottom: 1px solid hsl(214 32% 91%); /* border */
+    }
+    .card-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: hsl(222 47% 11%);           /* text */
+    }
+    .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: hsl(221 83% 53%);      /* primary */
+    color: hsl(210 40% 98%);           /* text-inverse */
+    }
+    .card-body {
+    padding: 16px;
+    }
+    .card-text {
+    color: hsl(222 47% 11%);           /* text */
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+    }
+    .card-text code {
+    background: hsl(210 40% 96%);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: hsl(0 84% 60%);             /* error — for code highlighting */
+    }
+    .meta-row {
+    display: flex;
+    gap: 20px;
+    }
+    .meta-label {
+    font-size: 11px;
+    color: hsl(215 16% 47%);           /* text-muted */
+    margin-bottom: 2px;
+    }
+    .meta-value {
+    font-weight: 600;
+    font-size: 13px;
+    }
+    .meta-value.success { color: hsl(142 71% 45%); }  /* success */
+    .meta-value.error { color: hsl(0 84% 60%); }      /* error */
+    .card-footer {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: hsl(210 40% 96%);      /* surface-alt */
+    border-top: 1px solid hsl(214 32% 91%); /* border */
+    }
+    .btn-view {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: hsl(221 83% 53%);      /* primary */
+    color: hsl(210 40% 98%);           /* text-inverse */
+    }
+    .btn-dismiss {
+    padding: 6px 14px;
+    border: 1px solid hsl(214 32% 91%); /* border */
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: hsl(215 16% 47%);           /* text-muted */
+    }
+    
+    /* ── Token map ── */
+    .token-map {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 11px;
+    color: hsl(215 16% 47%);
+    padding-top: 4px;
+    }
+    .tm-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    }
+    .tm-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid hsl(214 32% 91%);
+    flex-shrink: 0;
+    }`} />
 
 ## Palette Growth Naming
 
@@ -472,158 +469,157 @@ This demo shows a simple card UI that initially uses a single `gray` token. When
   title="Palette Growth: gray → gray + gray2"
   height={420}
   html={`<div class="growth-demo">
-  <div class="growth-col">
+    <div class="growth-col">
     <div class="growth-heading">Phase 1 — One gray</div>
     <div class="growth-tokens">
-      <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
+    <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
     </div>
     <div class="growth-card growth-card--phase1">
-      <div class="growth-card__header">Settings</div>
-      <div class="growth-card__body">
-        <div class="growth-card__label">Theme</div>
-        <div class="growth-card__value">Default</div>
-        <div class="growth-card__label">Language</div>
-        <div class="growth-card__value">English</div>
-      </div>
-      <div class="growth-card__footer">
-        <span class="growth-card__hint">Last saved 2 min ago</span>
-      </div>
+    <div class="growth-card__header">Settings</div>
+    <div class="growth-card__body">
+    <div class="growth-card__label">Theme</div>
+    <div class="growth-card__value">Default</div>
+    <div class="growth-card__label">Language</div>
+    <div class="growth-card__value">English</div>
+    </div>
+    <div class="growth-card__footer">
+    <span class="growth-card__hint">Last saved 2 min ago</span>
+    </div>
     </div>
     <div class="growth-note">
-      <code>gray</code> handles all muted text. One token, clean name.
+    <code>gray</code> handles all muted text. One token, clean name.
     </div>
-  </div>
-  <div class="growth-arrow">→</div>
-  <div class="growth-col">
+    </div>
+    <div class="growth-arrow">→</div>
+    <div class="growth-col">
     <div class="growth-heading">Phase 2 — Add gray2</div>
     <div class="growth-tokens">
-      <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
-      <div class="growth-token"><span class="growth-swatch" style="background: hsl(0 3% 13%)"></span><code>gray2</code></div>
+    <div class="growth-token"><span class="growth-swatch" style="background: hsl(25 5% 45%)"></span><code>gray</code></div>
+    <div class="growth-token"><span class="growth-swatch" style="background: hsl(0 3% 13%)"></span><code>gray2</code></div>
     </div>
     <div class="growth-card growth-card--phase2">
-      <div class="growth-card__header growth-card__header--dark">Settings</div>
-      <div class="growth-card__body">
-        <div class="growth-card__label">Theme</div>
-        <div class="growth-card__value">Default</div>
-        <div class="growth-card__label">Language</div>
-        <div class="growth-card__value">English</div>
-      </div>
-      <div class="growth-card__footer">
-        <span class="growth-card__hint">Last saved 2 min ago</span>
-      </div>
+    <div class="growth-card__header growth-card__header--dark">Settings</div>
+    <div class="growth-card__body">
+    <div class="growth-card__label">Theme</div>
+    <div class="growth-card__value">Default</div>
+    <div class="growth-card__label">Language</div>
+    <div class="growth-card__value">English</div>
+    </div>
+    <div class="growth-card__footer">
+    <span class="growth-card__hint">Last saved 2 min ago</span>
+    </div>
     </div>
     <div class="growth-note">
-      <code>gray2</code> added for the dark header. Original <code>gray</code> unchanged — no renaming needed.
+    <code>gray2</code> added for the dark header. Original <code>gray</code> unchanged — no renaming needed.
     </div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.growth-demo {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
-  color: hsl(222 47% 11%);
-  background: hsl(210 40% 96%);
-}
-.growth-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.growth-arrow {
-  font-size: 24px;
-  font-weight: 700;
-  color: hsl(215 16% 47%);
-  padding-top: 90px;
-  flex-shrink: 0;
-}
-.growth-heading {
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: hsl(215 16% 47%);
-}
-.growth-tokens {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.growth-token {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-}
-.growth-token code {
-  background: hsl(0 0% 100%);
-  padding: 1px 6px;
-  border-radius: 3px;
-  font-size: 11px;
-}
-.growth-swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  border: 1px solid hsl(214 32% 91%);
-}
-.growth-card {
-  border: 1px solid hsl(214 32% 91%);
-  border-radius: 8px;
-  overflow: hidden;
-  background: hsl(0 0% 100%);
-}
-.growth-card__header {
-  padding: 10px 14px;
-  font-weight: 700;
-  font-size: 14px;
-  background: hsl(210 40% 96%);
-  border-bottom: 1px solid hsl(214 32% 91%);
-  color: hsl(222 47% 11%);
-}
-.growth-card__header--dark {
-  background: hsl(0 3% 13%);   /* gray2 */
-  color: hsl(210 40% 98%);
-  border-bottom: none;
-}
-.growth-card__body {
-  padding: 12px 14px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 4px 14px;
-}
-.growth-card__label {
-  font-size: 12px;
-  color: hsl(25 5% 45%);       /* gray */
-  font-weight: 500;
-}
-.growth-card__value {
-  font-size: 12px;
-  font-weight: 600;
-}
-.growth-card__footer {
-  padding: 8px 14px;
-  border-top: 1px solid hsl(214 32% 91%);
-}
-.growth-card__hint {
-  font-size: 11px;
-  color: hsl(25 5% 45%);       /* gray */
-}
-.growth-note {
-  font-size: 11px;
-  color: hsl(215 16% 47%);
-  line-height: 1.4;
-}
-.growth-note code {
-  background: hsl(0 0% 100%);
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-size: 10px;
-}`}
-/>
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    color: hsl(222 47% 11%);
+    background: hsl(210 40% 96%);
+    }
+    .growth-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    }
+    .growth-arrow {
+    font-size: 24px;
+    font-weight: 700;
+    color: hsl(215 16% 47%);
+    padding-top: 90px;
+    flex-shrink: 0;
+    }
+    .growth-heading {
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: hsl(215 16% 47%);
+    }
+    .growth-tokens {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    }
+    .growth-token {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    }
+    .growth-token code {
+    background: hsl(0 0% 100%);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    }
+    .growth-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid hsl(214 32% 91%);
+    }
+    .growth-card {
+    border: 1px solid hsl(214 32% 91%);
+    border-radius: 8px;
+    overflow: hidden;
+    background: hsl(0 0% 100%);
+    }
+    .growth-card__header {
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    background: hsl(210 40% 96%);
+    border-bottom: 1px solid hsl(214 32% 91%);
+    color: hsl(222 47% 11%);
+    }
+    .growth-card__header--dark {
+    background: hsl(0 3% 13%);   /* gray2 */
+    color: hsl(210 40% 98%);
+    border-bottom: none;
+    }
+    .growth-card__body {
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 14px;
+    }
+    .growth-card__label {
+    font-size: 12px;
+    color: hsl(25 5% 45%);       /* gray */
+    font-weight: 500;
+    }
+    .growth-card__value {
+    font-size: 12px;
+    font-weight: 600;
+    }
+    .growth-card__footer {
+    padding: 8px 14px;
+    border-top: 1px solid hsl(214 32% 91%);
+    }
+    .growth-card__hint {
+    font-size: 11px;
+    color: hsl(25 5% 45%);       /* gray */
+    }
+    .growth-note {
+    font-size: 11px;
+    color: hsl(215 16% 47%);
+    line-height: 1.4;
+    }
+    .growth-note code {
+    background: hsl(0 0% 100%);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 10px;
+    }`} />
 
 ### Why Not Number from 1?
 

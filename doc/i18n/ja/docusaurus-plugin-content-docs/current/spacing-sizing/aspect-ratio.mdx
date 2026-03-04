@@ -44,45 +44,44 @@ import CssPreview from '@site/src/components/CssPreview';
 <CssPreview
   title="aspect-ratio: 画像コンテナ（16/9）"
   html={`<div class="container">
-  <div class="thumbnail">
+    <div class="thumbnail">
     <div class="label">16 / 9</div>
-  </div>
-  <div class="thumbnail ratio-4-3">
+    </div>
+    <div class="thumbnail ratio-4-3">
     <div class="label">4 / 3</div>
-  </div>
-  <div class="thumbnail ratio-1">
+    </div>
+    <div class="thumbnail ratio-1">
     <div class="label">1 / 1</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.container {
-  display: flex;
-  gap: 12px;
-  padding: 8px;
-  font-family: system-ui, sans-serif;
-}
-.thumbnail {
-  flex: 1;
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ratio-4-3 {
-  aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, #22c55e, #14b8a6);
-}
-.ratio-1 {
-  aspect-ratio: 1;
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-}
-.label {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}`}
-/>
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+    font-family: system-ui, sans-serif;
+    }
+    .thumbnail {
+    flex: 1;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .ratio-4-3 {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #22c55e, #14b8a6);
+    }
+    .ratio-1 {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    }
+    .label {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    }`} />
 
 ### レスポンシブ動画コンテナ
 
@@ -138,48 +137,47 @@ import CssPreview from '@site/src/components/CssPreview';
 <CssPreview
   title="aspect-ratio: カードレイアウトグリッド"
   html={`<div class="card-grid">
-  <div class="card">
+    <div class="card">
     <div class="card-img"></div>
     <div class="card-body">Card Title</div>
-  </div>
-  <div class="card">
+    </div>
+    <div class="card">
     <div class="card-img img2"></div>
     <div class="card-body">Card Title</div>
-  </div>
-  <div class="card">
+    </div>
+    <div class="card">
     <div class="card-img img3"></div>
     <div class="card-body">Card Title</div>
-  </div>
-</div>`}
+    </div>
+    </div>`}
   css={`.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 8px;
-  font-family: system-ui, sans-serif;
-}
-.card {
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid #e2e8f0;
-}
-.card-img {
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-}
-.card-img.img2 {
-  background: linear-gradient(135deg, #22c55e, #14b8a6);
-}
-.card-img.img3 {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-}
-.card-body {
-  padding: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #334155;
-}`}
-/>
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 8px;
+    font-family: system-ui, sans-serif;
+    }
+    .card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+    }
+    .card-img {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    }
+    .card-img.img2 {
+    background: linear-gradient(135deg, #22c55e, #14b8a6);
+    }
+    .card-img.img3 {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    }
+    .card-body {
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    }`} />
 
 ### フォールバックコンテンツ付きアスペクト比
 

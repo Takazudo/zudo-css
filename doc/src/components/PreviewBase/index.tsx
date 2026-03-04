@@ -1,10 +1,4 @@
-import {
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
 export interface PreviewBaseProps {
@@ -81,11 +75,7 @@ export default function PreviewBase({
             <button
               key={vp.label}
               type="button"
-              className={
-                i === activeViewport
-                  ? styles.viewportBtnActive
-                  : styles.viewportBtn
-              }
+              className={i === activeViewport ? styles.viewportBtnActive : styles.viewportBtn}
               aria-pressed={i === activeViewport}
               onClick={() => setActiveViewport(i)}
             >
@@ -97,10 +87,7 @@ export default function PreviewBase({
 
       {/* Preview area */}
       <div className={styles.previewArea}>
-        <div
-          className={styles.previewContainer}
-          style={{ width: containerWidth }}
-        >
+        <div className={styles.previewContainer} style={{ width: containerWidth }}>
           <iframe
             ref={iframeRef}
             className={styles.iframe}
@@ -120,11 +107,7 @@ export default function PreviewBase({
           onClick={() => setCodeOpen((v) => !v)}
           aria-expanded={codeOpen}
         >
-          <span
-            className={
-              codeOpen ? styles.codeToggleIconOpen : styles.codeToggleIcon
-            }
-          >
+          <span className={codeOpen ? styles.codeToggleIconOpen : styles.codeToggleIcon}>
             &#9654;
           </span>
           {codeOpen ? 'Hide code' : 'Show code'}

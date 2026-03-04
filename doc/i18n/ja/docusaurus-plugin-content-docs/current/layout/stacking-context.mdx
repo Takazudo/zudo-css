@@ -65,54 +65,53 @@ import CssPreview from '@site/src/components/CssPreview';
 <CssPreview
   title="スタッキングコンテキスト: z-indexバグ（壊れた状態）"
   html={`<div class="container">
-  <div class="sidebar">
+    <div class="sidebar">
     <div class="sidebar-label">Sidebar (z-index: 1)</div>
     <div class="dropdown">Dropdown z-index: 99999 — trapped behind main!</div>
-  </div>
-  <div class="main-content">Main Content (z-index: 2) — covers dropdown</div>
-</div>`}
+    </div>
+    <div class="main-content">Main Content (z-index: 2) — covers dropdown</div>
+    </div>`}
   css={`.container {
-  position: relative;
-  height: 200px;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-}
-.sidebar {
-  position: relative;
-  z-index: 1;
-  background: #f59e0b;
-  color: #fff;
-  padding: 12px;
-  width: 55%;
-  border-radius: 8px;
-}
-.sidebar-label {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 99999;
-  background: #ef4444;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-  width: 280px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.main-content {
-  position: relative;
-  z-index: 2;
-  background: #3b82f6;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: -8px;
-}`}
-  height={220}
-/>
+    position: relative;
+    height: 200px;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    }
+    .sidebar {
+    position: relative;
+    z-index: 1;
+    background: #f59e0b;
+    color: #fff;
+    padding: 12px;
+    width: 55%;
+    border-radius: 8px;
+    }
+    .sidebar-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    }
+    .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 99999;
+    background: #ef4444;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .main-content {
+    position: relative;
+    z-index: 2;
+    background: #3b82f6;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: -8px;
+    }`}
+  height={220} />
 
 ### 修正: 親のスタッキングコンテキストを取り除く
 
@@ -136,52 +135,51 @@ import CssPreview from '@site/src/components/CssPreview';
 <CssPreview
   title="スタッキングコンテキスト: z-indexバグ（修正後）"
   html={`<div class="container">
-  <div class="sidebar">
+    <div class="sidebar">
     <div class="sidebar-label">Sidebar (no z-index)</div>
     <div class="dropdown">Dropdown z-index: 10 — now appears on top!</div>
-  </div>
-  <div class="main-content">Main Content (no z-index)</div>
-</div>`}
+    </div>
+    <div class="main-content">Main Content (no z-index)</div>
+    </div>`}
   css={`.container {
-  position: relative;
-  height: 200px;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-}
-.sidebar {
-  position: relative;
-  background: #f59e0b;
-  color: #fff;
-  padding: 12px;
-  width: 55%;
-  border-radius: 8px;
-}
-.sidebar-label {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 10;
-  background: #22c55e;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
-  width: 280px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.main-content {
-  position: relative;
-  background: #3b82f6;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: -8px;
-}`}
-  height={220}
-/>
+    position: relative;
+    height: 200px;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    }
+    .sidebar {
+    position: relative;
+    background: #f59e0b;
+    color: #fff;
+    padding: 12px;
+    width: 55%;
+    border-radius: 8px;
+    }
+    .sidebar-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    }
+    .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    background: #22c55e;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .main-content {
+    position: relative;
+    background: #3b82f6;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: -8px;
+    }`}
+  height={220} />
 
 ### isolation プロパティ
 
@@ -214,47 +212,46 @@ import CssPreview from '@site/src/components/CssPreview';
 <CssPreview
   title="スタッキングコンテキスト: isolation: isolate"
   html={`<div class="demo-area">
-  <div class="card">
+    <div class="card">
     <div class="card-bg"></div>
     <div class="card-content">
-      <strong>isolation: isolate</strong><br/>
-      The purple background uses z-index: -1 but stays inside the card thanks to isolation.
+    <strong>isolation: isolate</strong><br/>
+    The purple background uses z-index: -1 but stays inside the card thanks to isolation.
     </div>
-  </div>
-  <div class="behind-text">This text is behind the card — z-index: -1 does not leak out</div>
-</div>`}
+    </div>
+    <div class="behind-text">This text is behind the card — z-index: -1 does not leak out</div>
+    </div>`}
   css={`.demo-area {
-  padding: 12px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-}
-.card {
-  isolation: isolate;
-  position: relative;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 12px;
-  overflow: hidden;
-}
-.card-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-}
-.card-content {
-  position: relative;
-  color: #fff;
-  line-height: 1.5;
-}
-.behind-text {
-  color: #64748b;
-  padding: 8px;
-  text-align: center;
-}`}
-/>
+    padding: 12px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    }
+    .card {
+    isolation: isolate;
+    position: relative;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    }
+    .card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    }
+    .card-content {
+    position: relative;
+    color: #fff;
+    line-height: 1.5;
+    }
+    .behind-text {
+    color: #64748b;
+    padding: 8px;
+    text-align: center;
+    }`} />
 
 ### コンポーネントの漏洩防止
 

@@ -146,53 +146,51 @@ flexまたはgridアイテムに `margin: auto` を設定すると、その軸�
 <CssPreview
   title="Flexbox センタリング"
   html={`
-<div class="flex-center">
-  <div class="box">Centered with Flexbox</div>
-</div>
-  `}
+    <div class="flex-center">
+    <div class="box">Centered with Flexbox</div>
+    </div>
+    `}
   css={`
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  background: #f0f4f8;
-}
-.box {
-  padding: 16px 24px;
-  background: #3b82f6;
-  color: white;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-  font-weight: 600;
-}
-  `}
-/>
+    .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background: #f0f4f8;
+    }
+    .box {
+    padding: 16px 24px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    }
+    `} />
 
 <CssPreview
   title="Grid place-items: center"
   html={`
-<div class="grid-center">
-  <div class="box">Centered with Grid</div>
-</div>
-  `}
+    <div class="grid-center">
+    <div class="box">Centered with Grid</div>
+    </div>
+    `}
   css={`
-.grid-center {
-  display: grid;
-  place-items: center;
-  height: 200px;
-  background: #f0fdf4;
-}
-.box {
-  padding: 16px 24px;
-  background: #22c55e;
-  color: white;
-  border-radius: 8px;
-  font-family: system-ui, sans-serif;
-  font-weight: 600;
-}
-  `}
-/>
+    .grid-center {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    background: #f0fdf4;
+    }
+    .box {
+    padding: 16px 24px;
+    background: #22c55e;
+    color: white;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    }
+    `} />
 
 ## クイックリファレンス
 
@@ -242,36 +240,33 @@ Tailwindは、すべてのセンタリング手法に対応する簡潔なユー
 <TailwindPreview
   title="Tailwind: Flexbox センタリング"
   html={`<div class="flex justify-center items-center h-[200px] bg-blue-50">
-  <div class="px-6 py-4 bg-blue-500 text-white rounded-lg font-semibold">
+    <div class="px-6 py-4 bg-blue-500 text-white rounded-lg font-semibold">
     Centered with Flexbox
-  </div>
-</div>`}
-  height={220}
-/>
+    </div>
+    </div>`}
+  height={220} />
 
 ### Grid センタリング
 
 <TailwindPreview
   title="Tailwind: Grid place-items-center"
   html={`<div class="grid place-items-center h-[200px] bg-green-50">
-  <div class="px-6 py-4 bg-green-500 text-white rounded-lg font-semibold">
+    <div class="px-6 py-4 bg-green-500 text-white rounded-lg font-semibold">
     Centered with Grid
-  </div>
-</div>`}
-  height={220}
-/>
+    </div>
+    </div>`}
+  height={220} />
 
 ### mx-auto による水平センタリング
 
 <TailwindPreview
   title="Tailwind: mx-auto センタリング"
   html={`<div class="p-6 bg-slate-100">
-  <div class="mx-auto w-fit bg-violet-500 text-white px-6 py-4 rounded-lg font-semibold">
+    <div class="mx-auto w-fit bg-violet-500 text-white px-6 py-4 rounded-lg font-semibold">
     Centered with mx-auto + w-fit
-  </div>
-</div>`}
-  height={100}
-/>
+    </div>
+    </div>`}
+  height={100} />
 
 ## 参考リンク
 

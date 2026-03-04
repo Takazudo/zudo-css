@@ -207,76 +207,75 @@ This transitions each shadow parameter on its own timing. The browser still repa
   title="Expensive box-shadow Transition vs Cheap Opacity Approach"
   html={`<div class="demo"><div class="card naive"><h3>Naive Approach</h3><p>Transitions box-shadow directly (triggers repaint every frame)</p><span class="hint">Hover to see effect</span></div><div class="card performant"><h3>Performant Approach</h3><p>Transitions pseudo-element opacity (GPU compositing only)</p><span class="hint">Hover to see effect</span></div></div>`}
   css={`
-.demo {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: #f1f5f9;
-  padding: 24px;
-  font-family: system-ui, sans-serif;
-}
-.card {
-  padding: 24px;
-  border-radius: 12px;
-  background: white;
-  width: 220px;
-  cursor: pointer;
-}
-.card h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0 0 8px;
-  color: #0f172a;
-}
-.card p {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0 0 12px;
-  line-height: 1.5;
-}
-.hint {
-  font-size: 12px;
-  color: #3b82f6;
-  font-weight: 500;
-}
-.naive {
-  box-shadow: 0 1px 3px hsl(0deg 0% 0% / 0.1);
-  transition: box-shadow 0.3s ease;
-}
-.naive:hover {
-  box-shadow:
+    .demo {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #f1f5f9;
+    padding: 24px;
+    font-family: system-ui, sans-serif;
+    }
+    .card {
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+    width: 220px;
+    cursor: pointer;
+    }
+    .card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #0f172a;
+    }
+    .card p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 12px;
+    line-height: 1.5;
+    }
+    .hint {
+    font-size: 12px;
+    color: #3b82f6;
+    font-weight: 500;
+    }
+    .naive {
+    box-shadow: 0 1px 3px hsl(0deg 0% 0% / 0.1);
+    transition: box-shadow 0.3s ease;
+    }
+    .naive:hover {
+    box-shadow:
     0 4px 8px hsl(0deg 0% 0% / 0.1),
     0 16px 32px hsl(0deg 0% 0% / 0.08);
-}
-.performant {
-  position: relative;
-  box-shadow: 0 1px 3px hsl(0deg 0% 0% / 0.1);
-  transition: transform 0.3s ease;
-}
-.performant::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow:
+    }
+    .performant {
+    position: relative;
+    box-shadow: 0 1px 3px hsl(0deg 0% 0% / 0.1);
+    transition: transform 0.3s ease;
+    }
+    .performant::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
     0 4px 8px hsl(220deg 60% 50% / 0.08),
     0 12px 24px hsl(220deg 60% 50% / 0.06),
     0 24px 48px hsl(220deg 60% 50% / 0.04);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-.performant:hover {
-  transform: translateY(-2px);
-}
-.performant:hover::after {
-  opacity: 1;
-}
-  `}
-  height={280}
-/>
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    }
+    .performant:hover {
+    transform: translateY(-2px);
+    }
+    .performant:hover::after {
+    opacity: 1;
+    }
+    `}
+  height={280} />
 
 ## Common AI Mistakes
 

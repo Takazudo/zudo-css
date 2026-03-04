@@ -164,138 +164,136 @@ tr:has(td:empty) {
 <CssPreview
   title=":has(:focus) — 子のフォーカスに親が反応する"
   html={`
-<div class="field-group">
-  <label for="name">Name</label>
-  <input type="text" id="name" placeholder="Click to focus..." />
-</div>
-<div class="field-group">
-  <label for="email">Email</label>
-  <input type="email" id="email" placeholder="Click to focus..." />
-</div>
-<p class="hint">Click an input — the parent field-group highlights via :has(:focus)</p>
-  `}
+    <div class="field-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Click to focus..." />
+    </div>
+    <div class="field-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Click to focus..." />
+    </div>
+    <p class="hint">Click an input — the parent field-group highlights via :has(:focus)</p>
+    `}
   css={`
-.field-group {
-  font-family: system-ui, sans-serif;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.field-group:has(:focus) {
-  border-color: #3b82f6;
-  background: #eff6ff;
-}
-
-.field-group:has(:focus) label {
-  color: #2563eb;
-  font-weight: 700;
-}
-
-label {
-  display: block;
-  font-size: 0.875rem;
-  color: #64748b;
-  margin-bottom: 0.5rem;
-  transition: color 0.2s;
-}
-
-input {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 1rem;
-  outline: none;
-  box-sizing: border-box;
-}
-
-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-.hint {
-  font-family: system-ui, sans-serif;
-  font-size: 0.8rem;
-  color: #94a3b8;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-  `}
-/>
+    .field-group {
+    font-family: system-ui, sans-serif;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+    }
+    
+    .field-group:has(:focus) {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    }
+    
+    .field-group:has(:focus) label {
+    color: #2563eb;
+    font-weight: 700;
+    }
+    
+    label {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+    }
+    
+    input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    }
+    
+    input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    
+    .hint {
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 0.5rem;
+    }
+    `} />
 
 <CssPreview
   title=":has(:checked) — チェックボックスでスタイルを切り替える"
   html={`
-<div class="card">
-  <label class="toggle-label">
+    <div class="card">
+    <label class="toggle-label">
     <input type="checkbox" id="featured-toggle" />
     Mark as featured
-  </label>
-  <h3>Article Title</h3>
-  <p>This card changes appearance when the checkbox is checked — all done with :has(:checked) in pure CSS.</p>
-</div>
-<p class="hint">Click the checkbox to see the card transform</p>
-  `}
+    </label>
+    <h3>Article Title</h3>
+    <p>This card changes appearance when the checkbox is checked — all done with :has(:checked) in pure CSS.</p>
+    </div>
+    <p class="hint">Click the checkbox to see the card transform</p>
+    `}
   css={`
-.card {
-  font-family: system-ui, sans-serif;
-  padding: 1.5rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  background: #fff;
-  transition: all 0.3s;
-}
-
-.card:has(:checked) {
-  border-color: #f59e0b;
-  background: linear-gradient(135deg, #fffbeb, #fef3c7);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-}
-
-.card:has(:checked) h3 {
-  color: #b45309;
-}
-
-.toggle-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: #64748b;
-  margin-bottom: 1rem;
-}
-
-.toggle-label input {
-  width: 1.1rem;
-  height: 1.1rem;
-  cursor: pointer;
-}
-
-h3 {
-  margin: 0 0 0.5rem;
-  color: #1e293b;
-  transition: color 0.3s;
-}
-
-p {
-  margin: 0;
-  color: #64748b;
-  line-height: 1.6;
-}
-
-.hint {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  text-align: center;
-  margin-top: 0.75rem;
-}
-  `}
-/>
+    .card {
+    font-family: system-ui, sans-serif;
+    padding: 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    transition: all 0.3s;
+    }
+    
+    .card:has(:checked) {
+    border-color: #f59e0b;
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+    
+    .card:has(:checked) h3 {
+    color: #b45309;
+    }
+    
+    .toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    }
+    
+    .toggle-label input {
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+    }
+    
+    h3 {
+    margin: 0 0 0.5rem;
+    color: #1e293b;
+    transition: color 0.3s;
+    }
+    
+    p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+    }
+    
+    .hint {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 0.75rem;
+    }
+    `} />
 
 ## 参考リンク
 

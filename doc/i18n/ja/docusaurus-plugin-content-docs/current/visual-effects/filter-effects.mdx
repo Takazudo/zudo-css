@@ -237,92 +237,90 @@ CSS `filter` プロパティは、要素とそのすべてのコンテンツに�
   title="フィルターエフェクトギャラリー"
   html={`<div class="demo"><div class="item"><div class="box original"></div><span>Original</span></div><div class="item"><div class="box blur"></div><span>blur(4px)</span></div><div class="item"><div class="box brightness"></div><span>brightness(1.5)</span></div><div class="item"><div class="box contrast"></div><span>contrast(1.8)</span></div><div class="item"><div class="box saturate"></div><span>saturate(2)</span></div><div class="item"><div class="box hue-rotate"></div><span>hue-rotate(90deg)</span></div></div>`}
   css={`
-.demo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: #0f172a;
-  padding: 16px;
-  font-family: system-ui, sans-serif;
-}
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.box {
-  width: 100px;
-  height: 80px;
-  border-radius: 8px;
-  background:
+    .demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #0f172a;
+    padding: 16px;
+    font-family: system-ui, sans-serif;
+    }
+    .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    }
+    .box {
+    width: 100px;
+    height: 80px;
+    border-radius: 8px;
+    background:
     linear-gradient(135deg, #ef4444 0%, #f59e0b 25%, #22c55e 50%, #3b82f6 75%, #8b5cf6 100%);
-}
-.blur { filter: blur(4px); }
-.brightness { filter: brightness(1.5); }
-.contrast { filter: contrast(1.8); }
-.saturate { filter: saturate(2); }
-.hue-rotate { filter: hue-rotate(90deg); }
-.item span {
-  font-size: 11px;
-  color: #94a3b8;
-  font-family: monospace;
-}
-  `}
-  height={250}
-/>
+    }
+    .blur { filter: blur(4px); }
+    .brightness { filter: brightness(1.5); }
+    .contrast { filter: contrast(1.8); }
+    .saturate { filter: saturate(2); }
+    .hue-rotate { filter: hue-rotate(90deg); }
+    .item span {
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: monospace;
+    }
+    `}
+  height={250} />
 
 <CssPreview
   title="不規則な形状での drop-shadow vs box-shadow"
   html={`<div class="demo"><div class="col"><div class="triangle-wrapper box-shadow-demo"><div class="triangle"></div></div><span>box-shadow (rectangular)</span></div><div class="col"><div class="triangle-wrapper drop-shadow-demo"><div class="triangle"></div></div><span>drop-shadow (shape-aware)</span></div></div>`}
   css={`
-.demo {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background: #f8fafc;
-  padding: 24px;
-  font-family: system-ui, sans-serif;
-}
-.col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-.triangle-wrapper {
-  width: 120px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 86px solid #3b82f6;
-}
-.box-shadow-demo .triangle {
-  box-shadow: 6px 6px 12px hsl(0deg 0% 0% / 0.3);
-}
-.drop-shadow-demo {
-  filter: drop-shadow(6px 6px 12px hsl(0deg 0% 0% / 0.3));
-}
-.col span {
-  font-size: 12px;
-  color: #475569;
-  font-weight: 500;
-}
-  `}
-  height={250}
-/>
+    .demo {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #f8fafc;
+    padding: 24px;
+    font-family: system-ui, sans-serif;
+    }
+    .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    }
+    .triangle-wrapper {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86px solid #3b82f6;
+    }
+    .box-shadow-demo .triangle {
+    box-shadow: 6px 6px 12px hsl(0deg 0% 0% / 0.3);
+    }
+    .drop-shadow-demo {
+    filter: drop-shadow(6px 6px 12px hsl(0deg 0% 0% / 0.3));
+    }
+    .col span {
+    font-size: 12px;
+    color: #475569;
+    font-weight: 500;
+    }
+    `}
+  height={250} />
 
 ## AIがよくやるミス
 
@@ -352,62 +350,60 @@ Tailwindは一般的なCSSフィルター関数のユーティリティクラス
 <TailwindPreview
   title="Tailwind: フィルターエフェクトギャラリー"
   html={`<div class="flex flex-wrap gap-3 justify-center items-center min-h-[230px] bg-slate-900 p-4">
-  <div class="flex flex-col items-center gap-1.5">
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">Original</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg blur-sm" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">blur-sm</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg brightness-150" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">brightness-150</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg contrast-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">contrast-200</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg saturate-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">saturate-200</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg grayscale" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">grayscale</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg sepia" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">sepia</span>
-  </div>
-  <div class="flex flex-col items-center gap-1.5">
+    </div>
+    <div class="flex flex-col items-center gap-1.5">
     <div class="w-24 h-20 rounded-lg hue-rotate-90" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-400 font-mono">hue-rotate-90</span>
-  </div>
-</div>`}
-  height={270}
-/>
+    </div>
+    </div>`}
+  height={270} />
 
 ### ホバーフィルターエフェクト
 
 <TailwindPreview
   title="Tailwind: ホバーフィルターエフェクト"
   html={`<div class="flex gap-6 justify-center items-center min-h-[200px] bg-slate-100 p-6">
-  <div class="flex flex-col items-center gap-2">
+    <div class="flex flex-col items-center gap-2">
     <div class="w-28 h-20 rounded-lg grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
     <span class="text-xs text-slate-500 font-medium">Grayscale → Color</span>
-  </div>
-  <div class="flex flex-col items-center gap-2">
+    </div>
+    <div class="flex flex-col items-center gap-2">
     <div class="w-28 h-20 rounded-lg hover:brightness-125 hover:saturate-150 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #ef4444, #f59e0b);"></div>
     <span class="text-xs text-slate-500 font-medium">Brighten on hover</span>
-  </div>
-  <div class="flex flex-col items-center gap-2">
+    </div>
+    <div class="flex flex-col items-center gap-2">
     <div class="w-28 h-20 rounded-lg opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #22c55e, #06b6d4);"></div>
     <span class="text-xs text-slate-500 font-medium">Disabled → Active</span>
-  </div>
-</div>`}
-  height={220}
-/>
+    </div>
+    </div>`}
+  height={220} />
 
 ## 参考リンク
 

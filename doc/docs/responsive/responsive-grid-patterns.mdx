@@ -28,36 +28,35 @@ When the grid has fewer items than columns, the difference becomes visible:
 <CssPreview
   title="auto-fill + minmax() Grid — Use Mobile / Tablet / Full to see reflow"
   html={`
-<div class="grid">
-  <div class="grid-card" style="background: #3b82f6;">Card 1</div>
-  <div class="grid-card" style="background: #ef4444;">Card 2</div>
-  <div class="grid-card" style="background: #22c55e;">Card 3</div>
-  <div class="grid-card" style="background: #f59e0b;">Card 4</div>
-  <div class="grid-card" style="background: #8b5cf6;">Card 5</div>
-  <div class="grid-card" style="background: #ec4899;">Card 6</div>
-</div>
-  `}
+    <div class="grid">
+    <div class="grid-card" style="background: #3b82f6;">Card 1</div>
+    <div class="grid-card" style="background: #ef4444;">Card 2</div>
+    <div class="grid-card" style="background: #22c55e;">Card 3</div>
+    <div class="grid-card" style="background: #f59e0b;">Card 4</div>
+    <div class="grid-card" style="background: #8b5cf6;">Card 5</div>
+    <div class="grid-card" style="background: #ec4899;">Card 6</div>
+    </div>
+    `}
   css={`
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.grid-card {
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 2rem 1rem;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80px;
-}
-  `}
-/>
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    }
+    
+    .grid-card {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    }
+    `} />
 
 ## Code Examples
 
@@ -260,7 +259,6 @@ When card content (title, text, footer) needs to align across a row:
 
 ## Tailwind CSS
 
-
 Tailwind uses responsive breakpoint prefixes (`sm:`, `md:`, `lg:`, `xl:`) to change grid column counts at different viewport widths. Use the viewport buttons to see the grid reflow.
 
 ### Responsive Card Grid
@@ -268,31 +266,29 @@ Tailwind uses responsive breakpoint prefixes (`sm:`, `md:`, `lg:`, `xl:`) to cha
 <TailwindPreview
   title="Tailwind: Responsive Grid (try Mobile / Tablet / Full)"
   html={`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-  <div class="bg-blue-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 1</div>
-  <div class="bg-red-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 2</div>
-  <div class="bg-green-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 3</div>
-  <div class="bg-amber-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 4</div>
-  <div class="bg-violet-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 5</div>
-  <div class="bg-pink-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 6</div>
-</div>`}
-/>
+    <div class="bg-blue-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 1</div>
+    <div class="bg-red-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 2</div>
+    <div class="bg-green-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 3</div>
+    <div class="bg-amber-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 4</div>
+    <div class="bg-violet-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 5</div>
+    <div class="bg-pink-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 6</div>
+    </div>`} />
 
 ### Asymmetric Layout
 
 <TailwindPreview
   title="Tailwind: Main + Sidebar Responsive Layout"
   html={`<div class="grid grid-cols-1 md:grid-cols-[1fr_16rem] gap-4 p-4">
-  <div class="bg-green-500 text-white p-6 rounded-lg min-h-[200px]">
+    <div class="bg-green-500 text-white p-6 rounded-lg min-h-[200px]">
     <h3 class="font-bold mb-2">Main Content</h3>
     <p class="text-sm text-green-100">Takes full width on mobile, shares space with sidebar on wider screens.</p>
-  </div>
-  <div class="bg-amber-500 text-white p-4 rounded-lg">
+    </div>
+    <div class="bg-amber-500 text-white p-4 rounded-lg">
     <h3 class="font-bold mb-2">Sidebar</h3>
     <p class="text-sm text-amber-100">Fixed 16rem width on desktop.</p>
-  </div>
-</div>`}
-  height={260}
-/>
+    </div>
+    </div>`}
+  height={260} />
 
 ## References
 

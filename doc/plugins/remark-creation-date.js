@@ -25,10 +25,11 @@ function buildCreationDateCache(gitRoot) {
     // --diff-filter=A: only "Added" entries (file creation)
     // --reverse: oldest commits first, so the first occurrence is the true creation
     // --all: search across all branches (supports worktrees and feature branches)
-    const output = execSync(
-      'git log --all --diff-filter=A --format=%at --name-only --reverse',
-      { cwd: gitRoot, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 },
-    );
+    const output = execSync('git log --all --diff-filter=A --format=%at --name-only --reverse', {
+      cwd: gitRoot,
+      encoding: 'utf8',
+      maxBuffer: 10 * 1024 * 1024,
+    });
 
     let currentTimestamp = null;
     for (const line of output.split('\n')) {
@@ -102,9 +103,7 @@ function getGitCreationDate(filePath) {
 
     return formatTimestamp(unixSeconds);
   } catch (error) {
-    console.warn(
-      `Could not extract creation date for ${filePath}: ${error.message}`,
-    );
+    console.warn(`Could not extract creation date for ${filePath}: ${error.message}`);
     return null;
   }
 }

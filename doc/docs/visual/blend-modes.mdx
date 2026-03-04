@@ -231,27 +231,27 @@ Without `isolation: isolate`, blend modes propagate up the DOM and blend with al
   html={`<div class="demo"><div class="blend-container"><h1 class="blend-text">BLEND</h1></div></div>`}
   css={`
     .demo {
-    width: 100%;
-    height: 100%;
-    font-family: system-ui, sans-serif;
+      width: 100%;
+      height: 100%;
+      font-family: system-ui, sans-serif;
     }
     .blend-container {
-    width: 100%;
-    height: 100%;
-    background:
-    linear-gradient(135deg, #3b82f6 0%, #ec4899 50%, #f59e0b 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    isolation: isolate;
+      width: 100%;
+      height: 100%;
+      background:
+      linear-gradient(135deg, #3b82f6 0%, #ec4899 50%, #f59e0b 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      isolation: isolate;
     }
     .blend-text {
-    font-size: 80px;
-    font-weight: 900;
-    color: white;
-    mix-blend-mode: difference;
-    margin: 0;
-    letter-spacing: 8px;
+      font-size: 80px;
+      font-weight: 900;
+      color: white;
+      mix-blend-mode: difference;
+      margin: 0;
+      letter-spacing: 8px;
     }
     `}
   height={250} />
@@ -261,38 +261,38 @@ Without `isolation: isolate`, blend modes propagate up the DOM and blend with al
   html={`<div class="demo"><div class="duotone"><span class="label">luminosity blend</span></div><div class="no-blend"><span class="label">no blend (normal)</span></div></div>`}
   css={`
     .demo {
-    display: flex;
-    gap: 16px;
-    height: 100%;
-    padding: 16px;
-    background: #0f172a;
-    font-family: system-ui, sans-serif;
+      display: flex;
+      gap: 16px;
+      height: 100%;
+      padding: 16px;
+      background: #0f172a;
+      font-family: system-ui, sans-serif;
     }
     .duotone, .no-blend {
-    flex: 1;
-    border-radius: 12px;
-    background:
-    linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4),
-    linear-gradient(45deg, #000 0%, #fff 100%);
-    background-size: cover;
-    display: flex;
-    align-items: flex-end;
-    padding: 12px;
-    position: relative;
+      flex: 1;
+      border-radius: 12px;
+      background:
+      linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4),
+      linear-gradient(45deg, #000 0%, #fff 100%);
+      background-size: cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      position: relative;
     }
     .duotone {
-    background-blend-mode: luminosity;
+      background-blend-mode: luminosity;
     }
     .no-blend {
-    background-blend-mode: normal;
+      background-blend-mode: normal;
     }
     .label {
-    background: hsl(0deg 0% 0% / 0.5);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
+      background: hsl(0deg 0% 0% / 0.5);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
     }
     `}
   height={250} />
@@ -302,44 +302,44 @@ Without `isolation: isolate`, blend modes propagate up the DOM and blend with al
   html={`<div class="demo"><div class="card no-isolate"><div class="overlay"></div><p>Without isolation — blend leaks to page background</p></div><div class="card with-isolate"><div class="overlay"></div><p>With isolation: isolate — blend contained to card</p></div></div>`}
   css={`
     .demo {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background:
-    repeating-linear-gradient(
-    45deg,
-    #e2e8f0 0px,
-    #e2e8f0 10px,
-    #f1f5f9 10px,
-    #f1f5f9 20px
-    );
-    padding: 24px;
-    font-family: system-ui, sans-serif;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      background:
+      repeating-linear-gradient(
+        45deg,
+        #e2e8f0 0px,
+        #e2e8f0 10px,
+        #f1f5f9 10px,
+        #f1f5f9 20px
+      );
+      padding: 24px;
+      font-family: system-ui, sans-serif;
     }
     .card {
-    position: relative;
-    width: 200px;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    padding-bottom: 16px;
+      position: relative;
+      width: 200px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      padding-bottom: 16px;
     }
     .with-isolate {
-    isolation: isolate;
+      isolation: isolate;
     }
     .overlay {
-    height: 80px;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    mix-blend-mode: multiply;
+      height: 80px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      mix-blend-mode: multiply;
     }
     .card p {
-    font-size: 12px;
-    color: #334155;
-    padding: 0 12px;
-    line-height: 1.5;
-    margin: 8px 0 0;
+      font-size: 12px;
+      color: #334155;
+      padding: 0 12px;
+      line-height: 1.5;
+      margin: 8px 0 0;
     }
     `}
   height={240} />

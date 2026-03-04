@@ -1,6 +1,6 @@
-# zcss — CSS Best Practices for AI
+# zcss — zudo-css
 
-Docusaurus documentation site teaching CSS best practices to AI agents.
+Docusaurus documentation site teaching CSS best practices.
 
 ## Project Structure
 

@@ -6,6 +6,23 @@ import CssPreview from '@site/src/components/CssPreview';
 
 # BEM Strategy
 
+:::note Historical Context
+
+BEM is a **traditional CSS naming convention** from an era before CSS scoping was widely available. It was invented to simulate the "scope" that other programming languages take for granted — preventing class name collisions in plain, global CSS.
+
+**Most modern projects don't need BEM.** Today's tooling handles scoping automatically:
+
+- **CSS Modules** — class names are locally scoped at build time
+- **Vue / Svelte scoped styles** — `<style scoped>` generates unique selectors per component
+- **Tailwind CSS** — utility-first approach removes the need for naming conventions entirely
+- **CSS-in-JS** (styled-components, Emotion) — styles are component-scoped by default
+
+BEM remains valuable as **foundational knowledge** — it explains _why_ modern scoping solutions were invented and how they think about component boundaries. It's also still relevant when modern tooling isn't available.
+
+Think of BEM as understanding the "why" behind the tools you use today, not as a pattern to reach for in new projects.
+
+:::
+
 ## The Problem
 
 CSS naming without convention leads to naming collisions, specificity wars, and unclear relationships between styles. In multi-developer projects, different team members invent different naming patterns, creating inconsistency. AI agents often generate arbitrary class names like `.title`, `.container`, or `.btn-blue` — names that inevitably collide across components. Worse, they default to deeply nested selectors like `.sidebar .nav ul li a.active` that create specificity chains impossible to override without `!important`.
@@ -395,20 +412,25 @@ CSS nesting (now supported in all major browsers) makes BEM even more ergonomic.
 
 ## When to Use
 
-BEM works best in:
+**Most modern projects don't need BEM.** If you're starting a new project with a frontend framework, you almost certainly have better scoping options available.
 
-- **Server-rendered apps** where HTML and CSS ship separately without a build tool to scope styles
-- **Multi-team projects** where a shared naming convention prevents collisions across teams
-- **CSS without build tools** where you need predictable naming without framework-level scoping
-- **Legacy projects** being incrementally refactored toward better CSS architecture
+### What replaced BEM
 
-BEM is less necessary when using:
+- **CSS Modules** → local scope by default, no naming convention needed
+- **Vue / Svelte scoped styles** → `<style scoped>` handles collision prevention automatically
+- **Tailwind CSS** → no class naming at all, utilities compose directly
+- **CSS-in-JS** → component-level scope baked in
 
-- **CSS Modules** — class names are locally scoped by the build tool
-- **CSS-in-JS** (styled-components, Emotion) — styles are scoped to components by default
-- **Tailwind CSS** — utility-first approach removes the need for naming conventions entirely
+### When BEM is still relevant
 
-Even in these environments, understanding BEM's principles (flat selectors, clear naming, component-scoped styles) improves how you structure CSS.
+- **No build tools** — plain HTML/CSS projects where you're writing global stylesheets
+- **Legacy codebases** — incrementally refactoring toward better architecture
+- **Multi-team without framework agreement** — a shared naming convention prevents collisions when teams can't agree on tooling
+- **Server-rendered apps** — HTML and CSS ship separately without a build step to scope styles
+
+### BEM as foundational knowledge
+
+Even if you never write BEM in production, understanding it is worthwhile. It explains _why_ CSS Modules and scoped styles exist, and what problem they're solving. The concepts — flat selectors, single-class specificity, component-scoped naming — carry over into how modern tools think about styles.
 
 ## References
 

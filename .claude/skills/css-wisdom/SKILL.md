@@ -37,6 +37,7 @@ Each entry: `file path` — brief description.
 - `layout/stacking-context.mdx` — z-index wars, stacking context creation and debugging
 - `layout/object-fit-and-position.mdx` — object-fit values, object-position focal point, vs background-image
 - `layout/multi-column-layout.mdx` — CSS columns, break-inside, masonry-style layouts without JS
+- `layout/negative-margin-expand.mdx` — Full-bleed backgrounds via negative margin + matching padding
 - `layout/table-cell-width-control.mdx` — table-layout fixed, controlling column widths, overflow in cells
 
 ### Typography

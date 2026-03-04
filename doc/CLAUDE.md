@@ -21,7 +21,7 @@ It generates `src/data/doc-titles.json` and `src/data/category-nav.json` from fr
 - Format: MDX with YAML frontmatter (`sidebar_position`)
 - Location: `docs/<category>/`
 - File naming: **kebab-case** (e.g., `centering-techniques.mdx`)
-- Categories: layout, typography, spacing-sizing, color, visual-effects, responsive, interactive, modern-css, inbox, overview
+- Categories: layout, typography, spacing-sizing, color, visual-effects, responsive, interactive, methodology, overview
 
 ### Article Structure
 

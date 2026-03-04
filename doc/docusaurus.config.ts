@@ -114,15 +114,9 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'modernCssSidebar',
+          sidebarId: 'methodologySidebar',
           position: 'left',
-          label: 'Modern CSS',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'inboxSidebar',
-          position: 'left',
-          label: 'INBOX',
+          label: 'Methodology',
         },
         {
           type: 'localeDropdown',

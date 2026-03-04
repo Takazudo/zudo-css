@@ -1,6 +1,7 @@
 import { type ReactNode, useMemo } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import PreviewBase from '../PreviewBase';
+import { dedent } from '../../utils/dedent';
 import { preflightCss } from './preflight';
 
 interface CssPreviewProps {
@@ -45,10 +46,10 @@ export default function CssPreview({
       codeBlocks={
         <>
           <CodeBlock language="html" title="HTML">
-            {html.trim()}
+            {dedent(html)}
           </CodeBlock>
           <CodeBlock language="css" title="CSS">
-            {css.trim()}
+            {dedent(css)}
           </CodeBlock>
         </>
       }

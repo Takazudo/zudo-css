@@ -1,6 +1,7 @@
 import { type ReactNode, useMemo } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import PreviewBase from '../PreviewBase';
+import { dedent } from '../../utils/dedent';
 
 interface TailwindPreviewProps {
   html: string;
@@ -47,11 +48,11 @@ export default function TailwindPreview({
       codeBlocks={
         <>
           <CodeBlock language="html" title="HTML">
-            {html.trim()}
+            {dedent(html)}
           </CodeBlock>
           {css && (
             <CodeBlock language="css" title="CSS">
-              {css.trim()}
+              {dedent(css)}
             </CodeBlock>
           )}
         </>

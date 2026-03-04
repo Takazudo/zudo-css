@@ -59,6 +59,10 @@ const config: Config = {
     },
     navbar: {
       title: 'zudo-css',
+      logo: {
+        alt: 'zudo-css Logo',
+        src: 'img/logo.svg',
+      },
       items: [
         {
           type: 'docSidebar',
@@ -128,7 +132,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      copyright: `zudo-css. Built with Docusaurus.`,
+      copyright: `© ${new Date().getFullYear()} Takazudo. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.github,

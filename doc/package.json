@@ -5,6 +5,7 @@
   "scripts": {
     "// ── Core ─────────────────────────────────────────": "",
     "start": "pnpm run generate && docusaurus start --host css-bp.localhost --port 8811",
+    "start:ja": "pnpm run generate && docusaurus start --locale ja --host css-bp.localhost --port 8811",
     "build": "pnpm run generate && docusaurus build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",

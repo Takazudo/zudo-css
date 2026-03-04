@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "doc:start": "pnpm --dir doc start",
+    "doc:start:ja": "pnpm --dir doc start:ja",
     "doc:build": "pnpm --dir doc build",
     "doc:serve": "pnpm --dir doc serve",
     "doc:check": "pnpm --dir doc check",

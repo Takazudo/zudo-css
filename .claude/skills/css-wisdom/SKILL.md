@@ -39,6 +39,8 @@ Each entry: `file path` — brief description.
 - `layout/multi-column-layout.mdx` — CSS columns, break-inside, masonry-style layouts without JS
 - `layout/negative-margin-expand.mdx` — Full-bleed backgrounds via negative margin + matching padding
 - `layout/table-cell-width-control.mdx` — table-layout fixed, controlling column widths, overflow in cells
+- `layout/subgrid.mdx` — Align nested content across sibling grid items
+- `layout/anchor-positioning.mdx` — Pure CSS tooltips/popovers positioned to other elements
 
 ### Typography
 
@@ -82,6 +84,7 @@ Each entry: `file path` — brief description.
 - `visual-effects/blend-modes.mdx` — mix-blend-mode, background-blend-mode, isolation
 - `visual-effects/filter-effects.mdx` — drop-shadow vs box-shadow, chained filters, backdrop-filter
 - `visual-effects/css-3d-transforms.mdx` — perspective, transform-style, backface-visibility, card flips
+- `visual-effects/at-property.mdx` — Typed custom properties, animatable gradients
 
 ### Responsive
 
@@ -102,27 +105,21 @@ Each entry: `file path` — brief description.
 - `interactive/form-control-styling.mdx` — appearance, accent-color, field-sizing, caret-color
 - `interactive/overscroll-behavior.mdx` — Prevent scroll chaining in modals, sidebars, chat panels
 - `interactive/parent-state-child-styling.mdx` — Parent hover/focus/checked → child styling (Tailwind group pattern)
+- `interactive/has-selector.mdx` — Parent selection based on children, form validation styling
+- `interactive/view-transitions.mdx` — Animated page/state transitions with View Transitions API
+- `interactive/is-where-selectors.mdx` — :is() for grouping, :where() for zero-specificity resets
 
-### Modern CSS
+### Methodology
 
-- `modern-css/has-selector.mdx` — Parent selection based on children, form validation styling
-- `modern-css/cascade-layers.mdx` — @layer for specificity management, third-party CSS control
-- `modern-css/custom-properties-advanced/index.mdx` — Space toggle trick, fallback chains, computed vars
-  - `modern-css/custom-properties-advanced/pattern-catalog.mdx` — Responsive vars, calc spacing, HSL color system
-  - `modern-css/custom-properties-advanced/theming-recipes.mdx` — Light/dark theme, brand override, component API
-- `modern-css/at-property.mdx` — Typed custom properties, animatable gradients
-- `modern-css/subgrid.mdx` — Align nested content across sibling grid items
-- `modern-css/is-where-selectors.mdx` — :is() for grouping, :where() for zero-specificity resets
-- `modern-css/view-transitions.mdx` — Animated page/state transitions with View Transitions API
-- `modern-css/anchor-positioning.mdx` — Pure CSS tooltips/popovers positioned to other elements
-
-### Inbox (Strategy Guides)
-
-- `inbox/bem-strategy.mdx` — BEM naming convention for scalable, collision-free CSS
-- `inbox/tight-token-strategy/index.mdx` — Constraining Tailwind's token set for design consistency
-  - `inbox/tight-token-strategy/color-tokens.mdx` — Semantic color token patterns, palette growth naming
-  - `inbox/tight-token-strategy/typography-tokens.mdx` — Typography token strategy for Tailwind v4
-  - `inbox/tight-token-strategy/token-preview.mdx` — Visual reference of all available tokens
-  - `inbox/tight-token-strategy/component-tokens.mdx` — System tokens vs arbitrary values decision framework
-- `inbox/utility-class-strategy.mdx` — Utility-first CSS approach, when and how to apply it
-- `inbox/css-modules-strategy.mdx` — CSS Modules approach for component-scoped styles
+- `methodology/bem-strategy.mdx` — BEM naming convention for scalable, collision-free CSS
+- `methodology/tight-token-strategy/index.mdx` — Constraining Tailwind's token set for design consistency
+  - `methodology/tight-token-strategy/color-tokens.mdx` — Semantic color token patterns, palette growth naming
+  - `methodology/tight-token-strategy/typography-tokens.mdx` — Typography token strategy for Tailwind v4
+  - `methodology/tight-token-strategy/token-preview.mdx` — Visual reference of all available tokens
+  - `methodology/tight-token-strategy/component-tokens.mdx` — System tokens vs arbitrary values decision framework
+- `methodology/utility-class-strategy.mdx` — Utility-first CSS approach, when and how to apply it
+- `methodology/css-modules-strategy.mdx` — CSS Modules approach for component-scoped styles
+- `methodology/cascade-layers.mdx` — @layer for specificity management, third-party CSS control
+- `methodology/custom-properties-advanced/index.mdx` — Space toggle trick, fallback chains, computed vars
+  - `methodology/custom-properties-advanced/pattern-catalog.mdx` — Responsive vars, calc spacing, HSL color system
+  - `methodology/custom-properties-advanced/theming-recipes.mdx` — Light/dark theme, brand override, component API

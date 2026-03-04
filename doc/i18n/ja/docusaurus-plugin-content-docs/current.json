@@ -7,12 +7,12 @@
     "message": "グラデーションテクニック",
     "description": "The label for category 'Gradient Techniques' in sidebar 'visualEffectsSidebar'"
   },
-  "sidebar.modernCssSidebar.category.Advanced Custom Properties": {
+  "sidebar.methodologySidebar.category.Advanced Custom Properties": {
     "message": "カスタムプロパティ応用",
-    "description": "The label for category 'Advanced Custom Properties' in sidebar 'modernCssSidebar'"
+    "description": "The label for category 'Advanced Custom Properties' in sidebar 'methodologySidebar'"
   },
-  "sidebar.inboxSidebar.category.Tight Token Strategy": {
+  "sidebar.methodologySidebar.category.Tight Token Strategy": {
     "message": "タイトトークン戦略",
-    "description": "The label for category 'Tight Token Strategy' in sidebar 'inboxSidebar'"
+    "description": "The label for category 'Tight Token Strategy' in sidebar 'methodologySidebar'"
   }
 }

@@ -25,9 +25,7 @@ const OUTPUT_FILE = path.join(SKILL_DIR, 'SKILL.md');
 const SKIP_CATEGORIES = new Set(['overview']);
 
 // Custom category labels for the topic index heading
-const CATEGORY_LABEL_OVERRIDES = {
-  inbox: 'Inbox (Strategy Guides)',
-};
+const CATEGORY_LABEL_OVERRIDES = {};
 
 /**
  * Read _category_.json from a directory if it exists.

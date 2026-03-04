@@ -49,6 +49,7 @@ Each entry: `file path` — brief description.
 - `typography/font-loading-strategies.mdx` — FOIT/FOUT, font-display, preload, fallback metrics
 - `typography/variable-fonts.mdx` — Single file for all weights/widths, font-variation-settings
 - `typography/text-wrap-balance-pretty.mdx` — text-wrap: balance for headings, pretty for orphan prevention
+- `typography/screen-width-based-font-size.mdx` — Segmented clamp() per breakpoint for piecewise fluid typography
 - `typography/japanese-font-family.mdx` — Japanese font stack, Noto Sans JP, system fonts for CJK
 - `typography/noto-sans-webfont-guide.mdx` — Loading Noto Sans JP as webfont, subsetting, performance
 
@@ -104,10 +105,8 @@ Each entry: `file path` — brief description.
 
 ### Modern CSS
 
-- `modern-css/css-nesting.mdx` — Native nesting syntax, & selector, differences from Sass
 - `modern-css/has-selector.mdx` — Parent selection based on children, form validation styling
 - `modern-css/cascade-layers.mdx` — @layer for specificity management, third-party CSS control
-- `modern-css/css-scope.mdx` — @scope for component-level style isolation
 - `modern-css/custom-properties-advanced/index.mdx` — Space toggle trick, fallback chains, computed vars
   - `modern-css/custom-properties-advanced/pattern-catalog.mdx` — Responsive vars, calc spacing, HSL color system
   - `modern-css/custom-properties-advanced/theming-recipes.mdx` — Light/dark theme, brand override, component API
@@ -127,4 +126,3 @@ Each entry: `file path` — brief description.
   - `inbox/tight-token-strategy/component-tokens.mdx` — System tokens vs arbitrary values decision framework
 - `inbox/utility-class-strategy.mdx` — Utility-first CSS approach, when and how to apply it
 - `inbox/css-modules-strategy.mdx` — CSS Modules approach for component-scoped styles
-- `inbox/screen-width-based-font-size.mdx` — Segmented clamp() per breakpoint for piecewise fluid typography

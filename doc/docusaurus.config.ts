@@ -3,8 +3,8 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'CSS Best Practices for AI',
-  tagline: 'Curated CSS techniques that AI agents should know',
+  title: 'zudo-css',
+  tagline: 'CSS best practices documentation',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -58,7 +58,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'CSS Best Practices',
+      title: 'zudo-css',
       items: [
         {
           type: 'docSidebar',
@@ -128,7 +128,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      copyright: `CSS Best Practices for AI Agents. Built with Docusaurus.`,
+      copyright: `zudo-css. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

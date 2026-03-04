@@ -32,6 +32,8 @@ jobs:
           cache-dependency-path: doc/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm --dir doc install --frozen-lockfile
+      - name: Generate data
+        run: pnpm --dir doc run generate
       - name: Quality checks
         run: pnpm --dir doc run check
 

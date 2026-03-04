@@ -8,6 +8,7 @@ interface CssPreviewProps {
   css: string;
   title?: string;
   height?: number;
+  defaultOpen?: boolean;
 }
 
 function buildSrcdoc(html: string, css: string): string {
@@ -23,7 +24,7 @@ function buildSrcdoc(html: string, css: string): string {
 </html>`;
 }
 
-export default function CssPreview({ html, css, title, height }: CssPreviewProps): ReactNode {
+export default function CssPreview({ html, css, title, height, defaultOpen }: CssPreviewProps): ReactNode {
   const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
   return (
@@ -31,6 +32,7 @@ export default function CssPreview({ html, css, title, height }: CssPreviewProps
       title={title}
       height={height}
       srcdoc={srcdoc}
+      defaultOpen={defaultOpen}
       sandbox="allow-same-origin"
       syncDelay={0}
       codeBlocks={

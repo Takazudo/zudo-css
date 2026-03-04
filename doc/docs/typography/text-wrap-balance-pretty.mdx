@@ -302,6 +302,274 @@ blockquote {
     text-wrap: pretty;
     }`} />
 
+## CJK and Japanese Text Considerations
+
+`text-wrap: balance` and `text-wrap: pretty` were designed with alphabetic languages in mind and behave unexpectedly with Japanese and other CJK (Chinese, Japanese, Korean) text. If you apply these properties globally to headings or paragraphs, Japanese text will often render with awkward line breaks and unusually large trailing whitespace on the right side.
+
+### Why It Breaks
+
+In alphabetic languages, the browser uses spaces and punctuation to identify word boundaries when redistributing line breaks. Japanese has no spaces between words — every character position is a valid break point. When `text-wrap: balance` tries to equalize line lengths, it splits text at arbitrary character positions, producing breaks that cut through the middle of natural phrases. The result is a heading where the first line ends mid-phrase, leaving a conspicuously large gap on the right.
+
+<CssPreview
+  title="text-wrap: balance — English Works, Japanese Breaks"
+  height={380}
+  html={`<div class="lang-comparison">
+    <div class="lang-block">
+    <span class="lang-label">English</span>
+    <div class="lang-cols">
+    <div class="lang-col">
+    <span class="variant-label">Default</span>
+    <h2 class="heading heading--default" lang="en">Designing Accessible User Interfaces for Modern Web Applications</h2>
+    </div>
+    <div class="lang-col">
+    <span class="variant-label">text-wrap: balance</span>
+    <h2 class="heading heading--balanced" lang="en">Designing Accessible User Interfaces for Modern Web Applications</h2>
+    </div>
+    </div>
+    </div>
+    <div class="lang-block">
+    <span class="lang-label">日本語</span>
+    <div class="lang-cols">
+    <div class="lang-col">
+    <span class="variant-label">Default</span>
+    <h2 class="heading heading--default" lang="ja">モダンウェブ開発のためのアクセシブルなユーザーインターフェース設計</h2>
+    </div>
+    <div class="lang-col">
+    <span class="variant-label">text-wrap: balance</span>
+    <h2 class="heading heading--balanced" lang="ja">モダンウェブ開発のためのアクセシブルなユーザーインターフェース設計</h2>
+    </div>
+    </div>
+    </div>
+    </div>`}
+  css={`.lang-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    font-family: system-ui, sans-serif;
+    }
+    .lang-block {
+    background: hsl(220 20% 97%);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    }
+    .lang-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: hsl(220 50% 45%);
+    background: hsl(220 60% 92%);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.6rem;
+    }
+    .lang-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    }
+    .lang-col {
+    background: hsl(0 0% 100%);
+    border-radius: 6px;
+    padding: 0.75rem;
+    border: 1px solid hsl(220 20% 90%);
+    }
+    .variant-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: hsl(220 30% 55%);
+    margin-bottom: 0.4rem;
+    font-family: monospace;
+    }
+    .heading {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: hsl(220 20% 20%);
+    margin: 0;
+    }
+    .heading--default {
+    text-wrap: wrap;
+    }
+    .heading--balanced {
+    text-wrap: balance;
+    }`} />
+
+The Japanese balanced version often breaks at an unnatural position — for example splitting after a particle like 「の」 or 「な」 — because the browser has no awareness of Japanese word boundaries. The line break feels arbitrary, and the right margin of the first line becomes conspicuously large.
+
+### The word-break: auto-phrase Workaround
+
+Chrome 119+ introduced `word-break: auto-phrase`, which uses the [BudouX](https://github.com/google/budoux) machine learning engine to identify natural phrase boundaries (文節) in Japanese text. When combined with `text-wrap: balance`, the browser balances around those phrase boundaries instead of arbitrary character positions.
+
+```css
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  word-break: auto-phrase; /* Chrome 119+ — improves Japanese line breaks */
+}
+```
+
+<CssPreview
+  title="word-break: auto-phrase — Japanese Phrase-Aware Balancing (Chrome 119+)"
+  height={300}
+  html={`<div class="autophrse-demo">
+    <div class="autophrse-col">
+    <span class="autophrse-label">balance only</span>
+    <h2 class="heading-balance" lang="ja">パフォーマンス最適化のためのレンダリングパイプラインの理解と改善手法</h2>
+    </div>
+    <div class="autophrse-col">
+    <span class="autophrse-label">balance + auto-phrase</span>
+    <h2 class="heading-autophrase" lang="ja">パフォーマンス最適化のためのレンダリングパイプラインの理解と改善手法</h2>
+    </div>
+    </div>`}
+  css={`.autophrse-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    font-family: system-ui, sans-serif;
+    }
+    .autophrse-col {
+    background: hsl(260 20% 97%);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid hsl(260 20% 90%);
+    }
+    .autophrse-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: hsl(260 50% 45%);
+    font-family: monospace;
+    margin-bottom: 0.5rem;
+    }
+    .heading-balance {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: hsl(260 20% 20%);
+    margin: 0;
+    text-wrap: balance;
+    }
+    .heading-autophrase {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: hsl(260 20% 20%);
+    margin: 0;
+    text-wrap: balance;
+    word-break: auto-phrase;
+    }`} />
+
+Note that `word-break: auto-phrase` requires `lang="ja"` on the element or an ancestor to activate Japanese phrase detection. Without the `lang` attribute, the property has no effect. Firefox does not yet support `auto-phrase`; Safari supports it experimentally.
+
+### Locale-Scoped Fallback Pattern
+
+For Japanese or multilingual sites, the safest approach is to reset `text-wrap` for Japanese content via the `lang` attribute selector:
+
+```css
+/* Apply balance globally */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  word-break: auto-phrase; /* helps in Chrome */
+}
+
+/* Reset for Japanese where balance misbehaves without auto-phrase support */
+:is(html, [lang="ja"]) :is(h1, h2, h3) {
+  text-wrap: initial;
+}
+
+/* Re-enable balance in Chrome which supports auto-phrase */
+@supports (word-break: auto-phrase) {
+  :is(html, [lang="ja"]) :is(h1, h2, h3) {
+    text-wrap: balance;
+  }
+}
+```
+
+<CssPreview
+  title="Locale-Scoped Pattern — Reset for Japanese, Balance for English"
+  height={340}
+  html={`<div class="locale-demo">
+    <div class="locale-section">
+    <span class="locale-badge locale-badge--en">lang="en"</span>
+    <h2 class="article-heading" lang="en">Designing Accessible User Interfaces for Modern Applications</h2>
+    <p class="article-body" lang="en">Container queries let you style elements based on their parent size. This enables truly context-aware components that adapt to any layout without viewport-based media queries.</p>
+    </div>
+    <div class="locale-section">
+    <span class="locale-badge locale-badge--ja">lang="ja"</span>
+    <h2 class="article-heading" lang="ja">モダンアプリケーションのためのアクセシブルなインターフェース設計</h2>
+    <p class="article-body" lang="ja">コンテナクエリを使用すると、ビューポートではなく親要素のサイズに基づいてスタイルを適用できます。これにより、どのレイアウトにも適応できる、真にコンテキストに対応したコンポーネントが実現します。</p>
+    </div>
+    </div>`}
+  css={`.locale-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    font-family: system-ui, sans-serif;
+    }
+    .locale-section {
+    background: hsl(220 20% 97%);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    border: 1px solid hsl(220 20% 91%);
+    }
+    .locale-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    font-family: monospace;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.6rem;
+    }
+    .locale-badge--en {
+    color: hsl(200 60% 35%);
+    background: hsl(200 60% 90%);
+    }
+    .locale-badge--ja {
+    color: hsl(20 60% 35%);
+    background: hsl(20 60% 90%);
+    }
+    .article-heading {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: hsl(220 20% 20%);
+    margin: 0 0 0.5rem;
+    }
+    .article-heading[lang="en"] {
+    text-wrap: balance;
+    }
+    .article-heading[lang="ja"] {
+    text-wrap: initial;
+    word-break: auto-phrase;
+    }
+    @supports (word-break: auto-phrase) {
+    .article-heading[lang="ja"] {
+    text-wrap: balance;
+    }
+    }
+    .article-body {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: hsl(220 10% 35%);
+    margin: 0;
+    text-wrap: pretty;
+    }`} />
+
+### Summary
+
+| Property | English | Japanese |
+|---|---|---|
+| `text-wrap: balance` | Works well | Breaks at arbitrary character positions |
+| `text-wrap: pretty` | Works well | Largely harmless but orphan concept doesn't map well to CJK |
+| `word-break: auto-phrase` | No effect | Improves phrase-aware breaking (Chrome 119+ only) |
+
+**Recommendation**: For Japanese or multilingual projects, avoid applying `text-wrap: balance` to headings unconditionally. Either skip it for Japanese content, use the locale-scoped `@supports` pattern above, or accept that the improvement will only appear in Chrome.
+
 ## Browser Support
 
 - **`text-wrap: balance`** — Supported in Chrome 114+, Edge 114+, Firefox 121+, and Safari 17.5+. Widely available as of 2025.

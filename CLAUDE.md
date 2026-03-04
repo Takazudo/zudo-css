@@ -36,7 +36,7 @@ See `doc/CLAUDE.md` for detailed article-writing guidelines, component reference
 
 This repo manages zcss-specific Claude Code skills in `.claude/skills/`:
 
-- **`css-wisdom`** — Topic index of all CSS articles. Symlinked to `~/.claude/skills/css-wisdom` so it's available globally. **When adding or removing articles, update the topic index in `.claude/skills/css-wisdom/SKILL.md`.**
+- **`css-wisdom`** — Topic index of all CSS articles. Symlinked to `~/.claude/skills/css-wisdom` so it's available globally. **When adding or removing articles, run `pnpm generate:css-wisdom` to regenerate the topic index.** Add descriptions for new articles to `.claude/skills/css-wisdom/descriptions.json`.
 - **`l-handle-deep-article`** — Guide for converting flat articles into deep articles with sub-pages. Local to this repo.
 - **`l-demo-component`** — Guide for CssPreview component usage and `defaultOpen` prop conventions. Local to this repo.
 

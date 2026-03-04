@@ -224,15 +224,15 @@ Both `:is()` and `:where()` have global support exceeding 96%. They are safe for
   title=":is() — Selector Grouping"
   html={`
     <article>
-    <h1>Article Heading (h1)</h1>
-    <h2>Sub-heading (h2)</h2>
-    <p>Regular paragraph text.</p>
-    <h3>Section heading (h3)</h3>
-    <p>More paragraph text.</p>
+      <h1>Article Heading (h1)</h1>
+      <h2>Sub-heading (h2)</h2>
+      <p>Regular paragraph text.</p>
+      <h3>Section heading (h3)</h3>
+      <p>More paragraph text.</p>
     </article>
     <div class="outside">
-    <h2>Heading Outside Article</h2>
-    <p>This heading is not styled — :is(article, section) limits scope</p>
+      <h2>Heading Outside Article</h2>
+      <p>This heading is not styled — :is(article, section) limits scope</p>
     </div>
     `}
   css={`
@@ -283,8 +283,8 @@ Both `:is()` and `:where()` have global support exceeding 96%. They are safe for
   title=":where() — Zero Specificity (Easily Overridable)"
   html={`
     <div class="demo">
-    <a href="#" class="link-default">Default link (styled by :where)</a>
-    <a href="#" class="my-link">Custom link (single class overrides :where)</a>
+      <a href="#" class="link-default">Default link (styled by :where)</a>
+      <a href="#" class="my-link">Custom link (single class overrides :where)</a>
     </div>
     <p class="hint">:where(a) has zero specificity (0,0,0), so even a single .my-link class (0,1,0) wins without any !important</p>
     `}

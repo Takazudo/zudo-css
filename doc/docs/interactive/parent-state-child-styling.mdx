@@ -24,16 +24,16 @@ Together, these cover every scenario that Tailwind's `group-*` utilities handle,
   title="Card — Hover or Tab to see coordinated child changes"
   html={`
     <div class="demo">
-    <div class="card" tabindex="0">
-    <div class="card__icon">→</div>
-    <h3 class="card__title">Hover this card</h3>
-    <p class="card__desc">The icon shifts, the title changes color, and the background transitions — all from a single parent :hover and :focus-within.</p>
-    </div>
-    <div class="card" tabindex="0">
-    <div class="card__icon">→</div>
-    <h3 class="card__title">Second card</h3>
-    <p class="card__desc">Each card is independent. Hovering one does not affect the other.</p>
-    </div>
+      <div class="card" tabindex="0">
+        <div class="card__icon">→</div>
+        <h3 class="card__title">Hover this card</h3>
+        <p class="card__desc">The icon shifts, the title changes color, and the background transitions — all from a single parent :hover and :focus-within.</p>
+      </div>
+      <div class="card" tabindex="0">
+        <div class="card__icon">→</div>
+        <h3 class="card__title">Second card</h3>
+        <p class="card__desc">Each card is independent. Hovering one does not affect the other.</p>
+      </div>
     </div>
     `}
   css={`
@@ -140,11 +140,11 @@ This is what Tailwind's `group` / `group-hover:` compiles to. The parent is the 
   title="Search Bar — Click or Tab into the input"
   html={`
     <div class="demo">
-    <div class="search-bar">
-    <span class="search-bar__icon">⌕</span>
-    <input class="search-bar__input" type="text" placeholder="Search..." />
-    </div>
-    <p class="hint">Click the input or press Tab — the entire search bar highlights via :focus-within</p>
+      <div class="search-bar">
+        <span class="search-bar__icon">⌕</span>
+        <input class="search-bar__input" type="text" placeholder="Search..." />
+      </div>
+      <p class="hint">Click the input or press Tab — the entire search bar highlights via :focus-within</p>
     </div>
     `}
   css={`
@@ -225,36 +225,36 @@ This is what Tailwind's `group` / `group-hover:` compiles to. The parent is the 
   title="Option Cards — Click to select (uses :has(:checked))"
   html={`
     <div class="demo">
-    <label class="option-card">
-    <input type="radio" name="plan" value="free" class="option-card__input" />
-    <div class="option-card__content">
-    <span class="option-card__indicator"></span>
-    <div>
-    <div class="option-card__title">Free</div>
-    <div class="option-card__desc">Basic features, 1 project</div>
-    </div>
-    </div>
-    </label>
-    <label class="option-card">
-    <input type="radio" name="plan" value="pro" class="option-card__input" checked />
-    <div class="option-card__content">
-    <span class="option-card__indicator"></span>
-    <div>
-    <div class="option-card__title">Pro</div>
-    <div class="option-card__desc">Unlimited projects, priority support</div>
-    </div>
-    </div>
-    </label>
-    <label class="option-card">
-    <input type="radio" name="plan" value="team" class="option-card__input" />
-    <div class="option-card__content">
-    <span class="option-card__indicator"></span>
-    <div>
-    <div class="option-card__title">Team</div>
-    <div class="option-card__desc">Everything in Pro, plus team management</div>
-    </div>
-    </div>
-    </label>
+      <label class="option-card">
+        <input type="radio" name="plan" value="free" class="option-card__input" />
+        <div class="option-card__content">
+          <span class="option-card__indicator"></span>
+          <div>
+            <div class="option-card__title">Free</div>
+            <div class="option-card__desc">Basic features, 1 project</div>
+          </div>
+        </div>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="plan" value="pro" class="option-card__input" checked />
+        <div class="option-card__content">
+          <span class="option-card__indicator"></span>
+          <div>
+            <div class="option-card__title">Pro</div>
+            <div class="option-card__desc">Unlimited projects, priority support</div>
+          </div>
+        </div>
+      </label>
+      <label class="option-card">
+        <input type="radio" name="plan" value="team" class="option-card__input" />
+        <div class="option-card__content">
+          <span class="option-card__indicator"></span>
+          <div>
+            <div class="option-card__title">Team</div>
+            <div class="option-card__desc">Everything in Pro, plus team management</div>
+          </div>
+        </div>
+      </label>
     </div>
     `}
   css={`
@@ -357,21 +357,21 @@ For robust interactive components, layer both `:hover` and `:focus-within` so th
   title="Nav Item with Tooltip — Hover or Tab to reveal"
   html={`
     <div class="demo">
-    <nav class="nav">
-    <div class="nav-item">
-    <button class="nav-item__btn">Home</button>
-    <div class="nav-item__tooltip">Go to homepage</div>
-    </div>
-    <div class="nav-item">
-    <button class="nav-item__btn">Settings</button>
-    <div class="nav-item__tooltip">Manage your preferences</div>
-    </div>
-    <div class="nav-item">
-    <button class="nav-item__btn">Profile</button>
-    <div class="nav-item__tooltip">View your profile</div>
-    </div>
-    </nav>
-    <p class="hint">Hover or Tab to each button — the tooltip appears via :hover + :focus-within</p>
+      <nav class="nav">
+        <div class="nav-item">
+          <button class="nav-item__btn">Home</button>
+          <div class="nav-item__tooltip">Go to homepage</div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-item__btn">Settings</button>
+          <div class="nav-item__tooltip">Manage your preferences</div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-item__btn">Profile</button>
+          <div class="nav-item__tooltip">View your profile</div>
+        </div>
+      </nav>
+      <p class="hint">Hover or Tab to each button — the tooltip appears via :hover + :focus-within</p>
     </div>
     `}
   css={`
@@ -448,42 +448,42 @@ A classic pattern: show/hide content sections based on a checkbox or radio state
   title="Accordion — Click to expand sections (pure CSS)"
   html={`
     <div class="accordion">
-    <div class="accordion__item">
-    <label class="accordion__header">
-    <input type="checkbox" class="accordion__trigger" />
-    <span class="accordion__title">What is parent-state styling?</span>
-    <span class="accordion__chevron">›</span>
-    </label>
-    <div class="accordion__body">
-    <div class="accordion__body-inner">
-    <p>Parent-state styling means applying CSS to child elements based on the parent's interactive state — hover, focus, checked, etc. This is what Tailwind's group/group-hover utilities compile to.</p>
-    </div>
-    </div>
-    </div>
-    <div class="accordion__item">
-    <label class="accordion__header">
-    <input type="checkbox" class="accordion__trigger" />
-    <span class="accordion__title">Do I need JavaScript for this?</span>
-    <span class="accordion__chevron">›</span>
-    </label>
-    <div class="accordion__body">
-    <div class="accordion__body-inner">
-    <p>No. Descendant combinators with :hover, :focus-within, and :has(:checked) cover the vast majority of interactive parent-child patterns without any JavaScript.</p>
-    </div>
-    </div>
-    </div>
-    <div class="accordion__item">
-    <label class="accordion__header">
-    <input type="checkbox" class="accordion__trigger" />
-    <span class="accordion__title">What about browser support?</span>
-    <span class="accordion__chevron">›</span>
-    </label>
-    <div class="accordion__body">
-    <div class="accordion__body-inner">
-    <p>:hover and :focus-within have universal support. :has() is supported in all major browsers since December 2023 (Chrome 105+, Safari 15.4+, Firefox 121+).</p>
-    </div>
-    </div>
-    </div>
+      <div class="accordion__item">
+        <label class="accordion__header">
+          <input type="checkbox" class="accordion__trigger" />
+          <span class="accordion__title">What is parent-state styling?</span>
+          <span class="accordion__chevron">›</span>
+        </label>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p>Parent-state styling means applying CSS to child elements based on the parent's interactive state — hover, focus, checked, etc. This is what Tailwind's group/group-hover utilities compile to.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <label class="accordion__header">
+          <input type="checkbox" class="accordion__trigger" />
+          <span class="accordion__title">Do I need JavaScript for this?</span>
+          <span class="accordion__chevron">›</span>
+        </label>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p>No. Descendant combinators with :hover, :focus-within, and :has(:checked) cover the vast majority of interactive parent-child patterns without any JavaScript.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <label class="accordion__header">
+          <input type="checkbox" class="accordion__trigger" />
+          <span class="accordion__title">What about browser support?</span>
+          <span class="accordion__chevron">›</span>
+        </label>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p>:hover and :focus-within have universal support. :has() is supported in all major browsers since December 2023 (Chrome 105+, Safari 15.4+, Firefox 121+).</p>
+          </div>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -591,14 +591,14 @@ This is the CSS equivalent of Tailwind's named groups (`group/card`, `group/foot
   title="Nested Groups — Hover the card, then hover the footer link"
   html={`
     <div class="demo">
-    <div class="card">
-    <span class="card__badge">New</span>
-    <h3 class="card__title">Nested Group Demo</h3>
-    <p class="card__desc">Hover the card to highlight the badge. Then hover the footer area to see the link underline.</p>
-    <div class="card__footer">
-    <a href="#" class="card__footer-link">Read more →</a>
-    </div>
-    </div>
+      <div class="card">
+        <span class="card__badge">New</span>
+        <h3 class="card__title">Nested Group Demo</h3>
+        <p class="card__desc">Hover the card to highlight the badge. Then hover the footer area to see the link underline.</p>
+        <div class="card__footer">
+          <a href="#" class="card__footer-link">Read more →</a>
+        </div>
+      </div>
     </div>
     `}
   css={`

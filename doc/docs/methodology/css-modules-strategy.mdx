@@ -34,22 +34,22 @@ When you write a CSS Modules file, the build tool transforms each class name int
 
 <CssPreview
   title="Before and After: Class Name Transformation"
-  html={`<div class="scope">
-    <h4 class="scope__heading">What you write (authored CSS)</h4>
-    <pre class="scope__code"><code>.title { color: #1e293b; font-size: 1.5rem; }
-    .subtitle { color: #64748b; font-size: 1rem; }
-    .highlight { background: #fef08a; padding: 2px 6px; }</code></pre>
+  html={`    <div class="scope">
+      <h4 class="scope__heading">What you write (authored CSS)</h4>
+      <pre class="scope__code"><code>.title { color: #1e293b; font-size: 1.5rem; }
+          .subtitle { color: #64748b; font-size: 1rem; }
+          .highlight { background: #fef08a; padding: 2px 6px; }</code></pre>
     
-    <h4 class="scope__heading">What the browser receives (generated CSS)</h4>
-    <pre class="scope__code scope__code--generated"><code>.Card_title_x7f2a { color: #1e293b; font-size: 1.5rem; }
-    .Card_subtitle_k9m3p { color: #64748b; font-size: 1rem; }
-    .Card_highlight_q2w8r { background: #fef08a; padding: 2px 6px; }</code></pre>
+      <h4 class="scope__heading">What the browser receives (generated CSS)</h4>
+      <pre class="scope__code scope__code--generated"><code>.Card_title_x7f2a { color: #1e293b; font-size: 1.5rem; }
+          .Card_subtitle_k9m3p { color: #64748b; font-size: 1rem; }
+          .Card_highlight_q2w8r { background: #fef08a; padding: 2px 6px; }</code></pre>
     
-    <div class="scope__demo">
-    <span class="title">Title styled with scoped class</span>
-    <span class="subtitle">Subtitle with its own scoped class</span>
-    <span>Text with <span class="highlight">highlighted</span> word</span>
-    </div>
+      <div class="scope__demo">
+        <span class="title">Title styled with scoped class</span>
+        <span class="subtitle">Subtitle with its own scoped class</span>
+        <span>Text with <span class="highlight">highlighted</span> word</span>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .scope {
@@ -131,13 +131,13 @@ function Button({ variant = 'primary', children }) {
 
 <CssPreview
   title="CSS Modules: Component with Style Variants"
-  html={`<div class="button-demo">
-    <div class="button-demo__group">
-    <button class="Button_primary_x7f2a">Primary Action</button>
-    <button class="Button_secondary_k9m3p">Secondary</button>
-    <button class="Button_danger_q2w8r">Delete</button>
-    </div>
-    <p class="button-demo__note">Each class is scoped: <code>Button_primary_x7f2a</code> instead of <code>.primary</code></p>
+  html={`    <div class="button-demo">
+      <div class="button-demo__group">
+        <button class="Button_primary_x7f2a">Primary Action</button>
+        <button class="Button_secondary_k9m3p">Secondary</button>
+        <button class="Button_danger_q2w8r">Delete</button>
+      </div>
+      <p class="button-demo__note">Each class is scoped: <code>Button_primary_x7f2a</code> instead of <code>.primary</code></p>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .button-demo {
@@ -207,23 +207,23 @@ The key benefit of CSS Modules is that the same class name in different files pr
 
 <CssPreview
   title="Same Class Name, Different Components — No Collision"
-  html={`<div class="collision-demo">
-    <div class="collision-demo__panel">
-    <div class="collision-demo__label">Card component</div>
-    <div class="Card_wrapper_a1b2c">
-    <h3 class="Card_title_d4e5f">Card Title</h3>
-    <p class="Card_text_g7h8i">Card description text styled by Card.module.css</p>
-    </div>
-    <code class="collision-demo__class">.Card_title_d4e5f</code>
-    </div>
-    <div class="collision-demo__panel">
-    <div class="collision-demo__label">Modal component</div>
-    <div class="Modal_wrapper_j1k2l">
-    <h3 class="Modal_title_m3n4o">Modal Title</h3>
-    <p class="Modal_text_p5q6r">Modal description text styled by Modal.module.css</p>
-    </div>
-    <code class="collision-demo__class">.Modal_title_m3n4o</code>
-    </div>
+  html={`    <div class="collision-demo">
+      <div class="collision-demo__panel">
+        <div class="collision-demo__label">Card component</div>
+        <div class="Card_wrapper_a1b2c">
+          <h3 class="Card_title_d4e5f">Card Title</h3>
+          <p class="Card_text_g7h8i">Card description text styled by Card.module.css</p>
+        </div>
+        <code class="collision-demo__class">.Card_title_d4e5f</code>
+      </div>
+      <div class="collision-demo__panel">
+        <div class="collision-demo__label">Modal component</div>
+        <div class="Modal_wrapper_j1k2l">
+          <h3 class="Modal_title_m3n4o">Modal Title</h3>
+          <p class="Modal_text_p5q6r">Modal description text styled by Modal.module.css</p>
+        </div>
+        <code class="collision-demo__class">.Modal_title_m3n4o</code>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .collision-demo {
@@ -316,38 +316,38 @@ CSS Modules support a `composes` keyword that lets you combine classes from the 
 
 <CssPreview
   title="CSS Modules: composes for Style Reuse"
-  html={`<div class="compose-demo">
-    <div class="compose-demo__section">
-    <div class="compose-demo__label">Base style (shared.module.css)</div>
-    <pre class="compose-demo__code"><code>.baseButton {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    }</code></pre>
-    </div>
-    <div class="compose-demo__section">
-    <div class="compose-demo__label">Composed variants (Button.module.css)</div>
-    <pre class="compose-demo__code"><code>.primary {
-    composes: baseButton from './shared.module.css';
-    background: #3b82f6;
-    color: #fff;
-    }
-    .outline {
-    composes: baseButton from './shared.module.css';
-    background: transparent;
-    color: #3b82f6;
-    border: 2px solid #3b82f6;
-    }</code></pre>
-    </div>
-    <div class="compose-demo__section">
-    <div class="compose-demo__label">Result: element receives both classes</div>
-    <div class="compose-demo__buttons">
-    <button class="baseButton primary">Primary</button>
-    <button class="baseButton outline">Outline</button>
-    </div>
-    </div>
+  html={`    <div class="compose-demo">
+      <div class="compose-demo__section">
+        <div class="compose-demo__label">Base style (shared.module.css)</div>
+        <pre class="compose-demo__code"><code>.baseButton {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            }</code></pre>
+      </div>
+      <div class="compose-demo__section">
+        <div class="compose-demo__label">Composed variants (Button.module.css)</div>
+        <pre class="compose-demo__code"><code>.primary {
+            composes: baseButton from './shared.module.css';
+            background: #3b82f6;
+            color: #fff;
+            }
+            .outline {
+            composes: baseButton from './shared.module.css';
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            }</code></pre>
+      </div>
+      <div class="compose-demo__section">
+        <div class="compose-demo__label">Result: element receives both classes</div>
+        <div class="compose-demo__buttons">
+          <button class="baseButton primary">Primary</button>
+          <button class="baseButton outline">Outline</button>
+        </div>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .compose-demo {
@@ -432,24 +432,24 @@ Sometimes you need to target a class name that is not locally scoped — for exa
 
 <CssPreview
   title="CSS Modules: Local vs Global Selectors"
-  html={`<div class="global-demo">
-    <div class="global-demo__row">
-    <div class="global-demo__tag global-demo__tag--local">.container → .App_container_f3g8k</div>
-    <span class="global-demo__desc">Locally scoped (default)</span>
-    </div>
-    <div class="global-demo__row">
-    <div class="global-demo__tag global-demo__tag--global">.ReactModal__Overlay → .ReactModal__Overlay</div>
-    <span class="global-demo__desc">Global — keeps original name via :global()</span>
-    </div>
-    <div class="global-demo__row">
-    <div class="global-demo__tag global-demo__tag--mixed">.App_container_f3g8k .highlight</div>
-    <span class="global-demo__desc">Mixed — local parent, global child</span>
-    </div>
-    <div class="global-demo__example">
-    <div class="App_container_f3g8k">
-    <p>This container is scoped. The <span class="highlight">highlighted text</span> uses a global class inside it.</p>
-    </div>
-    </div>
+  html={`    <div class="global-demo">
+      <div class="global-demo__row">
+        <div class="global-demo__tag global-demo__tag--local">.container → .App_container_f3g8k</div>
+        <span class="global-demo__desc">Locally scoped (default)</span>
+      </div>
+      <div class="global-demo__row">
+        <div class="global-demo__tag global-demo__tag--global">.ReactModal__Overlay → .ReactModal__Overlay</div>
+        <span class="global-demo__desc">Global — keeps original name via :global()</span>
+      </div>
+      <div class="global-demo__row">
+        <div class="global-demo__tag global-demo__tag--mixed">.App_container_f3g8k .highlight</div>
+        <span class="global-demo__desc">Mixed — local parent, global child</span>
+      </div>
+      <div class="global-demo__example">
+        <div class="App_container_f3g8k">
+          <p>This container is scoped. The <span class="highlight">highlighted text</span> uses a global class inside it.</p>
+        </div>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .global-demo {

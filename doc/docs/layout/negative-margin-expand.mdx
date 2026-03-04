@@ -36,11 +36,11 @@ The negative margin and positive padding must always match. The background expan
   title="Negative margin expand vs normal content"
   html={`
     <div class="container">
-    <p class="normal">Normal paragraph inside padded container. Notice the gap on both sides.</p>
-    <div class="full-bleed">
-    <p>Full-bleed section. The background extends to the container edges, but the text stays aligned with the paragraph above.</p>
-    </div>
-    <p class="normal">Another normal paragraph below. Text alignment is consistent throughout.</p>
+      <p class="normal">Normal paragraph inside padded container. Notice the gap on both sides.</p>
+      <div class="full-bleed">
+        <p>Full-bleed section. The background extends to the container edges, but the text stays aligned with the paragraph above.</p>
+      </div>
+      <p class="normal">Another normal paragraph below. Text alignment is consistent throughout.</p>
     </div>
     `}
   css={`
@@ -128,13 +128,13 @@ When the container padding changes at different breakpoints, scale the break-out
   title="Responsive full-bleed with viewport switching"
   html={`
     <div class="container">
-    <h2>Article Title</h2>
-    <p>Regular content sits within the container padding.</p>
-    <div class="highlight">
-    <h3>Key Takeaway</h3>
-    <p>This highlighted section breaks out to the container edges. Try switching viewport sizes to see the responsive padding adjust.</p>
-    </div>
-    <p>Content continues aligned with the rest of the text.</p>
+      <h2>Article Title</h2>
+      <p>Regular content sits within the container padding.</p>
+      <div class="highlight">
+        <h3>Key Takeaway</h3>
+        <p>This highlighted section breaks out to the container edges. Try switching viewport sizes to see the responsive padding adjust.</p>
+      </div>
+      <p>Content continues aligned with the rest of the text.</p>
     </div>
     `}
   css={`

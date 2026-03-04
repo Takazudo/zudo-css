@@ -69,21 +69,21 @@ The key distinction: `gap` only creates space between items, never before the fi
 
 <CssPreview
   title="Flex gap vs margin Comparison"
-  html={`<div class="label">With margin (extra space on last item):</div>
+  html={`    <div class="label">With margin (extra space on last item):</div>
     <div class="row-margin">
-    <div class="tag margin-tag">CSS</div>
-    <div class="tag margin-tag">Grid</div>
-    <div class="tag margin-tag">Flexbox</div>
-    <div class="tag margin-tag">Layout</div>
+      <div class="tag margin-tag">CSS</div>
+      <div class="tag margin-tag">Grid</div>
+      <div class="tag margin-tag">Flexbox</div>
+      <div class="tag margin-tag">Layout</div>
     </div>
     <div class="note">Each item has margin-right — last item pushes container edge</div>
     
     <div class="label">With gap (clean spacing):</div>
     <div class="row-gap">
-    <div class="tag gap-tag">CSS</div>
-    <div class="tag gap-tag">Grid</div>
-    <div class="tag gap-tag">Flexbox</div>
-    <div class="tag gap-tag">Layout</div>
+      <div class="tag gap-tag">CSS</div>
+      <div class="tag gap-tag">Grid</div>
+      <div class="tag gap-tag">Flexbox</div>
+      <div class="tag gap-tag">Layout</div>
     </div>
     <div class="note">gap only adds space between items — no edge overflow</div>`}
   css={`.label {
@@ -185,13 +185,13 @@ All cards have exactly 1.5rem of space between them — horizontally and vertica
 
 <CssPreview
   title="Grid gap: Consistent Spacing"
-  html={`<div class="card-grid">
-    <div class="card">Card 1</div>
-    <div class="card">Card 2</div>
-    <div class="card">Card 3</div>
-    <div class="card">Card 4</div>
-    <div class="card">Card 5</div>
-    <div class="card">Card 6</div>
+  html={`    <div class="card-grid">
+      <div class="card">Card 1</div>
+      <div class="card">Card 2</div>
+      <div class="card">Card 3</div>
+      <div class="card">Card 4</div>
+      <div class="card">Card 5</div>
+      <div class="card">Card 6</div>
     </div>`}
   css={`.card-grid {
       display: grid;
@@ -282,20 +282,20 @@ Gap and margin serve different purposes and can be used together:
 
 <CssPreview
   title="Margin Collapse Demonstration"
-  html={`<div class="demo">
-    <div class="label">Block flow (margins collapse):</div>
-    <div class="block-flow">
-    <div class="box a">margin-bottom: 20px</div>
-    <div class="box b">margin-top: 30px</div>
-    <div class="annotation">Gap = 30px (not 50px) — margins collapsed</div>
-    </div>
+  html={`    <div class="demo">
+      <div class="label">Block flow (margins collapse):</div>
+      <div class="block-flow">
+        <div class="box a">margin-bottom: 20px</div>
+        <div class="box b">margin-top: 30px</div>
+        <div class="annotation">Gap = 30px (not 50px) — margins collapsed</div>
+      </div>
     
-    <div class="label">Flex column (margins do NOT collapse):</div>
-    <div class="flex-flow">
-    <div class="box c">margin-bottom: 20px</div>
-    <div class="box d">margin-top: 30px</div>
-    <div class="annotation">Gap = 50px — both margins apply</div>
-    </div>
+      <div class="label">Flex column (margins do NOT collapse):</div>
+      <div class="flex-flow">
+        <div class="box c">margin-bottom: 20px</div>
+        <div class="box d">margin-top: 30px</div>
+        <div class="annotation">Gap = 50px — both margins apply</div>
+      </div>
     </div>`}
   css={`.demo {
       font-family: system-ui, sans-serif;
@@ -389,14 +389,14 @@ Tailwind makes `gap` the natural choice with its `gap-*` utilities on flex and g
 
 <TailwindPreview
   title="Tailwind: Flex with gap"
-  html={`<div class="p-4">
-    <p class="text-sm font-semibold text-slate-600 mb-2">Flex with gap-2.5:</p>
-    <div class="flex gap-2.5 bg-green-50 p-2 rounded-lg">
-    <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">CSS</div>
-    <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Grid</div>
-    <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Flexbox</div>
-    <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Layout</div>
-    </div>
+  html={`    <div class="p-4">
+      <p class="text-sm font-semibold text-slate-600 mb-2">Flex with gap-2.5:</p>
+      <div class="flex gap-2.5 bg-green-50 p-2 rounded-lg">
+        <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">CSS</div>
+        <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Grid</div>
+        <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Flexbox</div>
+        <div class="bg-green-500 text-white px-4 py-2 rounded-md text-sm">Layout</div>
+      </div>
     </div>`}
   height={110} />
 
@@ -404,13 +404,13 @@ Tailwind makes `gap` the natural choice with its `gap-*` utilities on flex and g
 
 <TailwindPreview
   title="Tailwind: Grid with gap"
-  html={`<div class="grid grid-cols-3 gap-3 p-2">
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 1</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 2</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 3</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 4</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 5</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 6</div>
+  html={`    <div class="grid grid-cols-3 gap-3 p-2">
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 1</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 2</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 3</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 4</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 5</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center text-sm">Card 6</div>
     </div>`} />
 
 ## References

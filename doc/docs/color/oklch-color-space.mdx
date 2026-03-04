@@ -76,31 +76,31 @@ By fixing lightness and chroma and only rotating hue, every color has the same v
 
 <CssPreview
   title="OKLCH Uniform Lightness vs HSL Inconsistent Lightness"
-  html={`<div class="color-demo">
-    <div>
-    <h3>OKLCH — Same lightness (65%), different hues</h3>
-    <div class="swatches">
-    <div class="swatch" style="background: oklch(65% 0.2 30)"><span>Red H:30</span></div>
-    <div class="swatch" style="background: oklch(65% 0.2 90)"><span>Yellow H:90</span></div>
-    <div class="swatch" style="background: oklch(65% 0.2 150)"><span>Green H:150</span></div>
-    <div class="swatch" style="background: oklch(65% 0.2 210)"><span>Cyan H:210</span></div>
-    <div class="swatch" style="background: oklch(65% 0.2 270)"><span>Blue H:270</span></div>
-    <div class="swatch" style="background: oklch(65% 0.2 330)"><span>Magenta H:330</span></div>
-    </div>
-    <p class="note">All colors appear equally bright — perceptually uniform</p>
-    </div>
-    <div>
-    <h3>HSL — Same lightness (50%), different hues</h3>
-    <div class="swatches">
-    <div class="swatch" style="background: hsl(0, 80%, 50%)"><span>Red H:0</span></div>
-    <div class="swatch" style="background: hsl(60, 80%, 50%)"><span>Yellow H:60</span></div>
-    <div class="swatch" style="background: hsl(120, 80%, 50%)"><span>Green H:120</span></div>
-    <div class="swatch" style="background: hsl(180, 80%, 50%)"><span>Cyan H:180</span></div>
-    <div class="swatch" style="background: hsl(240, 80%, 50%)"><span>Blue H:240</span></div>
-    <div class="swatch" style="background: hsl(300, 80%, 50%)"><span>Magenta H:300</span></div>
-    </div>
-    <p class="note">Yellow appears much brighter than blue — not perceptually uniform</p>
-    </div>
+  html={`    <div class="color-demo">
+      <div>
+        <h3>OKLCH — Same lightness (65%), different hues</h3>
+        <div class="swatches">
+          <div class="swatch" style="background: oklch(65% 0.2 30)"><span>Red H:30</span></div>
+          <div class="swatch" style="background: oklch(65% 0.2 90)"><span>Yellow H:90</span></div>
+          <div class="swatch" style="background: oklch(65% 0.2 150)"><span>Green H:150</span></div>
+          <div class="swatch" style="background: oklch(65% 0.2 210)"><span>Cyan H:210</span></div>
+          <div class="swatch" style="background: oklch(65% 0.2 270)"><span>Blue H:270</span></div>
+          <div class="swatch" style="background: oklch(65% 0.2 330)"><span>Magenta H:330</span></div>
+        </div>
+        <p class="note">All colors appear equally bright — perceptually uniform</p>
+      </div>
+      <div>
+        <h3>HSL — Same lightness (50%), different hues</h3>
+        <div class="swatches">
+          <div class="swatch" style="background: hsl(0, 80%, 50%)"><span>Red H:0</span></div>
+          <div class="swatch" style="background: hsl(60, 80%, 50%)"><span>Yellow H:60</span></div>
+          <div class="swatch" style="background: hsl(120, 80%, 50%)"><span>Green H:120</span></div>
+          <div class="swatch" style="background: hsl(180, 80%, 50%)"><span>Cyan H:180</span></div>
+          <div class="swatch" style="background: hsl(240, 80%, 50%)"><span>Blue H:240</span></div>
+          <div class="swatch" style="background: hsl(300, 80%, 50%)"><span>Magenta H:300</span></div>
+        </div>
+        <p class="note">Yellow appears much brighter than blue — not perceptually uniform</p>
+      </div>
     </div>`}
   css={`.color-demo {
       padding: 1.5rem;

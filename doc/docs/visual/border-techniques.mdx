@@ -186,7 +186,7 @@ When using `border-radius` with children that have their own backgrounds, the ch
 
 <CssPreview
   title="Gradient Border with border-image"
-  html={`<div class="demo"><div class="gradient-border-straight"><p>Gradient border using border-image. Works on straight edges only — no border-radius.</p></div></div>`}
+  html={`    <div class="demo"><div class="gradient-border-straight"><p>Gradient border using border-image. Works on straight edges only — no border-radius.</p></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -213,7 +213,7 @@ When using `border-radius` with children that have their own backgrounds, the ch
 
 <CssPreview
   title="Gradient Border with background-clip (Rounded)"
-  html={`<div class="demo"><div class="gradient-border-rounded"><p>Rounded gradient border using the background-clip technique.</p></div></div>`}
+  html={`    <div class="demo"><div class="gradient-border-rounded"><p>Rounded gradient border using the background-clip technique.</p></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -243,7 +243,7 @@ When using `border-radius` with children that have their own backgrounds, the ch
 
 <CssPreview
   title="Double Border with box-shadow"
-  html={`<div class="demo"><div class="double-border"><p>Double border using box-shadow spread</p></div></div>`}
+  html={`    <div class="demo"><div class="double-border"><p>Double border using box-shadow spread</p></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -272,7 +272,7 @@ When using `border-radius` with children that have their own backgrounds, the ch
 
 <CssPreview
   title="Outline-Offset Ring Effect"
-  html={`<div class="demo"><div class="ring-box"><p>Ring effect with outline-offset</p></div></div>`}
+  html={`    <div class="demo"><div class="ring-box"><p>Ring effect with outline-offset</p></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -325,19 +325,19 @@ Tailwind provides `border-*`, `ring-*`, `outline-*`, and `divide-*` utilities fo
 
 <TailwindPreview
   title="Tailwind: Border and Ring Effects"
-  html={`<div class="flex flex-wrap gap-8 justify-center items-center min-h-[220px] bg-slate-50 p-8">
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-36 bg-white border-2 border-blue-500 rounded-xl p-4 text-center text-sm text-slate-600">border-2</div>
-    </div>
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-36 bg-white ring-2 ring-purple-500 rounded-xl p-4 text-center text-sm text-slate-600">ring-2</div>
-    </div>
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-36 bg-white ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-xl p-4 text-center text-sm text-slate-600">ring + offset</div>
-    </div>
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-36 bg-white outline outline-2 outline-offset-4 outline-pink-500 rounded-xl p-4 text-center text-sm text-slate-600">outline + offset</div>
-    </div>
+  html={`    <div class="flex flex-wrap gap-8 justify-center items-center min-h-[220px] bg-slate-50 p-8">
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-36 bg-white border-2 border-blue-500 rounded-xl p-4 text-center text-sm text-slate-600">border-2</div>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-36 bg-white ring-2 ring-purple-500 rounded-xl p-4 text-center text-sm text-slate-600">ring-2</div>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-36 bg-white ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-xl p-4 text-center text-sm text-slate-600">ring + offset</div>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-36 bg-white outline outline-2 outline-offset-4 outline-pink-500 rounded-xl p-4 text-center text-sm text-slate-600">outline + offset</div>
+      </div>
     </div>`}
   height={240} />
 
@@ -345,13 +345,13 @@ Tailwind provides `border-*`, `ring-*`, `outline-*`, and `divide-*` utilities fo
 
 <TailwindPreview
   title="Tailwind: Divide Utilities"
-  html={`<div class="flex justify-center items-center min-h-[200px] bg-slate-50 p-6">
-    <div class="w-72 bg-white rounded-xl border border-slate-200 divide-y divide-slate-200">
-    <div class="px-4 py-3 text-sm text-slate-700">First item</div>
-    <div class="px-4 py-3 text-sm text-slate-700">Second item</div>
-    <div class="px-4 py-3 text-sm text-slate-700">Third item</div>
-    <div class="px-4 py-3 text-sm text-slate-700">Fourth item</div>
-    </div>
+  html={`    <div class="flex justify-center items-center min-h-[200px] bg-slate-50 p-6">
+      <div class="w-72 bg-white rounded-xl border border-slate-200 divide-y divide-slate-200">
+        <div class="px-4 py-3 text-sm text-slate-700">First item</div>
+        <div class="px-4 py-3 text-sm text-slate-700">Second item</div>
+        <div class="px-4 py-3 text-sm text-slate-700">Third item</div>
+        <div class="px-4 py-3 text-sm text-slate-700">Fourth item</div>
+      </div>
     </div>`}
   height={220} />
 
@@ -359,13 +359,13 @@ Tailwind provides `border-*`, `ring-*`, `outline-*`, and `divide-*` utilities fo
 
 <TailwindPreview
   title="Tailwind: Focus Ring Pattern"
-  html={`<div class="flex gap-4 justify-center items-center min-h-[160px] bg-slate-100 p-6">
-    <button class="bg-blue-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-100">
-    Focused Button
-    </button>
-    <button class="bg-white text-slate-700 px-6 py-2.5 rounded-lg text-sm font-medium border border-slate-300 ring-2 ring-purple-500 ring-offset-2 ring-offset-slate-100">
-    Outlined Focus
-    </button>
+  html={`    <div class="flex gap-4 justify-center items-center min-h-[160px] bg-slate-100 p-6">
+      <button class="bg-blue-500 text-white px-6 py-2.5 rounded-lg text-sm font-medium ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-100">
+        Focused Button
+      </button>
+      <button class="bg-white text-slate-700 px-6 py-2.5 rounded-lg text-sm font-medium border border-slate-300 ring-2 ring-purple-500 ring-offset-2 ring-offset-slate-100">
+        Outlined Focus
+      </button>
     </div>`}
   height={180} />
 

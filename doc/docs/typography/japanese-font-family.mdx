@@ -95,11 +95,11 @@ font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Yu Gothic', sans-serif;
 <CssPreview
   title="Recommended Japanese Font Stack — Japanese and Latin Mixed Text"
   height={280}
-  html={`<div class="font-demo">
-    <p class="font-demo__label">font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Yu Gothic', 'Noto Sans CJK JP', sans-serif</p>
-    <p class="font-demo__ja">日本語のWebサイトにおけるフォント指定は、OSによって使用できるフォントが異なるため、複数のフォントをフォールバックとして指定する必要があります。</p>
-    <p class="font-demo__mix">Mixed text: CSS font-family for Japanese (日本語) websites in 2025.</p>
-    <p class="font-demo__en">Latin only: The quick brown fox jumps over the lazy dog. 0123456789.</p>
+  html={`    <div class="font-demo">
+      <p class="font-demo__label">font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Yu Gothic', 'Noto Sans CJK JP', sans-serif</p>
+      <p class="font-demo__ja">日本語のWebサイトにおけるフォント指定は、OSによって使用できるフォントが異なるため、複数のフォントをフォールバックとして指定する必要があります。</p>
+      <p class="font-demo__mix">Mixed text: CSS font-family for Japanese (日本語) websites in 2025.</p>
+      <p class="font-demo__en">Latin only: The quick brown fox jumps over the lazy dog. 0123456789.</p>
     </div>`}
   css={`.font-demo {
       padding: 1.5rem;
@@ -139,29 +139,29 @@ Japanese fonts ship with their own Latin glyphs. Listing a Japanese font before 
 <CssPreview
   title="Latin Font Ordering — Japanese Font First vs Latin Font First"
   height={320}
-  html={`<div class="ordering-demo">
-    <div class="ordering-demo__col ordering-demo__col--wrong">
-    <div class="ordering-demo__badge ordering-demo__badge--wrong">Wrong order</div>
-    <p class="ordering-demo__stack-label">Hiragino Sans, system-ui, sans-serif</p>
-    <p class="ordering-demo__text ordering-demo__text--wrong-order">
-    CSS font-family 2025<br>
-    ABCDEFabcdef<br>
-    0123456789<br>
-    日本語テキスト
-    </p>
-    <p class="ordering-demo__note">Latin characters rendered in Japanese font's Latin variant — wider proportions, different stroke contrast</p>
-    </div>
-    <div class="ordering-demo__col ordering-demo__col--correct">
-    <div class="ordering-demo__badge ordering-demo__badge--correct">Correct order</div>
-    <p class="ordering-demo__stack-label">system-ui, Hiragino Sans, sans-serif</p>
-    <p class="ordering-demo__text ordering-demo__text--correct-order">
-    CSS font-family 2025<br>
-    ABCDEFabcdef<br>
-    0123456789<br>
-    日本語テキスト
-    </p>
-    <p class="ordering-demo__note">Latin characters use system-ui (San Francisco / Segoe UI), Japanese uses Hiragino</p>
-    </div>
+  html={`    <div class="ordering-demo">
+      <div class="ordering-demo__col ordering-demo__col--wrong">
+        <div class="ordering-demo__badge ordering-demo__badge--wrong">Wrong order</div>
+        <p class="ordering-demo__stack-label">Hiragino Sans, system-ui, sans-serif</p>
+        <p class="ordering-demo__text ordering-demo__text--wrong-order">
+          CSS font-family 2025<br>
+          ABCDEFabcdef<br>
+          0123456789<br>
+          日本語テキスト
+        </p>
+        <p class="ordering-demo__note">Latin characters rendered in Japanese font's Latin variant — wider proportions, different stroke contrast</p>
+      </div>
+      <div class="ordering-demo__col ordering-demo__col--correct">
+        <div class="ordering-demo__badge ordering-demo__badge--correct">Correct order</div>
+        <p class="ordering-demo__stack-label">system-ui, Hiragino Sans, sans-serif</p>
+        <p class="ordering-demo__text ordering-demo__text--correct-order">
+          CSS font-family 2025<br>
+          ABCDEFabcdef<br>
+          0123456789<br>
+          日本語テキスト
+        </p>
+        <p class="ordering-demo__note">Latin characters use system-ui (San Francisco / Segoe UI), Japanese uses Hiragino</p>
+      </div>
     </div>`}
   css={`.ordering-demo {
       display: grid;
@@ -232,31 +232,31 @@ Japanese fonts support the same `font-weight` scale as Latin fonts, but behavior
 <CssPreview
   title="Font Weight Scale — Japanese Text at Different Weights"
   height={360}
-  html={`<div class="weight-demo">
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">300</span>
-    <p class="weight-demo__text" style="font-weight: 300">フォントウェイト Light — The quick brown fox jumps over the lazy dog</p>
-    </div>
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">400</span>
-    <p class="weight-demo__text" style="font-weight: 400">フォントウェイト Regular — The quick brown fox jumps over the lazy dog</p>
-    </div>
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">500</span>
-    <p class="weight-demo__text" style="font-weight: 500">フォントウェイト Medium — The quick brown fox jumps over the lazy dog</p>
-    </div>
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">600</span>
-    <p class="weight-demo__text" style="font-weight: 600">フォントウェイト SemiBold — The quick brown fox jumps over the lazy dog</p>
-    </div>
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">700</span>
-    <p class="weight-demo__text" style="font-weight: 700">フォントウェイト Bold — The quick brown fox jumps over the lazy dog</p>
-    </div>
-    <div class="weight-demo__row">
-    <span class="weight-demo__label">900</span>
-    <p class="weight-demo__text" style="font-weight: 900">フォントウェイト Black — The quick brown fox jumps over the lazy dog</p>
-    </div>
+  html={`    <div class="weight-demo">
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">300</span>
+        <p class="weight-demo__text" style="font-weight: 300">フォントウェイト Light — The quick brown fox jumps over the lazy dog</p>
+      </div>
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">400</span>
+        <p class="weight-demo__text" style="font-weight: 400">フォントウェイト Regular — The quick brown fox jumps over the lazy dog</p>
+      </div>
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">500</span>
+        <p class="weight-demo__text" style="font-weight: 500">フォントウェイト Medium — The quick brown fox jumps over the lazy dog</p>
+      </div>
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">600</span>
+        <p class="weight-demo__text" style="font-weight: 600">フォントウェイト SemiBold — The quick brown fox jumps over the lazy dog</p>
+      </div>
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">700</span>
+        <p class="weight-demo__text" style="font-weight: 700">フォントウェイト Bold — The quick brown fox jumps over the lazy dog</p>
+      </div>
+      <div class="weight-demo__row">
+        <span class="weight-demo__label">900</span>
+        <p class="weight-demo__text" style="font-weight: 900">フォントウェイト Black — The quick brown fox jumps over the lazy dog</p>
+      </div>
     </div>`}
   css={`.weight-demo {
       padding: 1rem 1.5rem;
@@ -293,21 +293,21 @@ This demo shows the difference between a comprehensive system stack and just rel
 <CssPreview
   title="Comprehensive Stack vs sans-serif Only"
   height={260}
-  html={`<div class="stack-compare">
-    <div class="stack-compare__col">
-    <div class="stack-compare__header">Recommended stack</div>
-    <p class="stack-compare__text stack-compare__text--full">
-    日本語のWebサイトでは、各OSに対応したフォントを明示的に指定することが重要です。
-    </p>
-    <p class="stack-compare__subtext">春はあけぼの。やうやう白くなりゆく山際、少し明かりて、紫だちたる雲の細くたなびきたる。</p>
-    </div>
-    <div class="stack-compare__col">
-    <div class="stack-compare__header">sans-serif only</div>
-    <p class="stack-compare__text stack-compare__text--minimal">
-    日本語のWebサイトでは、各OSに対応したフォントを明示的に指定することが重要です。
-    </p>
-    <p class="stack-compare__subtext stack-compare__subtext--minimal">春はあけぼの。やうやう白くなりゆく山際、少し明かりて、紫だちたる雲の細くたなびきたる。</p>
-    </div>
+  html={`    <div class="stack-compare">
+      <div class="stack-compare__col">
+        <div class="stack-compare__header">Recommended stack</div>
+        <p class="stack-compare__text stack-compare__text--full">
+          日本語のWebサイトでは、各OSに対応したフォントを明示的に指定することが重要です。
+        </p>
+        <p class="stack-compare__subtext">春はあけぼの。やうやう白くなりゆく山際、少し明かりて、紫だちたる雲の細くたなびきたる。</p>
+      </div>
+      <div class="stack-compare__col">
+        <div class="stack-compare__header">sans-serif only</div>
+        <p class="stack-compare__text stack-compare__text--minimal">
+          日本語のWebサイトでは、各OSに対応したフォントを明示的に指定することが重要です。
+        </p>
+        <p class="stack-compare__subtext stack-compare__subtext--minimal">春はあけぼの。やうやう白くなりゆく山際、少し明かりて、紫だちたる雲の細くたなびきたる。</p>
+      </div>
     </div>`}
   css={`.stack-compare {
       display: grid;

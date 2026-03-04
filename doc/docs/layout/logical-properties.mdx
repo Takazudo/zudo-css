@@ -45,21 +45,21 @@ In LTR, these produce identical results. In RTL, the logical version automatical
 
 <CssPreview
   title="margin-inline vs margin-left/right"
-  html={`<div class="demo">
-    <div class="label">margin-left + margin-right (physical):</div>
-    <div class="outer">
-    <div class="box physical">margin-left: 40px; margin-right: 40px</div>
-    </div>
+  html={`    <div class="demo">
+      <div class="label">margin-left + margin-right (physical):</div>
+      <div class="outer">
+        <div class="box physical">margin-left: 40px; margin-right: 40px</div>
+      </div>
     
-    <div class="label">margin-inline: 40px (logical):</div>
-    <div class="outer">
-    <div class="box logical">margin-inline: 40px</div>
-    </div>
+      <div class="label">margin-inline: 40px (logical):</div>
+      <div class="outer">
+        <div class="box logical">margin-inline: 40px</div>
+      </div>
     
-    <div class="label">margin-inline in RTL (auto-adapts):</div>
-    <div class="outer" dir="rtl">
-    <div class="box logical rtl-box">margin-inline: 40px (RTL text here)</div>
-    </div>
+      <div class="label">margin-inline in RTL (auto-adapts):</div>
+      <div class="outer" dir="rtl">
+        <div class="box logical rtl-box">margin-inline: 40px (RTL text here)</div>
+      </div>
     </div>`}
   css={`.demo {
       font-family: system-ui, sans-serif;
@@ -211,22 +211,22 @@ This positions the dropdown below its parent (`top: 100%` in LTR) and aligned to
 
 <CssPreview
   title="padding-block Usage"
-  html={`<div class="demo">
-    <div class="box">
-    <div class="inner">
-    padding-block: 2rem (top and bottom padding)
-    </div>
-    </div>
-    <div class="box inline">
-    <div class="inner">
-    padding-inline: 2rem (left and right padding)
-    </div>
-    </div>
-    <div class="box both">
-    <div class="inner">
-    padding-block: 1rem; padding-inline: 2rem
-    </div>
-    </div>
+  html={`    <div class="demo">
+      <div class="box">
+        <div class="inner">
+          padding-block: 2rem (top and bottom padding)
+        </div>
+      </div>
+      <div class="box inline">
+        <div class="inner">
+          padding-inline: 2rem (left and right padding)
+        </div>
+      </div>
+      <div class="box both">
+        <div class="inner">
+          padding-block: 1rem; padding-inline: 2rem
+        </div>
+      </div>
     </div>`}
   css={`.demo {
       display: flex;

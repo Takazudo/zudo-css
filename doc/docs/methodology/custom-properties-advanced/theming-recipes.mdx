@@ -17,16 +17,16 @@ Define your entire color palette as custom properties, then swap them all with a
   height={340}
   html={`
     <div class="theme-comparison">
-    <div class="theme-panel light-theme">
-    <h3>Light Theme</h3>
-    <p>Clean and bright for daytime reading. All colors come from custom properties.</p>
-    <button class="theme-btn">Action</button>
-    </div>
-    <div class="theme-panel dark-theme">
-    <h3>Dark Theme</h3>
-    <p>Easy on the eyes for nighttime use. Same markup, swapped properties.</p>
-    <button class="theme-btn">Action</button>
-    </div>
+      <div class="theme-panel light-theme">
+        <h3>Light Theme</h3>
+        <p>Clean and bright for daytime reading. All colors come from custom properties.</p>
+        <button class="theme-btn">Action</button>
+      </div>
+      <div class="theme-panel dark-theme">
+        <h3>Dark Theme</h3>
+        <p>Easy on the eyes for nighttime use. Same markup, swapped properties.</p>
+        <button class="theme-btn">Action</button>
+      </div>
     </div>
     `}
   css={`
@@ -105,16 +105,16 @@ Start with a default theme, then override it by wrapping components in a brand-c
   height={340}
   html={`
     <div class="brand-demo">
-    <div class="brand-card">
-    <h3>Default Brand</h3>
-    <p>Uses the base theme colors defined on :root. No overrides needed.</p>
-    <span class="brand-badge">Standard</span>
-    </div>
-    <div class="brand-override brand-card">
-    <h3>Custom Brand</h3>
-    <p>Wrapped in a brand override container — accent and surface swap instantly.</p>
-    <span class="brand-badge">Branded</span>
-    </div>
+      <div class="brand-card">
+        <h3>Default Brand</h3>
+        <p>Uses the base theme colors defined on :root. No overrides needed.</p>
+        <span class="brand-badge">Standard</span>
+      </div>
+      <div class="brand-override brand-card">
+        <h3>Custom Brand</h3>
+        <p>Wrapped in a brand override container — accent and surface swap instantly.</p>
+        <span class="brand-badge">Branded</span>
+      </div>
     </div>
     `}
   css={`
@@ -179,13 +179,13 @@ Expose a set of custom properties as a component's public styling API. Consumers
   height={250}
   html={`
     <div class="api-demo">
-    <button class="api-btn">Default</button>
-    <button class="api-btn" style="--btn-bg: hsl(160 65% 45%); --btn-radius: 999px;">Pill Green</button>
-    <button class="api-btn" style="--btn-bg: hsl(340 75% 55%); --btn-padding: 0.75rem 2.5rem;">Wide Pink</button>
-    <button class="api-btn" style="--btn-bg: hsl(35 90% 55%); --btn-color: hsl(35 40% 15%); --btn-radius: 4px;">Square Orange</button>
+      <button class="api-btn">Default</button>
+      <button class="api-btn" style="--btn-bg: hsl(160 65% 45%); --btn-radius: 999px;">Pill Green</button>
+      <button class="api-btn" style="--btn-bg: hsl(340 75% 55%); --btn-padding: 0.75rem 2.5rem;">Wide Pink</button>
+      <button class="api-btn" style="--btn-bg: hsl(35 90% 55%); --btn-color: hsl(35 40% 15%); --btn-radius: 4px;">Square Orange</button>
     </div>
     <div class="api-code">
-    <p>Each button uses the same <code>.api-btn</code> class. Visual differences come entirely from custom property overrides via inline styles.</p>
+      <p>Each button uses the same <code>.api-btn</code> class. Visual differences come entirely from custom property overrides via inline styles.</p>
     </div>
     `}
   css={`
@@ -247,29 +247,29 @@ Define three logical layers — **surface** (backgrounds), **content** (text), a
   height={320}
   html={`
     <div class="layer-page">
-    <header class="layer-header">
-    <span class="layer-logo">AppName</span>
-    <nav class="layer-nav">
-    <a href="#">Docs</a>
-    <a href="#">Blog</a>
-    <a href="#">About</a>
-    </nav>
-    </header>
-    <div class="layer-body">
-    <aside class="layer-sidebar">
-    <h4>Navigation</h4>
-    <ul>
-    <li><a href="#">Getting Started</a></li>
-    <li><a href="#">Components</a></li>
-    <li><a href="#">Theming</a></li>
-    </ul>
-    </aside>
-    <main class="layer-content">
-    <h2>Welcome</h2>
-    <p>This layout uses a surface/content/accent layer system. Every section references layer tokens instead of hard-coded colors.</p>
-    <button class="layer-action">Get Started</button>
-    </main>
-    </div>
+      <header class="layer-header">
+        <span class="layer-logo">AppName</span>
+        <nav class="layer-nav">
+          <a href="#">Docs</a>
+          <a href="#">Blog</a>
+          <a href="#">About</a>
+        </nav>
+      </header>
+      <div class="layer-body">
+        <aside class="layer-sidebar">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#">Getting Started</a></li>
+            <li><a href="#">Components</a></li>
+            <li><a href="#">Theming</a></li>
+          </ul>
+        </aside>
+        <main class="layer-content">
+          <h2>Welcome</h2>
+          <p>This layout uses a surface/content/accent layer system. Every section references layer tokens instead of hard-coded colors.</p>
+          <button class="layer-action">Get Started</button>
+        </main>
+      </div>
     </div>
     `}
   css={`

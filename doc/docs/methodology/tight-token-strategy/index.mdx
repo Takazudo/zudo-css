@@ -133,33 +133,33 @@ The following demo shows the same card layout built two ways. The left card uses
 
 <CssPreview
   title="Semantic Tokens vs Arbitrary Values"
-  html={`<div class="demo-container">
-    <div class="demo-column">
-    <div class="label">Semantic tokens</div>
-    <div class="card-semantic">
-    <div class="card-header-semantic">Article Title</div>
-    <div class="card-body-semantic">
-    Body text with consistent spacing defined by design tokens.
-    </div>
-    <div class="card-footer-semantic">
-    <span class="tag-semantic">Tag A</span>
-    <span class="tag-semantic">Tag B</span>
-    </div>
-    </div>
-    </div>
-    <div class="demo-column">
-    <div class="label">Arbitrary values</div>
-    <div class="card-arbitrary">
-    <div class="card-header-arbitrary">Article Title</div>
-    <div class="card-body-arbitrary">
-    Body text where each developer picked different padding values.
-    </div>
-    <div class="card-footer-arbitrary">
-    <span class="tag-arbitrary-a">Tag A</span>
-    <span class="tag-arbitrary-b">Tag B</span>
-    </div>
-    </div>
-    </div>
+  html={`    <div class="demo-container">
+      <div class="demo-column">
+        <div class="label">Semantic tokens</div>
+        <div class="card-semantic">
+          <div class="card-header-semantic">Article Title</div>
+          <div class="card-body-semantic">
+            Body text with consistent spacing defined by design tokens.
+          </div>
+          <div class="card-footer-semantic">
+            <span class="tag-semantic">Tag A</span>
+            <span class="tag-semantic">Tag B</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-column">
+        <div class="label">Arbitrary values</div>
+        <div class="card-arbitrary">
+          <div class="card-header-arbitrary">Article Title</div>
+          <div class="card-body-arbitrary">
+            Body text where each developer picked different padding values.
+          </div>
+          <div class="card-footer-arbitrary">
+            <span class="tag-arbitrary-a">Tag A</span>
+            <span class="tag-arbitrary-b">Tag B</span>
+          </div>
+        </div>
+      </div>
     </div>`}
   css={`/* shared */
     .demo-container {
@@ -261,33 +261,33 @@ In the "Arbitrary values" card, three different developers each picked slightly 
 
 <CssPreview
   title="Page Layout with Tight Tokens"
-  html={`<div class="page">
-    <header class="page-header">
-    <span class="logo">AppName</span>
-    <nav class="nav">
-    <a href="#">Docs</a>
-    <a href="#">Blog</a>
-    <a href="#">About</a>
-    </nav>
-    </header>
-    <main class="page-main">
-    <h1 class="page-title">Welcome</h1>
-    <p class="page-intro">This layout uses semantic spacing tokens throughout. Every value is intentional and comes from the project's tight token set.</p>
-    <div class="card-grid">
-    <div class="feature-card">
-    <div class="feature-title">Consistency</div>
-    <div class="feature-desc">Every component uses the same spacing vocabulary.</div>
-    </div>
-    <div class="feature-card">
-    <div class="feature-title">Readability</div>
-    <div class="feature-desc">Class names tell you the intent, not just the number.</div>
-    </div>
-    <div class="feature-card">
-    <div class="feature-title">Guardrails</div>
-    <div class="feature-desc">Invalid tokens cause build errors, not visual bugs.</div>
-    </div>
-    </div>
-    </main>
+  html={`    <div class="page">
+      <header class="page-header">
+        <span class="logo">AppName</span>
+        <nav class="nav">
+          <a href="#">Docs</a>
+          <a href="#">Blog</a>
+          <a href="#">About</a>
+        </nav>
+      </header>
+      <main class="page-main">
+        <h1 class="page-title">Welcome</h1>
+        <p class="page-intro">This layout uses semantic spacing tokens throughout. Every value is intentional and comes from the project's tight token set.</p>
+        <div class="card-grid">
+          <div class="feature-card">
+            <div class="feature-title">Consistency</div>
+            <div class="feature-desc">Every component uses the same spacing vocabulary.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Readability</div>
+            <div class="feature-desc">Class names tell you the intent, not just the number.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title">Guardrails</div>
+            <div class="feature-desc">Invalid tokens cause build errors, not visual bugs.</div>
+          </div>
+        </div>
+      </main>
     </div>`}
   css={`.page {
       font-family: system-ui, sans-serif;

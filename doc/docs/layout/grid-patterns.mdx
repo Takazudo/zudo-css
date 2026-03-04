@@ -48,17 +48,17 @@ When 3 items are in a container wide enough for 5 columns:
 
 <CssPreview
   title="Grid: auto-fill vs auto-fit Comparison"
-  html={`<div class="label">auto-fill (empty tracks preserved):</div>
+  html={`    <div class="label">auto-fill (empty tracks preserved):</div>
     <div class="grid-fill">
-    <div class="item">1</div>
-    <div class="item">2</div>
-    <div class="item">3</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
     </div>
     <div class="label">auto-fit (items stretch to fill):</div>
     <div class="grid-fit">
-    <div class="item fit">1</div>
-    <div class="item fit">2</div>
-    <div class="item fit">3</div>
+      <div class="item fit">1</div>
+      <div class="item fit">2</div>
+      <div class="item fit">3</div>
     </div>`}
   css={`.label {
       font-family: system-ui, sans-serif;
@@ -112,13 +112,13 @@ When 3 items are in a container wide enough for 5 columns:
 
 <CssPreview
   title="Grid: Responsive Card Grid with minmax()"
-  html={`<div class="card-grid">
-    <div class="card">Card 1</div>
-    <div class="card">Card 2</div>
-    <div class="card">Card 3</div>
-    <div class="card">Card 4</div>
-    <div class="card">Card 5</div>
-    <div class="card">Card 6</div>
+  html={`    <div class="card-grid">
+      <div class="card">Card 1</div>
+      <div class="card">Card 2</div>
+      <div class="card">Card 3</div>
+      <div class="card">Card 4</div>
+      <div class="card">Card 5</div>
+      <div class="card">Card 6</div>
     </div>`}
   css={`.card-grid {
       display: grid;
@@ -181,11 +181,11 @@ Grid areas make complex layouts readable and maintainable.
 
 <CssPreview
   title="Grid: Named Grid Areas Layout"
-  html={`<div class="page-layout">
-    <header class="header">Header</header>
-    <aside class="sidebar">Sidebar</aside>
-    <main class="main">Main Content</main>
-    <footer class="footer">Footer</footer>
+  html={`    <div class="page-layout">
+      <header class="header">Header</header>
+      <aside class="sidebar">Sidebar</aside>
+      <main class="main">Main Content</main>
+      <footer class="footer">Footer</footer>
     </div>`}
   css={`.page-layout {
       display: grid;
@@ -311,25 +311,25 @@ Tailwind provides grid utilities with responsive breakpoint prefixes. While CSS 
 
 <TailwindPreview
   title="Tailwind: Responsive Grid (resize to see reflow)"
-  html={`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2">
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 1</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 2</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 3</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 4</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 5</div>
-    <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 6</div>
+  html={`    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2">
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 1</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 2</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 3</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 4</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 5</div>
+      <div class="bg-violet-500 text-white py-5 px-4 rounded-lg text-center">Card 6</div>
     </div>`} />
 
 ### Column Spanning
 
 <TailwindPreview
   title="Tailwind: Grid with col-span"
-  html={`<div class="grid grid-cols-3 gap-3 p-2">
-    <div class="col-span-2 bg-blue-500 text-white p-4 rounded-lg text-center">Spans 2 columns</div>
-    <div class="bg-green-500 text-white p-4 rounded-lg text-center">1 col</div>
-    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
-    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
-    <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+  html={`    <div class="grid grid-cols-3 gap-3 p-2">
+      <div class="col-span-2 bg-blue-500 text-white p-4 rounded-lg text-center">Spans 2 columns</div>
+      <div class="bg-green-500 text-white p-4 rounded-lg text-center">1 col</div>
+      <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+      <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
+      <div class="bg-amber-500 text-white p-4 rounded-lg text-center">1 col</div>
     </div>`} />
 
 ## References

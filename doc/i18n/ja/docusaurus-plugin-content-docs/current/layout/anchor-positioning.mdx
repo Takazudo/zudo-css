@@ -258,16 +258,16 @@ CSS Anchor Positioningを使うと、純粋なCSSで要素を「アンカー」�
   title="CSS Anchor Positioning — ツールチップパターン"
   html={`
     <div class="demo">
-    <div class="button-row">
-    <button class="anchor-btn" style="anchor-name: --btn-anchor">Anchor Button</button>
-    <div class="tooltip" style="position-anchor: --btn-anchor">
-    I'm positioned with CSS anchor-name and position-anchor!
-    </div>
-    </div>
-    <div class="code-note">
-    <p><strong>How it works:</strong> The button declares <code>anchor-name: --btn-anchor</code>. The tooltip uses <code>position-anchor: --btn-anchor</code> and <code>position-area: top center</code> to sit above the button.</p>
-    <p><strong>Note:</strong> CSS Anchor Positioning requires Chrome 125+, Edge 125+, or Firefox 150+. If the tooltip appears below the button instead of above it, your browser may not support this feature yet.</p>
-    </div>
+      <div class="button-row">
+        <button class="anchor-btn" style="anchor-name: --btn-anchor">Anchor Button</button>
+        <div class="tooltip" style="position-anchor: --btn-anchor">
+          I'm positioned with CSS anchor-name and position-anchor!
+        </div>
+      </div>
+      <div class="code-note">
+        <p><strong>How it works:</strong> The button declares <code>anchor-name: --btn-anchor</code>. The tooltip uses <code>position-anchor: --btn-anchor</code> and <code>position-area: top center</code> to sit above the button.</p>
+        <p><strong>Note:</strong> CSS Anchor Positioning requires Chrome 125+, Edge 125+, or Firefox 150+. If the tooltip appears below the button instead of above it, your browser may not support this feature yet.</p>
+      </div>
     </div>
     `}
   css={`

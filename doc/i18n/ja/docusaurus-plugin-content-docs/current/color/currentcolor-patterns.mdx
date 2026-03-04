@@ -50,22 +50,22 @@ AIエージェントはすべてのプロパティに色値をハードコード
 
 <CssPreview
   title="currentColor — 親の色を変えるとすべてが更新される"
-  html={`<div class="cc-demo">
-    <div class="card" style="color: #4f46e5;">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
-    <h4>Indigo Component</h4>
-    <p>Border, icon, and shadow all use currentColor — they match the text automatically.</p>
-    </div>
-    <div class="card" style="color: #0d9488;">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
-    <h4>Teal Component</h4>
-    <p>Same CSS — only the parent color changed. Everything else followed via currentColor.</p>
-    </div>
-    <div class="card" style="color: #dc2626;">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
-    <h4>Red Component</h4>
-    <p>One color declaration controls text, border, icon stroke, and box shadow together.</p>
-    </div>
+  html={`    <div class="cc-demo">
+      <div class="card" style="color: #4f46e5;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <h4>Indigo Component</h4>
+        <p>Border, icon, and shadow all use currentColor — they match the text automatically.</p>
+      </div>
+      <div class="card" style="color: #0d9488;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <h4>Teal Component</h4>
+        <p>Same CSS — only the parent color changed. Everything else followed via currentColor.</p>
+      </div>
+      <div class="card" style="color: #dc2626;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg>
+        <h4>Red Component</h4>
+        <p>One color declaration controls text, border, icon stroke, and box shadow together.</p>
+      </div>
     </div>`}
   css={`.cc-demo {
       padding: 1.5rem;

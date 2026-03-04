@@ -36,8 +36,8 @@ Flexbox is a one-dimensional layout model. It excels at distributing space along
 
 <CssPreview
   title="Flexbox: Centering"
-  html={`<div class="centered-container">
-    <div class="content">Perfectly centered</div>
+  html={`    <div class="centered-container">
+      <div class="content">Perfectly centered</div>
     </div>`}
   css={`.centered-container {
       display: flex;
@@ -86,13 +86,13 @@ Flex items in a row container stretch to the same height by default via `align-i
 
 <CssPreview
   title="Flexbox: Equal Height Columns"
-  html={`<div class="columns">
-    <div class="column">Short</div>
-    <div class="column">
-    <p>Much longer content that determines the height of all columns.</p>
-    <p>All siblings match this height automatically.</p>
-    </div>
-    <div class="column">Medium content here</div>
+  html={`    <div class="columns">
+      <div class="column">Short</div>
+      <div class="column">
+        <p>Much longer content that determines the height of all columns.</p>
+        <p>All siblings match this height automatically.</p>
+      </div>
+      <div class="column">Medium content here</div>
     </div>`}
   css={`.columns {
       display: flex;
@@ -141,10 +141,10 @@ main {
 
 <CssPreview
   title="Flexbox: Sticky Footer"
-  html={`<div class="page">
-    <header class="header">Header</header>
-    <main class="main">Main content (short)</main>
-    <footer class="footer">Footer sticks to bottom</footer>
+  html={`    <div class="page">
+      <header class="header">Header</header>
+      <main class="main">Main content (short)</main>
+      <footer class="footer">Footer sticks to bottom</footer>
     </div>`}
   css={`.page {
       display: flex;
@@ -196,21 +196,21 @@ When items wrap, `justify-content: space-between` can leave awkward gaps on the 
 
 <CssPreview
   title="Flexbox: space-between Wrapping Problem vs gap Solution"
-  html={`<div class="label">space-between (broken last row):</div>
+  html={`    <div class="label">space-between (broken last row):</div>
     <div class="bad-wrap">
-    <div class="item">1</div>
-    <div class="item">2</div>
-    <div class="item">3</div>
-    <div class="item">4</div>
-    <div class="item">5</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
     </div>
     <div class="label">gap (consistent spacing):</div>
     <div class="good-wrap">
-    <div class="item good">1</div>
-    <div class="item good">2</div>
-    <div class="item good">3</div>
-    <div class="item good">4</div>
-    <div class="item good">5</div>
+      <div class="item good">1</div>
+      <div class="item good">2</div>
+      <div class="item good">3</div>
+      <div class="item good">4</div>
+      <div class="item good">5</div>
     </div>`}
   css={`.label {
       font-family: system-ui, sans-serif;
@@ -326,10 +326,10 @@ Tailwind provides utility classes for all flexbox properties. Here are the key p
 
 <TailwindPreview
   title="Tailwind: Flexbox Centering"
-  html={`<div class="flex justify-center items-center min-h-[200px] bg-slate-100 rounded-lg">
-    <div class="bg-blue-500 text-white px-8 py-4 rounded-lg text-base">
-    Perfectly centered
-    </div>
+  html={`    <div class="flex justify-center items-center min-h-[200px] bg-slate-100 rounded-lg">
+      <div class="bg-blue-500 text-white px-8 py-4 rounded-lg text-base">
+        Perfectly centered
+      </div>
     </div>`}
   height={220} />
 
@@ -337,23 +337,23 @@ Tailwind provides utility classes for all flexbox properties. Here are the key p
 
 <TailwindPreview
   title="Tailwind: Equal Height Columns"
-  html={`<div class="flex gap-3 p-3">
-    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Short</div>
-    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">
-    <p>Much longer content that determines the height of all columns.</p>
-    <p class="mt-2">All siblings match this height automatically.</p>
-    </div>
-    <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Medium content here</div>
+  html={`    <div class="flex gap-3 p-3">
+      <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Short</div>
+      <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">
+        <p>Much longer content that determines the height of all columns.</p>
+        <p class="mt-2">All siblings match this height automatically.</p>
+      </div>
+      <div class="flex-1 bg-violet-500 text-white p-4 rounded-lg">Medium content here</div>
     </div>`} />
 
 ### Sticky Footer
 
 <TailwindPreview
   title="Tailwind: Sticky Footer"
-  html={`<div class="flex flex-col min-h-[300px]">
-    <header class="bg-blue-500 text-white px-5 py-3">Header</header>
-    <main class="flex-1 p-5 bg-slate-100">Main content (short)</main>
-    <footer class="bg-green-500 text-white px-5 py-3">Footer sticks to bottom</footer>
+  html={`    <div class="flex flex-col min-h-[300px]">
+      <header class="bg-blue-500 text-white px-5 py-3">Header</header>
+      <main class="flex-1 p-5 bg-slate-100">Main content (short)</main>
+      <footer class="bg-green-500 text-white px-5 py-3">Footer sticks to bottom</footer>
     </div>`}
   height={320} />
 

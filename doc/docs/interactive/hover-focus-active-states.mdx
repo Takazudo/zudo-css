@@ -26,10 +26,10 @@ Style each interaction state with purpose, use `@media (hover: hover)` to scope 
   title="Button States — Hover and Tab to see states"
   html={`
     <div class="demo">
-    <button class="btn btn-primary">Primary Button</button>
-    <button class="btn btn-outline">Outline Button</button>
-    <a href="#" class="btn btn-link">Link Style</a>
-    <p class="hint">Hover over buttons to see hover state. Press Tab to see focus-visible ring. Click and hold to see active state.</p>
+      <button class="btn btn-primary">Primary Button</button>
+      <button class="btn btn-outline">Outline Button</button>
+      <a href="#" class="btn btn-link">Link Style</a>
+      <p class="hint">Hover over buttons to see hover state. Press Tab to see focus-visible ring. Click and hold to see active state.</p>
     </div>
     `}
   css={`
@@ -320,13 +320,13 @@ Tailwind provides `hover:`, `focus:`, `focus-visible:`, and `active:` variant pr
 
 <TailwindPreview
   title="Tailwind: Interactive State Variants"
-  html={`<div class="flex flex-wrap gap-4 items-center p-6">
-    <button class="px-5 py-2.5 rounded-md text-sm font-semibold bg-blue-500 text-white
-    hover:bg-blue-600
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
-    active:scale-95
-    transition">
-    Primary Button
+  html={`    <div class="flex flex-wrap gap-4 items-center p-6">
+      <button class="px-5 py-2.5 rounded-md text-sm font-semibold bg-blue-500 text-white
+      hover:bg-blue-600
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2
+      active:scale-95
+      transition">
+      Primary Button
     </button>
     <button class="px-5 py-2.5 rounded-md text-sm font-semibold border-2 border-blue-500 text-blue-500 bg-transparent
     hover:bg-blue-50

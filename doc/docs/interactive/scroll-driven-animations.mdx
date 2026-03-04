@@ -24,30 +24,30 @@ Both timelines use the standard `@keyframes` syntax and run on the compositor th
   height={400}
   html={`
     <div class="scroll-container">
-    <div class="intro">
-    <h2>Scroll down</h2>
-    <p>Watch elements fade and slide in as they enter the viewport</p>
-    <div class="arrow">&#8595;</div>
-    </div>
-    <div class="reveal-card" style="background: #3b82f6;">
-    <strong>Card One</strong>
-    <span>Fades in on scroll using view() timeline</span>
-    </div>
-    <div class="reveal-card" style="background: #ef4444;">
-    <strong>Card Two</strong>
-    <span>Each card animates independently</span>
-    </div>
-    <div class="reveal-card" style="background: #22c55e;">
-    <strong>Card Three</strong>
-    <span>Runs on the compositor thread — smooth 60fps</span>
-    </div>
-    <div class="reveal-card" style="background: #8b5cf6;">
-    <strong>Card Four</strong>
-    <span>No JavaScript needed</span>
-    </div>
-    <div class="spacer">
-    <p>&#8593; Scroll back up to replay</p>
-    </div>
+      <div class="intro">
+        <h2>Scroll down</h2>
+        <p>Watch elements fade and slide in as they enter the viewport</p>
+        <div class="arrow">&#8595;</div>
+      </div>
+      <div class="reveal-card" style="background: #3b82f6;">
+        <strong>Card One</strong>
+        <span>Fades in on scroll using view() timeline</span>
+      </div>
+      <div class="reveal-card" style="background: #ef4444;">
+        <strong>Card Two</strong>
+        <span>Each card animates independently</span>
+      </div>
+      <div class="reveal-card" style="background: #22c55e;">
+        <strong>Card Three</strong>
+        <span>Runs on the compositor thread — smooth 60fps</span>
+      </div>
+      <div class="reveal-card" style="background: #8b5cf6;">
+        <strong>Card Four</strong>
+        <span>No JavaScript needed</span>
+      </div>
+      <div class="spacer">
+        <p>&#8593; Scroll back up to replay</p>
+      </div>
     </div>
     `}
   css={`

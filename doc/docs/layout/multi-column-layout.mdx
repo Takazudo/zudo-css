@@ -74,11 +74,11 @@ Classic newspaper-style multi-column text using `column-count` with `column-gap`
 <CssPreview
   title="Magazine Text Layout with column-count"
   height={320}
-  html={`<article class="magazine-text">
-    <p>Multi-column layout transforms ordinary text into a polished, magazine-style reading experience. The browser automatically balances content across columns, ensuring each column is roughly the same height.</p>
-    <p>This second paragraph continues flowing into whichever column has space. Notice how the column rule provides a subtle visual separator between columns, improving readability without adding clutter.</p>
-    <p>The column-gap property controls the breathing room between columns. A wider gap improves readability for longer-form content, while a tighter gap works well for short, scannable text blocks.</p>
-    <p>Unlike CSS Grid, which places items into rows left-to-right, multi-column layout flows content top-to-bottom within each column before moving to the next. This is the natural reading pattern for newspaper and magazine articles.</p>
+  html={`    <article class="magazine-text">
+      <p>Multi-column layout transforms ordinary text into a polished, magazine-style reading experience. The browser automatically balances content across columns, ensuring each column is roughly the same height.</p>
+      <p>This second paragraph continues flowing into whichever column has space. Notice how the column rule provides a subtle visual separator between columns, improving readability without adding clutter.</p>
+      <p>The column-gap property controls the breathing room between columns. A wider gap improves readability for longer-form content, while a tighter gap works well for short, scannable text blocks.</p>
+      <p>Unlike CSS Grid, which places items into rows left-to-right, multi-column layout flows content top-to-bottom within each column before moving to the next. This is the natural reading pattern for newspaper and magazine articles.</p>
     </article>`}
   css={`.magazine-text {
       column-count: 3;
@@ -101,11 +101,11 @@ Using `column-width` without `column-count` lets the browser automatically deter
 <CssPreview
   title="Responsive Columns with column-width (resize to see)"
   height={280}
-  html={`<div class="responsive-text">
-    <p>This layout uses column-width instead of column-count. The browser calculates how many columns fit based on the container width. On a wide screen, you might see three or four columns. On a narrow screen, it may collapse to a single column.</p>
-    <p>The column-width value acts as a minimum — columns will be at least this wide. If the container has extra space, the browser distributes it evenly, making each column wider than the minimum rather than adding another column that would be too narrow.</p>
-    <p>This approach is ideal for responsive designs because the layout adapts to any container width without breakpoints. It is one of the simplest ways to create a responsive multi-column text layout in CSS.</p>
-    <p>Try resizing the preview to see the columns reflow. At narrow widths the content will be in a single column. As the width grows, additional columns appear automatically.</p>
+  html={`    <div class="responsive-text">
+      <p>This layout uses column-width instead of column-count. The browser calculates how many columns fit based on the container width. On a wide screen, you might see three or four columns. On a narrow screen, it may collapse to a single column.</p>
+      <p>The column-width value acts as a minimum — columns will be at least this wide. If the container has extra space, the browser distributes it evenly, making each column wider than the minimum rather than adding another column that would be too narrow.</p>
+      <p>This approach is ideal for responsive designs because the layout adapts to any container width without breakpoints. It is one of the simplest ways to create a responsive multi-column text layout in CSS.</p>
+      <p>Try resizing the preview to see the columns reflow. At narrow widths the content will be in a single column. As the width grows, additional columns appear automatically.</p>
     </div>`}
   css={`.responsive-text {
       column-width: 180px;
@@ -128,39 +128,39 @@ Block-level cards in a multi-column container with `break-inside: avoid` to prev
 <CssPreview
   title="Masonry Card Gallery with break-inside: avoid"
   height={420}
-  html={`<div class="masonry-gallery">
-    <div class="masonry-card masonry-card--tall">
-    <h3>Mountain Vista</h3>
-    <p>A breathtaking panoramic view of snow-capped peaks stretching across the horizon at dawn.</p>
-    </div>
-    <div class="masonry-card">
-    <h3>City Lights</h3>
-    <p>Urban skyline at dusk.</p>
-    </div>
-    <div class="masonry-card masonry-card--medium">
-    <h3>Ocean Waves</h3>
-    <p>Rolling waves crash against weathered rocks along a misty coastline.</p>
-    </div>
-    <div class="masonry-card">
-    <h3>Forest Path</h3>
-    <p>A winding trail through ancient trees.</p>
-    </div>
-    <div class="masonry-card masonry-card--tall">
-    <h3>Desert Sunset</h3>
-    <p>Golden light painting the sand dunes in warm amber tones as the sun dips below the flat horizon line.</p>
-    </div>
-    <div class="masonry-card masonry-card--medium">
-    <h3>Garden Bloom</h3>
-    <p>Spring flowers in full color fill a terraced hillside garden with vibrant hues.</p>
-    </div>
-    <div class="masonry-card">
-    <h3>Starry Night</h3>
-    <p>Clear skies reveal the milky way.</p>
-    </div>
-    <div class="masonry-card masonry-card--medium">
-    <h3>Waterfall</h3>
-    <p>Crystal-clear water cascading down moss-covered rocks into a serene pool below.</p>
-    </div>
+  html={`    <div class="masonry-gallery">
+      <div class="masonry-card masonry-card--tall">
+        <h3>Mountain Vista</h3>
+        <p>A breathtaking panoramic view of snow-capped peaks stretching across the horizon at dawn.</p>
+      </div>
+      <div class="masonry-card">
+        <h3>City Lights</h3>
+        <p>Urban skyline at dusk.</p>
+      </div>
+      <div class="masonry-card masonry-card--medium">
+        <h3>Ocean Waves</h3>
+        <p>Rolling waves crash against weathered rocks along a misty coastline.</p>
+      </div>
+      <div class="masonry-card">
+        <h3>Forest Path</h3>
+        <p>A winding trail through ancient trees.</p>
+      </div>
+      <div class="masonry-card masonry-card--tall">
+        <h3>Desert Sunset</h3>
+        <p>Golden light painting the sand dunes in warm amber tones as the sun dips below the flat horizon line.</p>
+      </div>
+      <div class="masonry-card masonry-card--medium">
+        <h3>Garden Bloom</h3>
+        <p>Spring flowers in full color fill a terraced hillside garden with vibrant hues.</p>
+      </div>
+      <div class="masonry-card">
+        <h3>Starry Night</h3>
+        <p>Clear skies reveal the milky way.</p>
+      </div>
+      <div class="masonry-card masonry-card--medium">
+        <h3>Waterfall</h3>
+        <p>Crystal-clear water cascading down moss-covered rocks into a serene pool below.</p>
+      </div>
     </div>`}
   css={`.masonry-gallery {
       column-count: 3;
@@ -203,14 +203,14 @@ Use `column-span: all` to create a full-width element that breaks out of the col
 <CssPreview
   title="Column Spanning with column-span: all"
   height={360}
-  html={`<article class="spanning-article">
-    <p>This is the opening paragraph of the article. The text flows across multiple columns in a traditional newspaper layout. Each column is balanced automatically by the browser.</p>
-    <blockquote class="pull-quote">
-    "Multi-column layout is the most underused CSS feature for long-form content."
-    </blockquote>
-    <p>After the pull-quote, the column flow resumes. The browser creates a new column context below the spanning element. Content continues to fill columns from left to right.</p>
-    <p>This technique is commonly used in magazine layouts where a key quote or image needs to break free from the column structure to create visual emphasis and break up long runs of text.</p>
-    <p>Any element can span all columns — headings, images, horizontal rules, or custom dividers. Just apply column-span: all and the element stretches across the full container width.</p>
+  html={`    <article class="spanning-article">
+      <p>This is the opening paragraph of the article. The text flows across multiple columns in a traditional newspaper layout. Each column is balanced automatically by the browser.</p>
+      <blockquote class="pull-quote">
+        "Multi-column layout is the most underused CSS feature for long-form content."
+      </blockquote>
+      <p>After the pull-quote, the column flow resumes. The browser creates a new column context below the spanning element. Content continues to fill columns from left to right.</p>
+      <p>This technique is commonly used in magazine layouts where a key quote or image needs to break free from the column structure to create visual emphasis and break up long runs of text.</p>
+      <p>Any element can span all columns — headings, images, horizontal rules, or custom dividers. Just apply column-span: all and the element stretches across the full container width.</p>
     </article>`}
   css={`.spanning-article {
       column-count: 3;
@@ -245,35 +245,35 @@ Multi-column layout and CSS Grid both create multi-column appearances, but they 
 <CssPreview
   title="Multi-Column (vertical flow) vs CSS Grid (horizontal flow)"
   height={340}
-  html={`<div class="comparison">
-    <div class="comparison-panel">
-    <h3 class="comparison-heading">Multi-Column (vertical flow)</h3>
-    <div class="column-layout">
-    <div class="numbered-item numbered-item--col">1</div>
-    <div class="numbered-item numbered-item--col">2</div>
-    <div class="numbered-item numbered-item--col">3</div>
-    <div class="numbered-item numbered-item--col">4</div>
-    <div class="numbered-item numbered-item--col">5</div>
-    <div class="numbered-item numbered-item--col">6</div>
-    <div class="numbered-item numbered-item--col">7</div>
-    <div class="numbered-item numbered-item--col">8</div>
-    <div class="numbered-item numbered-item--col">9</div>
-    </div>
-    </div>
-    <div class="comparison-panel">
-    <h3 class="comparison-heading">CSS Grid (horizontal flow)</h3>
-    <div class="grid-layout">
-    <div class="numbered-item numbered-item--grid">1</div>
-    <div class="numbered-item numbered-item--grid">2</div>
-    <div class="numbered-item numbered-item--grid">3</div>
-    <div class="numbered-item numbered-item--grid">4</div>
-    <div class="numbered-item numbered-item--grid">5</div>
-    <div class="numbered-item numbered-item--grid">6</div>
-    <div class="numbered-item numbered-item--grid">7</div>
-    <div class="numbered-item numbered-item--grid">8</div>
-    <div class="numbered-item numbered-item--grid">9</div>
-    </div>
-    </div>
+  html={`    <div class="comparison">
+      <div class="comparison-panel">
+        <h3 class="comparison-heading">Multi-Column (vertical flow)</h3>
+        <div class="column-layout">
+          <div class="numbered-item numbered-item--col">1</div>
+          <div class="numbered-item numbered-item--col">2</div>
+          <div class="numbered-item numbered-item--col">3</div>
+          <div class="numbered-item numbered-item--col">4</div>
+          <div class="numbered-item numbered-item--col">5</div>
+          <div class="numbered-item numbered-item--col">6</div>
+          <div class="numbered-item numbered-item--col">7</div>
+          <div class="numbered-item numbered-item--col">8</div>
+          <div class="numbered-item numbered-item--col">9</div>
+        </div>
+      </div>
+      <div class="comparison-panel">
+        <h3 class="comparison-heading">CSS Grid (horizontal flow)</h3>
+        <div class="grid-layout">
+          <div class="numbered-item numbered-item--grid">1</div>
+          <div class="numbered-item numbered-item--grid">2</div>
+          <div class="numbered-item numbered-item--grid">3</div>
+          <div class="numbered-item numbered-item--grid">4</div>
+          <div class="numbered-item numbered-item--grid">5</div>
+          <div class="numbered-item numbered-item--grid">6</div>
+          <div class="numbered-item numbered-item--grid">7</div>
+          <div class="numbered-item numbered-item--grid">8</div>
+          <div class="numbered-item numbered-item--grid">9</div>
+        </div>
+      </div>
     </div>`}
   css={`.comparison {
       display: flex;

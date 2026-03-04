@@ -23,24 +23,24 @@ import CssPreview from '@site/src/components/CssPreview';
   title="タッチターゲットの比較: 44px最小値 vs 小さすぎるもの"
   html={`
     <div class="demo">
-    <div class="section">
-    <h3 class="section-title good-title">&#10003; 44px targets (accessible)</h3>
-    <div class="btn-row">
-    <button class="btn btn-good">Save</button>
-    <button class="btn btn-good">Edit</button>
-    <button class="btn btn-good icon-btn-good">&#10005;</button>
-    </div>
-    <p class="size-label">min-height: 44px &middot; min-width: 44px</p>
-    </div>
-    <div class="section">
-    <h3 class="section-title bad-title">&#10007; 24px targets (too small)</h3>
-    <div class="btn-row">
-    <button class="btn btn-bad">Save</button>
-    <button class="btn btn-bad">Edit</button>
-    <button class="btn btn-bad icon-btn-bad">&#10005;</button>
-    </div>
-    <p class="size-label">height: 24px — hard to tap on mobile</p>
-    </div>
+      <div class="section">
+        <h3 class="section-title good-title">&#10003; 44px targets (accessible)</h3>
+        <div class="btn-row">
+          <button class="btn btn-good">Save</button>
+          <button class="btn btn-good">Edit</button>
+          <button class="btn btn-good icon-btn-good">&#10005;</button>
+        </div>
+        <p class="size-label">min-height: 44px &middot; min-width: 44px</p>
+      </div>
+      <div class="section">
+        <h3 class="section-title bad-title">&#10007; 24px targets (too small)</h3>
+        <div class="btn-row">
+          <button class="btn btn-bad">Save</button>
+          <button class="btn btn-bad">Edit</button>
+          <button class="btn btn-bad icon-btn-bad">&#10005;</button>
+        </div>
+        <p class="size-label">height: 24px — hard to tap on mobile</p>
+      </div>
     </div>
     `}
   css={`

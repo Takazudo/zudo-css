@@ -65,37 +65,37 @@ The color space parameter determines how the interpolation is calculated. Using 
 
 <CssPreview
   title="color-mix() — Tints, Shades, and Transparent Variants"
-  html={`<div class="mix-demo">
-    <div class="section">
-    <h3>Tints (mixing with white)</h3>
-    <div class="row">
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, white)"><span>10%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, white)"><span>25%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, white)"><span>50%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, white)"><span>75%</span></div>
-    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
-    </div>
-    </div>
-    <div class="section">
-    <h3>Shades (mixing with black)</h3>
-    <div class="row">
-    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, black); color: white"><span>75%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, black); color: white"><span>50%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, black); color: white"><span>25%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, black); color: white"><span>10%</span></div>
-    </div>
-    </div>
-    <div class="section">
-    <h3>Semi-transparent variants (mixing with transparent)</h3>
-    <div class="row checkerboard">
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, transparent)"><span>10%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, transparent)"><span>25%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, transparent)"><span>50%</span></div>
-    <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, transparent)"><span>75%</span></div>
-    <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>100%</span></div>
-    </div>
-    </div>
+  html={`    <div class="mix-demo">
+      <div class="section">
+        <h3>Tints (mixing with white)</h3>
+        <div class="row">
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, white)"><span>10%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, white)"><span>25%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, white)"><span>50%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, white)"><span>75%</span></div>
+          <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <h3>Shades (mixing with black)</h3>
+        <div class="row">
+          <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>Base</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, black); color: white"><span>75%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, black); color: white"><span>50%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, black); color: white"><span>25%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, black); color: white"><span>10%</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <h3>Semi-transparent variants (mixing with transparent)</h3>
+        <div class="row checkerboard">
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 10%, transparent)"><span>10%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 25%, transparent)"><span>25%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 50%, transparent)"><span>50%</span></div>
+          <div class="chip" style="background: color-mix(in oklch, oklch(50% 0.22 264) 75%, transparent)"><span>75%</span></div>
+          <div class="chip" style="background: oklch(50% 0.22 264); color: white"><span>100%</span></div>
+        </div>
+      </div>
     </div>`}
   css={`.mix-demo {
       padding: 1.5rem;

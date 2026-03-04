@@ -64,35 +64,35 @@ The most common pattern: shrink specific columns (image, status, actions) to fit
 <CssPreview
   title="width: 0 — Shrink Columns to Content"
   height={280}
-  html={`<table class="demo-table">
-    <thead>
-    <tr>
-    <th class="col-shrink">Avatar</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th class="col-shrink">Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/a1/40/40" alt="avatar"></td>
-    <td>Alice Johnson</td>
-    <td>Frontend developer working on the design system and component library</td>
-    <td class="col-shrink"><span class="badge badge--active">Active</span></td>
-    </tr>
-    <tr>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/b2/40/40" alt="avatar"></td>
-    <td>Bob Chen</td>
-    <td>Backend engineer focused on API performance and database optimization</td>
-    <td class="col-shrink"><span class="badge badge--away">Away</span></td>
-    </tr>
-    <tr>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/c3/40/40" alt="avatar"></td>
-    <td>Carol Martinez</td>
-    <td>Product manager coordinating the Q1 roadmap and sprint planning</td>
-    <td class="col-shrink"><span class="badge badge--active">Active</span></td>
-    </tr>
-    </tbody>
+  html={`    <table class="demo-table">
+      <thead>
+        <tr>
+          <th class="col-shrink">Avatar</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th class="col-shrink">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/a1/40/40" alt="avatar"></td>
+          <td>Alice Johnson</td>
+          <td>Frontend developer working on the design system and component library</td>
+          <td class="col-shrink"><span class="badge badge--active">Active</span></td>
+        </tr>
+        <tr>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/b2/40/40" alt="avatar"></td>
+          <td>Bob Chen</td>
+          <td>Backend engineer focused on API performance and database optimization</td>
+          <td class="col-shrink"><span class="badge badge--away">Away</span></td>
+        </tr>
+        <tr>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/c3/40/40" alt="avatar"></td>
+          <td>Carol Martinez</td>
+          <td>Product manager coordinating the Q1 roadmap and sprint planning</td>
+          <td class="col-shrink"><span class="badge badge--active">Active</span></td>
+        </tr>
+      </tbody>
     </table>`}
   css={`.demo-table {
   width: 100%;
@@ -150,35 +150,35 @@ When a column needs a guaranteed minimum width — for example, a name column th
 <CssPreview
   title="Inner div — Enforcing Minimum Column Width"
   height={300}
-  html={`<table class="demo-table">
-    <thead>
-    <tr>
-    <th class="col-min-width"><div class="cell-sizer" style="width:180px">Product</div></th>
-    <th>Description</th>
-    <th class="col-shrink">Price</th>
-    <th class="col-shrink">Image</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td class="col-min-width">Wireless Keyboard</td>
-    <td>Compact Bluetooth keyboard with backlit keys and rechargeable battery. Compatible with macOS and Windows.</td>
-    <td class="col-shrink">$79.99</td>
-    <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p1/60/40" alt="product"></td>
-    </tr>
-    <tr>
-    <td class="col-min-width">USB-C Hub</td>
-    <td>7-in-1 hub with HDMI, SD card, USB-A ports, and 100W pass-through charging for laptops.</td>
-    <td class="col-shrink">$49.99</td>
-    <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p2/60/40" alt="product"></td>
-    </tr>
-    <tr>
-    <td class="col-min-width">Noise Cancelling Headphones</td>
-    <td>Over-ear headphones with adaptive noise cancellation and 30-hour battery life.</td>
-    <td class="col-shrink">$299.99</td>
-    <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p3/60/40" alt="product"></td>
-    </tr>
-    </tbody>
+  html={`    <table class="demo-table">
+      <thead>
+        <tr>
+          <th class="col-min-width"><div class="cell-sizer" style="width:180px">Product</div></th>
+          <th>Description</th>
+          <th class="col-shrink">Price</th>
+          <th class="col-shrink">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-min-width">Wireless Keyboard</td>
+          <td>Compact Bluetooth keyboard with backlit keys and rechargeable battery. Compatible with macOS and Windows.</td>
+          <td class="col-shrink">$79.99</td>
+          <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p1/60/40" alt="product"></td>
+        </tr>
+        <tr>
+          <td class="col-min-width">USB-C Hub</td>
+          <td>7-in-1 hub with HDMI, SD card, USB-A ports, and 100W pass-through charging for laptops.</td>
+          <td class="col-shrink">$49.99</td>
+          <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p2/60/40" alt="product"></td>
+        </tr>
+        <tr>
+          <td class="col-min-width">Noise Cancelling Headphones</td>
+          <td>Over-ear headphones with adaptive noise cancellation and 30-hour battery life.</td>
+          <td class="col-shrink">$299.99</td>
+          <td class="col-shrink"><img class="product-img" src="https://picsum.photos/seed/p3/60/40" alt="product"></td>
+        </tr>
+      </tbody>
     </table>`}
   css={`.demo-table {
   width: 100%;
@@ -230,39 +230,39 @@ A realistic data table combining all techniques: a fixed-width ID column, shrink
 <CssPreview
   title="Combined — Fixed, Shrink, and Flexible Columns"
   height={310}
-  html={`<table class="demo-table">
-    <thead>
-    <tr>
-    <th class="col-min-width"><div class="cell-sizer" style="width:50px">#</div></th>
-    <th class="col-shrink">Avatar</th>
-    <th>Name</th>
-    <th>Role</th>
-    <th class="col-shrink">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td class="col-min-width cell-mono">001</td>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u1/36/36" alt="avatar"></td>
-    <td>Alice Johnson</td>
-    <td>Senior Frontend Developer — Design System Lead</td>
-    <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
-    </tr>
-    <tr>
-    <td class="col-min-width cell-mono">002</td>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u2/36/36" alt="avatar"></td>
-    <td>Bob Chen</td>
-    <td>Backend Engineer — API & Infrastructure</td>
-    <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
-    </tr>
-    <tr>
-    <td class="col-min-width cell-mono">003</td>
-    <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u3/36/36" alt="avatar"></td>
-    <td>Carol Martinez</td>
-    <td>Product Manager — Platform & Growth</td>
-    <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
-    </tr>
-    </tbody>
+  html={`    <table class="demo-table">
+      <thead>
+        <tr>
+          <th class="col-min-width"><div class="cell-sizer" style="width:50px">#</div></th>
+          <th class="col-shrink">Avatar</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th class="col-shrink">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-min-width cell-mono">001</td>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u1/36/36" alt="avatar"></td>
+          <td>Alice Johnson</td>
+          <td>Senior Frontend Developer — Design System Lead</td>
+          <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
+        </tr>
+        <tr>
+          <td class="col-min-width cell-mono">002</td>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u2/36/36" alt="avatar"></td>
+          <td>Bob Chen</td>
+          <td>Backend Engineer — API & Infrastructure</td>
+          <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
+        </tr>
+        <tr>
+          <td class="col-min-width cell-mono">003</td>
+          <td class="col-shrink"><img class="avatar" src="https://picsum.photos/seed/u3/36/36" alt="avatar"></td>
+          <td>Carol Martinez</td>
+          <td>Product Manager — Platform & Growth</td>
+          <td class="col-shrink"><button class="btn btn--edit">Edit</button> <button class="btn btn--del">Del</button></td>
+        </tr>
+      </tbody>
     </table>`}
   css={`.demo-table {
   width: 100%;
@@ -328,41 +328,41 @@ A realistic data table combining all techniques: a fixed-width ID column, shrink
 <CssPreview
   title="table-layout: fixed with &lt;col&gt; elements"
   height={260}
-  html={`<table class="fixed-table">
-    <colgroup>
-    <col style="width:60px">
-    <col style="width:200px">
-    <col>
-    <col style="width:80px">
-    </colgroup>
-    <thead>
-    <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td class="cell-mono">001</td>
-    <td>Wireless Keyboard</td>
-    <td>Compact Bluetooth keyboard with backlit keys and rechargeable battery</td>
-    <td><span class="badge badge--active">In Stock</span></td>
-    </tr>
-    <tr>
-    <td class="cell-mono">002</td>
-    <td>USB-C Hub</td>
-    <td>7-in-1 hub with HDMI and USB-A ports for laptops</td>
-    <td><span class="badge badge--away">Low</span></td>
-    </tr>
-    <tr>
-    <td class="cell-mono">003</td>
-    <td>Monitor Stand</td>
-    <td>Adjustable aluminum stand with built-in USB hub and cable management</td>
-    <td><span class="badge badge--active">In Stock</span></td>
-    </tr>
-    </tbody>
+  html={`    <table class="fixed-table">
+      <colgroup>
+        <col style="width:60px">
+        <col style="width:200px">
+        <col>
+        <col style="width:80px">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cell-mono">001</td>
+          <td>Wireless Keyboard</td>
+          <td>Compact Bluetooth keyboard with backlit keys and rechargeable battery</td>
+          <td><span class="badge badge--active">In Stock</span></td>
+        </tr>
+        <tr>
+          <td class="cell-mono">002</td>
+          <td>USB-C Hub</td>
+          <td>7-in-1 hub with HDMI and USB-A ports for laptops</td>
+          <td><span class="badge badge--away">Low</span></td>
+        </tr>
+        <tr>
+          <td class="cell-mono">003</td>
+          <td>Monitor Stand</td>
+          <td>Adjustable aluminum stand with built-in USB hub and cable management</td>
+          <td><span class="badge badge--active">In Stock</span></td>
+        </tr>
+      </tbody>
     </table>`}
   css={`.fixed-table {
   table-layout: fixed;

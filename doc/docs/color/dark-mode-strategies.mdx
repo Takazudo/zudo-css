@@ -78,25 +78,25 @@ The first argument is used in light mode, the second in dark mode. No media quer
 
 <CssPreview
   title="Light vs Dark Theme — Side-by-Side Comparison"
-  html={`<div class="theme-demo">
-    <div class="panel light-theme">
-    <h3>Light Theme</h3>
-    <div class="component">
-    <h4>Card Title</h4>
-    <p>Body text on a light surface. The primary color is adjusted for sufficient contrast on the light background.</p>
-    <button class="btn">Primary Action</button>
-    <span class="muted">Muted helper text</span>
-    </div>
-    </div>
-    <div class="panel dark-theme">
-    <h3>Dark Theme</h3>
-    <div class="component">
-    <h4>Card Title</h4>
-    <p>Body text on a dark surface. Brand colors are lighter and less saturated to reduce eye strain and maintain contrast.</p>
-    <button class="btn">Primary Action</button>
-    <span class="muted">Muted helper text</span>
-    </div>
-    </div>
+  html={`    <div class="theme-demo">
+      <div class="panel light-theme">
+        <h3>Light Theme</h3>
+        <div class="component">
+          <h4>Card Title</h4>
+          <p>Body text on a light surface. The primary color is adjusted for sufficient contrast on the light background.</p>
+          <button class="btn">Primary Action</button>
+          <span class="muted">Muted helper text</span>
+        </div>
+      </div>
+      <div class="panel dark-theme">
+        <h3>Dark Theme</h3>
+        <div class="component">
+          <h4>Card Title</h4>
+          <p>Body text on a dark surface. Brand colors are lighter and less saturated to reduce eye strain and maintain contrast.</p>
+          <button class="btn">Primary Action</button>
+          <span class="muted">Muted helper text</span>
+        </div>
+      </div>
     </div>`}
   css={`.theme-demo {
   display: grid;
@@ -322,26 +322,26 @@ Tailwind's `dark:` variant makes dark mode styling straightforward. With the `cl
 
 <TailwindPreview
   title="Tailwind: dark: Variant — Side-by-Side"
-  html={`<script>tailwind.config = { darkMode: 'class' }</script>
+  html={`    <script>tailwind.config = { darkMode: 'class' }</script>
     <div class="grid grid-cols-2">
-    <div class="p-6 bg-white">
-    <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-500 mb-4">Light Mode</h3>
-    <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
-    <h4 class="text-lg font-semibold text-gray-900 mb-2">Card Title</h4>
-    <p class="text-sm text-gray-600 mb-4">Body text on a light surface with appropriate contrast.</p>
-    <button class="bg-blue-600 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
-    <span class="text-xs text-gray-400 ml-3">Muted text</span>
-    </div>
-    </div>
-    <div class="dark p-6 bg-gray-900">
-    <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-400 mb-4">Dark Mode</h3>
-    <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
-    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Card Title</h4>
-    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">The same markup with dark: variants applied.</p>
-    <button class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
-    <span class="text-xs text-gray-400 dark:text-gray-500 ml-3">Muted text</span>
-    </div>
-    </div>
+      <div class="p-6 bg-white">
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-500 mb-4">Light Mode</h3>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Card Title</h4>
+          <p class="text-sm text-gray-600 mb-4">Body text on a light surface with appropriate contrast.</p>
+          <button class="bg-blue-600 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
+          <span class="text-xs text-gray-400 ml-3">Muted text</span>
+        </div>
+      </div>
+      <div class="dark p-6 bg-gray-900">
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-indigo-400 mb-4">Dark Mode</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Card Title</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">The same markup with dark: variants applied.</p>
+          <button class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-2 rounded-md text-sm font-semibold">Action</button>
+          <span class="text-xs text-gray-400 dark:text-gray-500 ml-3">Muted text</span>
+        </div>
+      </div>
     </div>`}
   height={280} />
 

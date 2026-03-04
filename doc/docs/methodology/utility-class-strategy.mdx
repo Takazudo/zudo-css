@@ -40,12 +40,12 @@ The traditional approach requires you to invent a class name and define every pr
 
 <CssPreview
   title="Traditional CSS Approach"
-  html={`<div class="profile-card">
-    <img class="profile-card__avatar" src="https://i.pravatar.cc/64?img=12" alt="Avatar">
-    <div class="profile-card__body">
-    <h3 class="profile-card__name">John Doe</h3>
-    <p class="profile-card__role">Developer</p>
-    </div>
+  html={`    <div class="profile-card">
+      <img class="profile-card__avatar" src="https://i.pravatar.cc/64?img=12" alt="Avatar">
+      <div class="profile-card__body">
+        <h3 class="profile-card__name">John Doe</h3>
+        <p class="profile-card__role">Developer</p>
+      </div>
     </div>`}
   css={`.profile-card {
       display: flex;
@@ -84,12 +84,12 @@ With the utility-first approach, the same result is achieved by composing single
 
 <CssPreview
   title="Utility-First Approach"
-  html={`<div class="flex gap-4 p-6 bg-white rounded-lg shadow-md">
-    <img class="w-16 h-16 rounded-full object-cover" src="https://i.pravatar.cc/64?img=12" alt="Avatar">
-    <div class="flex flex-col justify-center">
-    <h3 class="text-xl font-semibold m-0 text-slate-800">John Doe</h3>
-    <p class="text-gray-500 text-sm mt-1 mb-0">Developer</p>
-    </div>
+  html={`    <div class="flex gap-4 p-6 bg-white rounded-lg shadow-md">
+      <img class="w-16 h-16 rounded-full object-cover" src="https://i.pravatar.cc/64?img=12" alt="Avatar">
+      <div class="flex flex-col justify-center">
+        <h3 class="text-xl font-semibold m-0 text-slate-800">John Doe</h3>
+        <p class="text-gray-500 text-sm mt-1 mb-0">Developer</p>
+      </div>
     </div>`}
   css={`/* Each utility class maps to a single CSS property */
     .flex { display: flex; }
@@ -121,13 +121,13 @@ Utility frameworks use breakpoint prefixes to apply classes conditionally. A cla
 
 <CssPreview
   title="Responsive Grid with Breakpoint Prefixes"
-  html={`<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="card">Item 1</div>
-    <div class="card">Item 2</div>
-    <div class="card">Item 3</div>
-    <div class="card">Item 4</div>
-    <div class="card">Item 5</div>
-    <div class="card">Item 6</div>
+  html={`    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card">Item 1</div>
+      <div class="card">Item 2</div>
+      <div class="card">Item 3</div>
+      <div class="card">Item 4</div>
+      <div class="card">Item 5</div>
+      <div class="card">Item 6</div>
     </div>`}
   css={`* { font-family: system-ui, sans-serif; box-sizing: border-box; }
     .grid { display: grid; }
@@ -158,14 +158,14 @@ Utility frameworks handle interactive states like hover and focus through varian
 
 <CssPreview
   title="Hover and Focus State Variants"
-  html={`<div class="flex gap-4 p-4 flex-wrap">
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-    Hover me
-    </button>
-    <button class="bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-    Outline
-    </button>
-    <input class="border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded px-4 py-2 outline-none" type="text" placeholder="Focus me...">
+  html={`    <div class="flex gap-4 p-4 flex-wrap">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Hover me
+      </button>
+      <button class="bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Outline
+      </button>
+      <input class="border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded px-4 py-2 outline-none" type="text" placeholder="Focus me...">
     </div>`}
   css={`* { font-family: system-ui, sans-serif; box-sizing: border-box; }
     .flex { display: flex; }

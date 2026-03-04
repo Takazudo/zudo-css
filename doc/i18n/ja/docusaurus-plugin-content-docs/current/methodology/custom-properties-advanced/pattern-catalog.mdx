@@ -30,15 +30,15 @@ import CssPreview from '@site/src/components/CssPreview';
   height={280}
   html={`
     <div class="page">
-    <div class="container">
-    <h2>Responsive Container</h2>
-    <p>This container's padding, gap, and font size all adapt via custom properties at breakpoints. Resize the viewport toggle to see them change.</p>
-    <div class="grid">
-    <div class="card">Card A</div>
-    <div class="card">Card B</div>
-    <div class="card">Card C</div>
-    </div>
-    </div>
+      <div class="container">
+        <h2>Responsive Container</h2>
+        <p>This container's padding, gap, and font size all adapt via custom properties at breakpoints. Resize the viewport toggle to see them change.</p>
+        <div class="grid">
+          <div class="card">Card A</div>
+          <div class="card">Card B</div>
+          <div class="card">Card C</div>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -106,12 +106,12 @@ CSSカウンターは自動番号付けを生成します。カスタムプロ�
   height={320}
   html={`
     <div class="counter-demo">
-    <ol class="steps">
-    <li class="step">Define your base custom properties on the root element</li>
-    <li class="step">Create fallback chains for component-level overrides</li>
-    <li class="step">Use scoped properties for variant styling</li>
-    <li class="step">Add calc() for computed relationships between values</li>
-    </ol>
+      <ol class="steps">
+        <li class="step">Define your base custom properties on the root element</li>
+        <li class="step">Create fallback chains for component-level overrides</li>
+        <li class="step">Use scoped properties for variant styling</li>
+        <li class="step">Add calc() for computed relationships between values</li>
+      </ol>
     </div>
     `}
   css={`
@@ -169,22 +169,22 @@ CSSカウンターは自動番号付けを生成します。カスタムプロ�
   height={260}
   html={`
     <div class="card-list">
-    <div class="themed-card" style="--card-accent: hsl(250 70% 55%);">
-    <h3 class="themed-card-title">Purple Theme</h3>
-    <p class="themed-card-body">The badge below inherits from the card.</p>
-    <div class="themed-card-footer">
-    <span class="tag">Inherited Color</span>
-    <span class="tag">No Prop Drilling</span>
-    </div>
-    </div>
-    <div class="themed-card" style="--card-accent: hsl(160 70% 40%);">
-    <h3 class="themed-card-title">Teal Theme</h3>
-    <p class="themed-card-body">Same card structure, different accent.</p>
-    <div class="themed-card-footer">
-    <span class="tag">Cascade Power</span>
-    <span class="tag">Zero JS</span>
-    </div>
-    </div>
+      <div class="themed-card" style="--card-accent: hsl(250 70% 55%);">
+        <h3 class="themed-card-title">Purple Theme</h3>
+        <p class="themed-card-body">The badge below inherits from the card.</p>
+        <div class="themed-card-footer">
+          <span class="tag">Inherited Color</span>
+          <span class="tag">No Prop Drilling</span>
+        </div>
+      </div>
+      <div class="themed-card" style="--card-accent: hsl(160 70% 40%);">
+        <h3 class="themed-card-title">Teal Theme</h3>
+        <p class="themed-card-body">Same card structure, different accent.</p>
+        <div class="themed-card-footer">
+          <span class="tag">Cascade Power</span>
+          <span class="tag">Zero JS</span>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -253,37 +253,37 @@ CSSカウンターは自動番号付けを生成します。カスタムプロ�
   height={300}
   html={`
     <div class="spacing-demo">
-    <h3 class="spacing-title">Spacing Scale (base: 8px)</h3>
-    <div class="scale-row">
-    <span class="scale-label">xs (4px)</span>
-    <div class="scale-bar scale-xs"></div>
-    </div>
-    <div class="scale-row">
-    <span class="scale-label">sm (8px)</span>
-    <div class="scale-bar scale-sm"></div>
-    </div>
-    <div class="scale-row">
-    <span class="scale-label">md (16px)</span>
-    <div class="scale-bar scale-md"></div>
-    </div>
-    <div class="scale-row">
-    <span class="scale-label">lg (24px)</span>
-    <div class="scale-bar scale-lg"></div>
-    </div>
-    <div class="scale-row">
-    <span class="scale-label">xl (40px)</span>
-    <div class="scale-bar scale-xl"></div>
-    </div>
-    <div class="card-demo">
-    <div class="space-card">
-    <h4>Card using the scale</h4>
-    <p>Padding: md, gap: sm</p>
-    </div>
-    <div class="space-card">
-    <h4>Same scale, same rhythm</h4>
-    <p>Consistent spacing everywhere</p>
-    </div>
-    </div>
+      <h3 class="spacing-title">Spacing Scale (base: 8px)</h3>
+      <div class="scale-row">
+        <span class="scale-label">xs (4px)</span>
+        <div class="scale-bar scale-xs"></div>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">sm (8px)</span>
+        <div class="scale-bar scale-sm"></div>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">md (16px)</span>
+        <div class="scale-bar scale-md"></div>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">lg (24px)</span>
+        <div class="scale-bar scale-lg"></div>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">xl (40px)</span>
+        <div class="scale-bar scale-xl"></div>
+      </div>
+      <div class="card-demo">
+        <div class="space-card">
+          <h4>Card using the scale</h4>
+          <p>Padding: md, gap: sm</p>
+        </div>
+        <div class="space-card">
+          <h4>Same scale, same rhythm</h4>
+          <p>Consistent spacing everywhere</p>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -383,12 +383,12 @@ HSLコンポーネントを個別のカスタムプロパティに分離する�
   height={200}
   html={`
     <div class="color-demo">
-    <div class="button-row">
-    <button class="btn btn-primary">Primary</button>
-    <button class="btn btn-secondary">Secondary</button>
-    <button class="btn btn-accent">Accent</button>
-    </div>
-    <p class="color-hint">Hover each button — the darkened hover state is computed from the same HSL base using calc()</p>
+      <div class="button-row">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-accent">Accent</button>
+      </div>
+      <p class="color-hint">Hover each button — the darkened hover state is computed from the same HSL base using calc()</p>
     </div>
     `}
   css={`

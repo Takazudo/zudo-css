@@ -18,21 +18,21 @@ Responsive images require both CSS techniques (`object-fit`, `aspect-ratio`) for
   title="object-fit Comparison: cover vs contain vs fill"
   html={`
     <div class="fit-grid">
-    <div class="fit-item">
-    <div class="fit-label">cover</div>
-    <div class="fit-image fit-cover"></div>
-    <p class="fit-desc">Fills the box, cropping to maintain ratio</p>
-    </div>
-    <div class="fit-item">
-    <div class="fit-label">contain</div>
-    <div class="fit-image fit-contain"></div>
-    <p class="fit-desc">Fits entirely inside, letterboxing if needed</p>
-    </div>
-    <div class="fit-item">
-    <div class="fit-label">fill</div>
-    <div class="fit-image fit-fill"></div>
-    <p class="fit-desc">Stretches to fill — distorts the image</p>
-    </div>
+      <div class="fit-item">
+        <div class="fit-label">cover</div>
+        <div class="fit-image fit-cover"></div>
+        <p class="fit-desc">Fills the box, cropping to maintain ratio</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-label">contain</div>
+        <div class="fit-image fit-contain"></div>
+        <p class="fit-desc">Fits entirely inside, letterboxing if needed</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-label">fill</div>
+        <div class="fit-image fit-fill"></div>
+        <p class="fit-desc">Stretches to fill — distorts the image</p>
+      </div>
     </div>
     `}
   css={`

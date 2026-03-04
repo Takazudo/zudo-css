@@ -24,22 +24,22 @@ Transition only **cheap properties** (`transform`, `opacity`) whenever possible,
   title="Transition Comparison — Hover to see smooth vs janky"
   html={`
     <div class="demo">
-    <div class="demo-col">
-    <div class="card card-good">
-    <div class="card-icon">&#10003;</div>
-    <strong>transform + opacity</strong>
-    <span class="card-sub">Compositor-only (smooth)</span>
-    </div>
-    <p class="label">Hover me</p>
-    </div>
-    <div class="demo-col">
-    <div class="card card-bad">
-    <div class="card-icon">&#10007;</div>
-    <strong>width + box-shadow</strong>
-    <span class="card-sub">Layout-triggering (janky)</span>
-    </div>
-    <p class="label">Hover me</p>
-    </div>
+      <div class="demo-col">
+        <div class="card card-good">
+          <div class="card-icon">&#10003;</div>
+          <strong>transform + opacity</strong>
+          <span class="card-sub">Compositor-only (smooth)</span>
+        </div>
+        <p class="label">Hover me</p>
+      </div>
+      <div class="demo-col">
+        <div class="card card-bad">
+          <div class="card-icon">&#10007;</div>
+          <strong>width + box-shadow</strong>
+          <span class="card-sub">Layout-triggering (janky)</span>
+        </div>
+        <p class="label">Hover me</p>
+      </div>
     </div>
     `}
   css={`

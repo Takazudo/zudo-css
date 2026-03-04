@@ -52,35 +52,35 @@ WCAG（Web Content Accessibility Guidelines）は、前景色と背景色の間�
 
 <CssPreview
   title="良いコントラスト vs 悪いコントラスト"
-  html={`<div class="contrast-demo">
-    <div class="example pass">
-    <span class="badge good">PASS AA</span>
-    <div class="text-sample" style="color: oklch(25% 0.02 264); background: oklch(98% 0.005 264);">
-    <strong>Dark text on light background</strong><br/>
-    This text has a contrast ratio of approximately 15:1 — well above the WCAG AA minimum of 4.5:1.
-    </div>
-    </div>
-    <div class="example pass">
-    <span class="badge good">PASS AA</span>
-    <div class="text-sample" style="color: oklch(90% 0.01 264); background: oklch(18% 0.015 264);">
-    <strong>Light text on dark background</strong><br/>
-    This text has a contrast ratio of approximately 11:1 — excellent readability on dark surfaces.
-    </div>
-    </div>
-    <div class="example fail">
-    <span class="badge bad">FAIL AA</span>
-    <div class="text-sample" style="color: oklch(70% 0 0); background: white;">
-    <strong>Light gray on white</strong><br/>
-    This text has a contrast ratio of approximately 2.6:1 — fails WCAG AA. Hard to read, especially for users with low vision.
-    </div>
-    </div>
-    <div class="example fail">
-    <span class="badge bad">FAIL AA</span>
-    <div class="text-sample" style="color: oklch(75% 0.1 90); background: oklch(95% 0.03 90);">
-    <strong>Low contrast colored text</strong><br/>
-    Yellow-toned text on a light yellow background — fails contrast requirements despite looking "colorful."
-    </div>
-    </div>
+  html={`    <div class="contrast-demo">
+      <div class="example pass">
+        <span class="badge good">PASS AA</span>
+        <div class="text-sample" style="color: oklch(25% 0.02 264); background: oklch(98% 0.005 264);">
+          <strong>Dark text on light background</strong><br/>
+          This text has a contrast ratio of approximately 15:1 — well above the WCAG AA minimum of 4.5:1.
+        </div>
+      </div>
+      <div class="example pass">
+        <span class="badge good">PASS AA</span>
+        <div class="text-sample" style="color: oklch(90% 0.01 264); background: oklch(18% 0.015 264);">
+          <strong>Light text on dark background</strong><br/>
+          This text has a contrast ratio of approximately 11:1 — excellent readability on dark surfaces.
+        </div>
+      </div>
+      <div class="example fail">
+        <span class="badge bad">FAIL AA</span>
+        <div class="text-sample" style="color: oklch(70% 0 0); background: white;">
+          <strong>Light gray on white</strong><br/>
+          This text has a contrast ratio of approximately 2.6:1 — fails WCAG AA. Hard to read, especially for users with low vision.
+        </div>
+      </div>
+      <div class="example fail">
+        <span class="badge bad">FAIL AA</span>
+        <div class="text-sample" style="color: oklch(75% 0.1 90); background: oklch(95% 0.03 90);">
+          <strong>Low contrast colored text</strong><br/>
+          Yellow-toned text on a light yellow background — fails contrast requirements despite looking "colorful."
+        </div>
+      </div>
     </div>`}
   css={`.contrast-demo {
       padding: 1.5rem;

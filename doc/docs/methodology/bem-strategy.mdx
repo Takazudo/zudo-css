@@ -72,23 +72,23 @@ A complete card component using BEM naming. The featured modifier changes the ca
 
 <CssPreview
   title="BEM: Card Component"
-  html={`<div class="card-grid">
-    <div class="card">
-    <img class="card__image" src="https://picsum.photos/seed/bem1/400/200" alt="Standard card">
-    <div class="card__body">
-    <h3 class="card__title">Standard Card</h3>
-    <p class="card__text">This is a regular card using BEM naming. Each class clearly shows its role within the component.</p>
-    <a class="card__link" href="#">Read more</a>
-    </div>
-    </div>
-    <div class="card card--featured">
-    <img class="card__image" src="https://picsum.photos/seed/bem2/400/200" alt="Featured card">
-    <div class="card__body">
-    <h3 class="card__title">Featured Card</h3>
-    <p class="card__text">This card uses the --featured modifier. The modifier class is added alongside the base block class.</p>
-    <a class="card__link card__link--primary" href="#">Read more</a>
-    </div>
-    </div>
+  html={`    <div class="card-grid">
+      <div class="card">
+        <img class="card__image" src="https://picsum.photos/seed/bem1/400/200" alt="Standard card">
+        <div class="card__body">
+          <h3 class="card__title">Standard Card</h3>
+          <p class="card__text">This is a regular card using BEM naming. Each class clearly shows its role within the component.</p>
+          <a class="card__link" href="#">Read more</a>
+        </div>
+      </div>
+      <div class="card card--featured">
+        <img class="card__image" src="https://picsum.photos/seed/bem2/400/200" alt="Featured card">
+        <div class="card__body">
+          <h3 class="card__title">Featured Card</h3>
+          <p class="card__text">This card uses the --featured modifier. The modifier class is added alongside the base block class.</p>
+          <a class="card__link card__link--primary" href="#">Read more</a>
+        </div>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .card-grid {
@@ -156,11 +156,11 @@ A nav component where the active state is expressed as a modifier, not a separat
 
 <CssPreview
   title="BEM: Navigation Component"
-  html={`<nav class="nav">
-    <a class="nav__item nav__item--active" href="#">Home</a>
-    <a class="nav__item" href="#">About</a>
-    <a class="nav__item" href="#">Services</a>
-    <a class="nav__item" href="#">Contact</a>
+  html={`    <nav class="nav">
+      <a class="nav__item nav__item--active" href="#">Home</a>
+      <a class="nav__item" href="#">About</a>
+      <a class="nav__item" href="#">Services</a>
+      <a class="nav__item" href="#">Contact</a>
     </nav>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .nav {
@@ -199,17 +199,17 @@ A form using BEM with an error state modifier on the input. The error styling is
 
 <CssPreview
   title="BEM: Form Component"
-  html={`<form class="form">
-    <div class="form__group">
-    <label class="form__label" for="email">Email</label>
-    <input class="form__input" type="email" id="email" placeholder="you@example.com">
-    </div>
-    <div class="form__group">
-    <label class="form__label" for="password">Password</label>
-    <input class="form__input form__input--error" type="password" id="password" placeholder="Enter password">
-    <span class="form__error">Required field</span>
-    </div>
-    <button class="form__submit" type="button">Submit</button>
+  html={`    <form class="form">
+      <div class="form__group">
+        <label class="form__label" for="email">Email</label>
+        <input class="form__input" type="email" id="email" placeholder="you@example.com">
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="password">Password</label>
+        <input class="form__input form__input--error" type="password" id="password" placeholder="Enter password">
+        <span class="form__error">Required field</span>
+      </div>
+      <button class="form__submit" type="button">Submit</button>
     </form>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .form {
@@ -341,26 +341,26 @@ CSS nesting (now supported in all major browsers) makes BEM even more ergonomic.
 
 <CssPreview
   title="BEM with CSS Nesting"
-  html={`<div class="alert">
-    <span class="alert__icon">ℹ️</span>
-    <div class="alert__content">
-    <strong class="alert__title">Information</strong>
-    <p class="alert__text">This is a standard alert message.</p>
-    </div>
+  html={`    <div class="alert">
+      <span class="alert__icon">ℹ️</span>
+      <div class="alert__content">
+        <strong class="alert__title">Information</strong>
+        <p class="alert__text">This is a standard alert message.</p>
+      </div>
     </div>
     <div class="alert alert--warning">
-    <span class="alert__icon">⚠️</span>
-    <div class="alert__content">
-    <strong class="alert__title">Warning</strong>
-    <p class="alert__text">Something needs your attention.</p>
-    </div>
+      <span class="alert__icon">⚠️</span>
+      <div class="alert__content">
+        <strong class="alert__title">Warning</strong>
+        <p class="alert__text">Something needs your attention.</p>
+      </div>
     </div>
     <div class="alert alert--success">
-    <span class="alert__icon">✅</span>
-    <div class="alert__content">
-    <strong class="alert__title">Success</strong>
-    <p class="alert__text">Operation completed successfully.</p>
-    </div>
+      <span class="alert__icon">✅</span>
+      <div class="alert__content">
+        <strong class="alert__title">Success</strong>
+        <p class="alert__text">Operation completed successfully.</p>
+      </div>
     </div>`}
   css={`* { box-sizing: border-box; margin: 0; }
     .alert {

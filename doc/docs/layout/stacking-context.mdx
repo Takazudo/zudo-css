@@ -64,12 +64,12 @@ In this example, `.dropdown` has `z-index: 99999` but still renders behind `.mai
 
 <CssPreview
   title="Stacking Context: z-index Bug (Broken)"
-  html={`<div class="container">
-    <div class="sidebar">
-    <div class="sidebar-label">Sidebar (z-index: 1)</div>
-    <div class="dropdown">Dropdown z-index: 99999 — trapped behind main!</div>
-    </div>
-    <div class="main-content">Main Content (z-index: 2) — covers dropdown</div>
+  html={`    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar-label">Sidebar (z-index: 1)</div>
+        <div class="dropdown">Dropdown z-index: 99999 — trapped behind main!</div>
+      </div>
+      <div class="main-content">Main Content (z-index: 2) — covers dropdown</div>
     </div>`}
   css={`.container {
       position: relative;
@@ -134,12 +134,12 @@ In this example, `.dropdown` has `z-index: 99999` but still renders behind `.mai
 
 <CssPreview
   title="Stacking Context: z-index Bug (Fixed)"
-  html={`<div class="container">
-    <div class="sidebar">
-    <div class="sidebar-label">Sidebar (no z-index)</div>
-    <div class="dropdown">Dropdown z-index: 10 — now appears on top!</div>
-    </div>
-    <div class="main-content">Main Content (no z-index)</div>
+  html={`    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar-label">Sidebar (no z-index)</div>
+        <div class="dropdown">Dropdown z-index: 10 — now appears on top!</div>
+      </div>
+      <div class="main-content">Main Content (no z-index)</div>
     </div>`}
   css={`.container {
       position: relative;
@@ -211,15 +211,15 @@ In this example, `.dropdown` has `z-index: 99999` but still renders behind `.mai
 
 <CssPreview
   title="Stacking Context: isolation: isolate"
-  html={`<div class="demo-area">
-    <div class="card">
-    <div class="card-bg"></div>
-    <div class="card-content">
-    <strong>isolation: isolate</strong><br/>
-    The purple background uses z-index: -1 but stays inside the card thanks to isolation.
-    </div>
-    </div>
-    <div class="behind-text">This text is behind the card — z-index: -1 does not leak out</div>
+  html={`    <div class="demo-area">
+      <div class="card">
+        <div class="card-bg"></div>
+        <div class="card-content">
+          <strong>isolation: isolate</strong><br/>
+          The purple background uses z-index: -1 but stays inside the card thanks to isolation.
+        </div>
+      </div>
+      <div class="behind-text">This text is behind the card — z-index: -1 does not leak out</div>
     </div>`}
   css={`.demo-area {
       padding: 12px;

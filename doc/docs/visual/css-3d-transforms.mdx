@@ -52,16 +52,16 @@ The classic card flip uses all four properties together. The parent provides `pe
   height={320}
   html={`
     <div class="card-flip">
-    <div class="card-flip__inner">
-    <div class="card-flip__front">
-    <h3>Front Side</h3>
-    <p>Hover to flip this card</p>
-    </div>
-    <div class="card-flip__back">
-    <h3>Back Side</h3>
-    <p>Here is the hidden content</p>
-    </div>
-    </div>
+      <div class="card-flip__inner">
+        <div class="card-flip__front">
+          <h3>Front Side</h3>
+          <p>Hover to flip this card</p>
+        </div>
+        <div class="card-flip__back">
+          <h3>Back Side</h3>
+          <p>Here is the hidden content</p>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -134,18 +134,18 @@ Lower perspective values create extreme foreshortening while higher values produ
   height={280}
   html={`
     <div class="perspective-demo">
-    <div class="perspective-demo__group">
-    <p class="perspective-demo__label">perspective: 200px</p>
-    <div class="perspective-demo__stage perspective-demo__stage--low">
-    <div class="perspective-demo__box">Hello</div>
-    </div>
-    </div>
-    <div class="perspective-demo__group">
-    <p class="perspective-demo__label">perspective: 1000px</p>
-    <div class="perspective-demo__stage perspective-demo__stage--high">
-    <div class="perspective-demo__box">Hello</div>
-    </div>
-    </div>
+      <div class="perspective-demo__group">
+        <p class="perspective-demo__label">perspective: 200px</p>
+        <div class="perspective-demo__stage perspective-demo__stage--low">
+          <div class="perspective-demo__box">Hello</div>
+        </div>
+      </div>
+      <div class="perspective-demo__group">
+        <p class="perspective-demo__label">perspective: 1000px</p>
+        <div class="perspective-demo__stage perspective-demo__stage--high">
+          <div class="perspective-demo__box">Hello</div>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -203,14 +203,14 @@ A CSS cube uses six faces positioned with `translateZ` and `rotateX`/`rotateY`. 
   height={350}
   html={`
     <div class="cube-scene">
-    <div class="cube">
-    <div class="cube__face cube__face--front">Front</div>
-    <div class="cube__face cube__face--back">Back</div>
-    <div class="cube__face cube__face--right">Right</div>
-    <div class="cube__face cube__face--left">Left</div>
-    <div class="cube__face cube__face--top">Top</div>
-    <div class="cube__face cube__face--bottom">Bottom</div>
-    </div>
+      <div class="cube">
+        <div class="cube__face cube__face--front">Front</div>
+        <div class="cube__face cube__face--back">Back</div>
+        <div class="cube__face cube__face--right">Right</div>
+        <div class="cube__face cube__face--left">Left</div>
+        <div class="cube__face cube__face--top">Top</div>
+        <div class="cube__face cube__face--bottom">Bottom</div>
+      </div>
     </div>
     `}
   css={`
@@ -289,33 +289,33 @@ A CSS cube uses six faces positioned with `translateZ` and `rotateX`/`rotateY`. 
   height={340}
   html={`
     <div class="origin-demo">
-    <div class="origin-demo__group">
-    <p class="origin-demo__label">top left</p>
-    <div class="origin-demo__stage origin-demo__stage--top-left">
-    <div class="origin-demo__card">1</div>
-    <div class="origin-demo__card">2</div>
-    <div class="origin-demo__card">3</div>
-    <div class="origin-demo__card">4</div>
-    </div>
-    </div>
-    <div class="origin-demo__group">
-    <p class="origin-demo__label">center (default)</p>
-    <div class="origin-demo__stage origin-demo__stage--center">
-    <div class="origin-demo__card">1</div>
-    <div class="origin-demo__card">2</div>
-    <div class="origin-demo__card">3</div>
-    <div class="origin-demo__card">4</div>
-    </div>
-    </div>
-    <div class="origin-demo__group">
-    <p class="origin-demo__label">bottom right</p>
-    <div class="origin-demo__stage origin-demo__stage--bottom-right">
-    <div class="origin-demo__card">1</div>
-    <div class="origin-demo__card">2</div>
-    <div class="origin-demo__card">3</div>
-    <div class="origin-demo__card">4</div>
-    </div>
-    </div>
+      <div class="origin-demo__group">
+        <p class="origin-demo__label">top left</p>
+        <div class="origin-demo__stage origin-demo__stage--top-left">
+          <div class="origin-demo__card">1</div>
+          <div class="origin-demo__card">2</div>
+          <div class="origin-demo__card">3</div>
+          <div class="origin-demo__card">4</div>
+        </div>
+      </div>
+      <div class="origin-demo__group">
+        <p class="origin-demo__label">center (default)</p>
+        <div class="origin-demo__stage origin-demo__stage--center">
+          <div class="origin-demo__card">1</div>
+          <div class="origin-demo__card">2</div>
+          <div class="origin-demo__card">3</div>
+          <div class="origin-demo__card">4</div>
+        </div>
+      </div>
+      <div class="origin-demo__group">
+        <p class="origin-demo__label">bottom right</p>
+        <div class="origin-demo__stage origin-demo__stage--bottom-right">
+          <div class="origin-demo__card">1</div>
+          <div class="origin-demo__card">2</div>
+          <div class="origin-demo__card">3</div>
+          <div class="origin-demo__card">4</div>
+        </div>
+      </div>
     </div>
     `}
   css={`
@@ -391,16 +391,16 @@ A production-ready card flip should respect `prefers-reduced-motion`. When the u
   height={320}
   html={`
     <div class="a11y-flip">
-    <div class="a11y-flip__inner">
-    <div class="a11y-flip__front">
-    <h3>Accessible Flip</h3>
-    <p>Hover to reveal the back</p>
-    </div>
-    <div class="a11y-flip__back">
-    <h3>Back Content</h3>
-    <p>Uses cross-fade when motion is reduced</p>
-    </div>
-    </div>
+      <div class="a11y-flip__inner">
+        <div class="a11y-flip__front">
+          <h3>Accessible Flip</h3>
+          <p>Hover to reveal the back</p>
+        </div>
+        <div class="a11y-flip__back">
+          <h3>Back Content</h3>
+          <p>Uses cross-fade when motion is reduced</p>
+        </div>
+      </div>
     </div>
     `}
   css={`

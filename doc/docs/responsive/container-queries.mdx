@@ -43,13 +43,13 @@ The iframe in this demo acts as the container boundary. Use the viewport buttons
   title="Basic Container Query — card layout adapts to container width"
   html={`
     <div class="card-wrapper">
-    <article class="card">
-    <div class="card__image"></div>
-    <div class="card__body">
-    <h3 class="card__title">Responsive Card</h3>
-    <p class="card__text">This card uses container queries to adapt its layout. At narrow widths it stacks vertically; at wider widths it switches to a horizontal layout.</p>
-    </div>
-    </article>
+      <article class="card">
+        <div class="card__image"></div>
+        <div class="card__body">
+          <h3 class="card__title">Responsive Card</h3>
+          <p class="card__text">This card uses container queries to adapt its layout. At narrow widths it stacks vertically; at wider widths it switches to a horizontal layout.</p>
+        </div>
+      </article>
     </div>
     `}
   css={`
@@ -150,26 +150,26 @@ The shorthand `container` property combines both:
   title="Named Containers — same component adapts differently in sidebar vs main"
   html={`
     <div class="page-layout">
-    <aside class="sidebar">
-    <h4 class="section-label">Sidebar (narrow container)</h4>
-    <div class="info-card">
-    <div class="info-card__icon">&#9733;</div>
-    <div class="info-card__content">
-    <strong class="info-card__title">Featured</strong>
-    <span class="info-card__text">This card adapts to its sidebar container</span>
-    </div>
-    </div>
-    </aside>
-    <main class="main-content">
-    <h4 class="section-label">Main Content (wide container)</h4>
-    <div class="info-card">
-    <div class="info-card__icon">&#9733;</div>
-    <div class="info-card__content">
-    <strong class="info-card__title">Featured</strong>
-    <span class="info-card__text">Same card component adapts to the wider main container, showing a horizontal layout with more space</span>
-    </div>
-    </div>
-    </main>
+      <aside class="sidebar">
+        <h4 class="section-label">Sidebar (narrow container)</h4>
+        <div class="info-card">
+          <div class="info-card__icon">&#9733;</div>
+          <div class="info-card__content">
+            <strong class="info-card__title">Featured</strong>
+            <span class="info-card__text">This card adapts to its sidebar container</span>
+          </div>
+        </div>
+      </aside>
+      <main class="main-content">
+        <h4 class="section-label">Main Content (wide container)</h4>
+        <div class="info-card">
+          <div class="info-card__icon">&#9733;</div>
+          <div class="info-card__content">
+            <strong class="info-card__title">Featured</strong>
+            <span class="info-card__text">Same card component adapts to the wider main container, showing a horizontal layout with more space</span>
+          </div>
+        </div>
+      </main>
     </div>
     `}
   css={`
@@ -273,11 +273,11 @@ Container query units are relative to the dimensions of the query container. The
   title="Container Query Units — text and spacing scale with container"
   html={`
     <div class="cqu-demo">
-    <div class="cqu-card">
-    <h3 class="cqu-card__title">Fluid Title</h3>
-    <p class="cqu-card__text">This text and padding scale with the container width using cqi units. Resize using the viewport buttons to see everything scale proportionally.</p>
-    <div class="cqu-card__badge">cqi sized</div>
-    </div>
+      <div class="cqu-card">
+        <h3 class="cqu-card__title">Fluid Title</h3>
+        <p class="cqu-card__text">This text and padding scale with the container width using cqi units. Resize using the viewport buttons to see everything scale proportionally.</p>
+        <div class="cqu-card__badge">cqi sized</div>
+      </div>
     </div>
     `}
   css={`
@@ -326,36 +326,36 @@ A common real-world use case is a card component that works in any layout contex
   title="Adaptive Card Grid — cards respond to their container, not the viewport"
   html={`
     <div class="card-grid">
-    <div class="card-cell">
-    <article class="adaptive-card">
-    <div class="adaptive-card__media"></div>
-    <div class="adaptive-card__body">
-    <h3 class="adaptive-card__title">Mountain Retreat</h3>
-    <p class="adaptive-card__desc">A peaceful getaway nestled in the mountains with stunning views and fresh mountain air.</p>
-    <span class="adaptive-card__price">$120 / night</span>
-    </div>
-    </article>
-    </div>
-    <div class="card-cell">
-    <article class="adaptive-card">
-    <div class="adaptive-card__media" style="background: linear-gradient(135deg, #22c55e, #15803d);"></div>
-    <div class="adaptive-card__body">
-    <h3 class="adaptive-card__title">Forest Cabin</h3>
-    <p class="adaptive-card__desc">A cozy cabin surrounded by towering trees and natural beauty.</p>
-    <span class="adaptive-card__price">$95 / night</span>
-    </div>
-    </article>
-    </div>
-    <div class="card-cell">
-    <article class="adaptive-card">
-    <div class="adaptive-card__media" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
-    <div class="adaptive-card__body">
-    <h3 class="adaptive-card__title">Beach House</h3>
-    <p class="adaptive-card__desc">Oceanfront living with direct beach access and sunset views from every room.</p>
-    <span class="adaptive-card__price">$200 / night</span>
-    </div>
-    </article>
-    </div>
+      <div class="card-cell">
+        <article class="adaptive-card">
+          <div class="adaptive-card__media"></div>
+          <div class="adaptive-card__body">
+            <h3 class="adaptive-card__title">Mountain Retreat</h3>
+            <p class="adaptive-card__desc">A peaceful getaway nestled in the mountains with stunning views and fresh mountain air.</p>
+            <span class="adaptive-card__price">$120 / night</span>
+          </div>
+        </article>
+      </div>
+      <div class="card-cell">
+        <article class="adaptive-card">
+          <div class="adaptive-card__media" style="background: linear-gradient(135deg, #22c55e, #15803d);"></div>
+          <div class="adaptive-card__body">
+            <h3 class="adaptive-card__title">Forest Cabin</h3>
+            <p class="adaptive-card__desc">A cozy cabin surrounded by towering trees and natural beauty.</p>
+            <span class="adaptive-card__price">$95 / night</span>
+          </div>
+        </article>
+      </div>
+      <div class="card-cell">
+        <article class="adaptive-card">
+          <div class="adaptive-card__media" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
+          <div class="adaptive-card__body">
+            <h3 class="adaptive-card__title">Beach House</h3>
+            <p class="adaptive-card__desc">Oceanfront living with direct beach access and sunset views from every room.</p>
+            <span class="adaptive-card__price">$200 / night</span>
+          </div>
+        </article>
+      </div>
     </div>
     `}
   css={`
@@ -439,46 +439,46 @@ The key difference: media queries respond to the **viewport**, while container q
   html={`
     <h4 class="demo-heading">Using @container (adapts to each container)</h4>
     <div class="comparison-layout">
-    <div class="narrow-container cq-container">
-    <article class="cq-card">
-    <div class="cq-card__image"></div>
-    <div class="cq-card__body">
-    <strong>Container Query Card</strong>
-    <span>Narrow container</span>
-    </div>
-    </article>
-    </div>
-    <div class="wide-container cq-container">
-    <article class="cq-card">
-    <div class="cq-card__image"></div>
-    <div class="cq-card__body">
-    <strong>Container Query Card</strong>
-    <span>Wide container</span>
-    </div>
-    </article>
-    </div>
+      <div class="narrow-container cq-container">
+        <article class="cq-card">
+          <div class="cq-card__image"></div>
+          <div class="cq-card__body">
+            <strong>Container Query Card</strong>
+            <span>Narrow container</span>
+          </div>
+        </article>
+      </div>
+      <div class="wide-container cq-container">
+        <article class="cq-card">
+          <div class="cq-card__image"></div>
+          <div class="cq-card__body">
+            <strong>Container Query Card</strong>
+            <span>Wide container</span>
+          </div>
+        </article>
+      </div>
     </div>
     
     <h4 class="demo-heading" style="margin-top: 1.5rem;">Using @media (both look the same)</h4>
     <div class="comparison-layout">
-    <div class="narrow-container">
-    <article class="mq-card">
-    <div class="mq-card__image"></div>
-    <div class="mq-card__body">
-    <strong>Media Query Card</strong>
-    <span>Narrow container</span>
-    </div>
-    </article>
-    </div>
-    <div class="wide-container">
-    <article class="mq-card">
-    <div class="mq-card__image"></div>
-    <div class="mq-card__body">
-    <strong>Media Query Card</strong>
-    <span>Wide container</span>
-    </div>
-    </article>
-    </div>
+      <div class="narrow-container">
+        <article class="mq-card">
+          <div class="mq-card__image"></div>
+          <div class="mq-card__body">
+            <strong>Media Query Card</strong>
+            <span>Narrow container</span>
+          </div>
+        </article>
+      </div>
+      <div class="wide-container">
+        <article class="mq-card">
+          <div class="mq-card__image"></div>
+          <div class="mq-card__body">
+            <strong>Media Query Card</strong>
+            <span>Wide container</span>
+          </div>
+        </article>
+      </div>
     </div>
     `}
   css={`

@@ -78,27 +78,27 @@ blockquote {
 
 <CssPreview
   title="一貫したバーティカルリズム vs 不一致なスペーシング"
-  html={`<div class="vr-demo">
-    <div class="vr-column">
-    <h3 class="label">Consistent rhythm (24px base)</h3>
-    <article class="consistent">
-    <h2>Section Title</h2>
-    <p>First paragraph with body text. Vertical rhythm keeps spacing mathematically related to the base line-height unit.</p>
-    <p>Second paragraph maintains the same spacing. Every gap is a multiple of the 24px rhythm unit.</p>
-    <h2>Another Section</h2>
-    <p>Content flows with predictable, harmonious spacing throughout the layout.</p>
-    </article>
-    </div>
-    <div class="vr-column">
-    <h3 class="label">Inconsistent spacing</h3>
-    <article class="inconsistent">
-    <h2>Section Title</h2>
-    <p>First paragraph with body text. The spacing here uses arbitrary values with no mathematical relationship.</p>
-    <p>Second paragraph has different margin than the first. The gaps feel random and uneven.</p>
-    <h2>Another Section</h2>
-    <p>Content feels visually noisy even though the text is identical.</p>
-    </article>
-    </div>
+  html={`    <div class="vr-demo">
+      <div class="vr-column">
+        <h3 class="label">Consistent rhythm (24px base)</h3>
+        <article class="consistent">
+          <h2>Section Title</h2>
+          <p>First paragraph with body text. Vertical rhythm keeps spacing mathematically related to the base line-height unit.</p>
+          <p>Second paragraph maintains the same spacing. Every gap is a multiple of the 24px rhythm unit.</p>
+          <h2>Another Section</h2>
+          <p>Content flows with predictable, harmonious spacing throughout the layout.</p>
+        </article>
+      </div>
+      <div class="vr-column">
+        <h3 class="label">Inconsistent spacing</h3>
+        <article class="inconsistent">
+          <h2>Section Title</h2>
+          <p>First paragraph with body text. The spacing here uses arbitrary values with no mathematical relationship.</p>
+          <p>Second paragraph has different margin than the first. The gaps feel random and uneven.</p>
+          <h2>Another Section</h2>
+          <p>Content feels visually noisy even though the text is identical.</p>
+        </article>
+      </div>
     </div>`}
   css={`.vr-demo {
       display: grid;

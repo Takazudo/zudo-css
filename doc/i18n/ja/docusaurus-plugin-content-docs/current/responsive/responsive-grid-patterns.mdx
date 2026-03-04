@@ -29,12 +29,12 @@ import TailwindPreview from '@site/src/components/TailwindPreview';
   title="auto-fill + minmax() グリッド — Mobile / Tablet / Full でリフローを確認"
   html={`
     <div class="grid">
-    <div class="grid-card" style="background: #3b82f6;">Card 1</div>
-    <div class="grid-card" style="background: #ef4444;">Card 2</div>
-    <div class="grid-card" style="background: #22c55e;">Card 3</div>
-    <div class="grid-card" style="background: #f59e0b;">Card 4</div>
-    <div class="grid-card" style="background: #8b5cf6;">Card 5</div>
-    <div class="grid-card" style="background: #ec4899;">Card 6</div>
+      <div class="grid-card" style="background: #3b82f6;">Card 1</div>
+      <div class="grid-card" style="background: #ef4444;">Card 2</div>
+      <div class="grid-card" style="background: #22c55e;">Card 3</div>
+      <div class="grid-card" style="background: #f59e0b;">Card 4</div>
+      <div class="grid-card" style="background: #8b5cf6;">Card 5</div>
+      <div class="grid-card" style="background: #ec4899;">Card 6</div>
     </div>
     `}
   css={`
@@ -265,28 +265,28 @@ Tailwind はレスポンシブブレークポイントプレフィックス（`s
 
 <TailwindPreview
   title="Tailwind: レスポンシブグリッド（Mobile / Tablet / Full で確認）"
-  html={`<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-    <div class="bg-blue-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 1</div>
-    <div class="bg-red-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 2</div>
-    <div class="bg-green-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 3</div>
-    <div class="bg-amber-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 4</div>
-    <div class="bg-violet-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 5</div>
-    <div class="bg-pink-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 6</div>
+  html={`    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <div class="bg-blue-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 1</div>
+      <div class="bg-red-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 2</div>
+      <div class="bg-green-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 3</div>
+      <div class="bg-amber-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 4</div>
+      <div class="bg-violet-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 5</div>
+      <div class="bg-pink-500 text-white font-bold p-8 rounded-lg flex items-center justify-center min-h-[80px]">Card 6</div>
     </div>`} />
 
 ### 非対称レイアウト
 
 <TailwindPreview
   title="Tailwind: メイン + サイドバーのレスポンシブレイアウト"
-  html={`<div class="grid grid-cols-1 md:grid-cols-[1fr_16rem] gap-4 p-4">
-    <div class="bg-green-500 text-white p-6 rounded-lg min-h-[200px]">
-    <h3 class="font-bold mb-2">Main Content</h3>
-    <p class="text-sm text-green-100">Takes full width on mobile, shares space with sidebar on wider screens.</p>
-    </div>
-    <div class="bg-amber-500 text-white p-4 rounded-lg">
-    <h3 class="font-bold mb-2">Sidebar</h3>
-    <p class="text-sm text-amber-100">Fixed 16rem width on desktop.</p>
-    </div>
+  html={`    <div class="grid grid-cols-1 md:grid-cols-[1fr_16rem] gap-4 p-4">
+      <div class="bg-green-500 text-white p-6 rounded-lg min-h-[200px]">
+        <h3 class="font-bold mb-2">Main Content</h3>
+        <p class="text-sm text-green-100">Takes full width on mobile, shares space with sidebar on wider screens.</p>
+      </div>
+      <div class="bg-amber-500 text-white p-4 rounded-lg">
+        <h3 class="font-bold mb-2">Sidebar</h3>
+        <p class="text-sm text-amber-100">Fixed 16rem width on desktop.</p>
+      </div>
     </div>`}
   height={260} />
 

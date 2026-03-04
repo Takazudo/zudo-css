@@ -235,7 +235,7 @@ Note: The `filter` must be on the element itself. If the shadow is cut by the cl
 
 <CssPreview
   title="Filter Effects Gallery"
-  html={`<div class="demo"><div class="item"><div class="box original"></div><span>Original</span></div><div class="item"><div class="box blur"></div><span>blur(4px)</span></div><div class="item"><div class="box brightness"></div><span>brightness(1.5)</span></div><div class="item"><div class="box contrast"></div><span>contrast(1.8)</span></div><div class="item"><div class="box saturate"></div><span>saturate(2)</span></div><div class="item"><div class="box hue-rotate"></div><span>hue-rotate(90deg)</span></div></div>`}
+  html={`    <div class="demo"><div class="item"><div class="box original"></div><span>Original</span></div><div class="item"><div class="box blur"></div><span>blur(4px)</span></div><div class="item"><div class="box brightness"></div><span>brightness(1.5)</span></div><div class="item"><div class="box contrast"></div><span>contrast(1.8)</span></div><div class="item"><div class="box saturate"></div><span>saturate(2)</span></div><div class="item"><div class="box hue-rotate"></div><span>hue-rotate(90deg)</span></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -276,7 +276,7 @@ Note: The `filter` must be on the element itself. If the shadow is cut by the cl
 
 <CssPreview
   title="drop-shadow vs box-shadow on Irregular Shape"
-  html={`<div class="demo"><div class="col"><div class="triangle-wrapper box-shadow-demo"><div class="triangle"></div></div><span>box-shadow (rectangular)</span></div><div class="col"><div class="triangle-wrapper drop-shadow-demo"><div class="triangle"></div></div><span>drop-shadow (shape-aware)</span></div></div>`}
+  html={`    <div class="demo"><div class="col"><div class="triangle-wrapper box-shadow-demo"><div class="triangle"></div></div><span>box-shadow (rectangular)</span></div><div class="col"><div class="triangle-wrapper drop-shadow-demo"><div class="triangle"></div></div><span>drop-shadow (shape-aware)</span></div></div>`}
   css={`
     .demo {
       display: flex;
@@ -349,39 +349,39 @@ Tailwind provides utility classes for common CSS filter functions: `blur-*`, `br
 
 <TailwindPreview
   title="Tailwind: Filter Effects Gallery"
-  html={`<div class="flex flex-wrap gap-3 justify-center items-center min-h-[230px] bg-slate-900 p-4">
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">Original</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg blur-sm" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">blur-sm</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg brightness-150" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">brightness-150</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg contrast-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">contrast-200</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg saturate-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">saturate-200</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg grayscale" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">grayscale</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg sepia" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">sepia</span>
-    </div>
-    <div class="flex flex-col items-center gap-1.5">
-    <div class="w-24 h-20 rounded-lg hue-rotate-90" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-400 font-mono">hue-rotate-90</span>
-    </div>
+  html={`    <div class="flex flex-wrap gap-3 justify-center items-center min-h-[230px] bg-slate-900 p-4">
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">Original</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg blur-sm" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">blur-sm</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg brightness-150" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">brightness-150</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg contrast-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">contrast-200</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg saturate-200" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">saturate-200</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg grayscale" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">grayscale</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg sepia" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">sepia</span>
+      </div>
+      <div class="flex flex-col items-center gap-1.5">
+        <div class="w-24 h-20 rounded-lg hue-rotate-90" style="background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-400 font-mono">hue-rotate-90</span>
+      </div>
     </div>`}
   height={270} />
 
@@ -389,19 +389,19 @@ Tailwind provides utility classes for common CSS filter functions: `blur-*`, `br
 
 <TailwindPreview
   title="Tailwind: Hover Filter Effects"
-  html={`<div class="flex gap-6 justify-center items-center min-h-[200px] bg-slate-100 p-6">
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-28 h-20 rounded-lg grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
-    <span class="text-xs text-slate-500 font-medium">Grayscale → Color</span>
-    </div>
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-28 h-20 rounded-lg hover:brightness-125 hover:saturate-150 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #ef4444, #f59e0b);"></div>
-    <span class="text-xs text-slate-500 font-medium">Brighten on hover</span>
-    </div>
-    <div class="flex flex-col items-center gap-2">
-    <div class="w-28 h-20 rounded-lg opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #22c55e, #06b6d4);"></div>
-    <span class="text-xs text-slate-500 font-medium">Disabled → Active</span>
-    </div>
+  html={`    <div class="flex gap-6 justify-center items-center min-h-[200px] bg-slate-100 p-6">
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-28 h-20 rounded-lg grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
+        <span class="text-xs text-slate-500 font-medium">Grayscale → Color</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-28 h-20 rounded-lg hover:brightness-125 hover:saturate-150 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #ef4444, #f59e0b);"></div>
+        <span class="text-xs text-slate-500 font-medium">Brighten on hover</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="w-28 h-20 rounded-lg opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 cursor-pointer" style="background: linear-gradient(135deg, #22c55e, #06b6d4);"></div>
+        <span class="text-xs text-slate-500 font-medium">Disabled → Active</span>
+      </div>
     </div>`}
   height={220} />
 

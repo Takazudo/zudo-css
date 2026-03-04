@@ -243,11 +243,11 @@ Global support exceeds 96%.
   title="Layer Order Determines Winner"
   html={`
     <div class="demo">
-    <p class="text">This text is styled by two layers with conflicting colors.</p>
-    <div class="legend">
-    <div><span class="swatch" style="background: #ef4444"></span> <code>base</code> layer says: red</div>
-    <div><span class="swatch" style="background: #3b82f6"></span> <code>theme</code> layer says: blue — <strong>wins</strong> (declared later)</div>
-    </div>
+      <p class="text">This text is styled by two layers with conflicting colors.</p>
+      <div class="legend">
+        <div><span class="swatch" style="background: #ef4444"></span> <code>base</code> layer says: red</div>
+        <div><span class="swatch" style="background: #3b82f6"></span> <code>theme</code> layer says: blue — <strong>wins</strong> (declared later)</div>
+      </div>
     </div>
     `}
   css={`
@@ -311,13 +311,13 @@ Global support exceeds 96%.
   title="Layer Priority Beats Specificity"
   html={`
     <nav>
-    <ul>
-    <li class="active">
-    <a class="nav-link" href="#">Home</a>
-    </li>
-    <li><a class="nav-link" href="#">About</a></li>
-    <li><a class="nav-link" href="#">Contact</a></li>
-    </ul>
+      <ul>
+        <li class="active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li><a class="nav-link" href="#">About</a></li>
+        <li><a class="nav-link" href="#">Contact</a></li>
+      </ul>
     </nav>
     <p class="note">The <code>components</code> layer uses a simple <code>.nav-link</code> selector, but it <strong>wins</strong> over the high-specificity <code>base</code> layer selector because it is declared later.</p>
     `}

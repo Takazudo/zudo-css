@@ -255,19 +255,19 @@ Same-document transitions have broad support. Cross-document transitions are sup
   title="View Transition CSS Pattern (Static Example)"
   html={`
     <div class="demo">
-    <div class="page page-old">
-    <div class="header">Page A</div>
-    <div class="content">Original Content</div>
-    </div>
-    <div class="arrow">→</div>
-    <div class="page page-new">
-    <div class="header">Page B</div>
-    <div class="content">New Content</div>
-    </div>
+      <div class="page page-old">
+        <div class="header">Page A</div>
+        <div class="content">Original Content</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="page page-new">
+        <div class="header">Page B</div>
+        <div class="content">New Content</div>
+      </div>
     </div>
     <div class="code-note">
-    <p><strong>How it works:</strong> The browser captures a snapshot of the old state, updates the DOM, then crossfades between old and new using <code>::view-transition-old</code> and <code>::view-transition-new</code> pseudo-elements.</p>
-    <p>View transitions require JavaScript (<code>document.startViewTransition()</code>) to trigger — this static demo shows the visual pattern.</p>
+      <p><strong>How it works:</strong> The browser captures a snapshot of the old state, updates the DOM, then crossfades between old and new using <code>::view-transition-old</code> and <code>::view-transition-new</code> pseudo-elements.</p>
+      <p>View transitions require JavaScript (<code>document.startViewTransition()</code>) to trigger — this static demo shows the visual pattern.</p>
     </div>
     `}
   css={`

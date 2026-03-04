@@ -24,7 +24,13 @@ function buildSrcdoc(html: string, css: string): string {
 </html>`;
 }
 
-export default function CssPreview({ html, css, title, height, defaultOpen }: CssPreviewProps): ReactNode {
+export default function CssPreview({
+  html,
+  css,
+  title,
+  height,
+  defaultOpen,
+}: CssPreviewProps): ReactNode {
   const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
   return (

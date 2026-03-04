@@ -59,6 +59,14 @@ husky + lint-staged runs on commit:
 - `*.{md,mdx}` → mdx-formatter
 - `*.{json,css,yml,yaml}` → prettier
 
+## Claude Code Skills
+
+This repo manages zcss-specific Claude Code skills in `.claude/skills/`:
+
+- **`css-wisdom`** — Topic index of all CSS articles. Symlinked to `~/.claude/skills/css-wisdom` so it's available globally. **When adding or removing articles, update the topic index in `.claude/skills/css-wisdom/SKILL.md`.**
+- **`l-handle-deep-article`** — Guide for converting flat articles into deep articles with sub-pages. Local to this repo.
+- **`l-demo-component`** — Guide for CssPreview component usage and `defaultOpen` prop conventions. Local to this repo.
+
 ## Safety Rules
 
 - `rm -rf`: relative paths only (`./path`), never absolute

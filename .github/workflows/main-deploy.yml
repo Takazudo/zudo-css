@@ -57,7 +57,7 @@ jobs:
       - name: Build
         run: pnpm --dir doc run build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: docusaurus-build
           path: doc/build/
@@ -69,9 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
       - name: Download build artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v4
         with:
           name: docusaurus-build
           path: doc/build

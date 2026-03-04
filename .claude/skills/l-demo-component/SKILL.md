@@ -10,96 +10,32 @@ argument-hint: "[question about demo component usage]"
 
 # Demo Component Usage Guide
 
-Guidelines for using the CssPreview component in zcss documentation articles.
+For CssPreview basics (props, rendering behavior, CSS conventions), see `doc/CLAUDE.md`.
 
-## CssPreview Component
-
-Located at: `doc/src/components/CssPreview/index.tsx`
-
-### Basic Usage
-
-```mdx
-import CssPreview from '@site/src/components/CssPreview';
-
-<CssPreview
-  title="Description of demo"
-  html={`<div class="example">Content</div>`}
-  css={`.example { color: hsl(220 50% 50%); }`}
-  height={300} />
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | required | Description shown above the demo |
-| `html` | `string` | required | HTML content rendered in the iframe |
-| `css` | `string` | `""` | CSS styles applied in the iframe |
-| `height` | `number` | auto | Fixed height for the iframe |
-| `defaultOpen` | `boolean` | `false` | Whether code section is expanded initially |
-
-### Rendering Behavior
-
-- Renders inside an `<iframe>` — all CSS is isolated
-- Viewport buttons: Mobile (320px), Tablet (768px), Full (100%)
-- No JavaScript — all interactions must be CSS-only (`:hover`, `:focus`, `:checked`, etc.)
-- Media queries respond to the **iframe width**, not the browser window
-
-### Important: Media Queries in Demos
-
-Since CssPreview renders in an iframe, `@media (min-width: ...)` queries evaluate against the iframe's width:
-
-- Mobile preset: **320px**
-- Tablet preset: **768px**
-- Full preset: **~900-1100px** (depends on Docusaurus content area)
-
-If your article code examples use production breakpoints (e.g., 1024px, 1280px), remap them to smaller values in the CssPreview demo CSS so the scaling is visible.
+This skill covers **decision patterns** for effective demo usage.
 
 ## defaultOpen Prop
 
-Controls whether the code section is expanded when the demo first renders.
+Controls whether the code panel is expanded on first render.
 
-### defaultOpen={false} (default)
+| Situation | defaultOpen | Rationale |
+| --- | --- | --- |
+| Explaining a concept — demo illustrates it | `false` (default) | Reader focuses on visual result first |
+| Showing code for confirmation | `true` | Reader needs code + result side by side |
+| Listing variety of visual patterns | `false` (default) | Visual comparison is primary goal |
 
-Use when the article is explaining a concept and the demo illustrates it.
-The reader focuses on the visual result first; code is available on demand.
+## Demo Sizing Tips
 
-```mdx
-<CssPreview html={...} css={...} />
-```
+- Set `height` to avoid layout shift — estimate from content, typically 200-400px
+- For comparison demos, use side-by-side layout with `display: flex; gap: 32px`
+- For responsive demos, keep breakpoints under 768px so tablet/mobile presets show differences
 
-### defaultOpen={true}
+## Media Query Remapping
 
-Use when showing code for confirmation — the reader needs to see both
-the code and the rendered result together to understand what's happening.
+CssPreview iframe widths: Mobile=320px, Tablet=768px, Full=~900-1100px.
 
-```mdx
-<CssPreview html={...} css={...} defaultOpen={true} />
-```
+If production code uses breakpoints like 1024px or 1280px, remap to smaller values (e.g., 500px, 700px) so the demo visually demonstrates the responsive behavior within the iframe.
 
-### Variety listings
+## Multiple Demos Per Article
 
-Use default (false) when listing a variety of visual patterns where code is secondary
-and visual comparison is the primary goal.
-
-```mdx
-<CssPreview html={...} css={...} />
-<CssPreview html={...} css={...} />
-<CssPreview html={...} css={...} />
-```
-
-## Summary
-
-| Situation | defaultOpen |
-| --- | --- |
-| Explaining a concept, demo illustrates it | false (default) |
-| Showing code for confirmation | true |
-| Listing variety of visual patterns | false (default) |
-
-## CSS Conventions in Demos
-
-- Use `hsl()` colors, not hex
-- Use descriptive BEM-ish class names (e.g., `.card-demo__header`)
-- Use `font-family: system-ui, sans-serif` for body text
-- Keep font sizes accessible (minimum 0.75rem / 12px for labels)
-- Use `color: hsl(0 0% 40%)` or darker for small text (contrast)
+Prefer **more demos over more prose**. Each distinct CSS behavior should have its own CssPreview. A good article has 3-6 demos with brief explanatory text between them.

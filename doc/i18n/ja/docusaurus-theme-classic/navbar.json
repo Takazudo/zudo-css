@@ -31,13 +31,9 @@
     "message": "インタラクティブ",
     "description": "Navbar item with label Interactive"
   },
-  "item.label.Modern CSS": {
-    "message": "モダンCSS",
-    "description": "Navbar item with label Modern CSS"
-  },
-  "item.label.INBOX": {
-    "message": "INBOX",
-    "description": "Navbar item with label INBOX"
+  "item.label.Methodology": {
+    "message": "CSS設計",
+    "description": "Navbar item with label Methodology"
   },
   "item.label.Overview": {
     "message": "概要",

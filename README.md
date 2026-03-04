@@ -14,8 +14,7 @@ doc/            # Docusaurus site
     visual-effects/   # Shadows, gradients, borders, filters
     responsive/       # Container queries, fluid design
     interactive/      # Hover/focus, transitions, animations
-    modern-css/       # :has(), nesting, layers, custom properties
-    inbox/            # Drafts and unsorted notes
+    methodology/      # BEM, CSS Modules, utility-first, design tokens, cascade layers
 ```
 
 ## Development

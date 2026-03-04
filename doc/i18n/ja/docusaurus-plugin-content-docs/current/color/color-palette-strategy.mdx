@@ -573,27 +573,27 @@ AIエージェントは色を個別に生成しがちです。プライマリカ
 
 ```css
 :root {
-  /* Primary — blue, oklch hue 264 */
+  /* プライマリ — ブルー、OKLCHの色相264 */
   --color-primary-50:  oklch(96% 0.04 264);
   --color-primary-100: oklch(90% 0.07 264);
   --color-primary-500: oklch(55% 0.2  264);
   --color-primary-700: oklch(38% 0.17 264);
   --color-primary-900: oklch(22% 0.1  264);
 
-  /* Neutral — near-achromatic, hue-tinted */
+  /* ニュートラル — ほぼ無彩色、色相方向のティント */
   --color-neutral-50:  oklch(98% 0.005 264);
   --color-neutral-200: oklch(88% 0.01  264);
   --color-neutral-500: oklch(55% 0.01  264);
   --color-neutral-700: oklch(38% 0.015 264);
   --color-neutral-900: oklch(18% 0.015 264);
 
-  /* Feedback — same lightness (58%) across all hues */
+  /* フィードバック — すべての色相で同じ明度（58%） */
   --color-success: oklch(58% 0.18 150); /* green */
   --color-warning: oklch(58% 0.18 65);  /* amber */
   --color-danger:  oklch(58% 0.2  25);  /* red   */
   --color-info:    oklch(58% 0.18 220); /* blue  */
 
-  /* Semantic aliases — what components use */
+  /* セマンティックエイリアス — コンポーネントが参照するトークン */
   --color-bg:              var(--color-neutral-50);
   --color-surface:         oklch(100% 0 0);
   --color-border:          var(--color-neutral-200);
@@ -713,7 +713,7 @@ AIエージェントは色を個別に生成しがちです。プライマリカ
 OKLCHの主な利点は、明度とクロマを固定して色相を回転させると、得られるすべての色が同じ知覚的な明るさを持つことです。これが体系的な多色パレットを可能にします。
 
 ```css
-/* Generate a categorical palette where all colors feel equally prominent */
+/* すべての色が同じ視覚的な強さを持つカテゴリカルパレットを生成 */
 :root {
   --palette-l: 62%;
   --palette-c: 0.18;
@@ -727,7 +727,7 @@ OKLCHの主な利点は、明度とクロマを固定して色相を回転させ
   --cat-purple:  oklch(var(--palette-l) var(--palette-c) 310);
 }
 
-/* Generate a lightness scale for a single brand hue */
+/* 単一のブランド色相から明度スケールを生成 */
 :root {
   --brand-h: 264;
   --brand-c: 0.18;

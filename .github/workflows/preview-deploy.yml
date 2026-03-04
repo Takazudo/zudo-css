@@ -45,6 +45,10 @@ jobs:
             ALIAS=$(echo "$BRANCH" | sed 's|/|-|g')
           fi
           echo "alias=$ALIAS" >> "$GITHUB_OUTPUT"
+      - name: Nest build under baseUrl path
+        run: |
+          mkdir -p deploy/pj/zcss
+          cp -r doc/build/* deploy/pj/zcss/
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
       - name: Deploy preview
@@ -54,7 +58,7 @@ jobs:
           DEPLOY_ALIAS: ${{ steps.alias.outputs.alias }}
           BRANCH: ${{ github.ref_name }}
         run: |
-          netlify deploy --dir=doc/build --alias="${DEPLOY_ALIAS}" --message="Preview: ${BRANCH}"
+          netlify deploy --dir=deploy --alias="${DEPLOY_ALIAS}" --message="Preview: ${BRANCH}"
       - name: Print preview URL
         env:
           DEPLOY_ALIAS: ${{ steps.alias.outputs.alias }}

@@ -74,6 +74,10 @@ jobs:
         with:
           name: docusaurus-build
           path: doc/build
+      - name: Nest build under baseUrl path
+        run: |
+          mkdir -p deploy/pj/zcss
+          cp -r doc/build/* deploy/pj/zcss/
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
       - name: Deploy to production
@@ -81,4 +85,4 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          netlify deploy --dir=doc/build --prod --message="Production deploy: ${{ github.sha }}"
+          netlify deploy --dir=deploy --prod --message="Production deploy: ${{ github.sha }}"

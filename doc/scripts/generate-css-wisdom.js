@@ -48,13 +48,10 @@ function readCategoryMeta(dirPath) {
 function readFileMeta(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const { data: frontmatter, content: body } = matter(content);
-  const position = frontmatter.sidebar_position != null
-    ? Number(frontmatter.sidebar_position)
-    : 999;
+  const position =
+    frontmatter.sidebar_position != null ? Number(frontmatter.sidebar_position) : 999;
   const h1Match = body.match(/^#\s+(.+)$/m);
-  const h1 = h1Match
-    ? h1Match[1].replace(/\*\*/g, '').replace(/\*/g, '').trim()
-    : null;
+  const h1 = h1Match ? h1Match[1].replace(/\*\*/g, '').replace(/\*/g, '').trim() : null;
   return { position, h1 };
 }
 
@@ -141,9 +138,10 @@ function main() {
 
     const meta = readCategoryMeta(path.join(DOCS_DIR, entry.name));
     const position = meta?.position ?? 999;
-    const label = CATEGORY_LABEL_OVERRIDES[entry.name]
-      || meta?.label
-      || entry.name.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const label =
+      CATEGORY_LABEL_OVERRIDES[entry.name] ||
+      meta?.label ||
+      entry.name.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
     categories.push({ dir: entry.name, position, label });
   }
@@ -244,7 +242,7 @@ ${indexLines.join('\n').trimEnd()}
   }
 
   // Warn about stale keys in descriptions.json
-  const staleKeys = Object.keys(descriptions).filter(key => !allPaths.has(key));
+  const staleKeys = Object.keys(descriptions).filter((key) => !allPaths.has(key));
   if (staleKeys.length > 0) {
     console.log(`\n  ⚠ ${staleKeys.length} stale key(s) in descriptions.json (no matching file):`);
     for (const key of staleKeys) {

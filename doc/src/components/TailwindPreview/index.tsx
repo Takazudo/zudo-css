@@ -7,6 +7,7 @@ interface TailwindPreviewProps {
   css?: string;
   title?: string;
   height?: number;
+  defaultOpen?: boolean;
 }
 
 function buildSrcdoc(html: string, css?: string): string {
@@ -27,6 +28,7 @@ export default function TailwindPreview({
   css,
   title,
   height,
+  defaultOpen,
 }: TailwindPreviewProps): ReactNode {
   const srcdoc = useMemo(() => buildSrcdoc(html, css), [html, css]);
 
@@ -35,6 +37,7 @@ export default function TailwindPreview({
       title={title}
       height={height}
       srcdoc={srcdoc}
+      defaultOpen={defaultOpen}
       // allow-scripts: Tailwind CDN must execute to process utility classes
       // allow-same-origin: required for syncHeight to read iframe body
       // This combination weakens sandbox isolation — the html prop must

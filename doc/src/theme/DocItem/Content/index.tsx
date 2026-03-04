@@ -21,7 +21,9 @@ function DocMetadata(): ReactNode {
 
   // Format the last updated date to match creation date format (YYYY/MM/DD)
   let formattedUpdateDate: string | undefined;
+  let updateISODate: string | undefined;
   let formattedCreationDate: string | undefined;
+  let creationISODate: string | undefined;
 
   if (lastUpdatedAt) {
     const date = new Date(lastUpdatedAt);
@@ -29,16 +31,20 @@ function DocMetadata(): ReactNode {
     const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const day = String(date.getUTCDate()).padStart(2, '0');
     formattedUpdateDate = `${year}/${month}/${day}`;
+    updateISODate = date.toISOString();
 
     // If no custom creation date from Git, use lastUpdatedAt as fallback
     if (!creationDate) {
       formattedCreationDate = formattedUpdateDate;
+      creationISODate = updateISODate;
     }
   }
 
   // Use custom creation date from frontmatter if available
   if (creationDate) {
     formattedCreationDate = creationDate;
+    const ts = frontMatter.custom_creation_timestamp;
+    creationISODate = ts ? new Date(ts).toISOString() : creationDate.replace(/\//g, '-');
   }
 
   // Don't render anything if we have no metadata to show
@@ -51,13 +57,13 @@ function DocMetadata(): ReactNode {
       {formattedCreationDate && (
         <li className="theme-doc-meta-created">
           <span>Created:</span>
-          <time>{formattedCreationDate}</time>
+          <time dateTime={creationISODate}>{formattedCreationDate}</time>
         </li>
       )}
       {formattedUpdateDate && (
         <li className="theme-doc-meta-updated">
           <span>Updated:</span>
-          <time dateTime={new Date(lastUpdatedAt!).toISOString()}>{formattedUpdateDate}</time>
+          <time dateTime={updateISODate}>{formattedUpdateDate}</time>
         </li>
       )}
       {lastUpdatedBy && (

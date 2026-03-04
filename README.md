@@ -25,3 +25,21 @@ cd doc
 pnpm install
 pnpm start
 ```
+
+## Claude Code Integration
+
+This repo includes a `css-wisdom` skill that provides Claude Code with an indexed reference of all CSS articles. To make it available globally:
+
+```bash
+pnpm run setup:symlink
+```
+
+This creates a symlink at `~/.claude/skills/css-wisdom` pointing to this repo's `.claude/skills/css-wisdom/`.
+
+When adding or removing articles, regenerate the topic index:
+
+```bash
+pnpm run generate:css-wisdom
+```
+
+The generator reads `doc/docs/` and curated descriptions from `.claude/skills/css-wisdom/descriptions.json` to produce the SKILL.md topic index.

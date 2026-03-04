@@ -168,9 +168,8 @@ function processCategory(dirPath, categoryKey) {
       const hasIndex = subIndexFile !== null;
 
       // docId for the subcategory index page
-      const subDocId = hasIndex
-        ? `${subCategoryKey}/${path.basename(subIndexFile, path.extname(subIndexFile))}`
-        : subCategoryKey;
+      // Use the folder path without "/index" — Docusaurus serves index pages at the folder URL
+      const subDocId = subCategoryKey;
 
       // Get pages within the subcategory (non-recursive for now; deeper
       // nesting would require additional handling)

@@ -11,8 +11,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'http://css-bp.localhost:8811',
-  baseUrl: '/',
+  url: 'https://takazudomodular.com',
+  baseUrl: '/pj/zcss/',
 
   organizationName: 'takazudo',
   projectName: 'css-best-practices',

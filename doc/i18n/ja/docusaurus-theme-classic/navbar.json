@@ -3,40 +3,40 @@
     "message": "zudo-css",
     "description": "The title in the navbar"
   },
+  "item.label.Overview": {
+    "message": "Overview",
+    "description": "Navbar item with label Overview"
+  },
   "item.label.Layout": {
-    "message": "レイアウト",
+    "message": "Layout",
     "description": "Navbar item with label Layout"
   },
   "item.label.Typography": {
-    "message": "タイポグラフィ",
+    "message": "Typography",
     "description": "Navbar item with label Typography"
   },
-  "item.label.Spacing & Sizing": {
-    "message": "スペーシング・サイジング",
-    "description": "Navbar item with label Spacing & Sizing"
-  },
   "item.label.Color": {
-    "message": "カラー",
+    "message": "Color",
     "description": "Navbar item with label Color"
   },
-  "item.label.Visual Effects": {
-    "message": "ビジュアルエフェクト",
-    "description": "Navbar item with label Visual Effects"
+  "item.label.Visual": {
+    "message": "Visual",
+    "description": "Navbar item with label Visual"
   },
   "item.label.Responsive": {
-    "message": "レスポンシブ",
+    "message": "Responsive",
     "description": "Navbar item with label Responsive"
   },
   "item.label.Interactive": {
-    "message": "インタラクティブ",
+    "message": "Interactive",
     "description": "Navbar item with label Interactive"
   },
   "item.label.Methodology": {
     "message": "CSS設計",
     "description": "Navbar item with label Methodology"
   },
-  "item.label.Overview": {
-    "message": "概要",
-    "description": "Navbar item with label Overview"
+  "item.label.INBOX": {
+    "message": "INBOX",
+    "description": "Navbar item with label INBOX"
   }
 }

@@ -106,21 +106,15 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'spacingSizingSidebar',
-          position: 'left',
-          label: 'Spacing & Sizing',
-        },
-        {
-          type: 'docSidebar',
           sidebarId: 'colorSidebar',
           position: 'left',
           label: 'Color',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'visualEffectsSidebar',
+          sidebarId: 'visualSidebar',
           position: 'left',
-          label: 'Visual Effects',
+          label: 'Visual',
         },
         {
           type: 'docSidebar',
@@ -139,6 +133,12 @@ const config: Config = {
           sidebarId: 'methodologySidebar',
           position: 'left',
           label: 'Methodology',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'inboxSidebar',
+          position: 'left',
+          label: 'INBOX',
         },
         {
           type: 'localeDropdown',

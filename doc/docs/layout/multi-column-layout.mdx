@@ -81,17 +81,17 @@ Classic newspaper-style multi-column text using `column-count` with `column-gap`
     <p>Unlike CSS Grid, which places items into rows left-to-right, multi-column layout flows content top-to-bottom within each column before moving to the next. This is the natural reading pattern for newspaper and magazine articles.</p>
     </article>`}
   css={`.magazine-text {
-    column-count: 3;
-    column-gap: 1.5rem;
-    column-rule: 1px solid hsl(220 15% 80%);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: hsl(220 15% 25%);
-    padding: 16px;
+      column-count: 3;
+      column-gap: 1.5rem;
+      column-rule: 1px solid hsl(220 15% 80%);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: hsl(220 15% 25%);
+      padding: 16px;
     }
     .magazine-text p {
-    margin: 0 0 0.75rem 0;
+      margin: 0 0 0.75rem 0;
     }`} />
 
 ### Width-Based Responsive Columns
@@ -108,17 +108,17 @@ Using `column-width` without `column-count` lets the browser automatically deter
     <p>Try resizing the preview to see the columns reflow. At narrow widths the content will be in a single column. As the width grows, additional columns appear automatically.</p>
     </div>`}
   css={`.responsive-text {
-    column-width: 180px;
-    column-gap: 1.25rem;
-    column-rule: 2px solid hsl(260 60% 70%);
-    font-family: system-ui, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: hsl(260 20% 20%);
-    padding: 16px;
+      column-width: 180px;
+      column-gap: 1.25rem;
+      column-rule: 2px solid hsl(260 60% 70%);
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: hsl(260 20% 20%);
+      padding: 16px;
     }
     .responsive-text p {
-    margin: 0 0 0.75rem 0;
+      margin: 0 0 0.75rem 0;
     }`} />
 
 ### Masonry-Style Card Gallery
@@ -163,35 +163,35 @@ Block-level cards in a multi-column container with `break-inside: avoid` to prev
     </div>
     </div>`}
   css={`.masonry-gallery {
-    column-count: 3;
-    column-gap: 12px;
-    padding: 12px;
+      column-count: 3;
+      column-gap: 12px;
+      padding: 12px;
     }
     .masonry-card {
-    break-inside: avoid;
-    background: hsl(210 80% 55%);
-    color: hsl(0 0% 100%);
-    border-radius: 8px;
-    padding: 14px;
-    margin-bottom: 12px;
-    font-family: system-ui, sans-serif;
+      break-inside: avoid;
+      background: hsl(210 80% 55%);
+      color: hsl(0 0% 100%);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+      font-family: system-ui, sans-serif;
     }
     .masonry-card h3 {
-    margin: 0 0 6px 0;
-    font-size: 15px;
-    font-weight: 700;
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      font-weight: 700;
     }
     .masonry-card p {
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.5;
-    opacity: 0.9;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0.9;
     }
     .masonry-card--medium {
-    background: hsl(160 55% 42%);
+      background: hsl(160 55% 42%);
     }
     .masonry-card--tall {
-    background: hsl(280 55% 55%);
+      background: hsl(280 55% 55%);
     }`} />
 
 Without `break-inside: avoid`, the browser would split cards across column boundaries, cutting a card in half with the top in one column and the bottom in the next. This property is essential for any block-level content inside a multi-column container.
@@ -213,27 +213,27 @@ Use `column-span: all` to create a full-width element that breaks out of the col
     <p>Any element can span all columns — headings, images, horizontal rules, or custom dividers. Just apply column-span: all and the element stretches across the full container width.</p>
     </article>`}
   css={`.spanning-article {
-    column-count: 3;
-    column-gap: 1.25rem;
-    column-rule: 1px solid hsl(220 15% 82%);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 13px;
-    line-height: 1.6;
-    color: hsl(220 15% 25%);
-    padding: 16px;
+      column-count: 3;
+      column-gap: 1.25rem;
+      column-rule: 1px solid hsl(220 15% 82%);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: hsl(220 15% 25%);
+      padding: 16px;
     }
     .spanning-article p {
-    margin: 0 0 0.75rem 0;
+      margin: 0 0 0.75rem 0;
     }
     .pull-quote {
-    column-span: all;
-    margin: 1rem 0;
-    padding: 1rem 1.5rem;
-    background: hsl(45 90% 95%);
-    border-left: 4px solid hsl(45 90% 50%);
-    font-style: italic;
-    font-size: 16px;
-    color: hsl(45 40% 25%);
+      column-span: all;
+      margin: 1rem 0;
+      padding: 1rem 1.5rem;
+      background: hsl(45 90% 95%);
+      border-left: 4px solid hsl(45 90% 50%);
+      font-style: italic;
+      font-size: 16px;
+      color: hsl(45 40% 25%);
     }`} />
 
 Note that `column-span` only accepts `all` or `none` — you cannot span a specific number of columns. The spanning element breaks the column flow, and a new column context begins below it.
@@ -276,45 +276,45 @@ Multi-column layout and CSS Grid both create multi-column appearances, but they 
     </div>
     </div>`}
   css={`.comparison {
-    display: flex;
-    gap: 16px;
-    padding: 12px;
-    font-family: system-ui, sans-serif;
+      display: flex;
+      gap: 16px;
+      padding: 12px;
+      font-family: system-ui, sans-serif;
     }
     .comparison-panel {
-    flex: 1;
+      flex: 1;
     }
     .comparison-heading {
-    font-size: 13px;
-    font-weight: 700;
-    color: hsl(220 15% 30%);
-    margin: 0 0 10px 0;
-    text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: hsl(220 15% 30%);
+      margin: 0 0 10px 0;
+      text-align: center;
     }
     .column-layout {
-    column-count: 3;
-    column-gap: 8px;
+      column-count: 3;
+      column-gap: 8px;
     }
     .grid-layout {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
     .numbered-item {
-    padding: 10px;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: hsl(0 0% 100%);
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: hsl(0 0% 100%);
     }
     .numbered-item--col {
-    background: hsl(210 80% 55%);
-    margin-bottom: 8px;
-    break-inside: avoid;
+      background: hsl(210 80% 55%);
+      margin-bottom: 8px;
+      break-inside: avoid;
     }
     .numbered-item--grid {
-    background: hsl(160 55% 42%);
+      background: hsl(160 55% 42%);
     }`} />
 
 In the multi-column layout, items are ordered 1-2-3 down the first column, 4-5-6 down the second, and 7-8-9 down the third. In the CSS Grid, items fill row by row: 1-2-3 across the first row, 4-5-6 across the second, and 7-8-9 across the third.

@@ -47,89 +47,89 @@ Respect the `prefers-reduced-motion: reduce` preference by **reducing** rather t
     `}
   css={`
     .demo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
     }
     
     .column {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
     
     .col-title {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #1e293b;
-    margin: 0;
-    text-align: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+      text-align: center;
     }
     
     .box {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.75rem;
-    color: #475569;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: #475569;
     }
     
     .box-full {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
     }
     
     .box-reduced {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
     }
     
     .spinner {
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 3px solid #e2e8f0;
-    border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 3px solid #e2e8f0;
+      border-radius: 50%;
     }
     
     .spinner-full {
-    border-top-color: #3b82f6;
-    animation: spin 0.8s linear infinite;
+      border-top-color: #3b82f6;
+      animation: spin 0.8s linear infinite;
     }
     
     .spinner-reduced {
-    border-top-color: #22c55e;
-    animation: pulse 1.5s ease-in-out infinite;
+      border-top-color: #22c55e;
+      animation: pulse 1.5s ease-in-out infinite;
     }
     
     @keyframes spin {
-    to { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
     
     @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
     
     .bounce-box {
-    animation: bounce-anim 1s ease-in-out infinite;
+      animation: bounce-anim 1s ease-in-out infinite;
     }
     
     @keyframes bounce-anim {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
     
     .fade-box {
-    animation: fade-anim 2s ease-in-out infinite;
+      animation: fade-anim 2s ease-in-out infinite;
     }
     
     @keyframes fade-anim {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
     `} />
 

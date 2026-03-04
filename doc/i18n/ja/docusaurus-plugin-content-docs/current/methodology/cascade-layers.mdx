@@ -255,55 +255,55 @@ p {
     
     @layer base {
     .text {
-    color: #ef4444;
-    font-size: 1.25rem;
-    font-weight: 700;
-    padding: 1rem;
-    background: #fef2f2;
-    border-left: 4px solid #ef4444;
-    border-radius: 6px;
+      color: #ef4444;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 1rem;
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      border-radius: 6px;
     }
     }
     
     @layer theme {
     .text {
-    color: #3b82f6;
-    background: #eff6ff;
-    border-left-color: #3b82f6;
+      color: #3b82f6;
+      background: #eff6ff;
+      border-left-color: #3b82f6;
     }
     }
     
     .demo {
-    font-family: system-ui, sans-serif;
+      font-family: system-ui, sans-serif;
     }
     
     .legend {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #64748b;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
     
     .legend div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
     .swatch {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
     }
     
     code {
-    background: #f1f5f9;
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
+      background: #f1f5f9;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
     }
     `} />
 
@@ -325,54 +325,54 @@ p {
     @layer base, components;
     
     @layer base {
-    /* High specificity: (0, 2, 3) */
+      /* High specificity: (0, 2, 3) */
     nav ul li.active a.nav-link {
-    color: #ef4444;
-    text-decoration: line-through;
+      color: #ef4444;
+      text-decoration: line-through;
     }
     }
     
     @layer components {
-    /* Low specificity: (0, 1, 0) — but WINS */
+      /* Low specificity: (0, 1, 0) — but WINS */
     .nav-link {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: background 0.2s;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.2s;
     }
     
     .nav-link:hover {
-    background: #eff6ff;
+      background: #eff6ff;
     }
     }
     
     nav {
-    font-family: system-ui, sans-serif;
+      font-family: system-ui, sans-serif;
     }
     
     ul {
-    list-style: none;
-    display: flex;
-    gap: 0.25rem;
-    padding: 0;
-    margin: 0;
+      list-style: none;
+      display: flex;
+      gap: 0.25rem;
+      padding: 0;
+      margin: 0;
     }
     
     .note {
-    font-family: system-ui, sans-serif;
-    font-size: 0.8rem;
-    color: #64748b;
-    margin-top: 1rem;
-    line-height: 1.5;
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 1rem;
+      line-height: 1.5;
     }
     
     code {
-    background: #f1f5f9;
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
+      background: #f1f5f9;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
     }
     `} />
 

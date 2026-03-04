@@ -38,58 +38,58 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .demo {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
     }
     
     .card {
-    flex: 1;
-    padding: 1.5rem;
-    border: 1px solid hsl(220 15% 85%);
-    border-radius: 0.5rem;
-    background: white;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+      flex: 1;
+      padding: 1.5rem;
+      border: 1px solid hsl(220 15% 85%);
+      border-radius: 0.5rem;
+      background: white;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
     
     .card:hover,
     .card:focus-within {
-    background: hsl(220 60% 97%);
-    border-color: hsl(220 60% 70%);
+      background: hsl(220 60% 97%);
+      border-color: hsl(220 60% 70%);
     }
     
     .card:focus-visible {
-    outline: 2px solid hsl(220 70% 50%);
-    outline-offset: 2px;
+      outline: 2px solid hsl(220 70% 50%);
+      outline-offset: 2px;
     }
     
     .card__icon {
-    font-size: 1.25rem;
-    transition: transform 0.2s ease;
+      font-size: 1.25rem;
+      transition: transform 0.2s ease;
     }
     
     .card:hover .card__icon,
     .card:focus-within .card__icon {
-    transform: translateX(4px);
+      transform: translateX(4px);
     }
     
     .card__title {
-    margin: 0.5rem 0 0.25rem;
-    font-size: 1rem;
-    color: hsl(220 15% 25%);
-    transition: color 0.2s ease;
+      margin: 0.5rem 0 0.25rem;
+      font-size: 1rem;
+      color: hsl(220 15% 25%);
+      transition: color 0.2s ease;
     }
     
     .card:hover .card__title,
     .card:focus-within .card__title {
-    color: hsl(220 70% 50%);
+      color: hsl(220 70% 50%);
     }
     
     .card__desc {
-    margin: 0;
-    font-size: 0.8rem;
-    color: hsl(220 10% 50%);
-    line-height: 1.5;
+      margin: 0;
+      font-size: 0.8rem;
+      color: hsl(220 10% 50%);
+      line-height: 1.5;
     }
     `} />
 
@@ -149,53 +149,53 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .demo {
-    padding: 2rem;
+      padding: 2rem;
     }
     
     .hint {
-    font-size: 0.75rem;
-    color: hsl(220 10% 55%);
-    font-style: italic;
-    margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: hsl(220 10% 55%);
+      font-style: italic;
+      margin-top: 0.75rem;
     }
     
     .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.625rem 1rem;
-    border: 2px solid hsl(220 15% 80%);
-    border-radius: 0.5rem;
-    background: white;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      border: 2px solid hsl(220 15% 80%);
+      border-radius: 0.5rem;
+      background: white;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     
     .search-bar:focus-within {
-    border-color: hsl(220 70% 50%);
-    box-shadow: 0 0 0 3px hsl(220 70% 50% / 0.15);
+      border-color: hsl(220 70% 50%);
+      box-shadow: 0 0 0 3px hsl(220 70% 50% / 0.15);
     }
     
     .search-bar__icon {
-    font-size: 1.25rem;
-    color: hsl(220 10% 60%);
-    transition: color 0.2s ease;
+      font-size: 1.25rem;
+      color: hsl(220 10% 60%);
+      transition: color 0.2s ease;
     }
     
     .search-bar:focus-within .search-bar__icon {
-    color: hsl(220 70% 50%);
+      color: hsl(220 70% 50%);
     }
     
     .search-bar__input {
-    border: none;
-    outline: 2px solid transparent;
-    font-size: 0.9rem;
-    flex: 1;
-    background: transparent;
-    color: hsl(220 15% 20%);
+      border: none;
+      outline: 2px solid transparent;
+      font-size: 0.9rem;
+      flex: 1;
+      background: transparent;
+      color: hsl(220 15% 20%);
     }
     
     .search-bar__input::placeholder {
-    color: hsl(220 10% 65%);
+      color: hsl(220 10% 65%);
     }
     `} />
 
@@ -259,22 +259,22 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .demo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.5rem;
     }
     
     .option-card {
-    display: block;
-    border: 2px solid hsl(220 15% 85%);
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+      display: block;
+      border: 2px solid hsl(220 15% 85%);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
     }
     
     .option-card:hover {
-    border-color: hsl(220 30% 70%);
+      border-color: hsl(220 30% 70%);
     }
     
     .option-card:has(input:checked) {
@@ -376,67 +376,67 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .demo {
-    padding: 2rem;
+      padding: 2rem;
     }
     
     .hint {
-    font-size: 0.75rem;
-    color: hsl(220 10% 55%);
-    font-style: italic;
-    margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: hsl(220 10% 55%);
+      font-style: italic;
+      margin-top: 1.5rem;
     }
     
     .nav {
-    display: flex;
-    gap: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
     }
     
     .nav-item {
-    position: relative;
+      position: relative;
     }
     
     .nav-item__btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid hsl(220 15% 80%);
-    border-radius: 0.375rem;
-    background: white;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+      padding: 0.5rem 1rem;
+      border: 1px solid hsl(220 15% 80%);
+      border-radius: 0.375rem;
+      background: white;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
     }
     
     .nav-item:hover .nav-item__btn,
     .nav-item:focus-within .nav-item__btn {
-    background: hsl(220 60% 97%);
-    border-color: hsl(220 60% 70%);
+      background: hsl(220 60% 97%);
+      border-color: hsl(220 60% 70%);
     }
     
     .nav-item__btn:focus-visible {
-    outline: 2px solid hsl(220 70% 50%);
-    outline-offset: 2px;
+      outline: 2px solid hsl(220 70% 50%);
+      outline-offset: 2px;
     }
     
     .nav-item__tooltip {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    padding: 0.375rem 0.75rem;
-    background: hsl(220 20% 20%);
-    color: white;
-    font-size: 0.75rem;
-    border-radius: 0.25rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      padding: 0.375rem 0.75rem;
+      background: hsl(220 20% 20%);
+      color: white;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
     
     .nav-item:hover .nav-item__tooltip,
     .nav-item:focus-within .nav-item__tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
     `} />
 
@@ -488,17 +488,17 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .accordion {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     
     .accordion__item {
-    border: 1px solid hsl(220 15% 85%);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: border-color 0.2s ease;
+      border: 1px solid hsl(220 15% 85%);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
     }
     
     .accordion__item:has(.accordion__trigger:checked) {
@@ -603,78 +603,78 @@ CSSは親の状態に基づく子スタイリングのための3つの補完的�
     `}
   css={`
     .demo {
-    padding: 1.5rem;
-    max-width: 320px;
+      padding: 1.5rem;
+      max-width: 320px;
     }
     
     .card {
-    border: 1px solid hsl(220 15% 85%);
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    background: white;
-    transition: border-color 0.2s ease;
-    position: relative;
+      border: 1px solid hsl(220 15% 85%);
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+      background: white;
+      transition: border-color 0.2s ease;
+      position: relative;
     }
     
     .card:hover {
-    border-color: hsl(220 50% 70%);
+      border-color: hsl(220 50% 70%);
     }
     
     .card__badge {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 0.25rem;
-    background: hsl(220 15% 88%);
-    color: hsl(220 15% 40%);
-    transition: background-color 0.2s ease, color 0.2s ease;
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 0.25rem;
+      background: hsl(220 15% 88%);
+      color: hsl(220 15% 40%);
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
     
     /* Outer group: card hover changes badge */
     .card:hover .card__badge {
-    background: hsl(220 70% 50%);
-    color: white;
+      background: hsl(220 70% 50%);
+      color: white;
     }
     
     .card__title {
-    font-size: 1rem;
-    margin: 0.75rem 0 0.25rem;
-    color: hsl(220 15% 20%);
+      font-size: 1rem;
+      margin: 0.75rem 0 0.25rem;
+      color: hsl(220 15% 20%);
     }
     
     .card__desc {
-    font-size: 0.8rem;
-    color: hsl(220 10% 50%);
-    line-height: 1.5;
-    margin: 0;
+      font-size: 0.8rem;
+      color: hsl(220 10% 50%);
+      line-height: 1.5;
+      margin: 0;
     }
     
     .card__footer {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid hsl(220 15% 90%);
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid hsl(220 15% 90%);
     }
     
     .card__footer-link {
-    font-size: 0.85rem;
-    color: hsl(220 70% 50%);
-    transition: text-decoration-color 0.15s ease;
-    text-decoration: underline transparent;
+      font-size: 0.85rem;
+      color: hsl(220 70% 50%);
+      transition: text-decoration-color 0.15s ease;
+      text-decoration: underline transparent;
     }
     
     .card__footer-link:focus-visible {
-    outline: 2px solid hsl(220 70% 50%);
-    outline-offset: 2px;
-    border-radius: 2px;
+      outline: 2px solid hsl(220 70% 50%);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
     
     /* Inner group: footer hover changes link */
     .card__footer:hover .card__footer-link,
     .card__footer:focus-within .card__footer-link {
-    text-decoration: underline hsl(220 70% 50%);
+      text-decoration: underline hsl(220 70% 50%);
     }
     `} />
 

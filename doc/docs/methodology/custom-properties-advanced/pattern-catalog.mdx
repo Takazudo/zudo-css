@@ -43,16 +43,16 @@ Every element referencing `--content-padding` automatically updates at the break
     `}
   css={`
     :root {
-    --content-padding: 1rem;
-    --content-gap: 0.75rem;
-    --content-font: 0.875rem;
+      --content-padding: 1rem;
+      --content-gap: 0.75rem;
+      --content-font: 0.875rem;
     }
     
     @media (min-width: 768px) {
     :root {
-    --content-padding: 2rem;
-    --content-gap: 1.5rem;
-    --content-font: 1rem;
+      --content-padding: 2rem;
+      --content-gap: 1.5rem;
+      --content-font: 1rem;
     }
     }
     
@@ -116,47 +116,47 @@ CSS counters generate automatic numbering. Combine them with custom properties t
     `}
   css={`
     .counter-demo {
-    font-family: system-ui, sans-serif;
-    --counter-bg: hsl(250 80% 60%);
-    --counter-color: white;
-    --counter-size: 2rem;
+      font-family: system-ui, sans-serif;
+      --counter-bg: hsl(250 80% 60%);
+      --counter-color: white;
+      --counter-size: 2rem;
     }
     
     .steps {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    counter-reset: step-counter;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step-counter;
     }
     
     .step {
-    counter-increment: step-counter;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid hsl(250 20% 92%);
-    color: hsl(250 20% 30%);
-    line-height: 1.5;
+      counter-increment: step-counter;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid hsl(250 20% 92%);
+      color: hsl(250 20% 30%);
+      line-height: 1.5;
     }
     
     .step:last-child {
-    border-bottom: none;
+      border-bottom: none;
     }
     
     .step::before {
-    content: counter(step-counter);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: var(--counter-size);
-    height: var(--counter-size);
-    background: var(--counter-bg);
-    color: var(--counter-color);
-    border-radius: 50%;
-    font-weight: 700;
-    font-size: 0.875rem;
-    flex-shrink: 0;
+      content: counter(step-counter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--counter-size);
+      height: var(--counter-size);
+      background: var(--counter-bg);
+      color: var(--counter-color);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
     }
     `} />
 
@@ -189,47 +189,47 @@ A parent component sets custom properties, and deeply nested children inherit th
     `}
   css={`
     .card-list {
-    font-family: system-ui, sans-serif;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+      font-family: system-ui, sans-serif;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
     
     .themed-card {
-    --_accent: var(--card-accent, hsl(220 70% 55%));
-    background: white;
-    border: 2px solid var(--_accent);
-    border-radius: 12px;
-    padding: 1.25rem;
+      --_accent: var(--card-accent, hsl(220 70% 55%));
+      background: white;
+      border: 2px solid var(--_accent);
+      border-radius: 12px;
+      padding: 1.25rem;
     }
     
     .themed-card-title {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-    color: var(--_accent);
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: var(--_accent);
     }
     
     .themed-card-body {
-    margin: 0 0 1rem;
-    font-size: 0.85rem;
-    color: hsl(220 15% 45%);
-    line-height: 1.5;
+      margin: 0 0 1rem;
+      font-size: 0.85rem;
+      color: hsl(220 15% 45%);
+      line-height: 1.5;
     }
     
     .themed-card-footer {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
     
     /* Tags inherit --_accent from the card ancestor */
     .tag {
-    background: var(--_accent);
-    color: white;
-    padding: 0.2rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
+      background: var(--_accent);
+      color: white;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
     `} />
 
@@ -288,43 +288,43 @@ Define a single base spacing unit, then derive an entire scale with `calc()`. Ch
     `}
   css={`
     :root {
-    --space-unit: 8px;
-    --space-xs: calc(var(--space-unit) * 0.5);
-    --space-sm: var(--space-unit);
-    --space-md: calc(var(--space-unit) * 2);
-    --space-lg: calc(var(--space-unit) * 3);
-    --space-xl: calc(var(--space-unit) * 5);
+      --space-unit: 8px;
+      --space-xs: calc(var(--space-unit) * 0.5);
+      --space-sm: var(--space-unit);
+      --space-md: calc(var(--space-unit) * 2);
+      --space-lg: calc(var(--space-unit) * 3);
+      --space-xl: calc(var(--space-unit) * 5);
     }
     
     .spacing-demo {
-    font-family: system-ui, sans-serif;
+      font-family: system-ui, sans-serif;
     }
     
     .spacing-title {
-    margin: 0 0 1rem;
-    font-size: 1rem;
-    color: hsl(220 30% 30%);
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: hsl(220 30% 30%);
     }
     
     .scale-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
     }
     
     .scale-label {
-    font-size: 0.8rem;
-    color: hsl(220 15% 50%);
-    min-width: 5.5rem;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
+      font-size: 0.8rem;
+      color: hsl(220 15% 50%);
+      min-width: 5.5rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
     }
     
     .scale-bar {
-    height: 1.25rem;
-    background: hsl(220 80% 60%);
-    border-radius: 4px;
+      height: 1.25rem;
+      background: hsl(220 80% 60%);
+      border-radius: 4px;
     }
     
     .scale-xs { width: var(--space-xs); }
@@ -334,29 +334,29 @@ Define a single base spacing unit, then derive an entire scale with `calc()`. Ch
     .scale-xl { width: var(--space-xl); }
     
     .card-demo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-sm);
-    margin-top: var(--space-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
     }
     
     .space-card {
-    background: hsl(220 30% 96%);
-    border: 1px solid hsl(220 20% 88%);
-    border-radius: 8px;
-    padding: var(--space-md);
+      background: hsl(220 30% 96%);
+      border: 1px solid hsl(220 20% 88%);
+      border-radius: 8px;
+      padding: var(--space-md);
     }
     
     .space-card h4 {
-    margin: 0 0 var(--space-xs);
-    font-size: 0.9rem;
-    color: hsl(220 30% 30%);
+      margin: 0 0 var(--space-xs);
+      font-size: 0.9rem;
+      color: hsl(220 30% 30%);
     }
     
     .space-card p {
-    margin: 0;
-    font-size: 0.8rem;
-    color: hsl(220 15% 55%);
+      margin: 0;
+      font-size: 0.8rem;
+      color: hsl(220 15% 55%);
     }
     `} />
 
@@ -393,68 +393,68 @@ Separate HSL components into individual custom properties for maximum flexibilit
     `}
   css={`
     :root {
-    --primary-h: 220;
-    --primary-s: 80%;
-    --primary-l: 50%;
+      --primary-h: 220;
+      --primary-s: 80%;
+      --primary-l: 50%;
     
-    --secondary-h: 160;
-    --secondary-s: 60%;
-    --secondary-l: 42%;
+      --secondary-h: 160;
+      --secondary-s: 60%;
+      --secondary-l: 42%;
     
-    --accent-h: 340;
-    --accent-s: 75%;
-    --accent-l: 55%;
+      --accent-h: 340;
+      --accent-s: 75%;
+      --accent-l: 55%;
     }
     
     .color-demo {
-    font-family: system-ui, sans-serif;
+      font-family: system-ui, sans-serif;
     }
     
     .button-row {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
     
     .btn {
-    border: none;
-    padding: 0.65rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: white;
-    cursor: pointer;
-    transition: background 0.15s;
+      border: none;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+      transition: background 0.15s;
     }
     
     .btn-primary {
-    background: hsl(var(--primary-h) var(--primary-s) var(--primary-l));
+      background: hsl(var(--primary-h) var(--primary-s) var(--primary-l));
     }
     
     .btn-primary:hover {
-    background: hsl(var(--primary-h) var(--primary-s) calc(var(--primary-l) - 10%));
+      background: hsl(var(--primary-h) var(--primary-s) calc(var(--primary-l) - 10%));
     }
     
     .btn-secondary {
-    background: hsl(var(--secondary-h) var(--secondary-s) var(--secondary-l));
+      background: hsl(var(--secondary-h) var(--secondary-s) var(--secondary-l));
     }
     
     .btn-secondary:hover {
-    background: hsl(var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - 10%));
+      background: hsl(var(--secondary-h) var(--secondary-s) calc(var(--secondary-l) - 10%));
     }
     
     .btn-accent {
-    background: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+      background: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
     }
     
     .btn-accent:hover {
-    background: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 10%));
+      background: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 10%));
     }
     
     .color-hint {
-    font-size: 0.8rem;
-    color: hsl(220 15% 55%);
-    margin-top: 1rem;
+      font-size: 0.8rem;
+      color: hsl(220 15% 55%);
+      margin-top: 1rem;
     }
     `} />
 

@@ -61,34 +61,34 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
     <div class="item fit">3</div>
     </div>`}
   css={`.label {
-    font-family: system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 8px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
     }
     .grid-fill {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-    margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
     }
     .grid-fit {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
     }
     .item {
-    background: #3b82f6;
-    color: #fff;
-    padding: 16px;
-    border-radius: 8px;
-    text-align: center;
-    font-family: system-ui, sans-serif;
-    font-size: 16px;
+      background: #3b82f6;
+      color: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: system-ui, sans-serif;
+      font-size: 16px;
     }
     .item.fit {
-    background: #22c55e;
+      background: #22c55e;
     }`} />
 
 ### レスポンシブなカードグリッド（メディアクエリ不要）
@@ -121,19 +121,19 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
     <div class="card">Card 6</div>
     </div>`}
   css={`.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
-    gap: 12px;
-    padding: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+      gap: 12px;
+      padding: 8px;
     }
     .card {
-    background: #8b5cf6;
-    color: #fff;
-    padding: 20px 16px;
-    border-radius: 8px;
-    text-align: center;
-    font-family: system-ui, sans-serif;
-    font-size: 16px;
+      background: #8b5cf6;
+      color: #fff;
+      padding: 20px 16px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: system-ui, sans-serif;
+      font-size: 16px;
     }`} />
 
 ### 名前付きグリッドエリア
@@ -188,46 +188,46 @@ CSS Gridは二次元のレイアウトシステムです。ページレベルの
     <footer class="footer">Footer</footer>
     </div>`}
   css={`.page-layout {
-    display: grid;
-    grid-template-areas:
-    "header  header"
-    "sidebar main"
-    "footer  footer";
-    grid-template-columns: 120px 1fr;
-    grid-template-rows: auto 1fr auto;
-    min-height: 280px;
-    gap: 8px;
-    padding: 8px;
-    font-family: system-ui, sans-serif;
-    font-size: 16px;
+      display: grid;
+      grid-template-areas:
+      "header  header"
+      "sidebar main"
+      "footer  footer";
+      grid-template-columns: 120px 1fr;
+      grid-template-rows: auto 1fr auto;
+      min-height: 280px;
+      gap: 8px;
+      padding: 8px;
+      font-family: system-ui, sans-serif;
+      font-size: 16px;
     }
     .header {
-    grid-area: header;
-    background: #3b82f6;
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 8px;
+      grid-area: header;
+      background: #3b82f6;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
     }
     .sidebar {
-    grid-area: sidebar;
-    background: #f59e0b;
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 8px;
+      grid-area: sidebar;
+      background: #f59e0b;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
     }
     .main {
-    grid-area: main;
-    background: #22c55e;
-    color: #fff;
-    padding: 16px;
-    border-radius: 8px;
+      grid-area: main;
+      background: #22c55e;
+      color: #fff;
+      padding: 16px;
+      border-radius: 8px;
     }
     .footer {
-    grid-area: footer;
-    background: #8b5cf6;
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 8px;
+      grid-area: footer;
+      background: #8b5cf6;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
     }`}
   height={320} />
 

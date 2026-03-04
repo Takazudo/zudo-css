@@ -40,20 +40,20 @@ Flexbox is a one-dimensional layout model. It excels at distributing space along
     <div class="content">Perfectly centered</div>
     </div>`}
   css={`.centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background: #f1f5f9;
-    border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+      background: #f1f5f9;
+      border-radius: 8px;
     }
     .content {
-    background: #3b82f6;
-    color: #fff;
-    padding: 16px 32px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: system-ui, sans-serif;
+      background: #3b82f6;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: system-ui, sans-serif;
     }`}
   height={220} />
 
@@ -95,21 +95,21 @@ Flex items in a row container stretch to the same height by default via `align-i
     <div class="column">Medium content here</div>
     </div>`}
   css={`.columns {
-    display: flex;
-    gap: 12px;
-    padding: 12px;
-    font-family: system-ui, sans-serif;
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      font-family: system-ui, sans-serif;
     }
     .column {
-    flex: 1;
-    background: #8b5cf6;
-    color: #fff;
-    padding: 16px;
-    border-radius: 8px;
-    font-size: 16px;
+      flex: 1;
+      background: #8b5cf6;
+      color: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 16px;
     }
     .column p {
-    margin: 0 0 8px 0;
+      margin: 0 0 8px 0;
     }`} />
 
 ### Sticky Footer
@@ -147,26 +147,26 @@ main {
     <footer class="footer">Footer sticks to bottom</footer>
     </div>`}
   css={`.page {
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    font-family: system-ui, sans-serif;
-    font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      font-family: system-ui, sans-serif;
+      font-size: 16px;
     }
     .header {
-    background: #3b82f6;
-    color: #fff;
-    padding: 12px 20px;
+      background: #3b82f6;
+      color: #fff;
+      padding: 12px 20px;
     }
     .main {
-    flex: 1;
-    padding: 20px;
-    background: #f1f5f9;
+      flex: 1;
+      padding: 20px;
+      background: #f1f5f9;
     }
     .footer {
-    background: #22c55e;
-    color: #fff;
-    padding: 12px 20px;
+      background: #22c55e;
+      color: #fff;
+      padding: 12px 20px;
     }`}
   height={320} />
 
@@ -213,38 +213,38 @@ When items wrap, `justify-content: space-between` can leave awkward gaps on the 
     <div class="item good">5</div>
     </div>`}
   css={`.label {
-    font-family: system-ui, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #334155;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #334155;
     }
     .bad-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
     }
     .good-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .item {
-    width: 30%;
-    background: #ef4444;
-    color: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-    font-family: system-ui, sans-serif;
-    font-size: 16px;
-    margin-bottom: 12px;
+      width: 30%;
+      background: #ef4444;
+      color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: system-ui, sans-serif;
+      font-size: 16px;
+      margin-bottom: 12px;
     }
     .item.good {
-    background: #22c55e;
-    width: calc(33.333% - 12px);
-    margin-bottom: 0;
+      background: #22c55e;
+      width: calc(33.333% - 12px);
+      margin-bottom: 0;
     }`} />
 
 ### Preventing Overflow with min-width: 0

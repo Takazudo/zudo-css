@@ -89,42 +89,42 @@ Color harmony defines which hues work together and why. The five primary strateg
     </div>
     </div>`}
   css={`.harmonies {
-    padding: 1.25rem;
-    font-family: system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
+      padding: 1.25rem;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
     }
     .harmony {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     .harmony__name {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: oklch(30% 0 0);
-    width: 130px;
-    flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: oklch(30% 0 0);
+      width: 130px;
+      flex-shrink: 0;
     }
     .harmony__swatches {
-    display: flex;
-    gap: 3px;
-    flex: 0 0 auto;
+      display: flex;
+      gap: 3px;
+      flex: 0 0 auto;
     }
     .swatch {
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
     }
     .swatch--gap {
-    background: transparent;
-    width: 12px;
-    border-radius: 0;
+      background: transparent;
+      width: 12px;
+      border-radius: 0;
     }
     .harmony__desc {
-    font-size: 0.72rem;
-    color: oklch(52% 0 0);
+      font-size: 0.72rem;
+      color: oklch(52% 0 0);
     }`} />
 
 ### Building a Design Color Palette
@@ -198,117 +198,117 @@ A classic proportion from interior design that translates directly to UI:
     </main>
     </div>`}
   css={`:root {
-    --neutral-bg: oklch(97% 0.005 264);
-    --neutral-surface: oklch(100% 0 0);
-    --neutral-border: oklch(88% 0.01 264);
-    --neutral-text: oklch(22% 0.02 264);
-    --neutral-text-muted: oklch(52% 0.015 264);
-    --secondary: oklch(32% 0.08 264);
-    --secondary-text: oklch(90% 0.04 264);
-    --secondary-muted: oklch(50% 0.06 264);
-    --accent: oklch(68% 0.22 55);
-    --accent-text: oklch(20% 0.05 55);
+      --neutral-bg: oklch(97% 0.005 264);
+      --neutral-surface: oklch(100% 0 0);
+      --neutral-border: oklch(88% 0.01 264);
+      --neutral-text: oklch(22% 0.02 264);
+      --neutral-text-muted: oklch(52% 0.015 264);
+      --secondary: oklch(32% 0.08 264);
+      --secondary-text: oklch(90% 0.04 264);
+      --secondary-muted: oklch(50% 0.06 264);
+      --accent: oklch(68% 0.22 55);
+      --accent-text: oklch(20% 0.05 55);
     }
     .page-layout {
-    display: flex;
-    height: 100%;
-    font-family: system-ui, sans-serif;
-    background: var(--neutral-bg);
+      display: flex;
+      height: 100%;
+      font-family: system-ui, sans-serif;
+      background: var(--neutral-bg);
     }
     .page-layout__sidebar {
-    width: 140px;
-    background: var(--secondary);
-    padding: 1rem 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    flex-shrink: 0;
+      width: 140px;
+      background: var(--secondary);
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      flex-shrink: 0;
     }
     .sidebar-brand {
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--secondary-text);
-    letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--secondary-text);
+      letter-spacing: 0.05em;
     }
     .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
     }
     .sidebar-nav__item {
-    font-size: 0.78rem;
-    color: var(--secondary-muted);
-    padding: 0.35rem 0.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
+      font-size: 0.78rem;
+      color: var(--secondary-muted);
+      padding: 0.35rem 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
     }
     .sidebar-nav__item--active {
-    background: oklch(50% 0.1 264 / 0.4);
-    color: var(--secondary-text);
+      background: oklch(50% 0.1 264 / 0.4);
+      color: var(--secondary-text);
     }
     .page-layout__main {
-    flex: 1;
-    padding: 1rem 1.25rem;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+      flex: 1;
+      padding: 1rem 1.25rem;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
     .page-layout__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .page-layout__title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--neutral-text);
-    margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--neutral-text);
+      margin: 0;
     }
     .cta-btn {
-    background: var(--accent);
-    color: var(--accent-text);
-    border: none;
-    border-radius: 6px;
-    padding: 0.4rem 0.75rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    cursor: pointer;
+      background: var(--accent);
+      color: var(--accent-text);
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
     }
     .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
     }
     .card {
-    background: var(--neutral-surface);
-    border: 1px solid var(--neutral-border);
-    border-radius: 8px;
-    padding: 0.75rem;
+      background: var(--neutral-surface);
+      border: 1px solid var(--neutral-border);
+      border-radius: 8px;
+      padding: 0.75rem;
     }
     .card__value {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--neutral-text);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--neutral-text);
     }
     .card__label {
-    font-size: 0.72rem;
-    color: var(--neutral-text-muted);
-    margin-top: 0.15rem;
+      font-size: 0.72rem;
+      color: var(--neutral-text-muted);
+      margin-top: 0.15rem;
     }
     .legend {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: auto;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--neutral-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--neutral-border);
     }
     .legend__item {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
     }
     .legend__item--60 { background: oklch(88% 0.01 264); color: oklch(35% 0 0); }
     .legend__item--30 { background: oklch(32% 0.08 264); color: oklch(90% 0 0); }
@@ -354,112 +354,112 @@ A single hue at different lightnesses provides enough visual variety for a compl
     </div>
     </div>`}
   css={`:root {
-    --h: 264;
-    --blue-50:  oklch(96% 0.04 var(--h));
-    --blue-100: oklch(90% 0.07 var(--h));
-    --blue-200: oklch(80% 0.1 var(--h));
-    --blue-400: oklch(65% 0.16 var(--h));
-    --blue-600: oklch(50% 0.2 var(--h));
-    --blue-700: oklch(40% 0.18 var(--h));
-    --blue-900: oklch(25% 0.1 var(--h));
+      --h: 264;
+      --blue-50:  oklch(96% 0.04 var(--h));
+      --blue-100: oklch(90% 0.07 var(--h));
+      --blue-200: oklch(80% 0.1 var(--h));
+      --blue-400: oklch(65% 0.16 var(--h));
+      --blue-600: oklch(50% 0.2 var(--h));
+      --blue-700: oklch(40% 0.18 var(--h));
+      --blue-900: oklch(25% 0.1 var(--h));
     }
     .mono-ui {
-    background: var(--blue-50);
-    padding: 2rem;
-    font-family: system-ui, sans-serif;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      background: var(--blue-50);
+      padding: 2rem;
+      font-family: system-ui, sans-serif;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .mono-card {
-    background: oklch(100% 0 0);
-    border: 1px solid var(--blue-100);
-    border-radius: 12px;
-    padding: 1.25rem;
-    width: 100%;
-    max-width: 340px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    box-shadow: 0 2px 12px oklch(50% 0.1 264 / 0.1);
+      background: oklch(100% 0 0);
+      border: 1px solid var(--blue-100);
+      border-radius: 12px;
+      padding: 1.25rem;
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 2px 12px oklch(50% 0.1 264 / 0.1);
     }
     .mono-card__header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     .mono-card__avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--blue-600);
-    color: oklch(97% 0.02 264);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    font-weight: 700;
-    flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--blue-600);
+      color: oklch(97% 0.02 264);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
     }
     .mono-card__name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--blue-900);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--blue-900);
     }
     .mono-card__role {
-    font-size: 0.78rem;
-    color: var(--blue-400);
+      font-size: 0.78rem;
+      color: var(--blue-400);
     }
     .mono-card__badge {
-    margin-left: auto;
-    background: var(--blue-50);
-    color: var(--blue-700);
-    border: 1px solid var(--blue-200);
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    border-radius: 20px;
+      margin-left: auto;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-200);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
     }
     .mono-card__stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    background: var(--blue-50);
-    border-radius: 8px;
-    padding: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      background: var(--blue-50);
+      border-radius: 8px;
+      padding: 0.75rem;
     }
     .mono-stat__value {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--blue-700);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue-700);
     }
     .mono-stat__label {
-    font-size: 0.7rem;
-    color: var(--blue-400);
+      font-size: 0.7rem;
+      color: var(--blue-400);
     }
     .mono-card__actions {
-    display: flex;
-    gap: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
     }
     .mono-btn {
-    flex: 1;
-    padding: 0.5rem;
-    border-radius: 7px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
     }
     .mono-btn--primary {
-    background: var(--blue-600);
-    color: oklch(97% 0.02 264);
+      background: var(--blue-600);
+      color: oklch(97% 0.02 264);
     }
     .mono-btn--ghost {
-    background: transparent;
-    color: var(--blue-600);
-    border: 1.5px solid var(--blue-200);
+      background: transparent;
+      color: var(--blue-600);
+      border: 1.5px solid var(--blue-200);
     }`} />
 
 ### Complementary Color Scheme
@@ -486,85 +486,85 @@ Use the complement as a high-contrast accent — it naturally draws the eye. Res
     </div>
     </div>`}
   css={`:root {
-    --primary: oklch(50% 0.2 264);
-    --primary-dark: oklch(35% 0.18 264);
-    --primary-light: oklch(93% 0.05 264);
-    --primary-text: oklch(97% 0.02 264);
-    --accent: oklch(68% 0.22 55);
-    --accent-hover: oklch(62% 0.24 55);
-    --accent-text: oklch(20% 0.08 55);
+      --primary: oklch(50% 0.2 264);
+      --primary-dark: oklch(35% 0.18 264);
+      --primary-light: oklch(93% 0.05 264);
+      --primary-text: oklch(97% 0.02 264);
+      --accent: oklch(68% 0.22 55);
+      --accent-hover: oklch(62% 0.24 55);
+      --accent-text: oklch(20% 0.08 55);
     }
     .comp-ui {
-    background: var(--primary-light);
-    padding: 2rem;
-    font-family: system-ui, sans-serif;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      background: var(--primary-light);
+      padding: 2rem;
+      font-family: system-ui, sans-serif;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .comp-card {
-    background: oklch(100% 0 0);
-    border-radius: 14px;
-    overflow: hidden;
-    max-width: 380px;
-    width: 100%;
-    box-shadow: 0 4px 20px oklch(50% 0.1 264 / 0.12);
+      background: oklch(100% 0 0);
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 4px 20px oklch(50% 0.1 264 / 0.12);
     }
     .comp-card__header {
-    background: var(--primary);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+      background: var(--primary);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     .comp-card__tag {
-    background: oklch(60% 0.25 55);
-    color: oklch(20% 0.08 55);
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    width: fit-content;
+      background: oklch(60% 0.25 55);
+      color: oklch(20% 0.08 55);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      width: fit-content;
     }
     .comp-card__title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--primary-text);
-    margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-text);
+      margin: 0;
     }
     .comp-card__body {
-    font-size: 0.82rem;
-    color: oklch(85% 0.05 264);
-    margin: 0;
-    line-height: 1.5;
+      font-size: 0.82rem;
+      color: oklch(85% 0.05 264);
+      margin: 0;
+      line-height: 1.5;
     }
     .comp-card__footer {
-    padding: 1rem 1.5rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
     }
     .comp-btn {
-    border: none;
-    border-radius: 8px;
-    padding: 0.55rem 1rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 0.55rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
     }
     .comp-btn--accent {
-    background: var(--accent);
-    color: var(--accent-text);
+      background: var(--accent);
+      color: var(--accent-text);
     }
     .comp-btn--ghost {
-    background: transparent;
-    color: var(--primary);
-    text-decoration: underline;
-    padding-left: 0;
+      background: transparent;
+      color: var(--primary);
+      text-decoration: underline;
+      padding-left: 0;
     }`} />
 
 ### Complete Design Token Palette
@@ -663,49 +663,49 @@ A well-structured token set defines every color role before any component is bui
     </div>
     </div>`}
   css={`.token-palette {
-    padding: 1.25rem;
-    font-family: system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    background: oklch(97% 0.005 264);
-    height: 100%;
-    box-sizing: border-box;
+      padding: 1.25rem;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      background: oklch(97% 0.005 264);
+      height: 100%;
+      box-sizing: border-box;
     }
     .palette-group__label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: oklch(40% 0 0);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 0 0 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: oklch(40% 0 0);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.4rem;
     }
     .palette-group__swatches {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 3px;
-    height: 52px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      height: 52px;
     }
     .palette-group__swatches--feedback {
-    grid-template-columns: repeat(8, 1fr);
+      grid-template-columns: repeat(8, 1fr);
     }
     .token-swatch {
-    border-radius: 5px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 4px;
+      border-radius: 5px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 4px;
     }
     .token-swatch--feedback {
-    border-radius: 5px;
+      border-radius: 5px;
     }
     .token-swatch__label {
-    font-size: 0.58rem;
-    font-weight: 600;
-    color: oklch(30% 0 0);
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: oklch(30% 0 0);
     }
     .token-swatch__label--light {
-    color: oklch(95% 0 0);
+      color: oklch(95% 0 0);
     }`} />
 
 ### Using OKLCH for Systematic Palette Generation

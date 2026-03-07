@@ -1088,6 +1088,171 @@ The same Tailwind markup works with completely different color schemes — just 
       </div>
     </div>`} />
 
+### Dark Mode: Just Another Tier 2 Mapping
+
+Dark mode fits naturally into the three-tier system. The palette (Tier 1) stays the same — you already have all the colors. Dark mode is simply an alternative Tier 2 mapping that picks different palette values for the same semantic tokens. The CSS `light-dark()` function makes this especially clean by co-locating both values in a single declaration.
+
+For a deep dive into dark mode techniques, see [Dark Mode Strategies](./dark-mode-strategies).
+
+<CssPreview
+  title="Dark Mode via Tier 2 with light-dark()"
+  height={340}
+  html={`    <div class="dm-demo">
+    <div class="dm-col dm-col--light">
+      <h4 class="dm-col__label">Light Mode</h4>
+      <div class="dm-card">
+        <span class="dm-card__title">Project Status</span>
+        <p class="dm-card__text">All systems operational. Last deploy was 12 minutes ago.</p>
+        <div class="dm-card__footer">
+          <span class="dm-badge dm-badge--success">Healthy</span>
+          <button class="dm-btn">Details</button>
+        </div>
+      </div>
+    </div>
+    <div class="dm-col dm-col--dark">
+      <h4 class="dm-col__label">Dark Mode</h4>
+      <div class="dm-card">
+        <span class="dm-card__title">Project Status</span>
+        <p class="dm-card__text">All systems operational. Last deploy was 12 minutes ago.</p>
+        <div class="dm-card__footer">
+          <span class="dm-badge dm-badge--success">Healthy</span>
+          <button class="dm-btn">Details</button>
+        </div>
+      </div>
+    </div>
+    </div>`}
+  css={`    /* Tier 1: Palette — identical for both modes */
+    :root {
+      --palette-blue-500: oklch(58% 0.2 250);
+      --palette-blue-100: oklch(92% 0.06 250);
+      --palette-gray-50: oklch(98% 0.003 264);
+      --palette-gray-100: oklch(96% 0.005 264);
+      --palette-gray-300: oklch(82% 0.01 264);
+      --palette-gray-500: oklch(58% 0.01 264);
+      --palette-gray-800: oklch(30% 0.015 264);
+      --palette-gray-900: oklch(22% 0.015 264);
+      --palette-green-500: oklch(58% 0.18 150);
+      --palette-green-100: oklch(94% 0.06 150);
+      --palette-green-900: oklch(28% 0.1 150);
+    }
+    /* Tier 2: Light theme — Tier 2 maps palette to semantic roles */
+    .dm-col--light {
+      color-scheme: light;
+      --theme-bg: var(--palette-gray-50);
+      --theme-surface: oklch(100% 0 0);
+      --theme-fg: var(--palette-gray-900);
+      --theme-muted: var(--palette-gray-500);
+      --theme-border: var(--palette-gray-300);
+      --theme-accent: var(--palette-blue-500);
+      --theme-accent-fg: oklch(98% 0.01 250);
+      --theme-accent-subtle: var(--palette-blue-100);
+      --theme-success: var(--palette-green-500);
+      --theme-success-bg: var(--palette-green-100);
+      --theme-success-fg: oklch(30% 0.08 150);
+    }
+    /* Tier 2: Dark theme — same tokens, different palette picks */
+    .dm-col--dark {
+      color-scheme: dark;
+      --theme-bg: oklch(15% 0.01 264);
+      --theme-surface: oklch(20% 0.015 264);
+      --theme-fg: oklch(92% 0.005 264);
+      --theme-muted: oklch(60% 0.01 264);
+      --theme-border: oklch(30% 0.015 264);
+      --theme-accent: oklch(70% 0.17 250);
+      --theme-accent-fg: oklch(15% 0.01 250);
+      --theme-accent-subtle: oklch(25% 0.04 250);
+      --theme-success: oklch(70% 0.15 150);
+      --theme-success-bg: oklch(22% 0.04 150);
+      --theme-success-fg: oklch(80% 0.1 150);
+    }
+    .dm-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100%;
+      font-family: system-ui, sans-serif;
+    }
+    .dm-col {
+      background: var(--theme-bg);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .dm-col__label {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--theme-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .dm-card {
+      background: var(--theme-surface);
+      border: 1px solid var(--theme-border);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dm-card__title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--theme-fg);
+    }
+    .dm-card__text {
+      font-size: 0.8rem;
+      color: var(--theme-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .dm-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+    .dm-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .dm-badge--success {
+      background: var(--theme-success-bg);
+      color: var(--theme-success-fg);
+    }
+    .dm-btn {
+      margin-left: auto;
+      background: var(--theme-accent);
+      color: var(--theme-accent-fg);
+      border: none;
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }`} />
+
+With `light-dark()`, the same Tier 2 mapping can be expressed without separate selectors:
+
+```css
+/* Tier 2 with light-dark() — both modes in a single declaration */
+:root {
+  color-scheme: light dark;
+
+  --theme-bg: light-dark(var(--palette-gray-50), oklch(15% 0.01 264));
+  --theme-surface: light-dark(oklch(100% 0 0), oklch(20% 0.015 264));
+  --theme-fg: light-dark(var(--palette-gray-900), oklch(92% 0.005 264));
+  --theme-muted: light-dark(var(--palette-gray-500), oklch(60% 0.01 264));
+  --theme-border: light-dark(var(--palette-gray-300), oklch(30% 0.015 264));
+  --theme-accent: light-dark(var(--palette-blue-500), oklch(70% 0.17 250));
+  --theme-accent-fg: light-dark(oklch(98% 0.01 250), oklch(15% 0.01 250));
+}
+```
+
+Tier 1 and Tier 3 stay exactly the same — only Tier 2 changes. Components never know whether they're in light or dark mode.
+
 ## Common AI Mistakes
 
 - **Skipping Tier 2** — using palette colors directly in components (`color: var(--palette-blue-500)`) defeats the purpose; when the brand changes, every component must be updated

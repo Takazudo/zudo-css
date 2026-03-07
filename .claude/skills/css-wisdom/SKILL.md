@@ -68,6 +68,7 @@ Each entry: `file path` — brief description.
 - `color/dark-mode-strategies.mdx` — Custom properties, prefers-color-scheme, perceived brightness
 - `color/color-contrast-accessibility.mdx` — WCAG contrast ratios, checking and fixing violations
 - `color/color-palette-strategy.mdx` — Systematic palette generation, semantic color naming
+- `color/three-tier-color-strategy.mdx` — Three-tier color architecture: palette → theme → component tokens
 
 ### Visual
 

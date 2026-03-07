@@ -28,5 +28,8 @@ pnpm-debug.log*
 # Misc
 __inbox/
 
+# Generated skill files (contain machine-specific absolute paths)
+.claude/skills/css-wisdom/SKILL.md
+
 # Worktrees
 worktrees/

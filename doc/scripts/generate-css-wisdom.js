@@ -205,11 +205,8 @@ argument-hint: "[topic keyword, e.g., 'flexbox', 'dark mode', 'centering']"
 
 # CSS Best Practices Reference
 
-Look up CSS best practices from the documentation articles in this project.
-Base path: \`doc/docs/\` (relative to repo root).
-
-If this skill was loaded via symlink, resolve the symlink target to find the repo:
-\`readlink ~/.claude/skills/css-wisdom/SKILL.md\`
+Look up CSS best practices from the documentation articles.
+Base path: \`${DOCS_DIR}\`
 
 ## How to Use
 

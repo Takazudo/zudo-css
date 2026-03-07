@@ -31,6 +31,7 @@
   "color/currentcolor-patterns.mdx": "Inherit text color for borders, shadows, SVG fills",
   "color/color-contrast-accessibility.mdx": "WCAG contrast ratios, checking and fixing violations",
   "color/color-palette-strategy.mdx": "Systematic palette generation, semantic color naming",
+  "color/three-tier-color-strategy.mdx": "Three-tier color architecture: palette → theme → component tokens",
   "visual/layered-natural-shadows.mdx": "Multi-layer box-shadow for realistic depth",
   "visual/smooth-shadow-transitions.mdx": "Performant shadow hover with pseudo-elements",
   "visual/gradient-techniques/index.mdx": "Layered gradients, hard stops, gradient text",

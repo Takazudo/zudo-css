@@ -163,7 +163,7 @@ Theme tokens give **semantic meaning** to palette colors. Instead of "blue-500",
   height={360}
   html={`<div class="theme-demo">
 <div class="theme-demo__col">
-  <h3 class="theme-demo__title">Palette (Tier 1)</h3>
+  <h3 class="theme-demo__title">Palette &rarr; Theme Mapping</h3>
   <div class="mapping">
     <div class="mapping__from" style="background: var(--palette-gray-900)"></div>
     <span class="mapping__arrow">&rarr;</span>
@@ -282,7 +282,7 @@ Theme tokens give **semantic meaning** to palette colors. Instead of "blue-500",
   color: oklch(60% 0 0);
 }
 .mapping__to-name {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-family: monospace;
   color: oklch(35% 0 0);
   font-weight: 600;
@@ -306,8 +306,8 @@ Theme tokens give **semantic meaning** to palette colors. Instead of "blue-500",
   font-weight: 700;
 }
 .mini-ui__nav-item {
-  font-size: 0.6rem;
-  opacity: 0.7;
+  font-size: 0.75rem;
+  color: oklch(70% 0.01 264);
 }
 .mini-ui__body {
   padding: 0.6rem;
@@ -316,7 +316,7 @@ Theme tokens give **semantic meaning** to palette colors. Instead of "blue-500",
   gap: 0.4rem;
 }
 .mini-ui__card {
-  background: oklch(100% 0 0);
+  background: var(--theme-surface);
   border: 1px solid var(--theme-border);
   border-radius: 6px;
   padding: 0.4rem 0.6rem;
@@ -325,7 +325,7 @@ Theme tokens give **semantic meaning** to palette colors. Instead of "blue-500",
   align-items: center;
 }
 .mini-ui__card-title {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
 }
 .mini-ui__card-value {
@@ -435,7 +435,7 @@ Sometimes a component needs colors that don't fit into the global theme — a sh
 .product-card__badge {
   background: linear-gradient(135deg, var(--card-variant), var(--card-variant-dark));
   color: oklch(97% 0.01 0);
-  padding: 0.75rem 0.75rem;
+  padding: 0.75rem;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -452,7 +452,7 @@ Sometimes a component needs colors that don't fit into the global theme — a sh
 }
 .product-card__desc {
   margin: 0 0 0.5rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
   line-height: 1.4;
 }
@@ -532,7 +532,7 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
   --palette-blue-500: oklch(58% 0.2 250);
   --palette-blue-700: oklch(42% 0.16 250);
   --palette-green-100: oklch(94% 0.06 150);
-  --palette-green-600: oklch(50% 0.16 150);
+  --palette-green-500: oklch(58% 0.18 150);
   --palette-gray-50:  oklch(98% 0.003 264);
   --palette-gray-100: oklch(96% 0.005 264);
   --palette-gray-300: oklch(82% 0.01 264);
@@ -546,11 +546,11 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
   --theme-surface:      oklch(100% 0 0);
   --theme-accent:       var(--palette-blue-500);
   --theme-accent-hover: var(--palette-blue-700);
-  --theme-accent-subtle:var(--palette-blue-100);
+  --theme-accent-subtle: var(--palette-blue-100);
   --theme-accent-fg:    oklch(98% 0.01 250);
   --theme-muted:        var(--palette-gray-500);
   --theme-border:       var(--palette-gray-300);
-  --theme-success:      var(--palette-green-600);
+  --theme-success:      var(--palette-green-500);
   --theme-success-bg:   var(--palette-green-100);
 }
 /* ===== Tier 3: Component ===== */
@@ -582,7 +582,7 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
   gap: 0.15rem;
 }
 .code-block__label {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -590,7 +590,7 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
   margin-bottom: 0.15rem;
 }
 .code-block code {
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   color: oklch(85% 0.02 264);
   font-family: monospace;
   white-space: nowrap;
@@ -630,7 +630,7 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
 }
 .demo-header__link {
   color: oklch(70% 0.01 264);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 .demo-header__link--active {
@@ -648,7 +648,7 @@ Here's a complete example showing how the three tiers connect. Notice how easy i
   gap: 0.4rem;
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 .demo-alert--success {
   background: var(--theme-success-bg);
@@ -800,7 +800,7 @@ The biggest advantage of the three-tier system is visible when you change the th
   color: var(--theme-fg);
 }
 .swap-card__meta {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
 }
 .swap-btn {
@@ -864,7 +864,9 @@ Here's how a real project would organize the three tiers across files:
 
 /* ===== components/button.css — Tier 3 ===== */
 .btn {
-  /* Component-specific color derived from theme */
+  /* Component-specific color derived from theme.
+     Relative color syntax (oklch(from ...)) — Baseline 2024.
+     For wider support, use a hardcoded fallback. */
   --btn-shadow: oklch(from var(--theme-accent) l c h / 0.3);
 
   background: var(--theme-accent);
@@ -946,8 +948,8 @@ tailwind.config = {
   <header class="bg-theme-fg rounded-xl px-5 py-3 flex items-center justify-between mb-4">
     <span class="text-theme-accent-fg font-bold text-base">MyApp</span>
     <nav class="flex gap-4">
-      <a class="text-theme-accent-fg/70 text-sm hover:text-theme-accent-fg cursor-pointer">Dashboard</a>
-      <a class="text-theme-accent-fg/70 text-sm hover:text-theme-accent-fg cursor-pointer">Settings</a>
+      <a class="text-theme-muted text-sm hover:text-theme-accent-fg cursor-pointer">Dashboard</a>
+      <a class="text-theme-muted text-sm hover:text-theme-accent-fg cursor-pointer">Settings</a>
     </nav>
   </header>
 
@@ -997,13 +999,13 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        't-fg': 'var(--theme-fg)',
-        't-bg': 'var(--theme-bg)',
-        't-surface': 'var(--theme-surface)',
-        't-accent': 'var(--theme-accent)',
-        't-accent-fg': 'var(--theme-accent-fg)',
-        't-muted': 'var(--theme-muted)',
-        't-border': 'var(--theme-border)',
+        'theme-fg': 'var(--theme-fg)',
+        'theme-bg': 'var(--theme-bg)',
+        'theme-surface': 'var(--theme-surface)',
+        'theme-accent': 'var(--theme-accent)',
+        'theme-accent-fg': 'var(--theme-accent-fg)',
+        'theme-muted': 'var(--theme-muted)',
+        'theme-border': 'var(--theme-border)',
       }
     }
   }
@@ -1040,46 +1042,46 @@ tailwind.config = {
 </style>
 
 <div class="grid grid-cols-3 min-h-screen font-[system-ui,sans-serif]">
-  <div class="theme-corporate bg-t-bg p-4">
-    <h4 class="text-[11px] uppercase tracking-wider font-bold text-t-muted mb-3">Corporate</h4>
-    <div class="bg-t-surface border border-t-border rounded-xl p-4">
-      <h3 class="font-bold text-t-fg mb-1">Dashboard</h3>
-      <p class="text-sm text-t-muted mb-3">3 tasks pending</p>
-      <div class="bg-t-bg border border-t-border rounded-lg p-3 mb-3 text-center">
-        <div class="text-xl font-bold text-t-fg">94%</div>
-        <div class="text-[11px] text-t-muted">Score</div>
+  <div class="theme-corporate bg-theme-bg p-4">
+    <h4 class="text-[11px] uppercase tracking-wider font-bold text-theme-muted mb-3">Corporate</h4>
+    <div class="bg-theme-surface border border-theme-border rounded-xl p-4">
+      <h3 class="font-bold text-theme-fg mb-1">Dashboard</h3>
+      <p class="text-sm text-theme-muted mb-3">3 tasks pending</p>
+      <div class="bg-theme-bg border border-theme-border rounded-lg p-3 mb-3 text-center">
+        <div class="text-xl font-bold text-theme-fg">94%</div>
+        <div class="text-[11px] text-theme-muted">Score</div>
       </div>
-      <button class="w-full bg-t-accent text-t-accent-fg py-2 rounded-lg text-sm font-semibold">
+      <button class="w-full bg-theme-accent text-theme-accent-fg py-2 rounded-lg text-sm font-semibold">
         View
       </button>
     </div>
   </div>
 
-  <div class="theme-warm bg-t-bg p-4">
-    <h4 class="text-[11px] uppercase tracking-wider font-bold text-t-muted mb-3">Creative</h4>
-    <div class="bg-t-surface border border-t-border rounded-xl p-4">
-      <h3 class="font-bold text-t-fg mb-1">Dashboard</h3>
-      <p class="text-sm text-t-muted mb-3">3 tasks pending</p>
-      <div class="bg-t-bg border border-t-border rounded-lg p-3 mb-3 text-center">
-        <div class="text-xl font-bold text-t-fg">94%</div>
-        <div class="text-[11px] text-t-muted">Score</div>
+  <div class="theme-warm bg-theme-bg p-4">
+    <h4 class="text-[11px] uppercase tracking-wider font-bold text-theme-muted mb-3">Creative</h4>
+    <div class="bg-theme-surface border border-theme-border rounded-xl p-4">
+      <h3 class="font-bold text-theme-fg mb-1">Dashboard</h3>
+      <p class="text-sm text-theme-muted mb-3">3 tasks pending</p>
+      <div class="bg-theme-bg border border-theme-border rounded-lg p-3 mb-3 text-center">
+        <div class="text-xl font-bold text-theme-fg">94%</div>
+        <div class="text-[11px] text-theme-muted">Score</div>
       </div>
-      <button class="w-full bg-t-accent text-t-accent-fg py-2 rounded-lg text-sm font-semibold">
+      <button class="w-full bg-theme-accent text-theme-accent-fg py-2 rounded-lg text-sm font-semibold">
         View
       </button>
     </div>
   </div>
 
-  <div class="theme-night bg-t-bg p-4">
-    <h4 class="text-[11px] uppercase tracking-wider font-bold text-t-muted mb-3">Night</h4>
-    <div class="bg-t-surface border border-t-border rounded-xl p-4">
-      <h3 class="font-bold text-t-fg mb-1">Dashboard</h3>
-      <p class="text-sm text-t-muted mb-3">3 tasks pending</p>
-      <div class="bg-t-bg border border-t-border rounded-lg p-3 mb-3 text-center">
-        <div class="text-xl font-bold text-t-fg">94%</div>
-        <div class="text-[11px] text-t-muted">Score</div>
+  <div class="theme-night bg-theme-bg p-4">
+    <h4 class="text-[11px] uppercase tracking-wider font-bold text-theme-muted mb-3">Night</h4>
+    <div class="bg-theme-surface border border-theme-border rounded-xl p-4">
+      <h3 class="font-bold text-theme-fg mb-1">Dashboard</h3>
+      <p class="text-sm text-theme-muted mb-3">3 tasks pending</p>
+      <div class="bg-theme-bg border border-theme-border rounded-lg p-3 mb-3 text-center">
+        <div class="text-xl font-bold text-theme-fg">94%</div>
+        <div class="text-[11px] text-theme-muted">Score</div>
       </div>
-      <button class="w-full bg-t-accent text-t-accent-fg py-2 rounded-lg text-sm font-semibold">
+      <button class="w-full bg-theme-accent text-theme-accent-fg py-2 rounded-lg text-sm font-semibold">
         View
       </button>
     </div>
@@ -1108,3 +1110,11 @@ tailwind.config = {
 - Single-page sites with one brand color and no theme variations
 - Quick prototypes where speed matters more than maintainability
 - Static sites with minimal interactive elements
+
+## References
+
+- [MDN: Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- [MDN: oklch()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch)
+- [OKLCH Color Picker](https://oklch.com/)
+- [Design Tokens Format — W3C Community Group](https://design-tokens.github.io/community-group/format/)
+- [Tailwind CSS: Customizing Colors](https://tailwindcss.com/docs/colors)

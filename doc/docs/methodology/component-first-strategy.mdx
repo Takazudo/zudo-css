@@ -155,7 +155,7 @@ function ProfileCard({ name, role, avatar }) {
 .font-semibold { font-weight: 600; }
 .text-slate-800 { color: #1e293b; }
 .text-gray-500 { color: #6b7280; }
-* { font-family: system-ui, sans-serif; }`}
+body { font-family: system-ui, sans-serif; }`}
   height={120} />
 
 No CSS file. No class names to invent. The component encapsulates the visual design. When you need to change the card's look, you edit one file — the component.
@@ -194,6 +194,8 @@ Usage is self-documenting:
 
 No `.btn-primary` class to maintain. The `variant` prop can be type-checked with TypeScript, documented with JSDoc, and auto-completed in your editor.
 
+The demo below uses CSS classes to approximate the visual output. In a real project, the variant logic lives in the component code and utility classes handle the styling — no custom CSS classes are created.
+
 <CssPreview
   title="Component Variants via Props"
   html={`<div class="demo">
@@ -201,7 +203,8 @@ No `.btn-primary` class to maintain. The `variant` prop can be type-checked with
   <button class="btn btn-secondary">Cancel</button>
   <button class="btn btn-outline">Details</button>
 </div>`}
-  css={`* { font-family: system-ui, sans-serif; box-sizing: border-box; }
+  css={`* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; }
 .demo {
   display: flex;
   gap: 12px;
@@ -286,7 +289,8 @@ function ProductGrid({ products }) {
   <div class="card">Item 5</div>
   <div class="card">Item 6</div>
 </div>`}
-  css={`* { font-family: system-ui, sans-serif; box-sizing: border-box; }
+  css={`* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; }
 .grid { display: grid; }
 .grid-cols-1 { grid-template-columns: 1fr; }
 .gap-4 { gap: 1rem; }
@@ -299,10 +303,10 @@ function ProductGrid({ products }) {
   font-size: 1rem;
   font-weight: 500;
 }
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .md\\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
 }
-@media (min-width: 1024px) {
+@media (min-width: 720px) {
   .lg\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }`}
   height={280} />
@@ -322,8 +326,8 @@ In these cases, fall back to other CSS strategies:
 
 | Situation | Recommended Approach |
 |---|---|
-| Have a build tool, can't change HTML | CSS Modules or Tailwind `@apply` |
-| No build tool, global CSS only | BEM naming convention |
+| Have a build tool, can't change HTML | [CSS Modules](/methodology/css-modules-strategy) or Tailwind `@apply` |
+| No build tool, global CSS only | [BEM naming convention](/methodology/bem-strategy) |
 | Legacy codebase being migrated | Incremental component extraction |
 
 These are **exceptions**, not the default. If you are working in React, Vue, Svelte, Astro, or any framework that supports components, the component-first approach should be your default choice.

@@ -23,14 +23,17 @@ Reset all default typography tokens and define a small semantic set:
 
 ### The @theme Typography Block
 
+If you use [Approach B](/docs/methodology/tight-token-strategy#approach-b-skip-the-default-theme-recommended) (separate imports without the default theme), no reset lines are needed — just define your tokens directly. If you use Approach A (`@import "tailwindcss"`), add the reset lines shown in comments below.
+
 ```css
 @theme {
-  /* Reset ALL default typography */
+  /* If using Approach A (@import "tailwindcss"), uncomment these resets:
   --font-size-*: initial;
   --font-weight-*: initial;
   --line-height-*: initial;
   --font-family-*: initial;
   --letter-spacing-*: initial;
+  */
 
   /* ── Font sizes (5 steps) ── */
   --font-size-caption: 0.75rem;    /* 12px */

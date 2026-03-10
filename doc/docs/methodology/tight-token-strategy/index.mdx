@@ -55,15 +55,19 @@ Each axis gets a limited scale from `2xs` to `2xl`, giving the team exactly 7 ch
 
 ## Code Examples
 
-### The @theme Reset and Redefinition
+### Two Approaches to Resetting Defaults
 
-This is the core of the strategy. Place this in your project's main CSS file (e.g., `app.css`):
+There are two ways to achieve the tight token strategy in Tailwind CSS v4. Both produce the same result — only your project tokens exist — but they differ in mechanism.
+
+#### Approach A: Reset with `--*: initial` (explicit reset)
+
+Import everything, then reset what you don't want inside `@theme`:
 
 ```css
+@import "tailwindcss";
+
 @theme {
-  /* ========================================
-   * Reset ALL Tailwind defaults
-   * ======================================== */
+  /* Reset ALL Tailwind defaults */
   --spacing-*: initial;
   --color-*: initial;
   --font-size-*: initial;
@@ -77,6 +81,69 @@ This is the core of the strategy. Place this in your project's main CSS file (e.
   --drop-shadow-*: initial;
   --breakpoint-*: initial;
 
+  /* Then define your tokens... */
+}
+```
+
+This works, but the generated CSS still contains some Tailwind internal plumbing variables that were part of the default theme layer.
+
+#### Approach B: Skip the default theme (recommended)
+
+Import only the layers you need — preflight (reset CSS) and utilities — skipping the default theme entirely:
+
+```css
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+@theme {
+  /* No resets needed — default theme was never loaded */
+
+  /* Define your tokens directly... */
+}
+```
+
+`@import "tailwindcss"` is equivalent to importing three layers: `tailwindcss/preflight` (browser reset), `tailwindcss/theme` (all default tokens), and `tailwindcss/utilities` (utility class engine). By importing only preflight + utilities, the default theme is simply never loaded.
+
+**Approach B is recommended** because:
+
+- Fewer lines — no `--*: initial` reset block needed
+- Slightly smaller CSS output (~1KB less) — Tailwind's internal variables are not emitted
+- Cleaner mental model — you start from zero instead of resetting to zero
+
+#### What Approach B drops (vs Approach A)
+
+When you skip `tailwindcss/theme`, the following Tailwind internals are no longer emitted in the generated CSS:
+
+| Variable | Purpose | Do you need it? |
+| --- | --- | --- |
+| `--default-transition-duration` | Default duration for `transition` utilities | Add `--default-transition-duration: 0.15s;` in `@theme` if you use `transition` classes |
+| `--default-transition-timing-function` | Default easing for `transition` utilities | Add `--default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);` in `@theme` if needed |
+| `--default-font-family` | Fallback for `font-family` on `html` | Not needed if you define `--font-sans` or set `font-family` yourself |
+| `--default-mono-font-family` | Fallback for `code`/`pre` font | Not needed if you define `--font-mono` |
+| `--animate-spin` | The `animate-spin` keyframe definition | Add manually if you use `animate-spin` |
+| `--ease-in-out` | Named easing curve | Add manually if you reference it |
+| `--container-*` | Container query widths | Not needed unless you use `@container` size utilities |
+
+In practice, if you use `transition-colors` or similar transition utilities, add these two lines to your `@theme`:
+
+```css
+@theme {
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ...your tokens... */
+}
+```
+
+### Full Example (Approach B)
+
+Place this in your project's main CSS file (e.g., `app.css`):
+
+```css
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+@theme {
   /* ========================================
    * Define ONLY project tokens — Spacing
    * ======================================== */

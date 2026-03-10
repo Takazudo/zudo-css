@@ -23,14 +23,17 @@ Tailwind CSS はデフォルトで13のフォントサイズステップ（`text
 
 ### @theme タイポグラフィブロック
 
+[アプローチB](/docs/methodology/tight-token-strategy#アプローチb-デフォルトテーマをスキップ推奨)（デフォルトテーマなしの個別インポート）を使う場合、リセット行は不要です。アプローチA（`@import "tailwindcss"`）を使う場合は、以下のコメント内のリセット行を追加してください。
+
 ```css
 @theme {
-  /* Reset ALL default typography */
+  /* アプローチA（@import "tailwindcss"）の場合、以下のリセットを追加：
   --font-size-*: initial;
   --font-weight-*: initial;
   --line-height-*: initial;
   --font-family-*: initial;
   --letter-spacing-*: initial;
+  */
 
   /* ── Font sizes (5 steps) ── */
   --font-size-caption: 0.75rem;    /* 12px */

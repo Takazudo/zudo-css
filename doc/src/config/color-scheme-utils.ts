@@ -1,10 +1,6 @@
 import { colorSchemes, type ColorScheme } from "./color-schemes";
 import { settings } from "./settings";
 
-export const lightDarkPairings = [
-  { light: "Default Light", dark: "Default Dark", label: "Default" },
-];
-
 export function getActiveScheme(): ColorScheme {
   const scheme = colorSchemes[settings.colorScheme];
   if (!scheme) {

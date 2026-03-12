@@ -105,32 +105,6 @@ const translations: Record<string, Record<string, string>> = {
     "doc.fallbackNotice":
       "このページはまだ翻訳されていません。原文のまま表示しています。",
   },
-  de: {
-    "nav.gettingStarted": "Erste Schritte",
-    "nav.guides": "Anleitungen",
-    "nav.reference": "Referenz",
-    "nav.api": "API",
-    "nav.claude": "Claude",
-    "nav.previous": "Zurück",
-    "nav.next": "Weiter",
-    "toc.title": "Auf dieser Seite",
-    "docs.browseAll": "Alle Dokumentationsabschnitte durchsuchen.",
-    "search.label": "Suche",
-    "code.copy": "Code kopieren",
-    "code.copied": "Kopiert!",
-    "code.wrapToggle": "Zeilenumbruch umschalten",
-    "doc.editPage": "Diese Seite bearbeiten",
-    "doc.tags": "Tags",
-    "doc.taggedWith": "Seiten mit Tag",
-    "doc.allTags": "Alle Tags",
-    "doc.created": "Erstellt",
-    "doc.updated": "Aktualisiert",
-    "doc.noTags": "Keine Tags gefunden.",
-    "doc.pageCount": "{count} Seiten",
-    "doc.pageCountSingle": "{count} Seite",
-    "doc.fallbackNotice":
-      "Diese Seite wurde noch nicht übersetzt und wird in der Originalsprache angezeigt.",
-  },
 };
 
 /** Get a translated UI string */

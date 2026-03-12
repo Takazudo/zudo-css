@@ -1,25 +1,50 @@
-# doc/ — Docusaurus Site
+# doc/ — Astro Documentation Site
 
-All development happens in this directory. Docusaurus v3 site with v4 future flags enabled.
+CSS best practices documentation site built with Astro 5, MDX, Tailwind CSS v4, and React islands (zudo-doc framework).
 
 ## Commands
 
 ```bash
 pnpm install            # Install dependencies
-pnpm start              # Dev server → http://css-bp.localhost:8811
-pnpm start:ja           # Dev server (Japanese locale)
-pnpm build              # Production build
-pnpm check              # Typecheck + format check
-pnpm check:fix          # Auto-fix formatting
+pnpm dev                # Dev server → http://css-bp.localhost:8811
+pnpm build              # Production build → dist/
+pnpm preview            # Preview build
+pnpm check              # Astro type checking
 ```
 
-Data generation (`pnpm generate`) runs automatically before `start` and `build`.
-It generates `src/data/doc-titles.json` and `src/data/category-nav.json` from frontmatter.
+## Tech Stack
+
+- **Astro 5** — static site generator with Content Collections
+- **MDX** — via `@astrojs/mdx`, content in `src/content/docs/`
+- **Tailwind CSS v4** — via `@tailwindcss/vite`
+- **React 19** — for interactive islands only (TOC, sidebar, color scheme picker)
+- **Shiki** — built-in code highlighting with dual-theme support
+
+## Key Directories
+
+```
+src/
+├── components/          # Astro + React components
+│   └── admonitions/     # Note, Tip, Info, Warning, Danger
+├── config/              # Settings, color schemes
+├── content/
+│   ├── docs/            # English MDX content
+│   └── docs-ja/         # Japanese MDX content
+├── hooks/               # React hooks (scroll spy)
+├── layouts/             # Astro layouts (doc-layout)
+├── pages/               # File-based routing
+│   ├── docs/[...slug]   # English doc routes
+│   └── ja/docs/[...slug] # Japanese doc routes
+├── plugins/             # Rehype plugins
+├── integrations/        # Astro integrations (search, history, sitemap)
+└── styles/
+    └── global.css       # Design tokens (@theme) & Tailwind config
+```
 
 ## Article Files
 
 - Format: MDX with YAML frontmatter (`sidebar_position`)
-- Location: `docs/<category>/`
+- Location: `src/content/docs/<category>/`
 - File naming: **kebab-case** (e.g., `centering-techniques.mdx`)
 - Categories: layout, typography, color, visual, responsive, interactive, methodology, inbox, overview
 
@@ -34,25 +59,13 @@ Follow this pattern for all articles:
 
 ### CssPreview Demos
 
-**Always include CssPreview demos** — they are the most valuable part of each article. Every CSS concept should have a corresponding demo. Prefer more demos over more prose.
-
-```mdx
-import CssPreview from '@site/src/components/CssPreview';
-
-<CssPreview
-  title="Description of demo"
-  html={`<div class="example">Content</div>`}
-  css={`.example { color: hsl(220 50% 50%); }`}
-  height={300} />
-```
+**Always include CssPreview demos** — they are the most valuable part of each article.
 
 Key details:
 
 - Renders inside an **iframe** — all CSS is fully isolated
 - Viewport buttons: Mobile (320px), Tablet (768px), Full (~900-1100px)
 - No JavaScript — interactions must be CSS-only (`:hover`, `:focus`, `:checked`, etc.)
-- Media queries evaluate against the **iframe width**, not the browser window
-- If article uses production breakpoints (1024px+), remap to smaller values in demos so scaling is visible
 
 ### CSS Conventions in Demos
 
@@ -60,32 +73,24 @@ Key details:
 - Use descriptive BEM-ish class names (e.g., `.card-demo__header`)
 - Use `font-family: system-ui, sans-serif` for body text
 - Minimum font size: 0.75rem / 12px for labels
-- Use `color: hsl(0 0% 40%)` or darker for small text (contrast)
 
-### Deep Articles
+## Design Token System
 
-For topics with enough depth, use the "deep article" pattern: convert a flat `.mdx` into a folder with `index.mdx` + sub-pages. See the `/l-handle-deep-article` skill for the full process.
+Uses a 16-color palette with OKLCH orange accent (`oklch(55.5% 0.163 48.998)`).
 
-## Components
+### Color Rules
 
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| CssPreview | `src/components/CssPreview/` | Live CSS demos in iframes with viewport switching |
-| TailwindPreview | `src/components/TailwindPreview/` | Tailwind-specific demos (uses CDN) |
-| PreviewBase | `src/components/PreviewBase/` | Shared base for preview components |
-| CategoryNav | `src/components/CategoryNav/` | Category navigation on index pages |
-| DocsSitemap | `src/components/DocsSitemap/` | Full documentation sitemap |
+- **NEVER** use Tailwind default colors (`bg-gray-500`, `text-blue-600`)
+- **ALWAYS** use project tokens: `text-fg`, `bg-surface`, `border-muted`, `text-accent`, etc.
+- Use palette tokens (`p0`–`p15`) only when no semantic token fits
 
-## Pre-commit Hooks
+### Color Schemes
 
-husky + lint-staged runs on commit:
+- Default: **ZCSS Dark** (warm dark theme with orange accents)
+- Light: **ZCSS Light** (warm light theme with orange accents)
+- Configured in `src/config/settings.ts` and `src/config/color-schemes.ts`
 
-- `*.{js,jsx,ts,tsx,mjs}` → prettier
-- `*.{md,mdx}` → `@takazudo/mdx-formatter` (via `scripts/mdx-format.sh`)
-- `*.{json,css,yml,yaml}` → prettier
+## Admonitions
 
-## Other
-
-- Custom Docusaurus plugin: `plugins/remark-creation-date.js` — adds creation date metadata
-- Swizzled theme component: `src/theme/DocItem/` — customized doc page layout
-- i18n: Japanese translations go to `i18n/ja/docusaurus-plugin-content-docs/current/`
+Available in all MDX files without imports:
+`<Note>`, `<Tip>`, `<Info>`, `<Warning>`, `<Danger>` — each accepts optional `title` prop.

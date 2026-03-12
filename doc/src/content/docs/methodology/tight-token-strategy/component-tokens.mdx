@@ -74,7 +74,7 @@ When deciding between a token and an arbitrary value, use this decision tree:
 
 This card component uses system tokens for its standard spacing and colors, but arbitrary values for its component-specific grid layout and decorative icon sizing. Comments show which values come from the token system and which are arbitrary.
 
-<CssPreview
+<CssPreview client:load
   title="System Tokens + Arbitrary Values in a Component"
   html={`<div class="card-demo">
   <div class="card-demo__header">
@@ -235,7 +235,7 @@ In the code, system tokens appear where the value follows the project's spacing 
 
 When the same arbitrary value keeps appearing across components, it's a signal to promote it to a system token. This demo shows a pricing layout where a frequently-used card width has been promoted from an arbitrary value to a named token.
 
-<CssPreview
+<CssPreview client:load
   title="Before and After Token Promotion"
   html={`<div class="promo-demo">
   <div class="promo-demo__section">
@@ -401,7 +401,7 @@ In the "before" version, three developers each picked slightly different padding
 
 This demo simulates a realistic component from a production project. System tokens handle all the standard spacing, colors, and typography. Arbitrary values handle the component-specific layout grid and decorative details.
 
-<CssPreview
+<CssPreview client:load
   title="Production Component: Tokens + Arbitrary Values"
   html={`<div class="prod-demo">
   <div class="prod-demo__section">

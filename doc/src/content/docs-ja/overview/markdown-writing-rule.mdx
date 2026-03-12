@@ -70,7 +70,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 ### 基本的な使い方
 
 ```mdx
-<CssPreview
+<CssPreview client:load
   title="Flexboxによる中央配置"
   html={`
 <div class="flex-center">
@@ -172,14 +172,14 @@ import TailwindPreview from '@/components/TailwindPreview';
 <!-- ❌ Bad -->
 - コンポーネントの使い方：
   ```jsx
-  <CssPreview title="デモ" />
+  <CssPreview client:load title="デモ" />
   ```
 
 <!-- ✅ Good -->
 - コンポーネントの使い方：
 
 ```jsx
-<CssPreview title="デモ" />
+<CssPreview client:load title="デモ" />
 ```
 ````
 

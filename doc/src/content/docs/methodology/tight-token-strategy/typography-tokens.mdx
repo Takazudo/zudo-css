@@ -71,7 +71,7 @@ After this configuration:
 
 The left column shows Tailwind's 13 default font-size steps — from `text-xs` to `text-9xl`. The right column shows the 5 semantic sizes that replace them. Each semantic token maps to a specific role in the type hierarchy.
 
-<CssPreview
+<CssPreview client:load
   title="13 Default Sizes vs 5 Semantic Sizes"
   height={380}
   html={`    <div class="demo">
@@ -196,7 +196,7 @@ The left column shows Tailwind's 13 default font-size steps — from `text-xs` t
 
 A visual hierarchy card showing all 5 semantic sizes with their corresponding weights and line-heights. This is the complete typographic vocabulary of the project.
 
-<CssPreview
+<CssPreview client:load
   title="Typography Scale — All 5 Sizes in Hierarchy"
   height={360}
   html={`    <div class="scale-card">
@@ -324,7 +324,7 @@ A visual hierarchy card showing all 5 semantic sizes with their corresponding we
 
 A complete article layout using only the 5 semantic font sizes, 3 weights, and 3 line-heights. No numeric Tailwind classes like `text-lg` or `font-semibold` are used — everything maps to a semantic token.
 
-<CssPreview
+<CssPreview client:load
   title="Article Layout with Semantic Typography Tokens"
   height={420}
   html={`    <article class="article">

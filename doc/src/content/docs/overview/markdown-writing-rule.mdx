@@ -70,7 +70,7 @@ The `CssPreview` component renders a live CSS demo inside an iframe. No JavaScri
 ### Basic Usage
 
 ```mdx
-<CssPreview
+<CssPreview client:load
   title="Flexbox Centering"
   html={`
 <div class="flex-center">
@@ -172,14 +172,14 @@ Place code blocks outside of list items:
 <!-- ❌ Bad -->
 - Component usage:
   ```jsx
-  <CssPreview title="Demo" />
+  <CssPreview client:load title="Demo" />
   ```
 
 <!-- ✅ Good -->
 - Component usage:
 
 ```jsx
-<CssPreview title="Demo" />
+<CssPreview client:load title="Demo" />
 ```
 ````
 

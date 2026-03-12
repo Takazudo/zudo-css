@@ -33,7 +33,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 パレットは素材そのものです。システムで利用可能なすべての色が含まれます。これらはコンポーネントで直接使いません。絵の具のチューブのようなものです。用意はしておきますが、計画なしにキャンバスに直接絞り出すことはしません。
 
-<CssPreview
+<CssPreview client:load
   title="ティア 1 — パレット: 生のカラー値"
   height={280}
   html={`    <div class="palette-demo">
@@ -157,7 +157,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 テーマトークンはパレットカラーに**セマンティックな意味**を与えます。「blue-500」の代わりに、コンポーネントは「アクセントカラー」や「前景色」を参照します。この層がリデザインを容易にします。`--theme-accent` をブルーからインディゴに一箇所で変更するだけで、すべてのコンポーネントが更新されます。
 
-<CssPreview
+<CssPreview client:load
   title="ティア 2 — テーマ: パレットからのセマンティックマッピング"
   height={360}
   html={`    <div class="theme-demo">
@@ -352,7 +352,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 コンポーネントによっては、グローバルテーマに収まらない色が必要になることがあります。シャドウ、プロダクトのバリエーションカラー、微妙なグラデーションのストップなどです。これらが**ティア 3** の変数です。スコープが狭く、コンポーネント自体で定義され、テーマトークンまたはパレットトークンを参照します。
 
-<CssPreview
+<CssPreview client:load
   title="ティア 3 — コンポーネント: スコープ付きカラーオーバーライド"
   height={340}
   html={`    <div class="tier3-demo">
@@ -476,7 +476,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 ここでは、3つのティアがどのように連携するかを示す完全な例を紹介します。任意の色をその出所まで簡単に追跡できることに注目してください。コンポーネントはテーマを使い、テーマはパレットを指します。
 
-<CssPreview
+<CssPreview client:load
   title="3つのティアすべて — CSS カスタムプロパティの完全な例"
   height={420}
   html={`    <div class="full-demo">
@@ -700,7 +700,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 3層システムの最大の利点は、テーマを変更するときに明らかになります。ティア 2 のポインタを再マッピングするだけで、コンポーネントの CSS に一切触れることなく、すべてのコンポーネントが更新されます。
 
-<CssPreview
+<CssPreview client:load
   title="同じコンポーネント、異なるテーマ — ティア 2 のみ変更"
   height={320}
   html={`    <div class="swap-demo">
@@ -891,7 +891,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 3層戦略は Tailwind の設定に自然にマッピングできます。パレットカラーは `theme.colors` に配置し、テーマトークンは Tailwind クラスが参照する CSS カスタムプロパティにします。
 
-<TailwindPreview
+<TailwindPreview client:load
   title="Tailwind: 3層カラーシステム"
   height={420}
   html={`    <script>
@@ -990,7 +990,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 同じ Tailwind マークアップが、まったく異なるカラースキームで動作します。CSS 変数を変更するだけです。
 
-<TailwindPreview
+<TailwindPreview client:load
   title="Tailwind: 同じマークアップ、3つの異なるテーマ"
   height={360}
   html={`    <script>
@@ -1093,7 +1093,7 @@ import TailwindPreview from '@/components/TailwindPreview';
 
 ダークモードのテクニックについて詳しくは、[ダークモード戦略](./dark-mode-strategies)を参照してください。
 
-<CssPreview
+<CssPreview client:load
   title="light-dark() によるティア 2 でのダークモード"
   height={340}
   html={`    <div class="dm-demo">

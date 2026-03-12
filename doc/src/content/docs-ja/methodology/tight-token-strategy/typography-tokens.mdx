@@ -71,7 +71,7 @@ Tailwind CSS はデフォルトで13のフォントサイズステップ（`text
 
 左のカラムは Tailwind の13のデフォルトフォントサイズステップ — `text-xs` から `text-9xl` までを示しています。右のカラムはそれらを置き換える5つのセマンティックサイズです。各セマンティックトークンはタイプ階層内の特定の役割に対応しています。
 
-<CssPreview
+<CssPreview client:load
   title="13のデフォルトサイズ vs 5つのセマンティックサイズ"
   height={380}
   html={`    <div class="demo">
@@ -196,7 +196,7 @@ Tailwind CSS はデフォルトで13のフォントサイズステップ（`text
 
 5つのセマンティックサイズすべてに対応するウェイトと行の高さを示す視覚的な階層カードです。これがプロジェクトの完全なタイポグラフィ語彙です。
 
-<CssPreview
+<CssPreview client:load
   title="タイポグラフィスケール — 階層内の全5サイズ"
   height={360}
   html={`    <div class="scale-card">
@@ -324,7 +324,7 @@ Tailwind CSS はデフォルトで13のフォントサイズステップ（`text
 
 5つのセマンティックフォントサイズ、3つのウェイト、3つの行の高さのみを使った完全な記事レイアウトです。`text-lg` や `font-semibold` のような数値の Tailwind クラスは使われていません — すべてがセマンティックトークンに対応しています。
 
-<CssPreview
+<CssPreview client:load
   title="セマンティックタイポグラフィトークンを使った記事レイアウト"
   height={420}
   html={`    <article class="article">

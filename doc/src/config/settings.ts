@@ -43,5 +43,5 @@ export const settings = {
     { label: "Responsive", path: "/docs/responsive", categoryMatch: "responsive" },
     { label: "Interactive", path: "/docs/interactive", categoryMatch: "interactive" },
     { label: "Methodology", path: "/docs/methodology", categoryMatch: "methodology" },
-  ] satisfies HeaderNavItem[],
+  ] as HeaderNavItem[],
 };

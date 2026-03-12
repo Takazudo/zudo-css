@@ -1,4 +1,14 @@
 ---
 import TailwindPreviewReact from '../tailwind-preview/tailwind-preview';
+
+interface Props {
+  html: string;
+  css?: string;
+  title?: string;
+  height?: number;
+  defaultOpen?: boolean;
+}
+
+const props = Astro.props;
 ---
-<TailwindPreviewReact client:load {...Astro.props} />
+<TailwindPreviewReact client:load {...props} />

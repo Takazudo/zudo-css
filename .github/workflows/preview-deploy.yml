@@ -48,7 +48,7 @@ jobs:
       - name: Nest build under baseUrl path
         run: |
           mkdir -p deploy/pj/zcss
-          cp -r doc/build/* deploy/pj/zcss/
+          cp -r doc/dist/* deploy/pj/zcss/
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
       - name: Deploy preview

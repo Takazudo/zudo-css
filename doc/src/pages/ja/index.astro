@@ -7,41 +7,17 @@ import { ClientRouter } from "astro:transitions";
 import PageLoadingOverlay from "@/components/page-loading-overlay.astro";
 import { settings } from "@/config/settings";
 import { withBase } from "@/utils/base";
-import { buildNavTree, loadCategoryMeta } from "@/utils/docs";
-import { getDocsCollection } from "@/utils/get-docs-collection";
-import { toRouteSlug } from "@/utils/slug";
-import { getContentDir } from "@/config/i18n";
+import { buildNavTree } from "@/utils/docs";
+import { loadLocaleDocs } from "@/utils/locale-docs";
 import SiteTreeNav from "@/components/site-tree-nav.tsx";
 
 const lang = "ja" as const;
 const ctaNav = settings.headerNav[0] ?? null;
 
-// Build full nav tree for site index (merge JA + EN fallback)
-const localeDocs = await getDocsCollection("docs-ja");
-const baseDocs = await getDocsCollection("docs");
-
-const filterDrafts = (docs: { data: { draft?: boolean } }[]) =>
-  import.meta.env.PROD ? docs.filter((doc) => !doc.data.draft) : docs;
-
-const filteredLocaleDocs = filterDrafts(localeDocs);
-const filteredBaseDocs = filterDrafts(baseDocs);
-
-const localeSlugSet = new Set(
-  filteredLocaleDocs.map((d) => d.data.slug ?? toRouteSlug(d.id)),
-);
-const allDocs = [
-  ...filteredLocaleDocs,
-  ...filteredBaseDocs.filter(
-    (d) => !localeSlugSet.has(d.data.slug ?? toRouteSlug(d.id)),
-  ),
-];
-
-const baseCategoryMeta = loadCategoryMeta(settings.docsDir);
-const localeCategoryMeta = loadCategoryMeta(getContentDir("ja"));
-const categoryMeta = new Map([...baseCategoryMeta, ...localeCategoryMeta]);
-
+// Build full nav tree for site index
+const { allDocs, categoryMeta } = await loadLocaleDocs(lang);
 const navDocs = allDocs.filter((doc) => !doc.data.unlisted);
-const tree = buildNavTree(navDocs, "ja", categoryMeta);
+const tree = buildNavTree(navDocs, lang, categoryMeta);
 ---
 
 <html lang="ja">

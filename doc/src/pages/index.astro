@@ -7,8 +7,16 @@ import { ClientRouter } from "astro:transitions";
 import PageLoadingOverlay from "@/components/page-loading-overlay.astro";
 import { settings } from "@/config/settings";
 import { withBase } from "@/utils/base";
+import { buildNavTree } from "@/utils/docs";
+import { loadLocaleDocs } from "@/utils/locale-docs";
+import SiteTreeNav from "@/components/site-tree-nav.tsx";
 
 const ctaNav = settings.headerNav[0] ?? null;
+
+// Build full nav tree for site index
+const { allDocs, categoryMeta } = await loadLocaleDocs("en");
+const navDocs = allDocs.filter((doc) => !doc.data.unlisted);
+const tree = buildNavTree(navDocs, "en", categoryMeta);
 ---
 
 <html lang="en">
@@ -45,7 +53,7 @@ const ctaNav = settings.headerNav[0] ?? null;
         )}
       </div>
 
-      <!-- Right: header nav categories -->
+      <!-- Right: main content -->
       <main class="flex-1 min-w-0 px-hsp-xl py-vsp-xl lg:px-hsp-2xl lg:py-vsp-2xl max-w-[56rem]">
         <!-- Mobile header (shown when sidebar is hidden) -->
         <div class="lg:hidden mb-vsp-xl">
@@ -63,6 +71,7 @@ const ctaNav = settings.headerNav[0] ?? null;
           )}
         </div>
 
+        <!-- Category cards -->
         <div class="grid grid-cols-1 gap-vsp-lg sm:grid-cols-2 lg:grid-cols-3">
           {settings.headerNav.map((item) => (
               <a
@@ -77,6 +86,11 @@ const ctaNav = settings.headerNav[0] ?? null;
                 </span>
               </a>
           ))}
+        </div>
+
+        <!-- Full site tree nav -->
+        <div class="mt-vsp-2xl">
+          <SiteTreeNav tree={tree} client:idle />
         </div>
       </main>
     </div>

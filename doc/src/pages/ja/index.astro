@@ -20,7 +20,7 @@ const ctaNav = settings.headerNav[0] ?? null;
 const localeDocs = await getDocsCollection("docs-ja");
 const baseDocs = await getDocsCollection("docs");
 
-const filterDrafts = (docs: any[]) =>
+const filterDrafts = (docs: { data: { draft?: boolean } }[]) =>
   import.meta.env.PROD ? docs.filter((doc) => !doc.data.draft) : docs;
 
 const filteredLocaleDocs = filterDrafts(localeDocs);

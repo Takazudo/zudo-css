@@ -7,11 +7,11 @@ interface SiteTreeNavProps {
 
 export default function SiteTreeNav({ tree }: SiteTreeNavProps) {
   return (
-    <div className="grid grid-cols-1 gap-y-vsp-md">
+    <nav aria-label="Site index" className="grid grid-cols-1 gap-y-vsp-md">
       {tree.map((node) => (
         <SectionCard key={node.slug} node={node} />
       ))}
-    </div>
+    </nav>
   );
 }
 
@@ -53,6 +53,7 @@ function SectionCard({ node }: { node: NavNode }) {
             type="button"
             onClick={toggle}
             className="px-hsp-lg py-vsp-md text-muted hover:text-fg shrink-0"
+            aria-expanded={open}
             aria-label={open ? `Collapse ${node.label}` : `Expand ${node.label}`}
           >
             <svg
@@ -122,6 +123,7 @@ function SubCategory({
           type="button"
           onClick={toggle}
           className="px-hsp-md py-vsp-xs text-muted hover:text-fg shrink-0"
+          aria-expanded={open}
           aria-label={open ? `Collapse ${node.label}` : `Expand ${node.label}`}
         >
           <svg

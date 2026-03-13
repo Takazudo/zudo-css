@@ -37,14 +37,14 @@ export const colorSchemes: Record<string, ColorScheme> = {
     palette: [
       "#1c1c1c", "#da6871", "#93bb77", "#dfbb77",
       "#5caae9", "#c074d6", "oklch(55.5% 0.163 48.998)", "#a0a0a0",
-      "#606060", "#da6871", "#93bb77", "#dfbb77",
+      "#888888", "#da6871", "#93bb77", "#dfbb77",
       "#5caae9", "#c074d6", "oklch(65% 0.18 48.998)", "#b8b8b8",
     ],
     shikiTheme: "dracula",
     semantic: {
       accent: "oklch(55.5% 0.163 48.998)",
       accentHover: "oklch(65% 0.18 48.998)",
-      muted: "#606060",
+      muted: "#888888",
       surface: "#222222",
     },
   },

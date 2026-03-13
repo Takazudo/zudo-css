@@ -1,20 +1,23 @@
 # zcss — zudo-css
 
-Docusaurus documentation site teaching CSS best practices.
+Documentation site teaching CSS best practices, built with zudo-doc (Astro 5 + MDX + Tailwind CSS v4).
 
 ## Project Structure
 
 ```
 zcss/
-  doc/                    # Docusaurus site (all dev happens here)
-    docs/                 # MDX articles by category
-    src/components/       # CssPreview, CategoryNav, DocsSitemap, etc.
-    src/theme/            # Swizzled Docusaurus theme components
-    src/css/              # Custom styles
-    src/data/             # Generated JSON (gitignored)
-    scripts/              # Build-time generation scripts
-    plugins/              # Docusaurus plugins (remark-creation-date)
-    static/               # Static assets
+  doc/                    # zudo-doc site (all dev happens here)
+    src/content/docs/     # MDX articles by category
+    src/content/docs-ja/  # Japanese locale articles
+    src/components/       # CssPreview, PreviewBase, TailwindPreview, etc.
+    src/config/           # Settings, color schemes, sidebars, i18n
+    src/layouts/          # Astro layouts
+    src/pages/            # Astro page routes
+    src/plugins/          # Rehype plugins
+    src/integrations/     # Astro integrations (search, doc-history, sitemap)
+    src/styles/           # Global CSS (Tailwind v4 + design tokens)
+    src/utils/            # Utility functions
+    public/               # Static assets
   .husky/                 # Git hooks (pre-commit: lint-staged)
   .claude/skills/         # Claude Code skills managed in this repo
 ```
@@ -25,9 +28,9 @@ Package manager: **pnpm** (Node.js >= 20). All commands run inside `doc/`:
 
 ```bash
 cd doc
-pnpm install && pnpm start    # Dev server → http://css-bp.localhost:8811
-pnpm build                    # Production build
-pnpm check                    # Typecheck + format check
+pnpm install && pnpm dev     # Dev server → http://css-bp.localhost:8811
+pnpm build                   # Production build
+pnpm check                   # Typecheck
 ```
 
 See `doc/CLAUDE.md` for detailed article-writing guidelines, component reference, and conventions.

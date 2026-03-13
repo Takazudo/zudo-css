@@ -32,8 +32,6 @@ jobs:
           cache-dependency-path: doc/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm --dir doc install --frozen-lockfile
-      - name: Generate data
-        run: pnpm --dir doc run generate
       - name: Quality checks
         run: pnpm --dir doc run check
 
@@ -61,7 +59,7 @@ jobs:
       - name: Nest build under baseUrl path
         run: |
           mkdir -p deploy/pj/zcss
-          cp -r doc/build/* deploy/pj/zcss/
+          cp -r doc/dist/* deploy/pj/zcss/
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
       - name: Deploy preview

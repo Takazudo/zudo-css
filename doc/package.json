@@ -1,75 +1,46 @@
 {
-  "name": "docusaurus",
-  "version": "0.0.0",
+  "name": "zcss",
+  "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "// ── Core ─────────────────────────────────────────": "",
-    "start": "pnpm run generate && docusaurus start --host css-bp.localhost --port 8811",
-    "start:ja": "pnpm run generate && docusaurus start --locale ja --host css-bp.localhost --port 8811",
-    "build": "pnpm run generate && docusaurus build",
-    "serve": "docusaurus serve",
-    "clear": "docusaurus clear",
-    "// ── Data & content tools ────────────────────────": "",
-    "generate": "pnpm run generate:doc-titles && pnpm run generate:category-nav",
-    "generate:doc-titles": "node scripts/generate-doc-titles.js",
-    "generate:category-nav": "node scripts/generate-category-nav.js",
-    "// ── Code quality ────────────────────────────────": "",
-    "typecheck": "tsc",
-    "format": "prettier --check \"**/*.{js,jsx,ts,tsx,mjs,json,css,yml,yaml}\" \"!**/*.{md,mdx}\" && pnpm run format:md:check",
-    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,mjs,json,css,yml,yaml}\" \"!**/*.{md,mdx}\" && pnpm run format:md",
-    "format:md": "./scripts/mdx-format.sh --write",
-    "format:md:check": "./scripts/mdx-format.sh --check",
-    "check": "pnpm run typecheck && pnpm run format",
-    "check:fix": "pnpm run format:fix",
-    "// ── Git hooks ───────────────────────────────────": "",
-    "prepare:husky": "./scripts/prepare.sh",
-    "// ── Docusaurus utilities ────────────────────────": "",
-    "docusaurus": "docusaurus",
-    "swizzle": "docusaurus swizzle",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,mjs}": [
-      "prettier --write"
-    ],
-    "*.{md,mdx}": [
-      "./scripts/mdx-format.sh --write"
-    ],
-    "*.{json,css,yml,yaml}": [
-      "prettier --write"
-    ]
+    "predev": "lsof -ti :8811 | xargs kill 2>/dev/null; true",
+    "dev": "astro dev --port 8811 --host css-bp.localhost",
+    "build": "astro build",
+    "preview": "astro preview --port 8811",
+    "// ── Quality ──────────────────────────────────────": "",
+    "check": "NODE_OPTIONS='--max-old-space-size=6144' astro check"
   },
   "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/plugin-content-docs": "^3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@docusaurus/theme-common": "^3.9.2",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^4.4.2",
+    "@shikijs/transformers": "^4.0.1",
+    "@takazudo/mdx-formatter": "latest",
+    "@types/hast": "^3.0.4",
+    "astro": "^5.18.0",
+    "clsx": "^2.1.1",
+    "diff": "^8.0.3",
+    "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "minisearch": "^7.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
-    "@docusaurus/tsconfig": "3.9.2",
-    "@docusaurus/types": "3.9.2",
-    "husky": "^9.1.7",
-    "prettier": "^3.8.1",
-    "typescript": "~5.6.2"
+    "@astrojs/check": "^0.9.6",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/node": "^25.3.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 3 chrome version",
-      "last 3 firefox version",
-      "last 5 safari version"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
     ]
   },
   "engines": {

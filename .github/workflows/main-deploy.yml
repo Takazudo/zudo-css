@@ -30,8 +30,6 @@ jobs:
           cache-dependency-path: doc/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm --dir doc install --frozen-lockfile
-      - name: Generate data
-        run: pnpm --dir doc run generate
       - name: Quality checks
         run: pnpm --dir doc run check
 
@@ -59,8 +57,8 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: docusaurus-build
-          path: doc/build/
+          name: astro-build
+          path: doc/dist/
           retention-days: 1
 
   deploy:
@@ -72,12 +70,12 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: docusaurus-build
-          path: doc/build
+          name: astro-build
+          path: doc/dist
       - name: Nest build under baseUrl path
         run: |
           mkdir -p deploy/pj/zcss
-          cp -r doc/build/* deploy/pj/zcss/
+          cp -r doc/dist/* deploy/pj/zcss/
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
       - name: Deploy to production

@@ -1,5 +1,3 @@
-import type { RenderedContent } from "astro:content";
-
 /**
  * Concrete entry type for docs collections.
  *
@@ -27,6 +25,5 @@ export interface DocsEntry {
     unlisted?: boolean;
     slug?: string;
   };
-  rendered?: RenderedContent;
   filePath?: string;
 }

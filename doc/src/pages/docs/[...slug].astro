@@ -1,5 +1,6 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getDocsCollection } from "@/utils/get-docs-collection";
 import DocLayout from "@/layouts/doc-layout.astro";
 import Note from "@/components/admonitions/note.astro";
 import Tip from "@/components/admonitions/tip.astro";
@@ -13,18 +14,17 @@ import TabItem from "@/components/tab-item.astro";
 import Details from "@/components/details.astro";
 import Breadcrumb from "@/components/breadcrumb.astro";
 import { toRouteSlug } from "@/utils/slug";
-import { buildNavTree, buildBreadcrumbs, flattenTree, findNode, loadCategoryMeta, collectAutoIndexNodes, type NavNode } from "@/utils/docs";
+import { buildNavTree, buildBreadcrumbs, flattenTree, findNode, loadCategoryMeta, collectAutoIndexNodes } from "@/utils/docs";
 import type { Heading } from "@/types/heading";
 import { getNavSectionForSlug, getNavSubtree } from "@/utils/nav-scope";
 import { t } from "@/config/i18n";
 import { settings } from "@/config/settings";
-import { docsUrl } from "@/utils/base";
 import EditLink from "@/components/edit-link.astro";
 import DocMetainfo from "@/components/doc-metainfo.astro";
 import DocTags from "@/components/doc-tags.astro";
 
 export async function getStaticPaths() {
-  const allDocs = await getCollection("docs");
+  const allDocs = await getDocsCollection("docs");
   // In production, exclude drafts. In dev, include them for preview.
   const docs = import.meta.env.PROD
     ? allDocs.filter((doc) => !doc.data.draft)

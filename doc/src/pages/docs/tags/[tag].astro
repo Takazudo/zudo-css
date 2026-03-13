@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getDocsCollection } from "@/utils/get-docs-collection";
 import DocLayout from "@/layouts/doc-layout.astro";
 import Breadcrumb from "@/components/breadcrumb.astro";
 import { toRouteSlug } from "@/utils/slug";
@@ -8,7 +8,7 @@ import { t } from "@/config/i18n";
 import { docsUrl, withBase } from "@/utils/base";
 
 export async function getStaticPaths() {
-  const allDocs = await getCollection("docs");
+  const allDocs = await getDocsCollection("docs");
   const docs = import.meta.env.PROD
     ? allDocs.filter((doc) => !doc.data.draft && !doc.data.unlisted)
     : allDocs.filter((doc) => !doc.data.unlisted);

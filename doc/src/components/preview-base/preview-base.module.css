@@ -4,6 +4,7 @@
   --preview-bg-hover: hsl(0 0% 91%);
   --preview-text: hsl(0 0% 32%);
   --preview-text-muted: hsl(0 0% 44%);
+  --preview-code-bg: hsl(0 0% 98%);
   --preview-accent: hsl(220 70% 50%);
   --preview-accent-dark: hsl(220 70% 42%);
 
@@ -11,6 +12,17 @@
   border-radius: 8px;
   overflow: hidden;
   margin: 1.5rem 0;
+}
+
+:global([data-theme="dark"]) .wrapper {
+  --preview-border: hsl(0 0% 28%);
+  --preview-bg: hsl(0 0% 14%);
+  --preview-bg-hover: hsl(0 0% 18%);
+  --preview-text: hsl(0 0% 78%);
+  --preview-text-muted: hsl(0 0% 55%);
+  --preview-code-bg: hsl(0 0% 11%);
+  --preview-accent: hsl(220 70% 55%);
+  --preview-accent-dark: hsl(220 70% 48%);
 }
 
 /* Title bar */
@@ -156,7 +168,7 @@
 .codeBlockPre {
   margin: 0;
   padding: 0.75rem;
-  background: hsl(0 0% 98%);
+  background: var(--preview-code-bg);
   font-size: 0.8rem;
   line-height: 1.6;
   overflow-x: auto;

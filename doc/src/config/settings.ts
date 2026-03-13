@@ -17,7 +17,7 @@ export const settings = {
     darkScheme: "ZCSS Dark",
     respectPrefersColorScheme: true,
   } as ColorModeConfig | false,
-  siteName: "zcss",
+  siteName: "zudo-css",
   siteDescription: "CSS best practices — practical techniques for modern web development" as string,
   base: "/pj/zcss/",
   docsDir: "src/content/docs",

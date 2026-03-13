@@ -2,10 +2,11 @@
 import SidebarTree from "@/components/sidebar-tree";
 import { loadCategoryMeta, type CategoryMeta } from "@/utils/docs";
 import { buildSidebarForSection } from "@/utils/sidebar";
-import { defaultLocale, getCollectionName, getContentDir, type Locale } from "@/config/i18n";
+import { defaultLocale, getCollectionName, getContentDir, t, type Locale } from "@/config/i18n";
 import { getDocsCollection } from "@/utils/get-docs-collection";
 import { toRouteSlug } from "@/utils/slug";
 import { settings } from "@/config/settings";
+import { withBase } from "@/utils/base";
 
 interface Props {
   currentSlug?: string;
@@ -14,6 +15,9 @@ interface Props {
 }
 
 const { currentSlug, lang = defaultLocale, navSection } = Astro.props;
+const isNonDefaultLocale = lang !== defaultLocale;
+const backToMenuHref = navSection ? withBase(isNonDefaultLocale ? `/${lang}/` : "/") : undefined;
+const backToMenuLabel = navSection ? t("nav.backToMenu", lang) : undefined;
 
 const localeDocs = await getDocsCollection(getCollectionName(lang));
 
@@ -46,4 +50,4 @@ if (lang !== defaultLocale) {
 const nodes = buildSidebarForSection(docs, lang, navSection, categoryMeta);
 ---
 
-<SidebarTree nodes={nodes} currentSlug={currentSlug} client:load />
+<SidebarTree nodes={nodes} currentSlug={currentSlug} backToMenuHref={backToMenuHref} backToMenuLabel={backToMenuLabel} client:load />

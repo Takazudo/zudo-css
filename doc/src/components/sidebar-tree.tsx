@@ -91,9 +91,11 @@ function filterTree(nodes: NavNode[], query: string): NavNode[] {
 interface SidebarTreeProps {
   nodes: NavNode[];
   currentSlug?: string;
+  backToMenuHref?: string;
+  backToMenuLabel?: string;
 }
 
-export default function SidebarTree({ nodes, currentSlug }: SidebarTreeProps) {
+export default function SidebarTree({ nodes, currentSlug, backToMenuHref, backToMenuLabel }: SidebarTreeProps) {
   const activeSlug = useActiveSlug(nodes, currentSlug);
   const [query, setQuery] = useState("");
 
@@ -104,6 +106,17 @@ export default function SidebarTree({ nodes, currentSlug }: SidebarTreeProps) {
 
   return (
     <nav>
+      {backToMenuHref && (
+        <a
+          href={backToMenuHref}
+          className="flex items-center gap-hsp-xs px-hsp-sm py-vsp-xs text-small text-muted hover:text-fg border-b border-muted"
+        >
+          <svg className="h-[1rem] w-[1rem] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          {backToMenuLabel ?? "Back to main menu"}
+        </a>
+      )}
       <div className="px-hsp-sm py-vsp-xs border-b border-muted">
         <div className="flex items-center gap-hsp-xs bg-surface rounded px-hsp-sm py-vsp-2xs">
           <svg className="h-[14px] w-[14px] text-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

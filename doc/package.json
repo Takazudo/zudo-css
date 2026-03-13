@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview --port 8811",
     "// ── Quality ──────────────────────────────────────": "",
-    "check": "astro check"
+    "check": "NODE_OPTIONS='--max-old-space-size=6144' astro check"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

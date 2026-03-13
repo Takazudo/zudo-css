@@ -115,7 +115,13 @@ const tree = buildNavTree(navDocs, "ja", categoryMeta);
 
         <!-- Full site tree nav -->
         <div class="mt-vsp-2xl">
-          <SiteTreeNav tree={tree} client:load />
+          <SiteTreeNav
+            tree={tree}
+            ariaLabel="サイトインデックス"
+            expandLabel="展開"
+            collapseLabel="折りたたむ"
+            client:idle
+          />
         </div>
       </main>
     </div>

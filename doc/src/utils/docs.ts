@@ -34,13 +34,19 @@ interface BuildNode {
 const categoryMetaCache = new Map<string, Map<string, CategoryMeta>>();
 const navTreeCache = new Map<string, NavNode[]>();
 
-/** Build a cache key from docs array + locale. */
-function navTreeCacheKey(docs: DocsEntry[], lang: Locale): string {
-  return `${lang}:${docs.map((d) => d.id).join(",")}`;
+/** Build a cache key from docs array + locale + category meta. */
+function navTreeCacheKey(
+  docs: DocsEntry[],
+  lang: Locale,
+  categoryMeta?: Map<string, CategoryMeta>,
+): string {
+  const metaKey = categoryMeta ? [...categoryMeta.keys()].sort().join(";") : "_";
+  return `${lang}:${metaKey}:${docs.map((d) => d.id).join(",")}`;
 }
 
 /**
  * Build a recursive navigation tree from a flat Astro content collection.
+ * Mirrors the filesystem: directories become category nodes, files become leaves.
  * Results are memoized: identical inputs return the cached tree.
  *
  * Astro 5 glob() strips /index from IDs:
@@ -52,7 +58,7 @@ export function buildNavTree(
   lang: Locale = defaultLocale,
   categoryMeta?: Map<string, CategoryMeta>,
 ): NavNode[] {
-  const cacheKey = navTreeCacheKey(docs, lang);
+  const cacheKey = navTreeCacheKey(docs, lang, categoryMeta);
   const cached = navTreeCache.get(cacheKey);
   if (cached) return cached;
 

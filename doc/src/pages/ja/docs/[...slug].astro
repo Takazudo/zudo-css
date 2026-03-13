@@ -94,6 +94,10 @@ export async function getStaticPaths() {
       }
     }
 
+    // Find this node's children for auto CategoryNav on index pages
+    const node = findNode(tree, slug);
+    const navChildren = node?.children.filter((c) => c.hasPage || c.children.length > 0) ?? [];
+
     return {
       params: { slug },
       props: {
@@ -103,6 +107,7 @@ export async function getStaticPaths() {
         breadcrumbs: buildBreadcrumbs(tree, slug, "ja"),
         prev: prevNode,
         next: nextNode,
+        navChildren,
       },
     };
   });
@@ -124,7 +129,7 @@ export async function getStaticPaths() {
   return [...docPaths, ...autoIndexPaths];
 }
 
-const { entry, contentDir, isFallback, breadcrumbs = [], prev, next, autoIndex } = Astro.props;
+const { entry, contentDir, isFallback, breadcrumbs = [], prev, next, autoIndex, navChildren = [] } = Astro.props;
 
 const components = { Note, Tip, Info, Warning, Danger, CategoryNav, Tabs, TabItem, Details };
 
@@ -187,6 +192,22 @@ const slug = autoIndex ? autoIndex.slug : (entry!.data.slug ?? toRouteSlug(entry
       {entry?.data?.tags && <DocTags tags={entry.data.tags} locale="ja" />}
 
       <Content components={components} />
+
+      {navChildren.length > 0 && (
+        <nav class="mt-vsp-lg mb-vsp-md grid grid-cols-1 gap-x-hsp-lg gap-y-vsp-md sm:grid-cols-2">
+          {navChildren.map((child: NavNode) => (
+            <a
+              href={child.href ?? docsUrl(child.slug, "ja")}
+              class="group block border border-muted bg-surface px-hsp-lg py-vsp-md hover:border-accent"
+            >
+              <span class="font-medium text-accent underline group-hover:underline">{child.label}</span>
+              {child.description && (
+                <span class="mt-vsp-2xs block text-small text-muted group-hover:underline decoration-muted">{child.description}</span>
+              )}
+            </a>
+          ))}
+        </nav>
+      )}
 
       {settings.editUrl && entry && (
         <div class="mt-vsp-xl mb-vsp-md border-t border-muted pt-vsp-md">

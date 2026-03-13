@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import type { NavNode } from "@/utils/docs";
 
 const STORAGE_KEY = "zd-sidebar-open";
@@ -98,6 +98,22 @@ interface SidebarTreeProps {
 export default function SidebarTree({ nodes, currentSlug, backToMenuHref, backToMenuLabel }: SidebarTreeProps) {
   const activeSlug = useActiveSlug(nodes, currentSlug);
   const [query, setQuery] = useState("");
+  const filterRef = useRef<HTMLInputElement>(null);
+
+  // Global shortcut: Cmd+/ (Mac) or Ctrl+/ to focus the filter input
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "/" && (e.metaKey || e.ctrlKey)) {
+        const el = filterRef.current;
+        if (!el || el.offsetParent === null) return; // skip if hidden
+        e.preventDefault();
+        el.focus();
+        el.select();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const filteredNodes = useMemo(
     () => (query ? filterTree(nodes, query) : nodes),
@@ -123,6 +139,7 @@ export default function SidebarTree({ nodes, currentSlug, backToMenuHref, backTo
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
+            ref={filterRef}
             type="text"
             placeholder="Filter..."
             value={query}

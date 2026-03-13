@@ -30,9 +30,18 @@ interface BuildNode {
   children: Map<string, BuildNode>;
 }
 
+// Module-level caches — persist across all page renders during a single Astro build.
+const categoryMetaCache = new Map<string, Map<string, CategoryMeta>>();
+const navTreeCache = new Map<string, NavNode[]>();
+
+/** Build a cache key from docs array + locale. */
+function navTreeCacheKey(docs: DocsEntry[], lang: Locale): string {
+  return `${lang}:${docs.map((d) => d.id).join(",")}`;
+}
+
 /**
  * Build a recursive navigation tree from a flat Astro content collection.
- * Mirrors the filesystem: directories become category nodes, files become leaves.
+ * Results are memoized: identical inputs return the cached tree.
  *
  * Astro 5 glob() strips /index from IDs:
  *   getting-started/index.mdx → ID "getting-started" (category index)
@@ -43,6 +52,10 @@ export function buildNavTree(
   lang: Locale = defaultLocale,
   categoryMeta?: Map<string, CategoryMeta>,
 ): NavNode[] {
+  const cacheKey = navTreeCacheKey(docs, lang);
+  const cached = navTreeCache.get(cacheKey);
+  if (cached) return cached;
+
   const root: BuildNode = {
     segment: "",
     fullPath: "",
@@ -84,7 +97,9 @@ export function buildNavTree(
     }
   }
 
-  return toNavNodes(root, lang, categoryMeta);
+  const result = toNavNodes(root, lang, categoryMeta);
+  navTreeCache.set(cacheKey, result);
+  return result;
 }
 
 function toNavNodes(
@@ -201,10 +216,14 @@ export function buildBreadcrumbs(
 /**
  * Scan a content directory for _category_.json files and return a map
  * of relative paths to category metadata.
+ * Results are memoized by contentDir.
  */
 export function loadCategoryMeta(contentDir: string): Map<string, CategoryMeta> {
+  const cached = categoryMetaCache.get(contentDir);
+  if (cached) return cached;
   const result = new Map<string, CategoryMeta>();
   scanDir(contentDir, contentDir, result);
+  categoryMetaCache.set(contentDir, result);
   return result;
 }
 

@@ -7,6 +7,7 @@ import Info from "@/components/admonitions/info.astro";
 import Warning from "@/components/admonitions/warning.astro";
 import Danger from "@/components/admonitions/danger.astro";
 import CategoryNav from "@/components/category-nav.astro";
+import NavCardGrid from "@/components/nav-card-grid.astro";
 import Tabs from "@/components/tabs.astro";
 import TabItem from "@/components/tab-item.astro";
 import Details from "@/components/details.astro";
@@ -123,19 +124,7 @@ const slug = autoIndex ? autoIndex.slug : (entry!.data.slug ?? toRouteSlug(entry
       {autoIndex.description && (
         <p class="mt-0 mb-vsp-lg text-subheading text-muted">{autoIndex.description}</p>
       )}
-      <nav class="grid grid-cols-1 gap-x-hsp-lg gap-y-vsp-md sm:grid-cols-2">
-        {autoIndex.children.filter((c: NavNode) => c.hasPage || c.children.length > 0).map((child: NavNode) => (
-          <a
-            href={child.href ?? docsUrl(child.slug, "en")}
-            class="group block border border-muted bg-surface px-hsp-lg py-vsp-md hover:border-accent"
-          >
-            <span class="font-medium text-accent underline group-hover:underline">{child.label}</span>
-            {child.description && (
-              <span class="mt-vsp-2xs block text-small text-muted group-hover:underline decoration-muted">{child.description}</span>
-            )}
-          </a>
-        ))}
-      </nav>
+      <NavCardGrid children={autoIndex.children} locale="en" />
     </Fragment>
   ) : (
     <Fragment>
@@ -150,21 +139,7 @@ const slug = autoIndex ? autoIndex.slug : (entry!.data.slug ?? toRouteSlug(entry
 
       <Content components={components} />
 
-      {navChildren.length > 0 && (
-        <nav class="mt-vsp-lg mb-vsp-md grid grid-cols-1 gap-x-hsp-lg gap-y-vsp-md sm:grid-cols-2">
-          {navChildren.map((child: NavNode) => (
-            <a
-              href={child.href ?? docsUrl(child.slug, "en")}
-              class="group block border border-muted bg-surface px-hsp-lg py-vsp-md hover:border-accent"
-            >
-              <span class="font-medium text-accent underline group-hover:underline">{child.label}</span>
-              {child.description && (
-                <span class="mt-vsp-2xs block text-small text-muted group-hover:underline decoration-muted">{child.description}</span>
-              )}
-            </a>
-          ))}
-        </nav>
-      )}
+      <NavCardGrid children={navChildren} locale="en" class="mt-vsp-lg mb-vsp-md" />
 
       {settings.editUrl && entry && (
         <div class="mt-vsp-xl mb-vsp-md border-t border-muted pt-vsp-md">

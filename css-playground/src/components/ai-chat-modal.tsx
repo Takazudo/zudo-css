@@ -131,6 +131,7 @@ export default function AiChatModal() {
     <dialog
       ref={dialogRef}
       onClick={handleBackdropClick}
+      aria-label="AI Chat"
       className="w-[90vw] h-[90vh] max-w-[700px] m-auto p-0 rounded-lg border border-muted/30 bg-bg text-fg backdrop:bg-p0/70"
     >
       <div className="flex flex-col h-full">
@@ -139,6 +140,7 @@ export default function AiChatModal() {
           <span className="text-subheading font-semibold">AI Chat</span>
           <button
             onClick={() => dialogRef.current?.close()}
+            aria-label="Close"
             className="text-muted hover:text-fg text-body bg-transparent border-none cursor-pointer px-hsp-xs"
           >
             ✕

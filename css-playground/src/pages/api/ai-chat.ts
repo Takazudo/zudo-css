@@ -21,8 +21,18 @@ interface ChatMessage {
   content: string;
 }
 
+const MAX_HISTORY_LENGTH = 20;
+const MAX_MESSAGE_LENGTH = 4000;
+
 export const POST: APIRoute = async ({ request }) => {
-  const body = await request.json();
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
+      status: 400,
+    });
+  }
   const { message, history } = body;
 
   if (typeof message !== "string" || !message.trim()) {
@@ -31,7 +41,26 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const contextLines = (history || []).map((h: ChatMessage) =>
+  if (message.length > MAX_MESSAGE_LENGTH) {
+    return new Response(JSON.stringify({ error: "message too long" }), {
+      status: 400,
+    });
+  }
+
+  const validHistory = (Array.isArray(history) ? history : [])
+    .filter(
+      (h: unknown): h is ChatMessage =>
+        typeof h === "object" &&
+        h !== null &&
+        "role" in h &&
+        "content" in h &&
+        ((h as ChatMessage).role === "user" ||
+          (h as ChatMessage).role === "assistant") &&
+        typeof (h as ChatMessage).content === "string",
+    )
+    .slice(-MAX_HISTORY_LENGTH);
+
+  const contextLines = validHistory.map((h: ChatMessage) =>
     `${h.role === "user" ? "User" : "Assistant"}: ${h.content}`,
   );
   contextLines.push(`User: ${message}`);

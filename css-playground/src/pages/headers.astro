@@ -11,7 +11,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">1. Simple Horizontal Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Simple Horizontal Nav"
         html={`<header class="header-1">
   <a href="#" class="header-1__logo">Brand</a>
@@ -22,25 +22,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-1__link">Contact</a>
   </nav>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-1 {
   display: flex;
@@ -86,7 +68,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">2. Nav with CTA Button</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Nav with CTA Button"
         html={`<header class="header-2">
   <a href="#" class="header-2__logo">Brand</a>
@@ -97,25 +79,7 @@ import HtmlPreview from '../components/html-preview.tsx';
   </nav>
   <a href="#" class="header-2__cta">Get Started</a>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-2 {
   display: flex;
@@ -172,7 +136,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">3. Stacked Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Stacked Nav"
         html={`<header class="header-3">
   <div class="header-3__top">
@@ -186,25 +150,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-3__link">Contact</a>
   </nav>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-3 {
   background: var(--bg);
@@ -257,7 +203,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">4. Centered Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Centered Nav"
         html={`<header class="header-4">
   <a href="#" class="header-4__logo">Brand</a>
@@ -268,25 +214,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-4__link">Contact</a>
   </nav>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-4 {
   display: flex;
@@ -335,7 +263,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">5. Split Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Split Nav"
         html={`<header class="header-5">
   <a href="#" class="header-5__logo">Brand</a>
@@ -349,25 +277,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-5__action header-5__action--primary">Sign Up</a>
   </div>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-5 {
   display: flex;
@@ -443,7 +353,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">6. Pill Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Pill Nav"
         html={`<header class="header-6">
   <a href="#" class="header-6__logo">Brand</a>
@@ -454,25 +364,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-6__pill">Help</a>
   </nav>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-6 {
   display: flex;
@@ -529,7 +421,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">7. Tab-Style Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Tab-Style Nav"
         html={`<header class="header-7">
   <a href="#" class="header-7__logo">Brand</a>
@@ -540,25 +432,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <a href="#" class="header-7__tab">Pricing</a>
   </nav>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-7 {
   display: flex;
@@ -611,7 +485,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <section>
       <h2 class="text-subheading font-semibold mb-vsp-sm">8. Minimal Nav</h2>
       <HtmlPreview
-        client:load
+        client:visible
         title="Minimal Nav"
         html={`<header class="header-8">
   <a href="#" class="header-8__logo">Brand</a>
@@ -619,25 +493,7 @@ import HtmlPreview from '../components/html-preview.tsx';
     <span class="header-8__menu-icon"></span>
   </button>
 </header>`}
-        css={`:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-  --font-lg: 1.1rem;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        css={`* { margin: 0; padding: 0; box-sizing: border-box; }
 
 .header-8 {
   display: flex;

@@ -10,7 +10,7 @@ import HtmlPreview from '../components/html-preview.tsx';
   <div class="space-y-vsp-xl">
 
     <HtmlPreview
-      client:load
+      client:visible
       title="1. Success Toast"
       html={`
 <div class="toast-1">
@@ -24,22 +24,6 @@ import HtmlPreview from '../components/html-preview.tsx';
 </div>
       `}
       css={`
-:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --success: hsl(142 71% 45%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -102,7 +86,7 @@ body {
     />
 
     <HtmlPreview
-      client:load
+      client:visible
       title="2. Error Toast"
       html={`
 <div class="toast-2">
@@ -116,22 +100,6 @@ body {
 </div>
       `}
       css={`
-:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --danger: hsl(0 84% 60%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -194,7 +162,7 @@ body {
     />
 
     <HtmlPreview
-      client:load
+      client:visible
       title="3. Info Toast"
       html={`
 <div class="toast-3">
@@ -208,22 +176,6 @@ body {
 </div>
       `}
       css={`
-:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --info: hsl(220 70% 50%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -287,7 +239,7 @@ body {
     />
 
     <HtmlPreview
-      client:load
+      client:visible
       title="4. Toast with Action Button"
       html={`
 <div class="toast-4">
@@ -303,23 +255,6 @@ body {
 </div>
       `}
       css={`
-:root {
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --radius: 8px;
-  --accent: hsl(220 70% 50%);
-  --accent-hover: hsl(220 70% 42%);
-  --fg: hsl(220 25% 15%);
-  --fg-muted: hsl(220 10% 40%);
-  --bg: hsl(0 0% 100%);
-  --bg-subtle: hsl(220 15% 96%);
-  --border: hsl(220 15% 85%);
-  --font-sm: 0.85rem;
-  --font-md: 1rem;
-}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {

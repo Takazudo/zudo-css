@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+import HtmlPreview from "../components/html-preview.tsx";
+---
+
+<BaseLayout title="Headers" activeCategory="headers">
+  <h1 class="text-heading font-bold mb-vsp-lg">Header Patterns</h1>
+  <p class="text-body text-muted mb-vsp-xl">
+    8 header/navigation variations using tight tokens.
+  </p>
+
+  <div class="space-y-vsp-xl">
+    <section>
+      <h2 class="text-subheading font-semibold mb-vsp-sm">
+        1. Simple Horizontal Nav
+      </h2>
+      <HtmlPreview
+        client:load
+        title="Simple Horizontal Nav"
+        html={`<header style="display:flex; align-items:center; justify-content:space-between; padding:0.75rem 1rem; background:#313244; border-bottom:1px solid rgba(108,112,134,0.3);">
+  <div style="font-size:1.125rem; font-weight:600; color:#89b4fa;">Brand</div>
+  <nav style="display:flex; gap:1rem;">
+    <a href="#" style="color:#cdd6f4; text-decoration:none; font-size:0.875rem;">Home</a>
+    <a href="#" style="color:#6c7086; text-decoration:none; font-size:0.875rem;">About</a>
+    <a href="#" style="color:#6c7086; text-decoration:none; font-size:0.875rem;">Contact</a>
+  </nav>
+</header>`}
+        css={``}
+        height={60}
+      />
+    </section>
+
+    <section>
+      <h2 class="text-subheading font-semibold mb-vsp-sm">
+        2. Centered Logo Header
+      </h2>
+      <HtmlPreview
+        client:load
+        title="Centered Logo Header"
+        html={`<header style="display:flex; flex-direction:column; align-items:center; padding:1rem; background:#313244; border-bottom:1px solid rgba(108,112,134,0.3);">
+  <div style="font-size:1.5rem; font-weight:700; color:#89b4fa; margin-bottom:0.5rem;">Brand</div>
+  <nav style="display:flex; gap:1.5rem;">
+    <a href="#" style="color:#cdd6f4; text-decoration:none; font-size:0.875rem; border-bottom:2px solid #89b4fa; padding-bottom:0.25rem;">Home</a>
+    <a href="#" style="color:#6c7086; text-decoration:none; font-size:0.875rem; padding-bottom:0.25rem;">Products</a>
+    <a href="#" style="color:#6c7086; text-decoration:none; font-size:0.875rem; padding-bottom:0.25rem;">About</a>
+    <a href="#" style="color:#6c7086; text-decoration:none; font-size:0.875rem; padding-bottom:0.25rem;">Contact</a>
+  </nav>
+</header>`}
+        css={``}
+        height={90}
+      />
+    </section>
+  </div>
+</BaseLayout>

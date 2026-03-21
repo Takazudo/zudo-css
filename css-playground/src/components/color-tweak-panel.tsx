@@ -142,7 +142,7 @@ export default function ColorTweakPanel() {
     }
   }, [position]);
 
-  // Drag handlers
+  // Drag handlers — only attach mousemove/mouseup during active drag
   const onMouseDown = useCallback(
     (e: React.MouseEvent) => {
       dragging.current = true;
@@ -151,28 +151,24 @@ export default function ColorTweakPanel() {
         y: e.clientY - position.y,
       };
       e.preventDefault();
+
+      const onMouseMove = (ev: MouseEvent) => {
+        if (!dragging.current) return;
+        setPosition({
+          x: Math.max(0, Math.min(ev.clientX - dragOffset.current.x, window.innerWidth - 280)),
+          y: Math.max(0, Math.min(ev.clientY - dragOffset.current.y, window.innerHeight - 100)),
+        });
+      };
+      const onMouseUp = () => {
+        dragging.current = false;
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("mouseup", onMouseUp);
+      };
+      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("mouseup", onMouseUp);
     },
     [position],
   );
-
-  useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      if (!dragging.current) return;
-      setPosition({
-        x: Math.max(0, Math.min(e.clientX - dragOffset.current.x, window.innerWidth - 280)),
-        y: Math.max(0, Math.min(e.clientY - dragOffset.current.y, window.innerHeight - 100)),
-      });
-    };
-    const onMouseUp = () => {
-      dragging.current = false;
-    };
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-    };
-  }, []);
 
   const updatePalette = (index: number, color: string) => {
     setState((prev) => {

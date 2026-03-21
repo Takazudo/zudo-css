@@ -140,7 +140,7 @@ ${css}
             maxWidth: "100%",
           }}
           className="border border-muted/20 rounded bg-bg block"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox="allow-same-origin"
         />
       </div>
 

@@ -2,14 +2,37 @@
 set -euo pipefail
 
 VERSION="v22.16.0"
-ARCH="arm64"
-PLATFORM="darwin"
 DEST="src-tauri/binaries"
+
+# Detect platform
+case "$(uname -s)" in
+  Darwin) PLATFORM="darwin" ;;
+  Linux)  PLATFORM="linux" ;;
+  *)      echo "Unsupported OS: $(uname -s)"; exit 1 ;;
+esac
+
+# Detect architecture
+case "$(uname -m)" in
+  arm64|aarch64) ARCH="arm64"; TRIPLE="aarch64-apple-darwin" ;;
+  x86_64)        ARCH="x64";   TRIPLE="x86_64-apple-darwin" ;;
+  *)             echo "Unsupported arch: $(uname -m)"; exit 1 ;;
+esac
+
+# Linux triples
+if [ "$PLATFORM" = "linux" ]; then
+  case "$ARCH" in
+    arm64) TRIPLE="aarch64-unknown-linux-gnu" ;;
+    x64)   TRIPLE="x86_64-unknown-linux-gnu" ;;
+  esac
+fi
+
+# Tauri expects: binaries/node-{target-triple}
+TARGET_NAME="node-${TRIPLE}"
 
 mkdir -p "$DEST"
 
-if [ -f "$DEST/node" ]; then
-  echo "Node binary already exists at $DEST/node"
+if [ -f "$DEST/$TARGET_NAME" ]; then
+  echo "Node binary already exists at $DEST/$TARGET_NAME"
   exit 0
 fi
 
@@ -21,8 +44,8 @@ curl -fSL "$URL" -o "/tmp/${TARBALL}"
 
 echo "Extracting..."
 tar -xzf "/tmp/${TARBALL}" -C /tmp
-cp "/tmp/node-${VERSION}-${PLATFORM}-${ARCH}/bin/node" "$DEST/node"
-chmod +x "$DEST/node"
+cp "/tmp/node-${VERSION}-${PLATFORM}-${ARCH}/bin/node" "$DEST/$TARGET_NAME"
+chmod +x "$DEST/$TARGET_NAME"
 rm -rf "/tmp/${TARBALL}" "/tmp/node-${VERSION}-${PLATFORM}-${ARCH}"
 
-echo "Node binary saved to $DEST/node"
+echo "Node binary saved to $DEST/$TARGET_NAME"

@@ -594,6 +594,12 @@ When generating components for the CSS Playground, AI agents must follow these r
   --theme-bg: var(--palette-gray-100);
   --theme-surface: var(--palette-gray-200);
   --theme-muted: var(--palette-gray-500);
+  --hsp-xs: 12px;
+  --hsp-sm: 20px;
+  --hsp-md: 40px;
+  --vsp-2xs: 4px;
+  --vsp-xs: 8px;
+  --vsp-sm: 20px;
 }
 .rules-demo {
   padding: 20px;
@@ -623,9 +629,9 @@ When generating components for the CSS Playground, AI agents must follow these r
   color: var(--theme-fg);
   font-weight: 500;
 }
-.rules-demo__box--a { padding: 4px 12px; }
-.rules-demo__box--b { padding: 8px 20px; }
-.rules-demo__box--c { padding: 20px 40px; }
+.rules-demo__box--a { padding: var(--vsp-2xs) var(--hsp-xs); }
+.rules-demo__box--b { padding: var(--vsp-xs) var(--hsp-sm); }
+.rules-demo__box--c { padding: var(--vsp-sm) var(--hsp-md); }
 .rules-demo__colors {
   display: flex;
   gap: 8px;

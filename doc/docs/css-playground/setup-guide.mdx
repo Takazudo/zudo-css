@@ -338,8 +338,8 @@ Add convenience scripts in the project root `package.json`:
 ```json
 {
   "scripts": {
-    "playground": "cd css-playground && npm run dev",
-    "playground:build": "cd css-playground && npm run build"
+    "playground": "cd css-playground && pnpm dev",
+    "playground:build": "cd css-playground && pnpm build"
   }
 }
 ```
@@ -603,11 +603,11 @@ The interactive color palette panel is what makes the playground a visual tool, 
 
 ```tsx
 // css-playground/src/components/ColorPalettePanel.tsx
-import { useCallback } from 'react';
 
 interface PaletteColor {
   name: string;
   property: string;
+  // <input type="color"> requires hex format for defaultValue
   defaultValue: string;
 }
 
@@ -620,14 +620,11 @@ const paletteColors: PaletteColor[] = [
   { name: 'Border', property: '--palette-border', defaultValue: '#cbd5e1' },
 ];
 
-export default function ColorPalettePanel() {
-  const handleChange = useCallback(
-    (property: string, value: string) => {
-      document.documentElement.style.setProperty(property, value);
-    },
-    []
-  );
+function handleChange(property: string, value: string) {
+  document.documentElement.style.setProperty(property, value);
+}
 
+export default function ColorPalettePanel() {
   return (
     <div className="palette-panel">
       <h3>Color Palette</h3>

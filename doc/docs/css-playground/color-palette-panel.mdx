@@ -1,0 +1,700 @@
+---
+sidebar_position: 4
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# Color Palette Panel
+
+## The Problem
+
+When generating UI components, you want to see how they look with different color palettes. Maybe the client wants to compare a blue brand versus a teal brand. Maybe you are exploring dark mode. Maybe the design team has proposed three palette options.
+
+Without a live preview tool, the process is: edit CSS variables, save, wait for hot reload, look at the result, repeat. For every palette change, you repeat this cycle. With multiple components on screen, it is nearly impossible to get a holistic view of how a palette change affects the entire system — you end up tweaking one variable, refreshing, tweaking another, refreshing again.
+
+This is slow, tedious, and discourages exploration. Designers and developers default to the first palette that "looks okay" instead of iterating toward the best option.
+
+## The Solution
+
+A **color palette panel** that exposes Tier 1 palette colors as live controls. When you adjust a palette color, every component on the page updates instantly — because theme tokens (Tier 2) reference palette tokens (Tier 1), and components reference theme tokens.
+
+The panel does not change component code. It only changes the root-level palette CSS custom properties. The entire three-tier cascade does the rest.
+
+## How It Works
+
+The cascade flows in one direction:
+
+```
+Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
+--palette-blue-500    --theme-accent      button background
+--palette-gray-900    --theme-fg          text color
+--palette-gray-100    --theme-bg          page background
+```
+
+1. The **panel** exposes Tier 1 palette colors (e.g., `--palette-blue-500`, `--palette-gray-900`) as interactive color inputs
+2. Components use Tier 2 **theme tokens** (`--theme-accent`, `--theme-fg`, `--theme-bg`)
+3. Theme tokens reference palette tokens: `--theme-accent: var(--palette-blue-500)`
+4. Changing a palette color in the panel cascades through the entire component set automatically
+
+<CssPreview
+  title="Three-Tier Cascade: Palette → Theme → Components"
+  html={`<div class="cascade-demo">
+  <div class="cascade-demo__tier">
+    <div class="cascade-demo__tier-label">Tier 1: Palette</div>
+    <div class="cascade-demo__swatches">
+      <div class="cascade-demo__swatch" style="background: var(--palette-blue-500)">
+        <span>blue-500</span>
+      </div>
+      <div class="cascade-demo__swatch" style="background: var(--palette-gray-900)">
+        <span>gray-900</span>
+      </div>
+      <div class="cascade-demo__swatch cascade-demo__swatch--light" style="background: var(--palette-gray-100)">
+        <span>gray-100</span>
+      </div>
+    </div>
+  </div>
+  <div class="cascade-demo__arrow">↓</div>
+  <div class="cascade-demo__tier">
+    <div class="cascade-demo__tier-label">Tier 2: Theme</div>
+    <div class="cascade-demo__mappings">
+      <div class="cascade-demo__mapping">
+        <span class="cascade-demo__token-name">--theme-accent</span>
+        <div class="cascade-demo__token-swatch" style="background: var(--theme-accent)"></div>
+      </div>
+      <div class="cascade-demo__mapping">
+        <span class="cascade-demo__token-name">--theme-fg</span>
+        <div class="cascade-demo__token-swatch" style="background: var(--theme-fg)"></div>
+      </div>
+      <div class="cascade-demo__mapping">
+        <span class="cascade-demo__token-name">--theme-bg</span>
+        <div class="cascade-demo__token-swatch cascade-demo__token-swatch--light" style="background: var(--theme-bg)"></div>
+      </div>
+    </div>
+  </div>
+  <div class="cascade-demo__arrow">↓</div>
+  <div class="cascade-demo__tier">
+    <div class="cascade-demo__tier-label">Tier 3: Components</div>
+    <div class="cascade-demo__components">
+      <button class="cascade-demo__btn">Button</button>
+      <div class="cascade-demo__card">
+        <div class="cascade-demo__card-title">Card Title</div>
+        <div class="cascade-demo__card-body">Body text</div>
+      </div>
+      <span class="cascade-demo__badge">Badge</span>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.cascade-demo {
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  background: hsl(0 0% 96%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cascade-demo__tier {
+  background: hsl(0 0% 100%);
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid hsl(0 0% 88%);
+}
+.cascade-demo__tier-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(0 0% 40%);
+  margin-bottom: 8px;
+}
+.cascade-demo__arrow {
+  text-align: center;
+  font-size: 0.85rem;
+  color: hsl(0 0% 55%);
+  line-height: 1;
+}
+.cascade-demo__swatches {
+  display: flex;
+  gap: 8px;
+}
+.cascade-demo__swatch {
+  width: 80px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(0 0% 100%);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+.cascade-demo__swatch--light { color: hsl(0 0% 30%); }
+.cascade-demo__mappings {
+  display: flex;
+  gap: 10px;
+}
+.cascade-demo__mapping {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cascade-demo__token-name {
+  font-size: 0.6rem;
+  font-family: monospace;
+  color: hsl(0 0% 40%);
+}
+.cascade-demo__token-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.cascade-demo__token-swatch--light { border: 1px solid hsl(0 0% 85%); }
+.cascade-demo__components {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cascade-demo__btn {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+}
+.cascade-demo__card {
+  border: 1px solid var(--theme-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  background: var(--theme-bg);
+}
+.cascade-demo__card-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--theme-fg);
+}
+.cascade-demo__card-body {
+  font-size: 0.6rem;
+  color: var(--theme-muted);
+}
+.cascade-demo__badge {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}`}
+  height={340} />
+
+The button, card, and badge all consume theme tokens. None of them know about `--palette-blue-500` directly. When the panel changes that palette value, `--theme-accent` updates, and every component that uses `--theme-accent` re-renders with the new color — no component code changes needed.
+
+## Panel Architecture
+
+The color panel is a React component that reads the current palette values and provides controls to modify them. The architecture is straightforward:
+
+```jsx
+function ColorPalettePanel({ paletteTokens }) {
+  const handleChange = (tokenName, newValue) => {
+    // Set the CSS custom property on :root
+    document.documentElement.style.setProperty(tokenName, newValue);
+  };
+
+  return (
+    <div className="palette-panel">
+      {paletteTokens.map((token) => (
+        <div key={token.name}>
+          <label>{token.name}</label>
+          <input
+            type="color"
+            defaultValue={token.value}
+            onChange={(e) => handleChange(token.name, e.target.value)}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+The key implementation detail: the panel sets CSS custom properties on `:root` using `document.documentElement.style.setProperty()`. This is a live DOM operation — the browser recalculates all styles that reference the changed property immediately. No React re-render of the components is needed; the CSS cascade handles propagation.
+
+## Integration with Three-Tier Color
+
+The panel is powerful _because_ of the [Three-Tier Color Strategy](/docs/color/three-tier-color-strategy). Without the three-tier separation, changing a color means finding every place it is used. With three tiers, the panel only needs to know about Tier 1 palette values — everything else follows.
+
+### Same Components, Different Palettes
+
+The following two demos show the exact same component set under two different palettes. The only change is the Tier 1 palette values — all component code is identical.
+
+<CssPreview
+  title="Palette A — Blue Brand"
+  html={`<div class="dashboard">
+  <header class="dashboard__header">
+    <span class="dashboard__logo">Acme Inc</span>
+    <nav class="dashboard__nav">
+      <a class="dashboard__nav-link dashboard__nav-link--active" href="#">Dashboard</a>
+      <a class="dashboard__nav-link" href="#">Settings</a>
+    </nav>
+  </header>
+  <main class="dashboard__body">
+    <div class="stat-card">
+      <div class="stat-card__value">2,847</div>
+      <div class="stat-card__label">Active Users</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value">94.2%</div>
+      <div class="stat-card__label">Uptime</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value">1.2s</div>
+      <div class="stat-card__label">Avg Response</div>
+    </div>
+    <div class="dashboard__actions">
+      <button class="dashboard__btn dashboard__btn--primary">Deploy</button>
+      <button class="dashboard__btn dashboard__btn--secondary">View Logs</button>
+    </div>
+  </main>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-blue-700: hsl(220 70% 35%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-strong: var(--palette-blue-700);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.dashboard {
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+  min-height: 100%;
+}
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: var(--theme-fg);
+}
+.dashboard__logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: hsl(0 0% 100%);
+}
+.dashboard__nav { display: flex; gap: 12px; }
+.dashboard__nav-link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: hsl(0 0% 65%);
+}
+.dashboard__nav-link--active {
+  color: var(--theme-accent-subtle);
+  font-weight: 600;
+}
+.dashboard__body {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.stat-card__value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+}
+.stat-card__label {
+  font-size: 0.7rem;
+  color: var(--theme-muted);
+  margin-top: 4px;
+}
+.dashboard__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+}
+.dashboard__btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: system-ui, sans-serif;
+}
+.dashboard__btn--primary {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}
+.dashboard__btn--secondary {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent-strong);
+}`}
+  height={250} />
+
+<CssPreview
+  title="Palette B — Teal Brand (Same Components, Different Palette)"
+  html={`<div class="dashboard">
+  <header class="dashboard__header">
+    <span class="dashboard__logo">Acme Inc</span>
+    <nav class="dashboard__nav">
+      <a class="dashboard__nav-link dashboard__nav-link--active" href="#">Dashboard</a>
+      <a class="dashboard__nav-link" href="#">Settings</a>
+    </nav>
+  </header>
+  <main class="dashboard__body">
+    <div class="stat-card">
+      <div class="stat-card__value">2,847</div>
+      <div class="stat-card__label">Active Users</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value">94.2%</div>
+      <div class="stat-card__label">Uptime</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value">1.2s</div>
+      <div class="stat-card__label">Avg Response</div>
+    </div>
+    <div class="dashboard__actions">
+      <button class="dashboard__btn dashboard__btn--primary">Deploy</button>
+      <button class="dashboard__btn dashboard__btn--secondary">View Logs</button>
+    </div>
+  </main>
+</div>`}
+  css={`:root {
+  --palette-teal-500: hsl(175 65% 40%);
+  --palette-teal-100: hsl(175 50% 94%);
+  --palette-teal-700: hsl(175 65% 28%);
+  --palette-gray-900: hsl(180 10% 15%);
+  --palette-gray-100: hsl(180 10% 97%);
+  --palette-gray-300: hsl(180 8% 78%);
+  --palette-gray-500: hsl(180 6% 50%);
+  --theme-accent: var(--palette-teal-500);
+  --theme-accent-strong: var(--palette-teal-700);
+  --theme-accent-subtle: var(--palette-teal-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.dashboard {
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+  min-height: 100%;
+}
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: var(--theme-fg);
+}
+.dashboard__logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: hsl(0 0% 100%);
+}
+.dashboard__nav { display: flex; gap: 12px; }
+.dashboard__nav-link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: hsl(0 0% 65%);
+}
+.dashboard__nav-link--active {
+  color: var(--theme-accent-subtle);
+  font-weight: 600;
+}
+.dashboard__body {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.stat-card__value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+}
+.stat-card__label {
+  font-size: 0.7rem;
+  color: var(--theme-muted);
+  margin-top: 4px;
+}
+.dashboard__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+}
+.dashboard__btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: system-ui, sans-serif;
+}
+.dashboard__btn--primary {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}
+.dashboard__btn--secondary {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent-strong);
+}`}
+  height={250} />
+
+The HTML and CSS structure of both demos is identical. The _only_ difference is the `:root` palette variables: blue hues (`hsl(220 ...)`) in Palette A, teal hues (`hsl(175 ...)`) in Palette B. The theme-to-palette mapping (`--theme-accent: var(--palette-*-500)`) stays the same. Every component — header, stat cards, buttons — automatically reflects the new brand color.
+
+This is exactly what the color palette panel does at runtime: it swaps Tier 1 values and lets the cascade handle the rest.
+
+### Multi-Component Dashboard
+
+A more complete example showing how the palette panel's cascade affects a complex layout with many components simultaneously.
+
+<CssPreview
+  title="Multi-Component Dashboard: All Components Inherit from One Palette"
+  html={`<div class="dash">
+  <aside class="dash__sidebar">
+    <div class="dash__sidebar-logo">App</div>
+    <nav class="dash__sidebar-nav">
+      <a class="dash__sidebar-link dash__sidebar-link--active" href="#">Home</a>
+      <a class="dash__sidebar-link" href="#">Analytics</a>
+      <a class="dash__sidebar-link" href="#">Users</a>
+      <a class="dash__sidebar-link" href="#">Settings</a>
+    </nav>
+  </aside>
+  <main class="dash__main">
+    <div class="dash__topbar">
+      <h2 class="dash__title">Dashboard</h2>
+      <span class="dash__badge">Live</span>
+    </div>
+    <div class="dash__cards">
+      <div class="dash__metric">
+        <div class="dash__metric-num">328</div>
+        <div class="dash__metric-label">Orders today</div>
+      </div>
+      <div class="dash__metric">
+        <div class="dash__metric-num">$12.4k</div>
+        <div class="dash__metric-label">Revenue</div>
+      </div>
+    </div>
+    <div class="dash__table">
+      <div class="dash__table-header">
+        <span>Name</span><span>Status</span><span>Amount</span>
+      </div>
+      <div class="dash__table-row">
+        <span>Project Alpha</span>
+        <span class="dash__status dash__status--active">Active</span>
+        <span>$2,400</span>
+      </div>
+      <div class="dash__table-row">
+        <span>Project Beta</span>
+        <span class="dash__status dash__status--pending">Pending</span>
+        <span>$1,800</span>
+      </div>
+      <div class="dash__table-row">
+        <span>Project Gamma</span>
+        <span class="dash__status dash__status--active">Active</span>
+        <span>$3,100</span>
+      </div>
+    </div>
+  </main>
+</div>`}
+  css={`:root {
+  --palette-indigo-500: hsl(240 60% 55%);
+  --palette-indigo-100: hsl(240 60% 95%);
+  --palette-indigo-800: hsl(240 55% 25%);
+  --palette-green-500: hsl(150 60% 40%);
+  --palette-green-100: hsl(150 50% 94%);
+  --palette-amber-500: hsl(38 90% 50%);
+  --palette-amber-100: hsl(38 80% 94%);
+  --palette-gray-900: hsl(240 15% 13%);
+  --palette-gray-700: hsl(240 12% 25%);
+  --palette-gray-100: hsl(240 15% 97%);
+  --palette-gray-300: hsl(240 10% 85%);
+  --palette-gray-500: hsl(240 8% 50%);
+  --theme-accent: var(--palette-indigo-500);
+  --theme-accent-subtle: var(--palette-indigo-100);
+  --theme-accent-strong: var(--palette-indigo-800);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+  --theme-success: var(--palette-green-500);
+  --theme-success-subtle: var(--palette-green-100);
+  --theme-warning: var(--palette-amber-500);
+  --theme-warning-subtle: var(--palette-amber-100);
+}
+.dash {
+  display: flex;
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+  min-height: 100%;
+  font-size: 13px;
+}
+.dash__sidebar {
+  width: 120px;
+  background: var(--theme-accent-strong);
+  padding: 12px 0;
+  flex-shrink: 0;
+}
+.dash__sidebar-logo {
+  color: hsl(0 0% 100%);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 12px 12px;
+  border-bottom: 1px solid hsl(0 0% 100% / 0.15);
+  margin-bottom: 8px;
+}
+.dash__sidebar-nav { display: flex; flex-direction: column; }
+.dash__sidebar-link {
+  color: hsl(0 0% 100% / 0.6);
+  text-decoration: none;
+  font-size: 0.72rem;
+  padding: 6px 12px;
+}
+.dash__sidebar-link--active {
+  color: hsl(0 0% 100%);
+  background: hsl(0 0% 100% / 0.12);
+  font-weight: 600;
+}
+.dash__main {
+  flex: 1;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dash__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dash__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--theme-fg);
+}
+.dash__badge {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+.dash__cards {
+  display: flex;
+  gap: 12px;
+}
+.dash__metric {
+  flex: 1;
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.dash__metric-num {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--theme-accent);
+}
+.dash__metric-label {
+  font-size: 0.68rem;
+  color: var(--theme-muted);
+  margin-top: 2px;
+}
+.dash__table {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.dash__table-header {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  padding: 6px 12px;
+  background: var(--theme-accent-subtle);
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: var(--theme-accent);
+}
+.dash__table-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  color: var(--theme-fg);
+  border-top: 1px solid var(--theme-border);
+}
+.dash__status {
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  width: fit-content;
+}
+.dash__status--active {
+  background: var(--theme-success-subtle);
+  color: var(--theme-success);
+}
+.dash__status--pending {
+  background: var(--theme-warning-subtle);
+  color: var(--theme-warning);
+}`}
+  height={340} />
+
+Every component in this dashboard — sidebar, metric cards, data table, badges, status pills — inherits its color from the same palette. The color palette panel would let you swap the indigo palette for any other hue, and every element would update simultaneously. The sidebar background, the accent highlights, the badge colors, the table headers — all cascade from the same `--palette-indigo-*` root.
+
+This is the core value: instead of manually updating colors in 15 different components, you change 3 palette variables and the entire dashboard transforms.
+
+## When to Use
+
+- **Design exploration** — Test multiple color palettes against real components to find the best fit before committing to a direction
+- **Client presentations** — Show clients how their brand colors will look across the full UI, with live switching between options
+- **Brand color iteration** — When the brand palette changes, validate the impact across all components in one view
+- **Dark mode prototyping** — Swap the palette to dark values and instantly see how the entire component set adapts
+- **Accessibility testing** — Quickly swap in higher-contrast palette values to check if the design system supports accessible color combinations
+- **Design system development** — Validate that your three-tier color architecture actually works by proving that palette changes cascade correctly through all components
+
+For the underlying color architecture, see [Three-Tier Color Strategy](/docs/color/three-tier-color-strategy). For the token system that governs spacing and sizing in the playground, see [Tight Token Strategy](/docs/methodology/tight-token-strategy).

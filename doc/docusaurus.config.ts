@@ -138,6 +138,12 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'cssPlaygroundSidebar',
+          position: 'left',
+          label: 'CSS Playground',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'inboxSidebar',
           position: 'left',
           label: 'INBOX',

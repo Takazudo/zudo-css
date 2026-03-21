@@ -1,0 +1,737 @@
+---
+sidebar_position: 1
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# Concept and Architecture
+
+## The Problem
+
+When you ask AI to generate UI components, the results are creative but inconsistent. Each generation session produces its own ad-hoc colors, spacing values, font choices, and layout patterns. There is no shared design language across the output.
+
+Consider asking an AI to "make 10 card variations." Without constraints, you get:
+
+- Card A uses `#3b82f6` blue with `16px` padding and `8px` border radius
+- Card B uses `rgb(59, 130, 246)` with `1.5rem` padding and `12px` border radius
+- Card C uses `hsl(217 91% 60%)` with `20px` padding and `0.5rem` border radius
+
+All three are "blue cards with medium padding," but they share no actual values. Drop them into the same page and the inconsistency is immediately visible. Multiply this across headers, footers, navigation, hero sections, and forms — the result is a page that looks assembled from different websites.
+
+The deeper problem: **without explicit rules, AI reinvents the playground concept every time.** Each session creates a fresh, one-off demo environment with its own conventions. There is no accumulation of decisions, no shared foundation, no way to iterate on previous work.
+
+<CssPreview
+  title="The Problem: AI-Generated Components Without Token Constraints"
+  height={420}
+  html={`<div class="no-tokens">
+  <div class="no-tokens__card no-tokens__card--a">
+    <h3 class="no-tokens__title no-tokens__title--a">Card A</h3>
+    <p class="no-tokens__text">Uses #3b82f6, 16px padding, 8px radius</p>
+    <button class="no-tokens__btn no-tokens__btn--a">Action</button>
+  </div>
+  <div class="no-tokens__card no-tokens__card--b">
+    <h3 class="no-tokens__title no-tokens__title--b">Card B</h3>
+    <p class="no-tokens__text">Uses rgb(99,102,241), 1.5rem padding, 12px radius</p>
+    <button class="no-tokens__btn no-tokens__btn--b">Action</button>
+  </div>
+  <div class="no-tokens__card no-tokens__card--c">
+    <h3 class="no-tokens__title no-tokens__title--c">Card C</h3>
+    <p class="no-tokens__text">Uses hsl(280 67% 55%), 20px padding, 4px radius</p>
+    <button class="no-tokens__btn no-tokens__btn--c">Action</button>
+  </div>
+</div>`}
+  css={`.no-tokens {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  background: hsl(0 0% 96%);
+  min-height: 100%;
+  box-sizing: border-box;
+  align-content: start;
+}
+.no-tokens__card {
+  padding: 20px;
+  background: hsl(0 0% 100%);
+}
+.no-tokens__card--a {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid hsl(0 0% 85%);
+}
+.no-tokens__card--b {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px hsl(0 0% 0% / 0.15);
+}
+.no-tokens__card--c {
+  padding: 20px;
+  border-radius: 4px;
+  border: 2px solid hsl(280 67% 55%);
+}
+.no-tokens__title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.no-tokens__title--a { color: hsl(217 91% 50%); }
+.no-tokens__title--b { color: hsl(239 84% 60%); }
+.no-tokens__title--c { color: hsl(280 67% 55%); }
+.no-tokens__text {
+  margin: 0 0 16px 0;
+  font-size: 0.85rem;
+  color: hsl(0 0% 40%);
+  line-height: 1.5;
+}
+.no-tokens__btn {
+  border: none;
+  padding: 8px 16px;
+  color: hsl(0 0% 100%);
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.no-tokens__btn--a {
+  background: hsl(217 91% 50%);
+  border-radius: 4px;
+}
+.no-tokens__btn--b {
+  background: hsl(239 84% 60%);
+  border-radius: 8px;
+}
+.no-tokens__btn--c {
+  background: hsl(280 67% 55%);
+  border-radius: 2px;
+}`} />
+
+Each card uses different colors, padding, border radius, and button styles. They look like three different design systems on the same page.
+
+## The Solution
+
+**CSS Playground** is a small React application that lives inside your project, dedicated to generating and previewing UI component variations under strict design token constraints.
+
+Instead of letting AI freestyle, the playground enforces a controlled environment where every generated component must use the project's token system. The result: AI produces dozens of creative variations that all share the same visual language.
+
+The playground rests on **three pillars** — each one a strategy documented in this site:
+
+1. **[Tight Token Strategy](/docs/methodology/tight-token-strategy)** — Replace all default CSS framework values with a small, intentional set of semantic tokens. AI cannot use arbitrary values because they do not exist.
+2. **[Three-Tier Color Strategy](/docs/color/three-tier-color-strategy)** — Organize colors into palette, theme, and component tiers. AI picks from theme-level semantic colors, not raw hex values.
+3. **[Component First Strategy](/docs/methodology/component-first-strategy)** — Express all UI as components with utility classes. AI generates components, not loose CSS class names.
+
+<CssPreview
+  title="The Solution: AI-Generated Components WITH Token Constraints"
+  height={420}
+  html={`<div class="with-tokens">
+  <div class="with-tokens__card">
+    <h3 class="with-tokens__title">Card A</h3>
+    <p class="with-tokens__text">Rounded style with subtle shadow</p>
+    <button class="with-tokens__btn">Action</button>
+  </div>
+  <div class="with-tokens__card with-tokens__card--bordered">
+    <h3 class="with-tokens__title">Card B</h3>
+    <p class="with-tokens__text">Border accent with icon emphasis</p>
+    <button class="with-tokens__btn with-tokens__btn--outline">Action</button>
+  </div>
+  <div class="with-tokens__card with-tokens__card--filled">
+    <h3 class="with-tokens__title with-tokens__title--light">Card C</h3>
+    <p class="with-tokens__text with-tokens__text--light">Filled background with inverted text</p>
+    <button class="with-tokens__btn with-tokens__btn--light">Action</button>
+  </div>
+</div>`}
+  css={`:root {
+  --token-space-sm: 12px;
+  --token-space-md: 20px;
+  --token-space-lg: 32px;
+  --token-radius: 8px;
+  --token-color-accent: hsl(220 70% 50%);
+  --token-color-accent-light: hsl(220 70% 96%);
+  --token-color-fg: hsl(220 25% 15%);
+  --token-color-fg-muted: hsl(220 10% 45%);
+  --token-color-bg: hsl(0 0% 100%);
+  --token-color-border: hsl(220 15% 85%);
+  --token-font-sm: 0.85rem;
+  --token-font-md: 1.1rem;
+}
+.with-tokens {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--token-space-md);
+  padding: var(--token-space-md);
+  font-family: system-ui, sans-serif;
+  background: hsl(220 15% 96%);
+  min-height: 100%;
+  box-sizing: border-box;
+  align-content: start;
+}
+.with-tokens__card {
+  padding: var(--token-space-md);
+  background: var(--token-color-bg);
+  border-radius: var(--token-radius);
+  border: 1px solid var(--token-color-border);
+}
+.with-tokens__card--bordered {
+  border-left: 3px solid var(--token-color-accent);
+}
+.with-tokens__card--filled {
+  background: var(--token-color-accent);
+  border-color: var(--token-color-accent);
+}
+.with-tokens__title {
+  margin: 0 0 var(--token-space-sm) 0;
+  font-size: var(--token-font-md);
+  font-weight: 600;
+  color: var(--token-color-fg);
+}
+.with-tokens__title--light {
+  color: hsl(0 0% 100%);
+}
+.with-tokens__text {
+  margin: 0 0 var(--token-space-md) 0;
+  font-size: var(--token-font-sm);
+  color: var(--token-color-fg-muted);
+  line-height: 1.5;
+}
+.with-tokens__text--light {
+  color: hsl(220 70% 90%);
+}
+.with-tokens__btn {
+  border: none;
+  padding: 8px var(--token-space-sm);
+  background: var(--token-color-accent);
+  color: hsl(0 0% 100%);
+  border-radius: var(--token-radius);
+  font-size: var(--token-font-sm);
+  cursor: pointer;
+  font-family: inherit;
+}
+.with-tokens__btn--outline {
+  background: transparent;
+  border: 1px solid var(--token-color-accent);
+  color: var(--token-color-accent);
+}
+.with-tokens__btn--light {
+  background: hsl(0 0% 100%);
+  color: var(--token-color-accent);
+}`} />
+
+All three cards use the **exact same tokens** — same spacing, same colors, same radius, same typography scale. The variations come from how the tokens are composed (filled vs. bordered vs. outlined), not from different values. This is what token-constrained AI output looks like.
+
+## Architecture
+
+The CSS Playground architecture connects the three pillars into a single development environment:
+
+```
+┌─────────────────────────────────────────────────┐
+│                 CSS Playground App               │
+│                (React sub-package)               │
+├────────────┬────────────────┬───────────────────┤
+│  Tight     │  Three-Tier    │  Component First  │
+│  Token     │  Color         │  Strategy         │
+│  Strategy  │  Strategy      │                   │
+├────────────┴────────────────┴───────────────────┤
+│           Shared Token Configuration             │
+│     (CSS custom properties / Tailwind theme)     │
+└─────────────────────────────────────────────────┘
+```
+
+### Tight Token Strategy in the Playground
+
+The playground inherits the project's [tight token strategy](/docs/methodology/tight-token-strategy). All Tailwind defaults are reset — `p-4`, `bg-gray-500`, and other default utilities do not exist. Only the project's semantic tokens (`hsp-sm`, `vsp-md`, `text-body`, etc.) are available.
+
+When AI generates a component inside the playground, it can only use tokens that exist. Attempting to use `gap-4` or `bg-blue-500` fails at build time. This is the constraint that forces consistency.
+
+### Three-Tier Color in the Playground
+
+The playground uses the project's [three-tier color system](/docs/color/three-tier-color-strategy). AI-generated components reference theme-tier tokens like `--theme-accent` and `--theme-fg`, not raw palette values.
+
+The playground adds an **interactive color palette panel** — a UI where you can adjust palette values and watch every component update live. Because all components reference theme tokens, and theme tokens reference palette values, tweaking the palette propagates through the entire component gallery instantly.
+
+### Component First in the Playground
+
+Every piece of UI in the playground is a [component](/docs/methodology/component-first-strategy) — a React function that composes utility classes. AI does not generate loose CSS files or class names. It generates components that follow the project's conventions.
+
+## How It Works
+
+The development workflow with CSS Playground follows a cycle:
+
+1. **Prompt** — You describe what you want to AI: "Generate 40 header menu variations using our token system"
+2. **Generate** — AI creates component files inside the playground, using only available tokens
+3. **Preview** — Open the playground in the browser to see all variations rendered in a gallery
+4. **Tune** — Use the color palette panel to tweak the palette and see all components update
+5. **Select** — Pick the variations you like, iterate on them with more AI prompts
+6. **Extract** — Move selected components from the playground into the main application
+
+<CssPreview
+  title="Playground Gallery: Multiple Header Variations Using Same Tokens"
+  height={520}
+  html={`<div class="gallery">
+  <h3 class="gallery__heading">Header Variations (same tokens, different compositions)</h3>
+  <div class="gallery__grid">
+    <div class="gallery__item">
+      <div class="header-a">
+        <span class="header-a__logo">Brand</span>
+        <nav class="header-a__nav">
+          <a class="header-a__link">Home</a>
+          <a class="header-a__link">About</a>
+          <a class="header-a__link">Contact</a>
+        </nav>
+      </div>
+      <span class="gallery__label">Variation 1: Horizontal nav</span>
+    </div>
+    <div class="gallery__item">
+      <div class="header-b">
+        <span class="header-b__logo">Brand</span>
+        <nav class="header-b__nav">
+          <a class="header-b__link">Home</a>
+          <a class="header-b__link">About</a>
+          <a class="header-b__link">Contact</a>
+        </nav>
+        <button class="header-b__cta">Sign Up</button>
+      </div>
+      <span class="gallery__label">Variation 2: With CTA button</span>
+    </div>
+    <div class="gallery__item">
+      <div class="header-c">
+        <div class="header-c__top">
+          <span class="header-c__logo">Brand</span>
+        </div>
+        <nav class="header-c__nav">
+          <a class="header-c__link header-c__link--active">Home</a>
+          <a class="header-c__link">About</a>
+          <a class="header-c__link">Contact</a>
+        </nav>
+      </div>
+      <span class="gallery__label">Variation 3: Stacked with active state</span>
+    </div>
+    <div class="gallery__item">
+      <div class="header-d">
+        <span class="header-d__logo">Brand</span>
+        <nav class="header-d__nav">
+          <a class="header-d__pill header-d__pill--active">Home</a>
+          <a class="header-d__pill">About</a>
+          <a class="header-d__pill">Contact</a>
+        </nav>
+      </div>
+      <span class="gallery__label">Variation 4: Pill navigation</span>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --t-space-xs: 8px;
+  --t-space-sm: 12px;
+  --t-space-md: 20px;
+  --t-radius: 8px;
+  --t-accent: hsl(220 70% 50%);
+  --t-accent-hover: hsl(220 70% 42%);
+  --t-fg: hsl(220 25% 15%);
+  --t-fg-muted: hsl(220 10% 45%);
+  --t-bg: hsl(0 0% 100%);
+  --t-bg-subtle: hsl(220 15% 96%);
+  --t-border: hsl(220 15% 85%);
+}
+.gallery {
+  font-family: system-ui, sans-serif;
+  padding: var(--t-space-md);
+  background: var(--t-bg-subtle);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.gallery__heading {
+  margin: 0 0 var(--t-space-md) 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--t-fg);
+}
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--t-space-md);
+}
+.gallery__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--t-space-xs);
+}
+.gallery__label {
+  font-size: 0.75rem;
+  color: var(--t-fg-muted);
+}
+/* Variation 1 */
+.header-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--t-space-sm) var(--t-space-md);
+  background: var(--t-bg);
+  border: 1px solid var(--t-border);
+  border-radius: var(--t-radius);
+}
+.header-a__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--t-fg);
+}
+.header-a__nav { display: flex; gap: var(--t-space-md); }
+.header-a__link {
+  font-size: 0.8rem;
+  color: var(--t-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.header-a__link:hover { color: var(--t-accent); }
+/* Variation 2 */
+.header-b {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-md);
+  padding: var(--t-space-sm) var(--t-space-md);
+  background: var(--t-bg);
+  border: 1px solid var(--t-border);
+  border-radius: var(--t-radius);
+}
+.header-b__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--t-fg);
+}
+.header-b__nav {
+  display: flex;
+  gap: var(--t-space-md);
+  flex: 1;
+}
+.header-b__link {
+  font-size: 0.8rem;
+  color: var(--t-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.header-b__link:hover { color: var(--t-accent); }
+.header-b__cta {
+  border: none;
+  padding: 6px var(--t-space-sm);
+  background: var(--t-accent);
+  color: hsl(0 0% 100%);
+  border-radius: var(--t-radius);
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+/* Variation 3 */
+.header-c {
+  background: var(--t-bg);
+  border: 1px solid var(--t-border);
+  border-radius: var(--t-radius);
+  overflow: hidden;
+}
+.header-c__top {
+  padding: var(--t-space-sm) var(--t-space-md);
+}
+.header-c__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--t-fg);
+}
+.header-c__nav {
+  display: flex;
+  border-top: 1px solid var(--t-border);
+}
+.header-c__link {
+  padding: var(--t-space-xs) var(--t-space-md);
+  font-size: 0.8rem;
+  color: var(--t-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.header-c__link--active {
+  color: var(--t-accent);
+  border-bottom: 2px solid var(--t-accent);
+}
+/* Variation 4 */
+.header-d {
+  display: flex;
+  align-items: center;
+  gap: var(--t-space-md);
+  padding: var(--t-space-sm) var(--t-space-md);
+  background: var(--t-bg);
+  border: 1px solid var(--t-border);
+  border-radius: var(--t-radius);
+}
+.header-d__logo {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--t-fg);
+}
+.header-d__nav { display: flex; gap: var(--t-space-xs); }
+.header-d__pill {
+  padding: 4px var(--t-space-sm);
+  font-size: 0.8rem;
+  color: var(--t-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 999px;
+  background: transparent;
+}
+.header-d__pill--active {
+  background: var(--t-accent);
+  color: hsl(0 0% 100%);
+}
+.header-d__pill:hover { background: var(--t-bg-subtle); }
+.header-d__pill--active:hover { background: var(--t-accent-hover); }`} />
+
+All four header variations use the same token variables. Change `--t-accent` from blue to green and every header updates. This is the power of constrained generation.
+
+## Project Structure
+
+A typical project with CSS Playground has this layout:
+
+```
+my-project/
+├── src/                      # Main application
+│   ├── components/           # Production components
+│   ├── styles/
+│   │   └── tokens.css        # Shared token definitions
+│   └── ...
+├── css-playground/           # Playground sub-package
+│   ├── package.json          # Separate dependencies (React, Vite)
+│   ├── src/
+│   │   ├── main.tsx          # Playground entry point
+│   │   ├── App.tsx           # Gallery layout + color panel
+│   │   ├── components/       # AI-generated component variations
+│   │   │   ├── headers/      # Header variations
+│   │   │   ├── footers/      # Footer variations
+│   │   │   ├── cards/        # Card variations
+│   │   │   └── ...
+│   │   └── styles/
+│   │       └── tokens.css    # Imports shared tokens + playground overrides
+│   └── index.html
+├── tailwind.config.ts        # Shared Tailwind config (tight tokens)
+└── package.json
+```
+
+Key points:
+
+- The playground is a **separate sub-package** with its own `package.json` and dev server
+- It **imports the same token configuration** as the main application
+- AI-generated components are organized by category inside `css-playground/src/components/`
+- The playground has its own entry point that renders a gallery view of all components
+
+## The Color Palette Panel
+
+One of the most valuable features of the playground is the interactive color palette panel. This is a React component that:
+
+- Reads all palette-tier CSS custom properties
+- Renders color pickers for each palette value
+- Updates CSS custom properties in real time when you adjust a color
+- All components in the gallery update instantly because they reference theme tokens that chain to palette values
+
+<CssPreview
+  title="Color Palette Panel Concept: Tweak Colors, All Components Update"
+  height={480}
+  html={`<div class="panel-demo">
+  <div class="panel-demo__sidebar">
+    <h4 class="panel-demo__heading">Color Palette</h4>
+    <div class="panel-demo__group">
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--accent"></span>
+        accent
+      </label>
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--accent-light"></span>
+        accent-light
+      </label>
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--fg"></span>
+        foreground
+      </label>
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--muted"></span>
+        muted
+      </label>
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--bg"></span>
+        background
+      </label>
+      <label class="panel-demo__label">
+        <span class="panel-demo__swatch panel-demo__swatch--border"></span>
+        border
+      </label>
+    </div>
+    <p class="panel-demo__hint">Adjust any color → all components update live</p>
+  </div>
+  <div class="panel-demo__main">
+    <h4 class="panel-demo__heading">Component Gallery</h4>
+    <div class="panel-demo__components">
+      <div class="panel-demo__card">
+        <div class="panel-demo__card-header">Card Title</div>
+        <div class="panel-demo__card-body">Content uses theme tokens</div>
+        <button class="panel-demo__card-btn">Action</button>
+      </div>
+      <div class="panel-demo__card panel-demo__card--outline">
+        <div class="panel-demo__card-header">Card Title</div>
+        <div class="panel-demo__card-body">Outline variant</div>
+        <button class="panel-demo__card-btn panel-demo__card-btn--outline">Action</button>
+      </div>
+      <div class="panel-demo__nav-example">
+        <span class="panel-demo__nav-logo">Logo</span>
+        <div class="panel-demo__nav-links">
+          <a class="panel-demo__nav-link panel-demo__nav-link--active">Home</a>
+          <a class="panel-demo__nav-link">About</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --p-accent: hsl(220 70% 50%);
+  --p-accent-light: hsl(220 70% 96%);
+  --p-fg: hsl(220 25% 15%);
+  --p-fg-muted: hsl(220 10% 45%);
+  --p-bg: hsl(0 0% 100%);
+  --p-border: hsl(220 15% 85%);
+  --p-space-xs: 8px;
+  --p-space-sm: 12px;
+  --p-space-md: 20px;
+  --p-radius: 8px;
+}
+.panel-demo {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  min-height: 100%;
+  font-family: system-ui, sans-serif;
+}
+.panel-demo__sidebar {
+  background: hsl(220 20% 14%);
+  padding: var(--p-space-md);
+  color: hsl(0 0% 85%);
+}
+.panel-demo__heading {
+  margin: 0 0 var(--p-space-sm) 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.panel-demo__main .panel-demo__heading {
+  color: var(--p-fg);
+}
+.panel-demo__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-space-xs);
+}
+.panel-demo__label {
+  display: flex;
+  align-items: center;
+  gap: var(--p-space-xs);
+  font-size: 0.75rem;
+  color: hsl(0 0% 75%);
+}
+.panel-demo__swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid hsl(0 0% 30%);
+  flex-shrink: 0;
+}
+.panel-demo__swatch--accent { background: var(--p-accent); }
+.panel-demo__swatch--accent-light { background: var(--p-accent-light); }
+.panel-demo__swatch--fg { background: var(--p-fg); }
+.panel-demo__swatch--muted { background: var(--p-fg-muted); }
+.panel-demo__swatch--bg { background: var(--p-bg); }
+.panel-demo__swatch--border { background: var(--p-border); }
+.panel-demo__hint {
+  margin: var(--p-space-sm) 0 0 0;
+  font-size: 0.7rem;
+  color: hsl(0 0% 55%);
+  line-height: 1.4;
+}
+.panel-demo__main {
+  background: hsl(220 15% 96%);
+  padding: var(--p-space-md);
+}
+.panel-demo__components {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--p-space-sm);
+}
+.panel-demo__card {
+  background: var(--p-bg);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+  padding: var(--p-space-sm);
+}
+.panel-demo__card--outline {
+  border-color: var(--p-accent);
+  background: var(--p-accent-light);
+}
+.panel-demo__card-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--p-fg);
+  margin-bottom: var(--p-space-xs);
+}
+.panel-demo__card-body {
+  font-size: 0.75rem;
+  color: var(--p-fg-muted);
+  margin-bottom: var(--p-space-sm);
+  line-height: 1.4;
+}
+.panel-demo__card-btn {
+  border: none;
+  padding: 4px var(--p-space-sm);
+  background: var(--p-accent);
+  color: hsl(0 0% 100%);
+  border-radius: var(--p-radius);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.panel-demo__card-btn--outline {
+  background: transparent;
+  border: 1px solid var(--p-accent);
+  color: var(--p-accent);
+}
+.panel-demo__nav-example {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--p-space-md);
+  padding: var(--p-space-sm) var(--p-space-md);
+  background: var(--p-bg);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+}
+.panel-demo__nav-logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--p-fg);
+}
+.panel-demo__nav-links { display: flex; gap: var(--p-space-sm); }
+.panel-demo__nav-link {
+  font-size: 0.8rem;
+  color: var(--p-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.panel-demo__nav-link--active {
+  color: var(--p-accent);
+  font-weight: 600;
+}`} />
+
+The left panel shows the palette colors. In the real playground, these are interactive color pickers. Changing any palette value cascades through the theme tier and updates every component in the gallery.
+
+## When to Use
+
+### Good Fit
+
+- **Projects with a design system** — You already have (or want to define) a set of design tokens
+- **AI-assisted development** — You use AI tools to generate UI components and want consistent output
+- **Rapid prototyping** — You need to explore many design variations quickly while staying on-brand
+- **Team projects** — Multiple developers (or AI agents) generating components need a shared visual language
+- **Component library development** — Building a library where every component must use the same token system
+
+### Not Needed
+
+- **Small single-page sites** — If you have a handful of components, a playground adds unnecessary complexity
+- **Projects without a component framework** — The playground assumes React (or similar) components
+- **One-off prototypes** — If consistency across components does not matter, unconstrained generation is fine
+- **Static content sites** — If the site is mostly text with minimal interactive UI, token enforcement has less impact

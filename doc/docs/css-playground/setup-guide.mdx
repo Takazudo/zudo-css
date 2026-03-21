@@ -1,0 +1,935 @@
+---
+sidebar_position: 2
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# Setup Guide
+
+## The Problem
+
+Setting up a CSS Playground from scratch every time is error-prone. Without a standardized process, each setup produces a slightly different structure — different folder layouts, different token imports, different build configurations. The whole point of the playground is consistency, but if the playground itself is inconsistent across projects, the benefit is undermined.
+
+AI agents compound this problem. When asked to "set up a CSS playground," an AI will invent its own interpretation every time — different directory names, different entry points, different approaches to token sharing. You need a prescriptive setup that tells AI **exactly** what to build.
+
+## The Solution
+
+A standardized setup process that produces the same playground structure in every project. Follow these steps to add a CSS Playground to any project that uses a component framework and a token-based CSS system.
+
+### Step 1: Directory Structure
+
+Create the playground as a sub-package in your project root:
+
+```
+css-playground/
+├── package.json
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   ├── styles/
+│   │   ├── tokens.css          # Token imports + playground overrides
+│   │   └── playground.css      # Gallery layout styles
+│   └── components/
+│       ├── headers/
+│       │   ├── HeaderVariation01.tsx
+│       │   ├── HeaderVariation02.tsx
+│       │   └── index.tsx        # Barrel export
+│       ├── footers/
+│       ├── cards/
+│       ├── heroes/
+│       └── navigation/
+└── README.md
+```
+
+### Step 2: Package Configuration
+
+The playground is a standalone Vite + React app. It has its own dependencies but shares the token configuration with the main project:
+
+```json
+{
+  "name": "@my-project/css-playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^6.0.0"
+  }
+}
+```
+
+### Step 3: Token Connection
+
+The playground must use the same tokens as the main project. There are two approaches depending on your CSS framework.
+
+#### With Tailwind CSS (Tight Token Strategy)
+
+If the main project uses the [tight token strategy](/docs/methodology/tight-token-strategy), the playground imports the same Tailwind configuration:
+
+```css
+/* css-playground/src/styles/tokens.css */
+@import "tailwindcss";
+
+/* Import the shared tight token theme from the main project */
+@import "../../src/styles/theme.css";
+```
+
+The shared `theme.css` contains all the `@theme` resets and semantic token definitions. Both the main app and the playground reference this single source of truth.
+
+#### With CSS Custom Properties
+
+If the project uses plain CSS custom properties with the [three-tier color strategy](/docs/color/three-tier-color-strategy):
+
+```css
+/* css-playground/src/styles/tokens.css */
+
+/* Import shared palette and theme tiers from the main project */
+@import "../../src/styles/palette.css";
+@import "../../src/styles/theme.css";
+
+/* Playground-specific overrides (if needed) */
+:root {
+  --playground-gallery-bg: hsl(220 15% 96%);
+  --playground-sidebar-bg: hsl(220 20% 14%);
+}
+```
+
+<CssPreview
+  title="Token Connection: Playground Imports Shared Project Tokens"
+  height={340}
+  html={`<div class="token-flow">
+  <div class="token-flow__box token-flow__box--source">
+    <h4 class="token-flow__title">Main Project</h4>
+    <code class="token-flow__code">src/styles/theme.css</code>
+    <div class="token-flow__tokens">
+      <span class="token-flow__token">--theme-accent</span>
+      <span class="token-flow__token">--theme-fg</span>
+      <span class="token-flow__token">--theme-bg</span>
+      <span class="token-flow__token">--token-space-md</span>
+      <span class="token-flow__token">--token-radius</span>
+    </div>
+  </div>
+  <div class="token-flow__arrow">
+    <span class="token-flow__arrow-text">@import</span>
+    <span class="token-flow__arrow-line">→</span>
+  </div>
+  <div class="token-flow__box token-flow__box--playground">
+    <h4 class="token-flow__title">CSS Playground</h4>
+    <code class="token-flow__code">playground/styles/tokens.css</code>
+    <div class="token-flow__tokens">
+      <span class="token-flow__token token-flow__token--inherited">--theme-accent</span>
+      <span class="token-flow__token token-flow__token--inherited">--theme-fg</span>
+      <span class="token-flow__token token-flow__token--inherited">--theme-bg</span>
+      <span class="token-flow__token token-flow__token--local">--playground-gallery-bg</span>
+    </div>
+  </div>
+</div>`}
+  css={`.token-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+  font-family: system-ui, sans-serif;
+  background: hsl(220 15% 96%);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.token-flow__box {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid hsl(220 15% 85%);
+  background: hsl(0 0% 100%);
+}
+.token-flow__box--source {
+  border-left: 3px solid hsl(220 70% 50%);
+}
+.token-flow__box--playground {
+  border-left: 3px solid hsl(150 60% 40%);
+}
+.token-flow__title {
+  margin: 0 0 4px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: hsl(220 25% 15%);
+}
+.token-flow__code {
+  display: block;
+  font-size: 0.7rem;
+  color: hsl(220 10% 45%);
+  margin-bottom: 12px;
+}
+.token-flow__tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.token-flow__token {
+  font-size: 0.7rem;
+  font-family: monospace;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: hsl(220 70% 96%);
+  color: hsl(220 70% 40%);
+}
+.token-flow__token--inherited {
+  background: hsl(150 50% 94%);
+  color: hsl(150 60% 30%);
+}
+.token-flow__token--local {
+  background: hsl(40 80% 94%);
+  color: hsl(40 70% 30%);
+}
+.token-flow__arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.token-flow__arrow-text {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: hsl(220 10% 45%);
+}
+.token-flow__arrow-line {
+  font-size: 1.5rem;
+  color: hsl(220 10% 60%);
+}`} />
+
+### Step 4: Entry Point
+
+The playground entry point is a standard Vite + React setup:
+
+```html
+<!-- css-playground/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Playground</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+```tsx
+// css-playground/src/main.tsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './styles/tokens.css';
+import './styles/playground.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+### Step 5: Gallery App Shell
+
+The `App.tsx` provides the gallery layout — a sidebar with the color palette panel and a main area that renders all component variations:
+
+```tsx
+// css-playground/src/App.tsx
+import { useState } from 'react';
+import { headers } from './components/headers';
+import { cards } from './components/cards';
+
+type Category = 'headers' | 'cards' | 'footers' | 'heroes';
+
+export default function App() {
+  const [activeCategory, setActiveCategory] = useState<Category>('headers');
+
+  const categories: Record<Category, React.FC[]> = {
+    headers,
+    cards,
+    footers: [],
+    heroes: [],
+  };
+
+  const components = categories[activeCategory];
+
+  return (
+    <div className="playground">
+      <aside className="playground__sidebar">
+        <h2>CSS Playground</h2>
+        <nav>
+          {Object.keys(categories).map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat as Category)}
+              className={cat === activeCategory ? 'active' : ''}
+            >
+              {cat}
+            </button>
+          ))}
+        </nav>
+        {/* Color palette panel goes here */}
+      </aside>
+      <main className="playground__gallery">
+        {components.map((Component, i) => (
+          <div key={i} className="playground__item">
+            <Component />
+            <span className="playground__label">Variation {i + 1}</span>
+          </div>
+        ))}
+      </main>
+    </div>
+  );
+}
+```
+
+### Step 6: Component Organization
+
+Each component category has its own folder with a barrel export:
+
+```tsx
+// css-playground/src/components/headers/HeaderVariation01.tsx
+export default function HeaderVariation01() {
+  return (
+    <header className="flex items-center justify-between px-hsp-sm py-vsp-xs">
+      <span className="font-heading text-fg font-bold">Brand</span>
+      <nav className="flex gap-hsp-sm">
+        <a className="text-body-sm text-fg-muted">Home</a>
+        <a className="text-body-sm text-fg-muted">About</a>
+        <a className="text-body-sm text-fg-muted">Contact</a>
+      </nav>
+    </header>
+  );
+}
+```
+
+```tsx
+// css-playground/src/components/headers/index.tsx
+import HeaderVariation01 from './HeaderVariation01';
+import HeaderVariation02 from './HeaderVariation02';
+// ... more variations
+
+export const headers = [
+  HeaderVariation01,
+  HeaderVariation02,
+  // ... more variations
+];
+```
+
+### Step 7: Add to Root Package Scripts
+
+Add convenience scripts in the project root `package.json`:
+
+```json
+{
+  "scripts": {
+    "playground": "cd css-playground && npm run dev",
+    "playground:build": "cd css-playground && npm run build"
+  }
+}
+```
+
+## AI Instructions File
+
+The most critical piece: **a CLAUDE.md (or equivalent AI instruction file) in the playground directory** that tells AI exactly what rules to follow when generating components:
+
+```markdown
+# CSS Playground Instructions
+
+## Rules for Generated Components
+
+1. ONLY use tokens defined in tokens.css — no arbitrary values
+2. Every component is a React function component
+3. Use utility classes from the project's Tailwind config
+4. No custom CSS classes — use component-first strategy
+5. No inline styles except CSS custom property references
+6. All colors must come from theme-tier tokens
+7. All spacing must use hsp-* or vsp-* tokens
+8. Export each variation as a default export from its own file
+9. Add each new variation to the category barrel export
+```
+
+This file is what prevents AI from reinventing the playground. Without it, every AI session starts from scratch with its own conventions. With it, AI knows exactly what tokens exist, what patterns to follow, and what structure to use.
+
+<CssPreview
+  title="With AI Instructions: Consistent Component Output"
+  height={360}
+  html={`<div class="ai-output">
+  <div class="ai-output__header">
+    <span class="ai-output__badge">AI-Generated</span>
+    <span class="ai-output__prompt">"Make 4 button variations using our token system"</span>
+  </div>
+  <div class="ai-output__grid">
+    <button class="ai-btn ai-btn--primary">Primary Action</button>
+    <button class="ai-btn ai-btn--secondary">Secondary</button>
+    <button class="ai-btn ai-btn--outline">Outline</button>
+    <button class="ai-btn ai-btn--ghost">Ghost</button>
+    <button class="ai-btn ai-btn--primary ai-btn--sm">Small Primary</button>
+    <button class="ai-btn ai-btn--secondary ai-btn--sm">Small Secondary</button>
+    <button class="ai-btn ai-btn--outline ai-btn--sm">Small Outline</button>
+    <button class="ai-btn ai-btn--ghost ai-btn--sm">Small Ghost</button>
+  </div>
+  <p class="ai-output__note">All buttons share the same tokens: same accent color, same radius, same spacing scale</p>
+</div>`}
+  css={`:root {
+  --ai-accent: hsl(220 70% 50%);
+  --ai-accent-hover: hsl(220 70% 42%);
+  --ai-fg: hsl(220 25% 15%);
+  --ai-fg-muted: hsl(220 10% 45%);
+  --ai-border: hsl(220 15% 80%);
+  --ai-radius: 8px;
+  --ai-space-xs: 8px;
+  --ai-space-sm: 12px;
+  --ai-space-md: 20px;
+}
+.ai-output {
+  padding: var(--ai-space-md);
+  font-family: system-ui, sans-serif;
+  background: hsl(0 0% 100%);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.ai-output__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-space-sm);
+  margin-bottom: var(--ai-space-md);
+}
+.ai-output__badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  background: hsl(150 60% 92%);
+  color: hsl(150 60% 30%);
+  border-radius: 999px;
+  font-weight: 600;
+}
+.ai-output__prompt {
+  font-size: 0.8rem;
+  color: var(--ai-fg-muted);
+  font-style: italic;
+}
+.ai-output__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--ai-space-sm);
+  margin-bottom: var(--ai-space-md);
+}
+.ai-btn {
+  padding: var(--ai-space-xs) var(--ai-space-md);
+  border-radius: var(--ai-radius);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.ai-btn--primary {
+  background: var(--ai-accent);
+  color: hsl(0 0% 100%);
+}
+.ai-btn--primary:hover { background: var(--ai-accent-hover); }
+.ai-btn--secondary {
+  background: hsl(220 15% 93%);
+  color: var(--ai-fg);
+}
+.ai-btn--secondary:hover { background: hsl(220 15% 88%); }
+.ai-btn--outline {
+  background: transparent;
+  border-color: var(--ai-border);
+  color: var(--ai-fg);
+}
+.ai-btn--outline:hover { border-color: var(--ai-accent); color: var(--ai-accent); }
+.ai-btn--ghost {
+  background: transparent;
+  color: var(--ai-accent);
+  border: none;
+}
+.ai-btn--ghost:hover { background: hsl(220 70% 96%); }
+.ai-btn--sm {
+  padding: 4px var(--ai-space-sm);
+  font-size: 0.75rem;
+}
+.ai-output__note {
+  font-size: 0.75rem;
+  color: var(--ai-fg-muted);
+  margin: 0;
+}`} />
+
+<CssPreview
+  title="Without AI Instructions: Inconsistent Component Output"
+  height={360}
+  html={`<div class="bad-output">
+  <div class="bad-output__header">
+    <span class="bad-output__badge">AI-Generated (No Rules)</span>
+    <span class="bad-output__prompt">"Make 4 button variations"</span>
+  </div>
+  <div class="bad-output__grid">
+    <button class="bad-btn bad-btn--a">Click Me!</button>
+    <button class="bad-btn bad-btn--b">Submit</button>
+    <button class="bad-btn bad-btn--c">Learn More →</button>
+    <button class="bad-btn bad-btn--d">Get Started</button>
+    <button class="bad-btn bad-btn--e">Download</button>
+    <button class="bad-btn bad-btn--f">Sign Up Free</button>
+    <button class="bad-btn bad-btn--g">Contact Us</button>
+    <button class="bad-btn bad-btn--h">Try Now</button>
+  </div>
+  <p class="bad-output__note">Every button uses different colors, radius, padding, and font size — no shared tokens</p>
+</div>`}
+  css={`.bad-output {
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  background: hsl(0 0% 100%);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.bad-output__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.bad-output__badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  background: hsl(0 70% 92%);
+  color: hsl(0 60% 40%);
+  border-radius: 999px;
+  font-weight: 600;
+}
+.bad-output__prompt {
+  font-size: 0.8rem;
+  color: hsl(0 0% 50%);
+  font-style: italic;
+}
+.bad-output__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.bad-btn {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+}
+.bad-btn--a {
+  padding: 12px 24px;
+  background: hsl(217 91% 55%);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.bad-btn--b {
+  padding: 10px 20px;
+  background: hsl(142 71% 40%);
+  color: white;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.bad-btn--c {
+  padding: 14px 28px;
+  background: transparent;
+  color: hsl(262 83% 55%);
+  border: 2px solid hsl(262 83% 55%);
+  border-radius: 0;
+  font-size: 1rem;
+}
+.bad-btn--d {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, hsl(340 80% 55%), hsl(30 90% 55%));
+  color: white;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.bad-btn--e {
+  padding: 8px 16px;
+  background: hsl(0 0% 15%);
+  color: hsl(0 0% 95%);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.bad-btn--f {
+  padding: 12px 20px;
+  background: hsl(45 93% 55%);
+  color: hsl(0 0% 15%);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.bad-btn--g {
+  padding: 10px 18px;
+  background: hsl(200 50% 45%);
+  color: white;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.bad-btn--h {
+  padding: 14px 24px;
+  background: hsl(160 60% 45%);
+  color: white;
+  border-radius: 50px;
+  font-size: 0.95rem;
+}
+.bad-output__note {
+  font-size: 0.75rem;
+  color: hsl(0 0% 50%);
+  margin: 0;
+}`} />
+
+The contrast is clear: with token constraints and AI instructions, all variations share a cohesive design language. Without them, every button is a one-off creation.
+
+## The Color Palette Panel
+
+The interactive color palette panel is what makes the playground a visual tool, not just a code generator. Here is a minimal implementation:
+
+```tsx
+// css-playground/src/components/ColorPalettePanel.tsx
+import { useCallback } from 'react';
+
+interface PaletteColor {
+  name: string;
+  property: string;
+  defaultValue: string;
+}
+
+const paletteColors: PaletteColor[] = [
+  { name: 'Accent', property: '--palette-accent', defaultValue: '#3b82f6' },
+  { name: 'Accent Light', property: '--palette-accent-light', defaultValue: '#eff6ff' },
+  { name: 'Foreground', property: '--palette-fg', defaultValue: '#1e293b' },
+  { name: 'Muted', property: '--palette-fg-muted', defaultValue: '#64748b' },
+  { name: 'Background', property: '--palette-bg', defaultValue: '#ffffff' },
+  { name: 'Border', property: '--palette-border', defaultValue: '#cbd5e1' },
+];
+
+export default function ColorPalettePanel() {
+  const handleChange = useCallback(
+    (property: string, value: string) => {
+      document.documentElement.style.setProperty(property, value);
+    },
+    []
+  );
+
+  return (
+    <div className="palette-panel">
+      <h3>Color Palette</h3>
+      {paletteColors.map(({ name, property, defaultValue }) => (
+        <label key={property}>
+          <input
+            type="color"
+            defaultValue={defaultValue}
+            onChange={(e) => handleChange(property, e.target.value)}
+          />
+          {name}
+        </label>
+      ))}
+    </div>
+  );
+}
+```
+
+This works because of the [three-tier color strategy](/docs/color/three-tier-color-strategy): components reference theme tokens → theme tokens reference palette tokens → the panel updates palette tokens. The entire chain updates in real time.
+
+<CssPreview
+  title="Complete Playground Layout: Sidebar + Gallery + Color Panel"
+  height={500}
+  html={`<div class="full-playground">
+  <aside class="full-playground__sidebar">
+    <h3 class="full-playground__logo">CSS Playground</h3>
+    <nav class="full-playground__nav">
+      <a class="full-playground__nav-item full-playground__nav-item--active">Headers</a>
+      <a class="full-playground__nav-item">Cards</a>
+      <a class="full-playground__nav-item">Footers</a>
+      <a class="full-playground__nav-item">Heroes</a>
+      <a class="full-playground__nav-item">Navigation</a>
+    </nav>
+    <div class="full-playground__colors">
+      <h4 class="full-playground__colors-title">Palette</h4>
+      <div class="full-playground__color-row">
+        <span class="full-playground__color-swatch" style="background: hsl(220 70% 50%)"></span>
+        <span class="full-playground__color-name">accent</span>
+      </div>
+      <div class="full-playground__color-row">
+        <span class="full-playground__color-swatch" style="background: hsl(220 25% 15%)"></span>
+        <span class="full-playground__color-name">foreground</span>
+      </div>
+      <div class="full-playground__color-row">
+        <span class="full-playground__color-swatch" style="background: hsl(220 10% 45%)"></span>
+        <span class="full-playground__color-name">muted</span>
+      </div>
+      <div class="full-playground__color-row">
+        <span class="full-playground__color-swatch" style="background: hsl(0 0% 100%)"></span>
+        <span class="full-playground__color-name">background</span>
+      </div>
+      <div class="full-playground__color-row">
+        <span class="full-playground__color-swatch" style="background: hsl(220 15% 85%)"></span>
+        <span class="full-playground__color-name">border</span>
+      </div>
+    </div>
+  </aside>
+  <main class="full-playground__main">
+    <div class="full-playground__toolbar">
+      <span class="full-playground__category-label">Headers</span>
+      <span class="full-playground__count">4 variations</span>
+    </div>
+    <div class="full-playground__grid">
+      <div class="full-playground__item">
+        <div class="fp-header fp-header--a">
+          <span class="fp-header__logo">Brand</span>
+          <nav class="fp-header__nav"><a>Home</a><a>About</a><a>Contact</a></nav>
+        </div>
+        <span class="full-playground__item-label">#1 Horizontal</span>
+      </div>
+      <div class="full-playground__item">
+        <div class="fp-header fp-header--b">
+          <span class="fp-header__logo">Brand</span>
+          <nav class="fp-header__nav"><a>Home</a><a>About</a><a>Contact</a></nav>
+          <button class="fp-header__cta">CTA</button>
+        </div>
+        <span class="full-playground__item-label">#2 With CTA</span>
+      </div>
+      <div class="full-playground__item">
+        <div class="fp-header fp-header--c">
+          <span class="fp-header__logo fp-header__logo--accent">Brand</span>
+          <nav class="fp-header__nav"><a class="fp-header__pill fp-header__pill--active">Home</a><a class="fp-header__pill">About</a></nav>
+        </div>
+        <span class="full-playground__item-label">#3 Pill nav</span>
+      </div>
+      <div class="full-playground__item">
+        <div class="fp-header fp-header--d">
+          <div class="fp-header__top-bar"><span class="fp-header__logo">Brand</span></div>
+          <nav class="fp-header__bottom-nav"><a class="fp-header__tab fp-header__tab--active">Home</a><a class="fp-header__tab">About</a><a class="fp-header__tab">Contact</a></nav>
+        </div>
+        <span class="full-playground__item-label">#4 Stacked</span>
+      </div>
+    </div>
+  </main>
+</div>`}
+  css={`:root {
+  --fp-accent: hsl(220 70% 50%);
+  --fp-fg: hsl(220 25% 15%);
+  --fp-fg-muted: hsl(220 10% 45%);
+  --fp-bg: hsl(0 0% 100%);
+  --fp-border: hsl(220 15% 85%);
+  --fp-radius: 8px;
+  --fp-space-xs: 8px;
+  --fp-space-sm: 12px;
+  --fp-space-md: 20px;
+}
+.full-playground {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  min-height: 100%;
+  font-family: system-ui, sans-serif;
+}
+.full-playground__sidebar {
+  background: hsl(220 20% 14%);
+  padding: var(--fp-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fp-space-md);
+}
+.full-playground__logo {
+  color: hsl(0 0% 95%);
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 700;
+}
+.full-playground__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.full-playground__nav-item {
+  padding: 6px var(--fp-space-sm);
+  font-size: 0.8rem;
+  color: hsl(0 0% 65%);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.full-playground__nav-item--active {
+  background: hsl(220 30% 22%);
+  color: hsl(0 0% 95%);
+}
+.full-playground__colors {
+  margin-top: auto;
+}
+.full-playground__colors-title {
+  font-size: 0.75rem;
+  color: hsl(0 0% 55%);
+  margin: 0 0 var(--fp-space-xs) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.full-playground__color-row {
+  display: flex;
+  align-items: center;
+  gap: var(--fp-space-xs);
+  padding: 3px 0;
+}
+.full-playground__color-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid hsl(0 0% 30%);
+  flex-shrink: 0;
+}
+.full-playground__color-name {
+  font-size: 0.7rem;
+  color: hsl(0 0% 65%);
+  font-family: monospace;
+}
+.full-playground__main {
+  background: hsl(220 15% 96%);
+  padding: var(--fp-space-md);
+}
+.full-playground__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--fp-space-md);
+}
+.full-playground__category-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--fp-fg);
+}
+.full-playground__count {
+  font-size: 0.75rem;
+  color: var(--fp-fg-muted);
+}
+.full-playground__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--fp-space-md);
+}
+.full-playground__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fp-space-xs);
+}
+.full-playground__item-label {
+  font-size: 0.75rem;
+  color: var(--fp-fg-muted);
+}
+/* Header variations */
+.fp-header {
+  background: var(--fp-bg);
+  border: 1px solid var(--fp-border);
+  border-radius: var(--fp-radius);
+  overflow: hidden;
+}
+.fp-header--a, .fp-header--b {
+  display: flex;
+  align-items: center;
+  padding: var(--fp-space-xs) var(--fp-space-sm);
+}
+.fp-header--b { gap: var(--fp-space-md); }
+.fp-header__logo {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--fp-fg);
+}
+.fp-header__logo--accent { color: var(--fp-accent); }
+.fp-header__nav {
+  display: flex;
+  gap: var(--fp-space-sm);
+  margin-left: auto;
+}
+.fp-header__nav a {
+  font-size: 0.75rem;
+  color: var(--fp-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.fp-header__cta {
+  border: none;
+  padding: 4px var(--fp-space-sm);
+  background: var(--fp-accent);
+  color: hsl(0 0% 100%);
+  border-radius: var(--fp-radius);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.fp-header--c {
+  display: flex;
+  align-items: center;
+  padding: var(--fp-space-xs) var(--fp-space-sm);
+  gap: var(--fp-space-md);
+}
+.fp-header__pill {
+  padding: 3px var(--fp-space-xs);
+  font-size: 0.75rem;
+  color: var(--fp-fg-muted);
+  text-decoration: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.fp-header__pill--active {
+  background: var(--fp-accent);
+  color: hsl(0 0% 100%);
+}
+.fp-header--d { display: flex; flex-direction: column; }
+.fp-header__top-bar {
+  padding: var(--fp-space-xs) var(--fp-space-sm);
+}
+.fp-header__bottom-nav {
+  display: flex;
+  border-top: 1px solid var(--fp-border);
+}
+.fp-header__tab {
+  padding: var(--fp-space-xs) var(--fp-space-sm);
+  font-size: 0.75rem;
+  color: var(--fp-fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.fp-header__tab--active {
+  color: var(--fp-accent);
+  border-bottom: 2px solid var(--fp-accent);
+}`} />
+
+## Checklist
+
+Use this checklist when setting up a new CSS Playground:
+
+- [ ] Create `css-playground/` directory at project root
+- [ ] Initialize `package.json` with React and Vite dependencies
+- [ ] Set up `tokens.css` that imports the main project's token configuration
+- [ ] Create `index.html` and `main.tsx` entry point
+- [ ] Create `App.tsx` with gallery layout and category navigation
+- [ ] Add `ColorPalettePanel` component for interactive color tuning
+- [ ] Create component category folders (`headers/`, `cards/`, `footers/`, etc.)
+- [ ] Add barrel exports (`index.tsx`) to each category
+- [ ] Add convenience scripts to root `package.json`
+- [ ] Create `CLAUDE.md` with AI generation rules specific to the project's tokens
+- [ ] Verify the playground builds and renders correctly
+
+## When to Use
+
+Set up a CSS Playground when:
+
+- **Starting a new project** — Establish the playground alongside the initial token system
+- **Adding design exploration capability** — When the team wants to use AI for rapid UI variation generation
+- **Building a component library** — The playground serves as both a development tool and a living style guide
+- **Onboarding AI to an existing project** — When you want AI to generate components that match existing conventions

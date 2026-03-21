@@ -271,6 +271,7 @@ export default function ColorTweakPanel() {
           <span style={{ fontWeight: 600, fontSize: 13 }}>Color Tweak</span>
           <button
             onClick={() => setOpen(false)}
+            aria-label="Close"
             style={{
               background: "none",
               border: "none",

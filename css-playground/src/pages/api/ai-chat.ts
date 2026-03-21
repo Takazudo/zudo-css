@@ -26,28 +26,27 @@ interface ChatMessage {
 
 const MAX_HISTORY_LENGTH = 20;
 const MAX_MESSAGE_LENGTH = 4000;
+const JSON_HEADERS = { "Content-Type": "application/json" };
+
+function jsonResponse(data: Record<string, unknown>, status = 200) {
+  return new Response(JSON.stringify(data), { status, headers: JSON_HEADERS });
+}
 
 export const POST: APIRoute = async ({ request }) => {
   let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return new Response(JSON.stringify({ error: "Invalid JSON" }), {
-      status: 400,
-    });
+    return jsonResponse({ error: "Invalid JSON" }, 400);
   }
   const { message, history } = body;
 
   if (typeof message !== "string" || !message.trim()) {
-    return new Response(JSON.stringify({ error: "message required" }), {
-      status: 400,
-    });
+    return jsonResponse({ error: "message required" }, 400);
   }
 
   if (message.length > MAX_MESSAGE_LENGTH) {
-    return new Response(JSON.stringify({ error: "message too long" }), {
-      status: 400,
-    });
+    return jsonResponse({ error: "message too long" }, 400);
   }
 
   const validHistory = (Array.isArray(history) ? history : [])
@@ -59,7 +58,8 @@ export const POST: APIRoute = async ({ request }) => {
         "content" in h &&
         ((h as ChatMessage).role === "user" ||
           (h as ChatMessage).role === "assistant") &&
-        typeof (h as ChatMessage).content === "string",
+        typeof (h as ChatMessage).content === "string" &&
+        (h as ChatMessage).content.length <= MAX_MESSAGE_LENGTH,
     )
     .slice(-MAX_HISTORY_LENGTH);
 
@@ -70,22 +70,17 @@ export const POST: APIRoute = async ({ request }) => {
   const fullPrompt = contextLines.join("\n\n");
 
   if (inFlight) {
-    return new Response(
-      JSON.stringify({ error: "Another request is in progress. Please wait." }),
-      { status: 429 },
-    );
+    return jsonResponse({ error: "Another request is in progress. Please wait." }, 429);
   }
 
   inFlight = true;
   try {
     const response = await callClaude(fullPrompt);
-    return new Response(JSON.stringify({ response }));
+    return jsonResponse({ response });
   } catch (err) {
-    return new Response(
-      JSON.stringify({
-        error: err instanceof Error ? err.message : "AI request failed",
-      }),
-      { status: 500 },
+    return jsonResponse(
+      { error: err instanceof Error ? err.message : "AI request failed" },
+      500,
     );
   } finally {
     inFlight = false;

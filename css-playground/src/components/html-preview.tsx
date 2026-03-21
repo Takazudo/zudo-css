@@ -30,6 +30,9 @@ const BASE_TOKENS = `
   --font-sm: 0.85rem;
   --font-md: 1rem;
   --font-lg: 1.1rem;
+  --shadow: 0 1px 3px hsl(220 25% 15% / 0.1);
+  --shadow-strong: 0 4px 12px hsl(220 25% 15% / 0.15);
+  --focus-ring: 0 0 0 2px hsl(220 70% 50% / 0.25);
 }`;
 
 interface Props {
@@ -136,6 +139,7 @@ ${css}
         <iframe
           ref={iframeRef}
           srcDoc={srcdoc}
+          title={title || "Preview"}
           style={{
             width: viewportWidths[viewport],
             height: `${iframeHeight}px`,

@@ -8,6 +8,30 @@ const viewportWidths: Record<Viewport, string> = {
   full: "100%",
 };
 
+/** Shared design tokens injected into every preview iframe */
+const BASE_TOKENS = `
+:root {
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --radius: 8px;
+  --accent: hsl(220 70% 50%);
+  --accent-hover: hsl(220 70% 42%);
+  --fg: hsl(220 25% 15%);
+  --fg-muted: hsl(220 10% 40%);
+  --bg: hsl(0 0% 100%);
+  --bg-subtle: hsl(220 15% 96%);
+  --border: hsl(220 15% 85%);
+  --success: hsl(142 71% 45%);
+  --danger: hsl(0 84% 60%);
+  --warning: hsl(45 93% 47%);
+  --info: hsl(220 70% 50%);
+  --font-sm: 0.85rem;
+  --font-md: 1rem;
+  --font-lg: 1.1rem;
+}`;
+
 interface Props {
   html: string;
   css: string;
@@ -35,7 +59,8 @@ export default function HtmlPreview({
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: system-ui, sans-serif; background: #1e1e2e; color: #cdd6f4; }
+body { font-family: system-ui, sans-serif; }
+${BASE_TOKENS}
 ${css}
 </style>
 </head>
@@ -115,7 +140,7 @@ ${css}
             maxWidth: "100%",
           }}
           className="border border-muted/20 rounded bg-bg block"
-          sandbox="allow-scripts"
+          sandbox="allow-scripts allow-same-origin"
         />
       </div>
 

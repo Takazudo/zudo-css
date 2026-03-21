@@ -3,6 +3,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 interface ChatMessage {
   role: "user" | "assistant";
   content: string;
+  needsReload?: boolean;
+  filesWritten?: string[];
 }
 
 export default function AiChatModal() {
@@ -13,6 +15,7 @@ export default function AiChatModal() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingPhase, setLoadingPhase] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
   const scrollToBottom = useCallback(() => {
@@ -21,7 +24,7 @@ export default function AiChatModal() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, scrollToBottom]);
+  }, [messages, loading, scrollToBottom]);
 
   // Listen for toggle event
   useEffect(() => {
@@ -50,6 +53,7 @@ export default function AiChatModal() {
       setInput("");
       setError(null);
       setLoading(false);
+      setLoadingPhase("");
     };
     dialog.addEventListener("close", handleClose);
     return () => dialog.removeEventListener("close", handleClose);
@@ -70,6 +74,10 @@ export default function AiChatModal() {
     }
   };
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   const sendMessage = async () => {
     const trimmed = input.trim();
     if (!trimmed || loading) return;
@@ -80,16 +88,32 @@ export default function AiChatModal() {
     setInput("");
     setError(null);
     setLoading(true);
+    setLoadingPhase("Understanding your request...");
+
     const abort = new AbortController();
     abortRef.current = abort;
 
     try {
+      // Phase 1: Show "generating" status
+      setTimeout(() => {
+        if (!abort.signal.aborted) {
+          setLoadingPhase("Generating patterns with AI...");
+        }
+      }, 1500);
+
       const res = await fetch("/api/ai-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, history: messages }),
+        body: JSON.stringify({
+          message: trimmed,
+          history: messages.map((m) => ({
+            role: m.role,
+            content: m.content,
+          })),
+        }),
         signal: abort.signal,
       });
+
       if (!res.ok) {
         const text = await res.text().catch(() => "");
         let msg = `Server error ${res.status}`;
@@ -97,17 +121,32 @@ export default function AiChatModal() {
           const data = JSON.parse(text);
           if (data.error) msg = data.error;
         } catch {
-          // non-JSON response
+          // non-JSON
         }
         setError(msg);
       } else {
         const data = await res.json();
         if (data.error) {
           setError(data.error);
-        } else {
+        } else if (data.action === "files_written") {
+          // Files were created — show success with reload button
+          setLoadingPhase("Writing files and updating navigation...");
+          await new Promise((r) => setTimeout(r, 500));
+
           setMessages([
             ...newMessages,
-            { role: "assistant", content: data.response },
+            {
+              role: "assistant",
+              content: data.message,
+              needsReload: true,
+              filesWritten: data.files,
+            },
+          ]);
+        } else {
+          // Regular chat response
+          setMessages([
+            ...newMessages,
+            { role: "assistant", content: data.message },
           ]);
         }
       }
@@ -116,6 +155,7 @@ export default function AiChatModal() {
       setError(err instanceof Error ? err.message : "Request failed");
     } finally {
       setLoading(false);
+      setLoadingPhase("");
       if (abortRef.current === abort) abortRef.current = null;
     }
   };
@@ -150,9 +190,23 @@ export default function AiChatModal() {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-hsp-md space-y-vsp-sm">
           {messages.length === 0 && (
-            <p className="text-small text-muted text-center mt-vsp-xl">
-              Ask the AI to generate CSS component patterns using design tokens.
-            </p>
+            <div className="text-center mt-vsp-xl space-y-vsp-sm">
+              <p className="text-small text-muted">
+                Ask the AI to generate UI component patterns.
+              </p>
+              <div className="text-caption text-muted/70 space-y-vsp-2xs">
+                <p>Try:</p>
+                <p className="text-accent/80">
+                  "Make 10 breadcrumb patterns"
+                </p>
+                <p className="text-accent/80">
+                  "Create 8 sidebar navigation variations"
+                </p>
+                <p className="text-accent/80">
+                  "Generate 6 pricing table layouts"
+                </p>
+              </div>
+            </div>
           )}
           {messages.map((msg, i) => (
             <div
@@ -167,13 +221,32 @@ export default function AiChatModal() {
                 }`}
               >
                 {msg.content}
+                {msg.needsReload && (
+                  <div className="mt-vsp-sm pt-vsp-xs border-t border-muted/20">
+                    {msg.filesWritten && (
+                      <p className="text-caption text-muted mb-vsp-xs">
+                        Files: {msg.filesWritten.join(", ")}
+                      </p>
+                    )}
+                    <button
+                      onClick={handleReload}
+                      className="bg-accent text-bg px-hsp-lg py-vsp-2xs rounded text-small font-medium cursor-pointer border-none hover:bg-accent-hover transition-colors"
+                    >
+                      Reload page to see results
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
           {loading && (
             <div className="flex justify-start">
-              <div className="bg-surface px-hsp-md py-vsp-xs rounded-lg text-small text-muted">
-                <span className="inline-block animate-pulse">Thinking...</span>
+              <div className="bg-surface px-hsp-md py-vsp-sm rounded-lg text-small text-muted flex items-center gap-hsp-sm">
+                <span
+                  className="inline-block w-4 h-4 border-2 border-muted/30 rounded-full animate-spin"
+                  style={{ borderTopColor: "var(--color-accent)" }}
+                />
+                <span>{loadingPhase || "Working..."}</span>
               </div>
             </div>
           )}
@@ -195,7 +268,7 @@ export default function AiChatModal() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask for a component pattern..."
+            placeholder="e.g. Make 10 breadcrumb patterns"
             disabled={loading}
             className="flex-1 bg-bg border border-muted/30 rounded px-hsp-sm py-vsp-2xs text-small text-fg placeholder:text-muted outline-none focus:border-accent"
           />

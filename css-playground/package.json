@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.5",
     "@astrojs/react": "^4.2.1",
     "astro": "^5.7.10",
     "react": "^19.1.0",
@@ -23,6 +24,9 @@
     "typescript": "^5.8.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

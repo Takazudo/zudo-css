@@ -3,6 +3,9 @@ export const prerender = false;
 import type { APIRoute } from "astro";
 import { spawn } from "node:child_process";
 
+// Simple in-flight request guard — only 1 concurrent claude process
+let inFlight = false;
+
 const SYSTEM_PROMPT = `You are a CSS Playground AI assistant. You generate UI component variations using strict design tokens.
 
 When generating HTML+CSS patterns, you MUST use these CSS custom property tokens:
@@ -66,6 +69,14 @@ export const POST: APIRoute = async ({ request }) => {
   contextLines.push(`User: ${message}`);
   const fullPrompt = contextLines.join("\n\n");
 
+  if (inFlight) {
+    return new Response(
+      JSON.stringify({ error: "Another request is in progress. Please wait." }),
+      { status: 429 },
+    );
+  }
+
+  inFlight = true;
   try {
     const response = await callClaude(fullPrompt);
     return new Response(JSON.stringify({ response }));
@@ -76,6 +87,8 @@ export const POST: APIRoute = async ({ request }) => {
       }),
       { status: 500 },
     );
+  } finally {
+    inFlight = false;
   }
 };
 

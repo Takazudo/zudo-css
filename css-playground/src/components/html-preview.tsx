@@ -60,6 +60,8 @@ export default function HtmlPreview({
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: system-ui, sans-serif; }
+input, button, textarea, select { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--accent, hsl(220 70% 50%)); outline-offset: 2px; }
 ${BASE_TOKENS}
 ${css}
 </style>

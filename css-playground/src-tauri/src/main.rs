@@ -116,9 +116,11 @@ fn main() {
                 // Kill the sidecar process group on window close
                 if let Ok(pid) = sidecar_pid.lock() {
                     if let Some(child_pid) = *pid {
-                        unsafe {
-                            // Kill the entire process group
-                            libc::kill(-(child_pid as i32), libc::SIGTERM);
+                        // Use positive PID to avoid process group issues and u32→i32 overflow
+                        if child_pid <= i32::MAX as u32 {
+                            unsafe {
+                                libc::kill(child_pid as i32, libc::SIGTERM);
+                            }
                         }
                     }
                 }

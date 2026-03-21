@@ -38,14 +38,15 @@ fi
 
 TARBALL="node-${VERSION}-${PLATFORM}-${ARCH}.tar.gz"
 URL="https://nodejs.org/dist/${VERSION}/${TARBALL}"
+TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
 
 echo "Downloading Node.js ${VERSION} for ${PLATFORM}-${ARCH}..."
-curl -fSL "$URL" -o "/tmp/${TARBALL}"
+curl -fSL "$URL" -o "$TMPDIR/${TARBALL}"
 
 echo "Extracting..."
-tar -xzf "/tmp/${TARBALL}" -C /tmp
-cp "/tmp/node-${VERSION}-${PLATFORM}-${ARCH}/bin/node" "$DEST/$TARGET_NAME"
+tar -xzf "$TMPDIR/${TARBALL}" -C "$TMPDIR"
+cp "$TMPDIR/node-${VERSION}-${PLATFORM}-${ARCH}/bin/node" "$DEST/$TARGET_NAME"
 chmod +x "$DEST/$TARGET_NAME"
-rm -rf "/tmp/${TARBALL}" "/tmp/node-${VERSION}-${PLATFORM}-${ARCH}"
 
 echo "Node binary saved to $DEST/$TARGET_NAME"

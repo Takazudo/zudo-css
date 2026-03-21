@@ -1,0 +1,652 @@
+---
+sidebar_position: 3
+---
+
+import CssPreview from '@site/src/components/CssPreview';
+
+# Usage Patterns
+
+## The Problem
+
+Without a structured approach, asking AI to "make a header" produces a one-off result. Each request is disconnected — no shared tokens, no consistent spacing, no visual cohesion across generated components. Ask for a card next and the AI picks entirely different colors, spacing values, and sizing conventions. The results _look_ like they came from different projects.
+
+This gets worse at scale. If you generate 10 button variations, 5 card layouts, and 3 navigation bars in separate prompts, you end up with 18 components that share nothing. Merging them into a cohesive page requires manually re-aligning every spacing value, every color, every font size — defeating the purpose of AI-assisted generation.
+
+The root cause: the AI has no constraints. Without explicit rules about tokens, colors, and component structure, it invents its own system for every request.
+
+## The Solution
+
+Use a **structured prompting workflow** that tells the AI exactly which design tokens to use, how to structure color, and how to output components. The CSS Playground enforces these rules so that every generated component shares the same visual language.
+
+The workflow has three phases:
+
+1. **Constrain** — Define the token system (spacing, color, sizing) before generating anything
+2. **Generate** — Request multiple component variations in a single prompt, referencing the token system
+3. **Iterate** — Preview results in the playground, refine constraints, generate more
+
+## Prompt Patterns
+
+### Pattern 1: Batch Variation Generation
+
+Instead of asking for one component at a time, request many variations in a single prompt. This forces the AI to think about differentiation within a shared system.
+
+**Prompt example:**
+
+> Generate 6 button variations using these constraints:
+> - Spacing: hsp-xs (12px) horizontal padding, vsp-2xs (4px) vertical padding
+> - Colors: use --theme-accent, --theme-fg, --theme-bg, --theme-muted
+> - Structure: React components with utility classes only, no custom CSS class names
+> - Each variation must be visually distinct but use ONLY the provided tokens
+
+<CssPreview
+  title="Batch Generation: 6 Button Variations from One Prompt"
+  html={`<div class="btn-gallery">
+  <div class="btn-gallery__grid">
+    <button class="btn btn--solid">Primary Action</button>
+    <button class="btn btn--outline">Secondary</button>
+    <button class="btn btn--ghost">Ghost Button</button>
+    <button class="btn btn--muted">Muted Action</button>
+    <button class="btn btn--accent-subtle">Subtle Accent</button>
+    <button class="btn btn--inverted">Inverted</button>
+  </div>
+  <p class="btn-gallery__note">All 6 buttons share the same token system — spacing, colors, and sizing come from a single source.</p>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.btn-gallery {
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+}
+.btn-gallery__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.btn-gallery__note {
+  margin: 16px 0 0;
+  font-size: 0.75rem;
+  color: var(--theme-muted);
+}
+.btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: system-ui, sans-serif;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.85; }
+.btn--solid {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}
+.btn--outline {
+  background: transparent;
+  color: var(--theme-accent);
+  border-color: var(--theme-accent);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--theme-fg);
+  border-color: transparent;
+}
+.btn--ghost:hover { background: var(--theme-accent-subtle); }
+.btn--muted {
+  background: var(--theme-border);
+  color: var(--theme-fg);
+}
+.btn--accent-subtle {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent);
+}
+.btn--inverted {
+  background: var(--theme-fg);
+  color: var(--theme-bg);
+}`}
+  height={140} />
+
+### Pattern 2: Specifying Constraints Explicitly
+
+The more explicit your constraints, the more consistent the output. Always specify:
+
+1. **Token system** — which spacing tokens to use (hsp-\*/vsp-\*)
+2. **Color tier** — which theme tokens are available
+3. **Output format** — React components with utility classes
+4. **What NOT to do** — no arbitrary values, no custom CSS classes
+
+### Pattern 3: Component Type Galleries
+
+Request a gallery of a single component type. This is the most common playground pattern — generating many variations of one thing to explore the design space.
+
+## Component Gallery Pattern
+
+A component gallery shows multiple variations side by side, all sharing the same token system. This is the core output of the CSS Playground workflow.
+
+<CssPreview
+  title="Card Gallery: 4 Variations, Same Token System"
+  html={`<div class="card-gallery">
+  <div class="card-gallery__grid">
+    <div class="card card--standard">
+      <div class="card__header">Featured Article</div>
+      <div class="card__body">A simple card with header and body text using standard theme tokens.</div>
+      <div class="card__footer">
+        <span class="card__tag">Design</span>
+        <span class="card__tag">Tokens</span>
+      </div>
+    </div>
+    <div class="card card--accent">
+      <div class="card__header">Accent Card</div>
+      <div class="card__body">Accent background on the header draws attention to highlighted content.</div>
+      <div class="card__footer">
+        <span class="card__tag card__tag--light">Featured</span>
+      </div>
+    </div>
+    <div class="card card--minimal">
+      <div class="card__header">Minimal</div>
+      <div class="card__body">Border only, no background fills. Clean and lightweight.</div>
+      <div class="card__footer">
+        <span class="card__tag">Subtle</span>
+      </div>
+    </div>
+    <div class="card card--dark">
+      <div class="card__header">Dark Card</div>
+      <div class="card__body">Inverted colors using the same palette tokens in reverse.</div>
+      <div class="card__footer">
+        <span class="card__tag card__tag--dark">Inverted</span>
+      </div>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-blue-700: hsl(220 70% 35%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-800: hsl(220 15% 18%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-200: hsl(220 15% 92%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-accent-strong: var(--palette-blue-700);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-surface: var(--palette-gray-200);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.card-gallery {
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+}
+.card-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card__header {
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.card__body {
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  flex: 1;
+}
+.card__footer {
+  padding: 8px 12px;
+  display: flex;
+  gap: 6px;
+}
+.card__tag {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+/* Standard */
+.card--standard {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-fg);
+}
+.card--standard .card__header {
+  background: var(--theme-surface);
+  border-bottom: 1px solid var(--theme-border);
+}
+.card--standard .card__footer { border-top: 1px solid var(--theme-border); }
+.card--standard .card__tag {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent);
+}
+/* Accent */
+.card--accent {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-accent);
+  color: var(--theme-fg);
+}
+.card--accent .card__header {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}
+.card--accent .card__tag--light {
+  background: var(--theme-accent-subtle);
+  color: var(--theme-accent-strong);
+}
+/* Minimal */
+.card--minimal {
+  background: transparent;
+  border: 1px solid var(--theme-border);
+  color: var(--theme-fg);
+}
+.card--minimal .card__tag {
+  background: var(--theme-surface);
+  color: var(--theme-muted);
+}
+/* Dark */
+.card--dark {
+  background: var(--palette-gray-900);
+  color: var(--theme-bg);
+}
+.card--dark .card__header {
+  background: var(--palette-gray-800);
+}
+.card--dark .card__body { color: var(--theme-border); }
+.card--dark .card__tag--dark {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}`}
+  height={380} />
+
+All four cards use the same palette and theme tokens. The visual differences come from _how_ the tokens are applied — not from introducing new colors. This is what token-constrained generation looks like.
+
+### Navigation Gallery
+
+The same approach applies to navigation components. Request multiple navigation variations and the AI differentiates them through layout, not through ad-hoc color choices.
+
+<CssPreview
+  title="Navigation Gallery: 3 Variations, Shared Tokens"
+  html={`<div class="nav-gallery">
+  <nav class="nav nav--horizontal">
+    <span class="nav__logo">AppName</span>
+    <div class="nav__links">
+      <a class="nav__link" href="#">Docs</a>
+      <a class="nav__link" href="#">Blog</a>
+      <a class="nav__link nav__link--active" href="#">About</a>
+    </div>
+  </nav>
+  <nav class="nav nav--pill">
+    <span class="nav__logo">AppName</span>
+    <div class="nav__links">
+      <a class="nav__pill-link" href="#">Docs</a>
+      <a class="nav__pill-link" href="#">Blog</a>
+      <a class="nav__pill-link nav__pill-link--active" href="#">About</a>
+    </div>
+  </nav>
+  <nav class="nav nav--underline">
+    <span class="nav__logo">AppName</span>
+    <div class="nav__links">
+      <a class="nav__ul-link" href="#">Docs</a>
+      <a class="nav__ul-link" href="#">Blog</a>
+      <a class="nav__ul-link nav__ul-link--active" href="#">About</a>
+    </div>
+  </nav>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.nav-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.nav__logo {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--theme-fg);
+}
+.nav__links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+/* Horizontal */
+.nav--horizontal {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-border);
+}
+.nav__link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--theme-muted);
+  padding: 4px 8px;
+}
+.nav__link--active { color: var(--theme-accent); font-weight: 600; }
+/* Pill */
+.nav--pill {
+  background: var(--theme-fg);
+}
+.nav--pill .nav__logo { color: hsl(0 0% 100%); }
+.nav__pill-link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: hsl(0 0% 75%);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.nav__pill-link--active {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+}
+/* Underline */
+.nav--underline {
+  background: hsl(0 0% 100%);
+  border-bottom: 2px solid var(--theme-border);
+  border-radius: 0;
+}
+.nav__ul-link {
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--theme-muted);
+  padding: 4px 8px 8px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.nav__ul-link--active {
+  color: var(--theme-accent);
+  border-bottom-color: var(--theme-accent);
+  font-weight: 600;
+}`}
+  height={210} />
+
+Three navigation styles, zero color conflicts. Every nav uses `--theme-accent`, `--theme-fg`, `--theme-muted`, and `--theme-border` — the same tokens as the buttons and cards above.
+
+## Iteration Workflow
+
+The playground workflow is a loop, not a one-shot process:
+
+1. **Generate** — Request N variations of a component type with explicit token constraints
+2. **Preview** — View all variations side by side in the playground
+3. **Refine** — Identify what works, adjust constraints (tighten spacing, try different theme mappings)
+4. **Generate more** — Request additional variations with updated constraints
+5. **Extract** — Pick the best variations and move them into production
+
+### Before and After: Constraining the AI
+
+The difference between unconstrained and constrained generation is dramatic. Here is the same "card" request with and without token rules:
+
+<CssPreview
+  title="Before / After: Same Request, Different Constraints"
+  html={`<div class="comparison">
+  <div class="comparison__col">
+    <div class="comparison__label">Without token constraints</div>
+    <div class="card-bad">
+      <div class="card-bad__header">User Profile</div>
+      <div class="card-bad__body">Some content about the user goes here.</div>
+      <button class="card-bad__btn">View Profile</button>
+    </div>
+    <div class="card-bad card-bad--alt">
+      <div class="card-bad__header card-bad__header--alt">Settings</div>
+      <div class="card-bad__body">Manage your account settings.</div>
+      <button class="card-bad__btn card-bad__btn--alt">Open</button>
+    </div>
+  </div>
+  <div class="comparison__col">
+    <div class="comparison__label">With token constraints</div>
+    <div class="card-good">
+      <div class="card-good__header">User Profile</div>
+      <div class="card-good__body">Some content about the user goes here.</div>
+      <button class="card-good__btn">View Profile</button>
+    </div>
+    <div class="card-good card-good--alt">
+      <div class="card-good__header card-good__header--alt">Settings</div>
+      <div class="card-good__body">Manage your account settings.</div>
+      <button class="card-good__btn">Open</button>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-300: hsl(220 10% 78%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-muted: var(--palette-gray-500);
+  --theme-border: var(--palette-gray-300);
+}
+.comparison {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  background: hsl(0 0% 96%);
+}
+.comparison__col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.comparison__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(0 0% 40%);
+  margin-bottom: 2px;
+}
+/* BAD — unconstrained (arbitrary values everywhere) */
+.card-bad {
+  background: hsl(0 0% 100%);
+  border-radius: 12px;
+  padding: 18px 22px;
+  border: 1px solid hsl(0 0% 85%);
+}
+.card-bad__header {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: hsl(250 60% 45%);
+}
+.card-bad__header--alt { color: hsl(150 50% 35%); }
+.card-bad__body {
+  font-size: 0.75rem;
+  color: hsl(0 0% 45%);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.card-bad__btn {
+  background: hsl(250 60% 45%);
+  color: hsl(0 0% 100%);
+  border: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+}
+.card-bad__btn--alt { background: hsl(150 50% 35%); }
+/* GOOD — constrained (uses project tokens) */
+.card-good {
+  background: hsl(0 0% 100%);
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--theme-border);
+}
+.card-good__header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--theme-fg);
+}
+.card-good__header--alt { color: var(--theme-fg); }
+.card-good__body {
+  font-size: 0.75rem;
+  color: var(--theme-muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.card-good__btn {
+  background: var(--theme-accent);
+  color: hsl(0 0% 100%);
+  border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+}`}
+  height={340} />
+
+On the left, the AI used arbitrary values — purple for one card, green for another, inconsistent padding (18px/22px, 10px, 14px, 7px/16px), and different border-radius values. On the right, both cards share the same token system: `--theme-accent` for interactive elements, `--theme-fg` for text, `hsp-xs` (12px) for horizontal padding, `vsp-xs` (8px) for vertical padding, and a consistent 6px border-radius.
+
+## Rules for AI
+
+When generating components for the CSS Playground, AI agents must follow these rules exactly:
+
+1. **Always use the project's semantic spacing tokens** — `hsp-*` for horizontal spacing, `vsp-*` for vertical spacing. Never write arbitrary pixel values like `padding: 18px 22px`.
+
+2. **Always use three-tier color** — Components reference `--theme-*` tokens (Tier 2), theme tokens reference `--palette-*` tokens (Tier 1). Never use raw color values like `hsl(250 60% 45%)` directly in components.
+
+3. **Component first** — Every variation is a React component with utility classes. No custom CSS class names, no separate stylesheets, no CSS modules.
+
+4. **No arbitrary values** — Every spacing, color, size, and border-radius must come from a defined token. If a value is not in the token system, it is not allowed.
+
+5. **Self-contained variations** — Each generated variation must work independently. No shared mutable state between variations.
+
+<CssPreview
+  title="Rules Applied: Token-Constrained Component Set"
+  html={`<div class="rules-demo">
+  <div class="rules-demo__section">
+    <div class="rules-demo__label">Spacing: hsp/vsp tokens only</div>
+    <div class="rules-demo__boxes">
+      <div class="rules-demo__box rules-demo__box--a">hsp-xs / vsp-2xs</div>
+      <div class="rules-demo__box rules-demo__box--b">hsp-sm / vsp-xs</div>
+      <div class="rules-demo__box rules-demo__box--c">hsp-md / vsp-sm</div>
+    </div>
+  </div>
+  <div class="rules-demo__section">
+    <div class="rules-demo__label">Color: theme tokens only</div>
+    <div class="rules-demo__colors">
+      <div class="rules-demo__color" style="background: var(--theme-accent)"><span>accent</span></div>
+      <div class="rules-demo__color" style="background: var(--theme-fg)"><span>fg</span></div>
+      <div class="rules-demo__color rules-demo__color--light" style="background: var(--theme-accent-subtle)"><span>accent-subtle</span></div>
+      <div class="rules-demo__color rules-demo__color--light" style="background: var(--theme-surface)"><span>surface</span></div>
+    </div>
+  </div>
+</div>`}
+  css={`:root {
+  --palette-blue-500: hsl(220 70% 50%);
+  --palette-blue-100: hsl(220 70% 95%);
+  --palette-gray-900: hsl(220 15% 13%);
+  --palette-gray-100: hsl(220 15% 97%);
+  --palette-gray-200: hsl(220 15% 92%);
+  --palette-gray-500: hsl(220 10% 50%);
+  --theme-accent: var(--palette-blue-500);
+  --theme-accent-subtle: var(--palette-blue-100);
+  --theme-fg: var(--palette-gray-900);
+  --theme-bg: var(--palette-gray-100);
+  --theme-surface: var(--palette-gray-200);
+  --theme-muted: var(--palette-gray-500);
+}
+.rules-demo {
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+  background: var(--theme-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rules-demo__section { display: flex; flex-direction: column; gap: 8px; }
+.rules-demo__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: hsl(0 0% 40%);
+}
+.rules-demo__boxes {
+  display: flex;
+  gap: 12px;
+}
+.rules-demo__box {
+  background: hsl(0 0% 100%);
+  border: 1px solid var(--theme-accent);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--theme-fg);
+  font-weight: 500;
+}
+.rules-demo__box--a { padding: 4px 12px; }
+.rules-demo__box--b { padding: 8px 20px; }
+.rules-demo__box--c { padding: 20px 40px; }
+.rules-demo__colors {
+  display: flex;
+  gap: 8px;
+}
+.rules-demo__color {
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: hsl(0 0% 100%);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.rules-demo__color span { display: block; }
+.rules-demo__color--light { color: var(--theme-fg); }`}
+  height={220} />
+
+These rules ensure that the CSS Playground produces components that can be composed into a cohesive page without manual adjustment. See [Tight Token Strategy](/docs/methodology/tight-token-strategy) for the full spacing token system and [Three-Tier Color Strategy](/docs/color/three-tier-color-strategy) for the color architecture.
+
+## When to Use
+
+- **Rapid UI exploration** — Generate 10–20 variations of a component to explore the design space quickly
+- **Design system validation** — Test whether your token system is expressive enough by seeing how many distinct variations it can produce
+- **Building a component library** — Use the playground to generate, preview, and select the best component variants for your library
+- **AI-assisted development** — Any time you use AI to generate UI components, the structured prompting workflow prevents visual drift
+- **Client presentations** — Generate multiple options quickly to present design directions, all guaranteed to be visually consistent

@@ -113,7 +113,7 @@ Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
   border: 1px solid hsl(0 0% 88%);
 }
 .cascade-demo__tier-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -138,7 +138,7 @@ Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
   align-items: center;
   justify-content: center;
   color: hsl(0 0% 100%);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 .cascade-demo__swatch--light { color: hsl(0 0% 30%); }
@@ -152,7 +152,7 @@ Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
   gap: 6px;
 }
 .cascade-demo__token-name {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-family: monospace;
   color: hsl(0 0% 40%);
 }
@@ -185,12 +185,12 @@ Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
   background: var(--theme-bg);
 }
 .cascade-demo__card-title {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--theme-fg);
 }
 .cascade-demo__card-body {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
 }
 .cascade-demo__badge {
@@ -198,7 +198,7 @@ Palette (Tier 1)  →  Theme (Tier 2)  →  Components (Tier 3)
   color: var(--theme-accent);
   padding: 3px 8px;
   border-radius: 4px;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }`}
   height={340} />
@@ -210,10 +210,28 @@ The button, card, and badge all consume theme tokens. None of them know about `-
 The color panel is a React component that reads the current palette values and provides controls to modify them. The architecture is straightforward:
 
 ```jsx
+function hexToHsl(hex) {
+  // Convert #rrggbb from <input type="color"> to hsl() string
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return `hsl(0 0% ${Math.round(l * 100)}%)`;
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h = 0;
+  if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60;
+  else if (max === g) h = ((b - r) / d + 2) * 60;
+  else h = ((r - g) / d + 4) * 60;
+  return `hsl(${Math.round(h)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%)`;
+}
+
 function ColorPalettePanel({ paletteTokens }) {
-  const handleChange = (tokenName, newValue) => {
-    // Set the CSS custom property on :root
-    document.documentElement.style.setProperty(tokenName, newValue);
+  const handleChange = (tokenName, hexValue) => {
+    // Convert hex from <input type="color"> to hsl() before setting
+    const hslValue = hexToHsl(hexValue);
+    document.documentElement.style.setProperty(tokenName, hslValue);
   };
 
   return (
@@ -223,7 +241,7 @@ function ColorPalettePanel({ paletteTokens }) {
           <label>{token.name}</label>
           <input
             type="color"
-            defaultValue={token.value}
+            defaultValue={token.hexValue}
             onChange={(e) => handleChange(token.name, e.target.value)}
           />
         </div>
@@ -232,6 +250,8 @@ function ColorPalettePanel({ paletteTokens }) {
   );
 }
 ```
+
+Note that `<input type="color">` always returns hex values (`#3366cc`), so the handler converts to `hsl()` before setting the CSS custom property. This keeps the three-tier system consistently using `hsl()` values.
 
 The key implementation detail: the panel sets CSS custom properties on `:root` using `document.documentElement.style.setProperty()`. This is a live DOM operation — the browser recalculates all styles that reference the changed property immediately. No React re-render of the components is needed; the CSS cascade handles propagation.
 
@@ -334,7 +354,7 @@ The following two demos show the exact same component set under two different pa
   color: var(--theme-accent);
 }
 .stat-card__label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
   margin-top: 4px;
 }
@@ -453,7 +473,7 @@ The following two demos show the exact same component set under two different pa
   color: var(--theme-accent);
 }
 .stat-card__label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
   margin-top: 4px;
 }
@@ -588,7 +608,7 @@ A more complete example showing how the palette panel's cascade affects a comple
 .dash__sidebar-link {
   color: hsl(0 0% 100% / 0.6);
   text-decoration: none;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   padding: 6px 12px;
 }
 .dash__sidebar-link--active {
@@ -619,7 +639,7 @@ A more complete example showing how the palette panel's cascade affects a comple
   color: var(--theme-accent);
   padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 .dash__cards {
@@ -639,7 +659,7 @@ A more complete example showing how the palette panel's cascade affects a comple
   color: var(--theme-accent);
 }
 .dash__metric-label {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--theme-muted);
   margin-top: 2px;
 }
@@ -655,19 +675,19 @@ A more complete example showing how the palette panel's cascade affects a comple
   padding: 6px 12px;
   background: var(--theme-accent-subtle);
   font-weight: 600;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--theme-accent);
 }
 .dash__table-row {
   display: grid;
   grid-template-columns: 1fr 80px 80px;
   padding: 6px 12px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--theme-fg);
   border-top: 1px solid var(--theme-border);
 }
 .dash__status {
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 1px 6px;
   border-radius: 3px;
